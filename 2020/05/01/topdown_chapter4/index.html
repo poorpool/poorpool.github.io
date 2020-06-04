@@ -1,0 +1,571 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+    
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+  <title>
+    《计算机网络：自顶向下方法》笔记4 网络层：数据平面 |  一路春白
+  </title>
+  <meta name="generator" content="hexo-theme-yilia-plus">
+  
+  <link rel="shortcut icon" href="/favicon.ico" />
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+<script src="/js/pace.min.js"></script>
+
+
+  
+
+  
+
+<link rel="alternate" href="/atom.xml" title="一路春白" type="application/atom+xml">
+</head>
+
+</html>
+
+<body>
+  <div id="app">
+    <main class="content">
+      <section class="outer">
+  <article id="post-topdown_chapter4" class="article article-type-post" itemscope
+  itemprop="blogPost" data-scroll-reveal>
+
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h1 class="article-title sea-center" style="border-left:0" itemprop="name">
+  《计算机网络：自顶向下方法》笔记4 网络层：数据平面
+</h1>
+  
+
+    </header>
+    
+
+    
+    <div class="article-meta">
+      <a href="/2020/05/01/topdown_chapter4/" class="article-date">
+  <time datetime="2020-05-01T02:00:03.000Z" itemprop="datePublished">2020-05-01</time>
+</a>
+      
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E7%AC%94%E8%AE%B0/">笔记</a>
+  </div>
+
+      
+      
+<div class="word_count">
+    <span class="post-time">
+        <span class="post-meta-item-icon">
+            <i class="ri-quill-pen-line"></i>
+            <span class="post-meta-item-text"> 字数统计:</span>
+            <span class="post-count">1.6k字</span>
+        </span>
+    </span>
+
+    <span class="post-time">
+        &nbsp; | &nbsp;
+        <span class="post-meta-item-icon">
+            <i class="ri-book-open-line"></i>
+            <span class="post-meta-item-text"> 阅读时长≈</span>
+            <span class="post-count">5分钟</span>
+        </span>
+    </span>
+</div>
+
+      
+    </div>
+    
+
+    
+    
+    <div class="tocbot"></div>
+
+
+
+
+
+    
+
+    <div class="article-entry" itemprop="articleBody">
+      
+
+
+      
+
+      
+      <p>第四章</p>
+<a id="more"></a>
+
+<h2 id="网络层概述"><a href="#网络层概述" class="headerlink" title="网络层概述"></a>网络层概述</h2><h4 id="两种功能"><a href="#两种功能" class="headerlink" title="两种功能"></a>两种功能</h4><ul>
+<li>转发。当一个分组到达某路由器的一条输入链路时，该路由器必须将该分组移动到适当的输出链路。这个是<strong>数据平面</strong>的唯一功能。当然也可能被现有的路由器阻挡或者可能是冗余的并经过多条出链路发送。</li>
+<li>路由选择。当分组从发送方流向接收方时，网络层决定这些分组采用的路由or路径。这是在<strong>控制平面</strong>中实现。</li>
+</ul>
+<p>转发这个路由器本地动作时间尺度很短，常用硬件实现。路由选择是确定分组从源到目的地的端到端路径的网络范围处理过程，时间尺度长（几秒），软件实现。转发就是走一个立交桥，路由选择就是规划路径。</p>
+<h4 id="控制平面的方法"><a href="#控制平面的方法" class="headerlink" title="控制平面的方法"></a>控制平面的方法</h4><p>传统方法：</p>
+<p><img src="/images/topdown/cpt4-1.png" alt="traditional"></p>
+<p>路由选择算法决定了插入该路由转发表的内容。路由选择算法运行在每台路由器上。</p>
+<p>SDN（软件定义网络）方法：</p>
+<p><img src="/images/topdown/cpt4-2.png" alt="sdn"></p>
+<p>这是路由选择厂商的传统方法。远程控制器计算和分发转发表供使用。</p>
+<h4 id="网络服务模型"><a href="#网络服务模型" class="headerlink" title="网络服务模型"></a>网络服务模型</h4><p>因特网的网络层只提供尽力而为服务……</p>
+<h2 id="路由器工作原理"><a href="#路由器工作原理" class="headerlink" title="路由器工作原理"></a>路由器工作原理</h2><h4 id="路由器结构"><a href="#路由器结构" class="headerlink" title="路由器结构 "></a>路由器结构 <img src="/images/topdown/cpt4-3.png" alt="route arch"></h4><p>如图。在输入端口还要执行查找功能，决定输出端口。</p>
+<p>输入端口、输出端口、交换结构几乎总是用硬件实现。交换可以用内存/总线/互联网络之类的。</p>
+<h4 id="输入端口"><a href="#输入端口" class="headerlink" title="输入端口"></a>输入端口</h4><p><img src="/images/topdown/cpt4-4.png" alt="4-4"></p>
+<p>输入端口，线路端接（物理层）、数据链路处理（链路层）、查找转发排队。</p>
+<h4 id="转发表"><a href="#转发表" class="headerlink" title="转发表"></a>转发表</h4><p>转发表通常用最长前缀匹配规则。</p>
+<h4 id="输出端口"><a href="#输出端口" class="headerlink" title="输出端口"></a>输出端口</h4><p><img src="/images/topdown/cpt4-5.png" alt="4-5"></p>
+<h4 id="排队"><a href="#排队" class="headerlink" title="排队"></a>排队</h4><p>输入排队：交换结构不能快得让所有到达分组无时延地通过它传送。有时候一个分组的输出端口没有竞争，但是统一输入端口前面的分组应为竞争而等待导致它也要等待，这叫线路前部HOL阻塞。</p>
+<p>当然也有输出排队。</p>
+<p>现在研究出缓存需要的数据量是$\dfrac{\mathrm{RTT}\times C}{\sqrt N}$。$N$是tcp连接数量。</p>
+<h4 id="分组调度"><a href="#分组调度" class="headerlink" title="分组调度"></a>分组调度</h4><p><strong>先进先出</strong>：FCFS（也称FIFO）</p>
+<p><strong>优先权排队</strong>：分几个优先权类，先执行高优先权的，同权就fifo。</p>
+<p><strong>循环和加权公平排队</strong>：分组被分类，每个类轮着来，但是不允许链路空闲（保持工作排队）。</p>
+<h2 id="网际协议：IPv4、寻址、IPv6及其他"><a href="#网际协议：IPv4、寻址、IPv6及其他" class="headerlink" title="网际协议：IPv4、寻址、IPv6及其他"></a>网际协议：IPv4、寻址、IPv6及其他</h2><h4 id="ipv4数据报"><a href="#ipv4数据报" class="headerlink" title="ipv4数据报"></a>ipv4数据报</h4><p><img src="/images/topdown/cpt4-6.png" alt="ipv4"></p>
+<ul>
+<li>版本号</li>
+<li>首部长度</li>
+<li>服务类型</li>
+<li>数据报长度（总长度）。理论最大长度65535，但很少超过1500</li>
+<li>标识、标志、片偏移（和ip分片有关）</li>
+<li>寿命TTL。TTL减为0时数据报必须丢弃。</li>
+<li>协议。通常到达目的地才有用，6是tcp，17是udp。</li>
+<li>首部检验和。只对首部计算检验和。每台路由器都要重新计算并写入检验和。</li>
+<li>源和目的ip地址</li>
+<li>选项（如果有）</li>
+<li>数据（有效载荷）</li>
+</ul>
+<p>一个ip数据报首部20字节（如果没有选项），加上20字节tcp首部，则每个（没有分片的）数据报共有40字节首部。</p>
+<h4 id="数据报分片"><a href="#数据报分片" class="headerlink" title="数据报分片"></a>数据报分片</h4><p>由于最大传输单元MTU，数据报可能会被分片。但是数据报的重新组装在端系统中。发送方生成一个数据报，就贴上一个标识号，标识号每次+1。具有相同标识的多个分片，最后一个片的标志bit为0，其他的为1。为了让端系统按正确位置组装，偏移字段指定该片该房在初始ip数据报的哪个位置。</p>
+<h4 id="ipv4编址"><a href="#ipv4编址" class="headerlink" title="ipv4编址"></a>ipv4编址</h4><p>主机和物理链路之间的边界叫接口。一个ip地址和一个接口相关联。</p>
+<p><img src="/images/topdown/cpt4-7.png" alt="subnet"></p>
+<p>如图，左边三个主机接口和一个路由器接口的网络形成一个子网，为<code>223.1.1.0/24</code>，24是子网掩码。就是最左边24bit定义了子网地址。</p>
+<p>因特网的地址分配策略是无类别域间路由选择CIDR。</p>
+<p>一个组织通常有一块连续的地址。</p>
+<p>剩下的$32-x$比特可以认为是区分内部设备的。</p>
+<p>广播地址<code>255.255.255.255</code>，目的地是它时，报文会交付给同一个网络中的所有主机。</p>
+<h4 id="路由聚合"><a href="#路由聚合" class="headerlink" title="路由聚合"></a>路由聚合</h4><p><img src="/images/topdown/cpt4-8.png" alt="lyjh"></p>
+<p>单个网络前缀可以通告多个网络，这就是地址聚合/路由聚合/路由摘要。</p>
+<p>如果有人想路由选择到<code>200.23.18.0/23</code>里的某个地址，那使用最长前缀匹配，会朝着ISPs-R-Us前进。</p>
+<h4 id="动态主机配置协议"><a href="#动态主机配置协议" class="headerlink" title="动态主机配置协议"></a>动态主机配置协议</h4><p>dhcp是个即插即用/零配置协议。子网中要有一台dhcp服务器（或者dhcp中继代理，通常是一台路由器）</p>
+<p><img src="/images/topdown/cpt4-9.png" alt="dhcp"></p>
+<ul>
+<li>dhcp服务器发现。客户广播一条dhcp发现报文，向端口67。</li>
+<li>dhcp服务器提供。dhcp服务器广播一个dhcp提供报文。</li>
+<li>dhcp请求。客户从一个或多个服务器提供中选一个，并以dhcp请求报文响应那个服务器。</li>
+<li>dhcp ack。服务器用dhcp ack报文证实要求的参数。</li>
+</ul>
+<h4 id="网络地址转换"><a href="#网络地址转换" class="headerlink" title="网络地址转换"></a>网络地址转换</h4><p>nat路由器对外界的行为就如同一个具有单一ip地址的单一设备。用一个nat转换表。</p>
+<p><img src="/images/topdown/cpt4-10.png" alt="nat"></p>
+<h4 id="IPv6"><a href="#IPv6" class="headerlink" title="IPv6"></a>IPv6</h4><p><img src="/images/topdown/cpt4-11.png" alt="ipv6"></p>
+<p>地址容量扩大了。还引入了任播地址，将数据报交付给一组主机中的任意一个。</p>
+<p>首部长度固定40字节。</p>
+<p>流量类型类似于ipv4中的服务类型。</p>
+<p>下一个首部：数据字段交付给哪个协议（tcp、udp）</p>
+<p>跳限制：转发数据报的每台路由器对该字段的内容减一。到0丢弃。</p>
+<p>ipv6没有分片/重新组装，没有首部检验和，没有首部了。 </p>
+<p>一种从ipv4到ipv6的过渡方法是建隧道，不支持ipv6的地方把ipv6数据报套在ipv4里头。</p>
+<h2 id="通用转发和SDN"><a href="#通用转发和SDN" class="headerlink" title="通用转发和SDN"></a>通用转发和SDN</h2><p>匹配加动作转发表在openflow中称为流表，包括首部字段值的集合，计数器集合，动作集合。</p>
+<p>可以实现简单转发，负载均衡，充当防火墙等功能，具体看书吧。</p>
+
+      
+      <!-- 打赏 -->
+      
+      <div id="reward-btn">
+        打赏
+      </div>
+      
+    </div>
+    <footer class="article-footer">
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E7%AC%94%E8%AE%B0/" rel="tag">笔记</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/" rel="tag">计算机网络</a></li></ul>
+
+    </footer>
+
+  </div>
+
+  
+  
+  <nav class="article-nav">
+    
+      <a href="/2020/05/01/topdown_chapter5/" class="article-nav-link">
+        <strong class="article-nav-caption">上一篇</strong>
+        <div class="article-nav-title">
+          
+            《计算机网络：自顶向下方法》笔记5 网络层：控制平面
+          
+        </div>
+      </a>
+    
+    
+      <a href="/2020/05/01/topdown_chapter2/" class="article-nav-link">
+        <strong class="article-nav-caption">下一篇</strong>
+        <div class="article-nav-title">《计算机网络：自顶向下方法》笔记2 应用层</div>
+      </a>
+    
+  </nav>
+
+
+  
+
+  
+
+  
+
+  
+  <!-- 来必力City版安装代码 -->
+<div id="lv-container" data-id="city" data-uid="MTAyMC8zNzE5NC8xMzcyOA==">
+    <script type="text/javascript">
+       (function(d, s) {
+           var j, e = d.getElementsByTagName(s)[0];
+    
+           if (typeof LivereTower === 'function') { return; }
+    
+           j = d.createElement(s);
+           j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+           j.async = true;
+    
+           e.parentNode.insertBefore(j, e);
+       })(document, 'script');
+    </script>
+    <noscript>为正常使用来必力评论功能请激活JavaScript</noscript>
+    </div>
+    <!-- City版安装代码已完成 -->
+  
+
+</article>
+</section>
+      <footer class="footer">
+  <div class="outer">
+    <ul class="list-inline">
+      <li>
+        &copy;
+        2018-2020
+        poorpool
+      </li>
+      <li>
+        
+          Powered by
+        
+        
+        <a href="https://hexo.io" target="_blank">Hexo</a> Theme <a href="https://github.com/Shen-Yu/hexo-theme-ayer" target="_blank">Ayer</a>
+        
+      </li>
+    </ul>
+    <ul class="list-inline">
+      <li>
+        
+        
+        <ul class="list-inline">
+  <li>PV:<span id="busuanzi_value_page_pv"></span></li>
+  <li>UV:<span id="busuanzi_value_site_uv"></span></li>
+</ul>
+        
+      </li>
+      <li>
+        <!-- cnzz统计 -->
+        
+      </li>
+    </ul>
+  </div>
+</footer>
+    <div class="to_top">
+        <div class="totop" id="totop">
+  <i class="ri-arrow-up-line"></i>
+</div>
+      </div>
+    </main>
+      <aside class="sidebar">
+        <button class="navbar-toggle"></button>
+<nav class="navbar">
+  
+  <div class="logo">
+    <a href="/"><img src="/images/ayer-side.png" alt="一路春白"></a>
+  </div>
+  
+  <ul class="nav nav-main">
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/">主页</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/archives">归档</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/categories">分类</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/tags">标签</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/about">关于我</a>
+    </li>
+    
+  </ul>
+</nav>
+<nav class="navbar navbar-bottom">
+  <ul class="nav">
+    <li class="nav-item">
+      
+      <a class="nav-item-link nav-item-search"  title="Search">
+        <i class="ri-search-line"></i>
+      </a>
+      
+      
+      <a class="nav-item-link" target="_blank" href="/atom.xml" title="RSS Feed">
+        <i class="ri-rss-line"></i>
+      </a>
+      
+    </li>
+  </ul>
+</nav>
+<div class="search-form-wrap">
+  <div class="local-search local-search-plugin">
+  <input type="search" id="local-search-input" class="local-search-input" placeholder="Search...">
+  <div id="local-search-result" class="local-search-result"></div>
+</div>
+</div>
+      </aside>
+      <div id="mask"></div>
+
+<!-- #reward -->
+<div id="reward">
+  <span class="close"><i class="ri-close-line"></i></span>
+  <p class="reward-p"><i class="ri-cup-line"></i>请我喝杯草莓芝士奶盖吧~</p>
+  <div class="reward-box">
+    
+    <div class="reward-item">
+      <img class="reward-img" src="/images/alipay.jpg">
+      <span class="reward-type">支付宝</span>
+    </div>
+    
+    
+    <div class="reward-item">
+      <img class="reward-img" src="/images/wechat.png">
+      <span class="reward-type">微信</span>
+    </div>
+    
+  </div>
+</div>
+      
+<script src="/js/jquery-2.0.3.min.js"></script>
+
+
+<script src="/js/jquery.justifiedGallery.min.js"></script>
+
+
+<script src="/js/lazyload.min.js"></script>
+
+
+<script src="/js/busuanzi-2.3.pure.min.js"></script>
+
+
+<script src="/js/share.js"></script>
+
+
+
+<script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script>
+  try {
+    var typed = new Typed("#subtitle", {
+    strings: ['两人对酌山花开，一杯一杯复一杯。','我醉欲眠卿且去，明朝有意抱琴来。',''],
+    startDelay: 0,
+    typeSpeed: 200,
+    loop: true,
+    backSpeed: 100,
+    showCursor: true
+    });
+  } catch (err) {
+  }
+  
+</script>
+
+
+
+
+<script src="/js/tocbot.min.js"></script>
+
+<script>
+  // Tocbot_v4.7.0  http://tscanlin.github.io/tocbot/
+  tocbot.init({
+    tocSelector: '.tocbot',
+    contentSelector: '.article-entry',
+    headingSelector: 'h1, h2, h3, h4, h5, h6',
+    hasInnerContainers: true,
+    scrollSmooth: true,
+    scrollContainer:'main',
+    positionFixedSelector: '.tocbot',
+    positionFixedClass: 'is-position-fixed',
+    fixedSidebarOffset: 'auto',
+    onClick: (e) => {
+      $('.toc-link').removeClass('is-active-link');
+      $(`a[href=${e.target.hash}]`).addClass('is-active-link');
+      $(e.target.hash).scrollIntoView();
+      return false;
+    }
+  });
+</script>
+
+
+<script>
+  var ayerConfig = {
+    mathjax: true
+  }
+</script>
+
+
+<script src="/js/ayer.js"></script>
+
+
+<script src="https://cdn.jsdelivr.net/npm/jquery-modal@0.9.2/jquery.modal.min.js"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/jquery-modal@0.9.2/jquery.modal.min.css">
+
+
+<!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                <!--  Controls are self-explanatory. Order can be changed. -->
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" style="display:none" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.css">
+<script src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"></script>
+
+<script>
+    function viewer_init() {
+        let pswpElement = document.querySelectorAll('.pswp')[0];
+        let $imgArr = document.querySelectorAll(('.article-entry img:not(.reward-img)'))
+
+        $imgArr.forEach(($em, i) => {
+            $em.onclick = () => {
+                // slider展开状态
+                // todo: 这样不好，后面改成状态
+                if (document.querySelector('.left-col.show')) return
+                let items = []
+                $imgArr.forEach(($em2, i2) => {
+                    let img = $em2.getAttribute('data-idx', i2)
+                    let src = $em2.getAttribute('data-target') || $em2.getAttribute('src')
+                    let title = $em2.getAttribute('alt')
+                    // 获得原图尺寸
+                    const image = new Image()
+                    image.src = src
+                    items.push({
+                        src: src,
+                        w: image.width || $em2.width,
+                        h: image.height || $em2.height,
+                        title: title
+                    })
+                })
+                var gallery = new PhotoSwipe(pswpElement, PhotoSwipeUI_Default, items, {
+                    index: parseInt(i)
+                });
+                gallery.init()
+            }
+        })
+    }
+    viewer_init()
+</script>
+
+
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+      tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+  });
+
+  MathJax.Hub.Queue(function() {
+      var all = MathJax.Hub.getAllJax(), i;
+      for(i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+      }
+  });
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/mathjax@2.7.6/unpacked/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+
+<script type="text/javascript" src="https://js.users.51.la/20544303.js"></script>
+  </div>
+</body>
+
+</html>
