@@ -6,7 +6,7 @@
     
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
   <title>
-    Java Web 学习札记4 |  一路春白
+    Java Web 学习札记3 |  一路春白
   </title>
   <meta name="generator" content="hexo-theme-yilia-plus">
   
@@ -32,7 +32,7 @@
   <div id="app">
     <main class="content">
       <section class="outer">
-  <article id="post-javaweb4" class="article article-type-post" itemscope
+  <article id="post-javaweb3" class="article article-type-post" itemscope
   itemprop="blogPost" data-scroll-reveal>
 
   <div class="article-inner">
@@ -40,7 +40,7 @@
     <header class="article-header">
        
 <h1 class="article-title sea-center" style="border-left:0" itemprop="name">
-  Java Web 学习札记4
+  Java Web 学习札记3
 </h1>
   
 
@@ -49,7 +49,7 @@
 
     
     <div class="article-meta">
-      <a href="/2020/06/02/javaweb4/" class="article-date">
+      <a href="/2020/06/02/javaweb3/" class="article-date">
   <time datetime="2020-06-02T12:15:57.000Z" itemprop="datePublished">2020-06-02</time>
 </a>
       
@@ -64,7 +64,7 @@
         <span class="post-meta-item-icon">
             <i class="ri-quill-pen-line"></i>
             <span class="post-meta-item-text"> 字数统计:</span>
-            <span class="post-count">2.1k字</span>
+            <span class="post-count">2.8k字</span>
         </span>
     </span>
 
@@ -73,7 +73,7 @@
         <span class="post-meta-item-icon">
             <i class="ri-book-open-line"></i>
             <span class="post-meta-item-text"> 阅读时长≈</span>
-            <span class="post-count">10分钟</span>
+            <span class="post-count">13分钟</span>
         </span>
     </span>
 </div>
@@ -188,6 +188,36 @@
 <p>其中charset换成编码（UTF-8)，B是base64,xxx是内容。</p>
 <p>一般用user-agent选择。</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.poorpool.demo;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> org.apache.commons.io.IOUtils;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> javax.servlet.ServletContext;</span><br><span class="line"><span class="keyword">import</span> javax.servlet.ServletException;</span><br><span class="line"><span class="keyword">import</span> javax.servlet.http.HttpServlet;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> javax.servlet.http.HttpServletRequest;</span><br><span class="line"><span class="keyword">import</span> javax.servlet.http.HttpServletResponse;</span><br><span class="line"><span class="keyword">import</span> java.io.IOException;</span><br><span class="line"><span class="keyword">import</span> java.io.InputStream;</span><br><span class="line"><span class="keyword">import</span> java.net.URLEncoder;</span><br><span class="line"><span class="keyword">import</span> java.util.Base64;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Download</span> <span class="keyword">extends</span> <span class="title">HttpServlet</span> </span>&#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">doGet</span><span class="params">(HttpServletRequest req, HttpServletResponse resp)</span> <span class="keyword">throws</span> ServletException, IOException </span>&#123;</span><br><span class="line">        String fileName = <span class="string">"你好.html"</span>;<span class="comment">//写死web下的你好.html</span></span><br><span class="line">        ServletContext servletContext = getServletContext();</span><br><span class="line">        <span class="comment">//得到文件类型</span></span><br><span class="line">        String mimeType = servletContext.getMimeType(<span class="string">"/"</span> + fileName);</span><br><span class="line">        <span class="comment">//设置文件类型</span></span><br><span class="line">        System.out.println(mimeType);</span><br><span class="line">        resp.setContentType(mimeType);</span><br><span class="line"></span><br><span class="line">        String ua = req.getHeader(<span class="string">"User-Agent"</span>);</span><br><span class="line">        String addStr = <span class="string">"attachment; filename="</span>;</span><br><span class="line">        <span class="keyword">if</span> (ua.contains(<span class="string">"Firefox"</span>)) &#123;</span><br><span class="line">            addStr += <span class="string">"=?utf-8?B?"</span> + <span class="keyword">new</span> String(Base64.getEncoder().encode(fileName.getBytes(<span class="string">"utf-8"</span>))) + <span class="string">"?="</span>;</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            addStr += URLEncoder.encode(fileName, <span class="string">"utf-8"</span>);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        resp.setHeader(<span class="string">"Content-Disposition"</span>, addStr);</span><br><span class="line">        <span class="comment">//获得输入流</span></span><br><span class="line">        InputStream is = servletContext.getResourceAsStream(<span class="string">"/"</span> + fileName);</span><br><span class="line">        <span class="comment">//is.transferTo(resp.getOutputStream());都可以，下面的是common-io里头的copy</span></span><br><span class="line">        IOUtils.copy(is, resp.getOutputStream());</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h1 id="MVC"><a href="#MVC" class="headerlink" title="MVC"></a>MVC</h1><p>模型、视图、控制器。可以理解为model是javabean，视图是jsp/html，控制器是servlet。</p>
+<p><img src="/images/javaknows/4.png" alt="image"></p>
+<h1 id="COOKIE"><a href="#COOKIE" class="headerlink" title="COOKIE"></a>COOKIE</h1><p>是服务器通知客户端保存键值对的手段。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">CookieServlet</span> <span class="keyword">extends</span> <span class="title">BaseServlet</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">createCookie</span><span class="params">(HttpServletRequest req, HttpServletResponse resp)</span> <span class="keyword">throws</span> ServletException, IOException </span>&#123;</span><br><span class="line">        <span class="comment">//创建cookie</span></span><br><span class="line">        Cookie cookie1 = <span class="keyword">new</span> Cookie(<span class="string">"key1"</span>, <span class="string">"value1"</span>);</span><br><span class="line">        <span class="comment">//写入cookie</span></span><br><span class="line">        resp.addCookie(cookie1);<span class="comment">//当然可以add好多个</span></span><br><span class="line">        resp.getWriter().print(<span class="string">"Cookie创建成功"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>BaseServlet是重写了doPost/doGet用反射调用方法的抽象类，自己写的。</p>
+<p>获得（浏览器请求中的）cookie的话，用req.getCookies()获得Cookie[]数组。每个cookie都有getName()和getValue()方法。</p>
+<p>修改的话，直接创建一个同名Cookie对象或者是获得了Cookie对象然后setValue()，然后都要addCookie(yourcookie)通知浏览器修改。</p>
+<p>顺带一提，cookie的内容要求挺严格。要是有空格逗号中文之类的建议用BASE64编码。</p>
+<p>生命控制使用setMaxAge()，正值是指定秒数以后过期，0是立刻删除，负值是关闭浏览器以后删除。</p>
+<p>可以设置路径，只有在路径底下cookie才有效</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cookie.setPath( req.getContextPath() + <span class="string">"/abc"</span> ); <span class="comment">// ==&gt; /工程路径/abc</span></span><br></pre></td></tr></table></figure>
+
+<p>例如：成功登录以后记录下来用户名这样下一次登录就不用输入用户名了：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">form</span> <span class="attr">action</span>=<span class="string">"loginServlet"</span> <span class="attr">method</span>=<span class="string">"post"</span>&gt;</span></span><br><span class="line">    用户名：<span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"text"</span> <span class="attr">name</span>=<span class="string">"username"</span> <span class="attr">value</span>=<span class="string">"$&#123;cookie.username.value&#125;"</span>/&gt;</span><span class="tag">&lt;<span class="name">br</span>/&gt;</span></span><br><span class="line">    密码：<span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"password"</span> <span class="attr">name</span>=<span class="string">"password"</span> <span class="attr">value</span>=<span class="string">""</span>/&gt;</span><span class="tag">&lt;<span class="name">br</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">button</span> <span class="attr">type</span>=<span class="string">"submit"</span>&gt;</span>提交<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">form</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">LoginServlet</span> <span class="keyword">extends</span> <span class="title">HttpServlet</span> </span>&#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">doPost</span><span class="params">(HttpServletRequest req, HttpServletResponse resp)</span> <span class="keyword">throws</span> ServletException, IOException </span>&#123;</span><br><span class="line">        String username = req.getParameter(<span class="string">"username"</span>);</span><br><span class="line">        String password = req.getParameter(<span class="string">"password"</span>);</span><br><span class="line">        <span class="keyword">if</span> (<span class="string">"admin"</span>.equals(username) &amp;&amp; <span class="string">"admin"</span>.equals(password)) &#123;</span><br><span class="line">            Cookie user = <span class="keyword">new</span> Cookie(<span class="string">"username"</span>, username);</span><br><span class="line">            user.setMaxAge(<span class="number">60</span> * <span class="number">60</span> * <span class="number">24</span> * <span class="number">7</span>);<span class="comment">//one week</span></span><br><span class="line">            resp.addCookie(user);</span><br><span class="line">            resp.getWriter().write(<span class="string">"login successed"</span>);</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            resp.getWriter().write(<span class="string">"login failed"</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h1 id="Session"><a href="#Session" class="headerlink" title="Session"></a>Session</h1><p>Session 是一个接口，是会话，是用来维护一个客户端和服务器之间关联的一种技术。每个客户端都有自己的一个Session会话。</p>
+<p>Session会话中，我们经常用来保存用户登录之后的信息。</p>
+<p>创建Session：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">createOrGetSession</span><span class="params">(HttpServletRequest req, HttpServletResponse resp)</span> <span class="keyword">throws</span> ServletException, IOException </span>&#123;</span><br><span class="line">    HttpSession session = req.getSession();</span><br><span class="line">    <span class="keyword">boolean</span> isNew = session.isNew();</span><br><span class="line">    String id = session.getId();<span class="comment">//唯一id</span></span><br><span class="line">    resp.getWriter().write(<span class="string">"得到的session id "</span> + id + <span class="string">"&lt;br/&gt;新创建？"</span> + isNew);</span><br><span class="line">    <span class="comment">//第一次点是true，以后都是false</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>session也是域，可以在java代码中session.setAttribute(“key1”, “value1”)，也可以在jsp中用${sessionScope.key1}之类的东西。</p>
+<p>关于寿命：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">defaultLife</span><span class="params">(HttpServletRequest req, HttpServletResponse resp)</span> <span class="keyword">throws</span> ServletException, IOException </span>&#123;</span><br><span class="line">  HttpSession session = req.getSession();</span><br><span class="line">  System.out.println(session.getMaxInactiveInterval());<span class="comment">//获取默认活跃时间。默认的是1800（30min）</span></span><br><span class="line">  <span class="comment">//默认30min是tomcat服务器配置中写的</span></span><br><span class="line">  session.setMaxInactiveInterval(<span class="number">60</span>*<span class="number">60</span>);<span class="comment">//60min</span></span><br><span class="line">  <span class="comment">//也能设置负数，永不失效，几乎不用</span></span><br><span class="line">  session.invalidate();<span class="comment">//立刻失效</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>要调整默认时间，在自己的web.xml里头写。</p>
+<p>至于Session和Cookie：</p>
+<p><img src="/images/javaknows/5.png" alt="images"></p>
 
       
       <!-- 打赏 -->
