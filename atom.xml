@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://jwdu6v.coding-pages.com/"/>
-  <updated>2020-06-11T05:54:25.380Z</updated>
+  <updated>2020-06-18T11:47:32.114Z</updated>
   <id>https://jwdu6v.coding-pages.com/</id>
   
   <author>
@@ -15,6 +15,29 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>SSM 框架学习笔记 1</title>
+    <link href="https://jwdu6v.coding-pages.com/2020/06/18/ssm1/"/>
+    <id>https://jwdu6v.coding-pages.com/2020/06/18/ssm1/</id>
+    <published>2020-06-18T08:06:34.000Z</published>
+    <updated>2020-06-18T11:47:32.114Z</updated>
+    
+    <summary type="html">
+    
+      &lt;p&gt;&lt;a href=&quot;https://www.bilibili.com/video/BV1d4411g7tv&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;课程来源&lt;/a&gt;&lt;/p&gt;
+    
+    </summary>
+    
+    
+      <category term="框架" scheme="https://jwdu6v.coding-pages.com/categories/%E6%A1%86%E6%9E%B6/"/>
+    
+    
+      <category term="Java" scheme="https://jwdu6v.coding-pages.com/tags/Java/"/>
+    
+      <category term="Spring" scheme="https://jwdu6v.coding-pages.com/tags/Spring/"/>
+    
+  </entry>
   
   <entry>
     <title>Java Web 学习札记4</title>
@@ -45,7 +68,7 @@
     <link href="https://jwdu6v.coding-pages.com/2020/06/02/javaweb3/"/>
     <id>https://jwdu6v.coding-pages.com/2020/06/02/javaweb3/</id>
     <published>2020-06-02T12:15:57.000Z</published>
-    <updated>2020-06-09T10:22:31.802Z</updated>
+    <updated>2020-06-17T14:26:24.746Z</updated>
     
     <summary type="html">
     
@@ -450,24 +473,6 @@
       <category term="开发笔记" scheme="https://jwdu6v.coding-pages.com/tags/%E5%BC%80%E5%8F%91%E7%AC%94%E8%AE%B0/"/>
     
       <category term="tastyPOST" scheme="https://jwdu6v.coding-pages.com/tags/tastyPOST/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>malloclab</title>
-    <link href="https://jwdu6v.coding-pages.com/2020/02/12/malloclab/"/>
-    <id>https://jwdu6v.coding-pages.com/2020/02/12/malloclab/</id>
-    <published>2020-02-12T10:31:09.000Z</published>
-    <updated>2020-02-13T08:13:58.000Z</updated>
-    
-    <summary type="html">
-    
-      &lt;p&gt;首先从 csapp 599 页开始照着抄，用的是隐式空闲链表。&lt;/p&gt;
-&lt;p&gt;发现没有 realloc，那只能自己捏造一个了……&lt;/p&gt;
-    
-    </summary>
-    
-    
     
   </entry>
   

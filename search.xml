@@ -1,6 +1,34 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>SSM 框架学习笔记 1</title>
+    <url>/2020/06/18/ssm1/</url>
+    <content><![CDATA[<p><a href="https://www.bilibili.com/video/BV1d4411g7tv" target="_blank" rel="noopener">课程来源</a></p>
+<a id="more"></a>
+
+<h1 id="Spring"><a href="#Spring" class="headerlink" title="Spring"></a>Spring</h1><p>是一种容器框架。</p>
+<h2 id="第一个程序"><a href="#第一个程序" class="headerlink" title="第一个程序"></a>第一个程序</h2><p>记得先换 maven 源并且不出现傻叉错误。</p>
+<p>还有注意添加 junit5 的时候检查一下模块那部分依赖的 junit 是不是 compile。</p>
+<p><code>src/net/yxchen/bean/People.java</code></p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">package</span> net.yxchen.bean;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">People</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> String name;</span><br><span class="line">    <span class="keyword">private</span> String gender;</span><br><span class="line">    <span class="keyword">private</span> String email;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">People</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">"Person 创建了"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//有参构造，getter、setter、toString 省略</span></span><br></pre></td></tr></table></figure>
+
+<p><code>src/applicationContext.xml</code></p>
+<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="meta">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">beans</span> <span class="attr">xmlns</span>=<span class="string">"http://www.springframework.org/schema/beans"</span></span></span><br><span class="line"><span class="tag">       <span class="attr">xmlns:xsi</span>=<span class="string">"http://www.w3.org/2001/XMLSchema-instance"</span></span></span><br><span class="line"><span class="tag">       <span class="attr">xsi:schemaLocation</span>=<span class="string">"http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">"people1"</span> <span class="attr">class</span>=<span class="string">"net.yxchen.bean.People"</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"name"</span> <span class="attr">value</span>=<span class="string">"poorpool"</span>/&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"gender"</span> <span class="attr">value</span>=<span class="string">"male"</span>/&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"email"</span> <span class="attr">value</span>=<span class="string">"poorpool@yxchen.net"</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">bean</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">beans</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p><code>src/net/yxchen/test/PeopleTest.java</code></p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">package</span> net.yxchen.test;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> net.yxchen.bean.People;</span><br><span class="line"><span class="keyword">import</span> org.junit.jupiter.api.Test;</span><br><span class="line"><span class="keyword">import</span> org.springframework.context.ApplicationContext;</span><br><span class="line"><span class="keyword">import</span> org.springframework.context.support.ClassPathXmlApplicationContext;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">PeopleTest</span> </span>&#123;</span><br><span class="line">    <span class="meta">@Test</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">qwq</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        ApplicationContext applicationContext = <span class="keyword">new</span> ClassPathXmlApplicationContext(<span class="string">"applicationContext.xml"</span>);</span><br><span class="line">        System.out.println(<span class="string">"容器创建完毕"</span>);</span><br><span class="line">        People people = (People) applicationContext.getBean(<span class="string">"people1"</span>);</span><br><span class="line">        People people1 = (People) applicationContext.getBean(<span class="string">"people1"</span>);</span><br><span class="line">        System.out.println(people);</span><br><span class="line">        System.out.println(people == people1);<span class="comment">//单例</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>输出结果：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">Person 创建了</span><br><span class="line">容器创建完毕</span><br><span class="line">People&#123;name&#x3D;&#39;poorpool&#39;, gender&#x3D;&#39;male&#39;, email&#x3D;&#39;poorpool@yxchen.net&#39;&#125;</span><br><span class="line">true</span><br></pre></td></tr></table></figure>]]></content>
+      <categories>
+        <category>框架</category>
+      </categories>
+      <tags>
+        <tag>Java</tag>
+        <tag>Spring</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Java Web 学习札记4</title>
     <url>/2020/06/09/javaweb4/</url>
     <content><![CDATA[<p>建议改名游记.jpg</p>
@@ -85,6 +113,14 @@
 <p>application，整个web工程范围内都有效只要web工程不停止，数据都在。</p>
 <p>用的时候就<code>request.setAttribute(&quot;key1&quot;, qwq);</code>之类的。</p>
 <p>用的时候最好从小到大用。</p>
+<h3 id="Session-生命周期"><a href="#Session-生命周期" class="headerlink" title="Session 生命周期"></a>Session 生命周期</h3><p>什么时候创建 session？当第一次调用 session 的时候。</p>
+<p>什么时候销毁 session？过期或者 invalidate()（不是关闭浏览器之类的）</p>
+<p>拿一个 HttpSessionListener 去监听。打开服务器，如果访问一个 html 文件，发现不会创建 session。因为 html 又不会调用 session。但是如果是一个 jsp 就会。因为 jsp 一般有个默认 session 对象。具体地：</p>
+<ol>
+<li>Servlet 调用 HttpServletRequest.getSession(true) 或者 HttpServletRequest.getSession() 这样的语句时；</li>
+<li>若第一次访问某 Web 应用的一个 JSP 页面，且该页面的 page 指定的 Session 属性为 true，则服务器会自动为该页面分配一个 HttpSession 对象。</li>
+</ol>
+<p>顺带一题，正常关闭服务器的时候并不会让所有 session 都消失。这些 session 会“钝化”，序列化地保存下来。重启服务器的时候活化。</p>
 <h2 id="标签"><a href="#标签" class="headerlink" title="标签"></a>标签</h2><h3 id="静态包含："><a href="#静态包含：" class="headerlink" title="静态包含："></a>静态包含：</h3><figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">%@include</span> <span class="attr">file</span>=<span class="string">"/footer.jsp"</span>%&gt;</span></span><br></pre></td></tr></table></figure>
 
 <p>就可以了。footer.jsp就正常写。如果是html可能出现乱码，这个自己百度吧……</p>

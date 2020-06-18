@@ -64,7 +64,7 @@
         <span class="post-meta-item-icon">
             <i class="ri-quill-pen-line"></i>
             <span class="post-meta-item-text"> 字数统计:</span>
-            <span class="post-count">2.8k字</span>
+            <span class="post-count">3k字</span>
         </span>
     </span>
 
@@ -131,6 +131,14 @@
 <p>application，整个web工程范围内都有效只要web工程不停止，数据都在。</p>
 <p>用的时候就<code>request.setAttribute(&quot;key1&quot;, qwq);</code>之类的。</p>
 <p>用的时候最好从小到大用。</p>
+<h3 id="Session-生命周期"><a href="#Session-生命周期" class="headerlink" title="Session 生命周期"></a>Session 生命周期</h3><p>什么时候创建 session？当第一次调用 session 的时候。</p>
+<p>什么时候销毁 session？过期或者 invalidate()（不是关闭浏览器之类的）</p>
+<p>拿一个 HttpSessionListener 去监听。打开服务器，如果访问一个 html 文件，发现不会创建 session。因为 html 又不会调用 session。但是如果是一个 jsp 就会。因为 jsp 一般有个默认 session 对象。具体地：</p>
+<ol>
+<li>Servlet 调用 HttpServletRequest.getSession(true) 或者 HttpServletRequest.getSession() 这样的语句时；</li>
+<li>若第一次访问某 Web 应用的一个 JSP 页面，且该页面的 page 指定的 Session 属性为 true，则服务器会自动为该页面分配一个 HttpSession 对象。</li>
+</ol>
+<p>顺带一题，正常关闭服务器的时候并不会让所有 session 都消失。这些 session 会“钝化”，序列化地保存下来。重启服务器的时候活化。</p>
 <h2 id="标签"><a href="#标签" class="headerlink" title="标签"></a>标签</h2><h3 id="静态包含："><a href="#静态包含：" class="headerlink" title="静态包含："></a>静态包含：</h3><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">%@include</span> <span class="attr">file</span>=<span class="string">"/footer.jsp"</span>%&gt;</span></span><br></pre></td></tr></table></figure>
 
 <p>就可以了。footer.jsp就正常写。如果是html可能出现乱码，这个自己百度吧……</p>
