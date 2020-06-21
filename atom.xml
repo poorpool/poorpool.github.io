@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://jwdu6v.coding-pages.com/"/>
-  <updated>2020-06-18T11:47:32.114Z</updated>
+  <updated>2020-06-21T08:08:21.207Z</updated>
   <id>https://jwdu6v.coding-pages.com/</id>
   
   <author>
@@ -17,11 +17,34 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>SSM 框架学习笔记 2</title>
+    <link href="https://jwdu6v.coding-pages.com/2020/06/20/ssm2/"/>
+    <id>https://jwdu6v.coding-pages.com/2020/06/20/ssm2/</id>
+    <published>2020-06-20T08:42:36.000Z</published>
+    <updated>2020-06-21T08:08:21.207Z</updated>
+    
+    <summary type="html">
+    
+      &lt;p&gt;&lt;a href=&quot;https://www.bilibili.com/video/BV1d4411g7tv&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;课程来源&lt;/a&gt;&lt;/p&gt;
+    
+    </summary>
+    
+    
+      <category term="框架" scheme="https://jwdu6v.coding-pages.com/categories/%E6%A1%86%E6%9E%B6/"/>
+    
+    
+      <category term="Java" scheme="https://jwdu6v.coding-pages.com/tags/Java/"/>
+    
+      <category term="Spring" scheme="https://jwdu6v.coding-pages.com/tags/Spring/"/>
+    
+  </entry>
+  
+  <entry>
     <title>SSM 框架学习笔记 1</title>
     <link href="https://jwdu6v.coding-pages.com/2020/06/18/ssm1/"/>
     <id>https://jwdu6v.coding-pages.com/2020/06/18/ssm1/</id>
     <published>2020-06-18T08:06:34.000Z</published>
-    <updated>2020-06-18T11:47:32.114Z</updated>
+    <updated>2020-06-20T08:42:59.153Z</updated>
     
     <summary type="html">
     
@@ -450,29 +473,6 @@
       <category term="shell" scheme="https://jwdu6v.coding-pages.com/tags/shell/"/>
     
       <category term="Linux" scheme="https://jwdu6v.coding-pages.com/tags/Linux/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>tastyPOST 开发笔记 1 —— 基本构想</title>
-    <link href="https://jwdu6v.coding-pages.com/2020/02/18/tastyPOST-1/"/>
-    <id>https://jwdu6v.coding-pages.com/2020/02/18/tastyPOST-1/</id>
-    <published>2020-02-18T08:54:28.000Z</published>
-    <updated>2020-03-12T08:57:49.000Z</updated>
-    
-    <summary type="html">
-    
-      &lt;h1 id=&quot;开发目的&quot;&gt;&lt;a href=&quot;#开发目的&quot; class=&quot;headerlink&quot; title=&quot;开发目的&quot;&gt;&lt;/a&gt;开发目的&lt;/h1&gt;&lt;p&gt;这是一个上传图片并且分类（哪个食堂）和打 tag（什么菜）的美食相册。同时，它还提供帮你随机选菜的功能。&lt;/p&gt;
-    
-    </summary>
-    
-    
-      <category term="开发笔记" scheme="https://jwdu6v.coding-pages.com/categories/%E5%BC%80%E5%8F%91%E7%AC%94%E8%AE%B0/"/>
-    
-    
-      <category term="开发笔记" scheme="https://jwdu6v.coding-pages.com/tags/%E5%BC%80%E5%8F%91%E7%AC%94%E8%AE%B0/"/>
-    
-      <category term="tastyPOST" scheme="https://jwdu6v.coding-pages.com/tags/tastyPOST/"/>
     
   </entry>
   
