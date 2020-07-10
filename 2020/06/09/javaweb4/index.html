@@ -64,7 +64,7 @@
         <span class="post-meta-item-icon">
             <i class="ri-quill-pen-line"></i>
             <span class="post-meta-item-text"> 字数统计:</span>
-            <span class="post-count">852字</span>
+            <span class="post-count">893字</span>
         </span>
     </span>
 
@@ -136,7 +136,8 @@
 <p>非常方便。</p>
 <p>有更进一步的封装，<code>$.get(url, data, callback, dataType)</code>和<code>$.post(...)</code>，顾名思义。参数变成了url, data, callback和dataType。</p>
 <p>更进一步是<code>$.getJSON</code>，显然是get一个json。参数变成了url, data和callback。</p>
-<p>如果你想用ajax做提交表单之类的功能，可以考虑使用<code>$(&quot;#form01&quot;).serialize()</code>之类的东西。序列化可以将表单项变成<code>name=value&amp;name=value</code></p>
+<p>如果你想用ajax做提交表单之类的功能，可以考虑使用<code>$(&quot;#form01&quot;).serialize()</code>之类的东西。序列化可以将表单项变成<code>name=value&amp;name=value</code>。</p>
+<p>tomcat 只会将 post 的请求的数据封装到 map 里头，put 都不会。可以自己配了 httpmethodfilter 以后加上 <code>_method</code>，也可以再配一个 httpputformcontentfilter。</p>
 
       
       <!-- 打赏 -->
