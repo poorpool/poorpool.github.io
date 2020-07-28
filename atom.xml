@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://jwdu6v.coding-pages.com/"/>
-  <updated>2020-07-15T06:07:28.756Z</updated>
+  <updated>2020-07-28T02:07:19.312Z</updated>
   <id>https://jwdu6v.coding-pages.com/</id>
   
   <author>
@@ -15,6 +15,27 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>《计算机程序的构造和解释》学习笔记 1</title>
+    <link href="https://jwdu6v.coding-pages.com/2020/07/28/sicp1/"/>
+    <id>https://jwdu6v.coding-pages.com/2020/07/28/sicp1/</id>
+    <published>2020-07-28T02:03:11.000Z</published>
+    <updated>2020-07-28T02:07:19.312Z</updated>
+    
+    <summary type="html">
+    
+      &lt;p&gt;&lt;a href=&quot;https://www.bilibili.com/video/BV1Xx41117tr&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;课程来源&lt;/a&gt;&lt;/p&gt;
+    
+    </summary>
+    
+    
+      <category term="笔记" scheme="https://jwdu6v.coding-pages.com/categories/%E7%AC%94%E8%AE%B0/"/>
+    
+    
+      <category term="lisp" scheme="https://jwdu6v.coding-pages.com/tags/lisp/"/>
+    
+  </entry>
   
   <entry>
     <title>vue 学习笔记 2</title>
@@ -444,29 +465,6 @@
     <summary type="html">
     
       &lt;p&gt;第五章&lt;/p&gt;
-    
-    </summary>
-    
-    
-      <category term="笔记" scheme="https://jwdu6v.coding-pages.com/categories/%E7%AC%94%E8%AE%B0/"/>
-    
-    
-      <category term="笔记" scheme="https://jwdu6v.coding-pages.com/tags/%E7%AC%94%E8%AE%B0/"/>
-    
-      <category term="计算机网络" scheme="https://jwdu6v.coding-pages.com/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>《计算机网络：自顶向下方法》笔记4 网络层：数据平面</title>
-    <link href="https://jwdu6v.coding-pages.com/2020/05/01/topdown_chapter4/"/>
-    <id>https://jwdu6v.coding-pages.com/2020/05/01/topdown_chapter4/</id>
-    <published>2020-05-01T02:00:03.000Z</published>
-    <updated>2020-05-12T11:00:31.000Z</updated>
-    
-    <summary type="html">
-    
-      &lt;p&gt;第四章&lt;/p&gt;
     
     </summary>
     
