@@ -1,6 +1,59 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>关于 Android 的笔记 1</title>
+    <url>/2020/08/15/android1/</url>
+    <content><![CDATA[<p>来自《第一行代码》</p>
+<a id="more"></a>
+
+<h1 id="基础"><a href="#基础" class="headerlink" title="基础"></a>基础</h1><h2 id="控制语句"><a href="#控制语句" class="headerlink" title="控制语句"></a>控制语句</h2><p>Kotlin 的 if 可以有返回值，就是花括号里头最后一行代码。</p>
+<p>when 比 switch 更高级。也能有返回值。如果不写小括号和里头的东西，就可以在条件的地方写上 <code>someParam == 1</code> 这种东西。不必使用 equals。</p>
+<figure class="highlight kotlin"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">fun</span> <span class="title">qwq</span><span class="params">(name: <span class="type">String</span>)</span></span> = <span class="keyword">when</span> (name) &#123;</span><br><span class="line">    <span class="string">"tom"</span> -&gt; <span class="number">1</span></span><br><span class="line">    <span class="string">"jack"</span> -&gt; <span class="number">3</span></span><br><span class="line">    <span class="string">"poorpool"</span> -&gt; -<span class="number">1</span></span><br><span class="line">    <span class="keyword">else</span> -&gt; <span class="number">0</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">fun</span> <span class="title">checkNumber</span><span class="params">(num: <span class="type">Number</span>)</span></span> &#123;</span><br><span class="line">    <span class="keyword">when</span> (num) &#123;</span><br><span class="line">        <span class="keyword">is</span> <span class="built_in">Int</span> -&gt; println(<span class="string">"int"</span>)</span><br><span class="line">        <span class="keyword">is</span> <span class="built_in">Double</span> -&gt; println(<span class="string">"double"</span>)</span><br><span class="line">        <span class="keyword">else</span> -&gt; println(<span class="string">"others"</span>)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>for-i 循环没了（震撼我妈，用：</p>
+<figure class="highlight kotlin"><table><tr><td class="code"><pre><span class="line"><span class="keyword">for</span> (i <span class="keyword">in</span> <span class="number">0</span>..<span class="number">10</span>) &#123;</span><br><span class="line">    println(i)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>两个点是闭区间。until 是左闭右开区间。在后头加上 <code>step 2</code> 可以设置步长。<code>for (i in 10 downTo 1)</code> 倒序。</p>
+<h2 id="对象"><a href="#对象" class="headerlink" title="对象"></a>对象</h2><p>定义类就：</p>
+<figure class="highlight kotlin"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Person</span> </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> name = <span class="string">""</span></span><br><span class="line">    <span class="keyword">var</span> age = <span class="number">0</span></span><br><span class="line">    <span class="function"><span class="keyword">fun</span> <span class="title">eat</span><span class="params">()</span></span> &#123;</span><br><span class="line">        println(<span class="string">"name is "</span> + name + <span class="string">", age is "</span> + age)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>直接点运算符访问、修改对象和执行函数。注意，类默认不可继承。要继承的话父类 class 前头加 open,子类用 <code>class Student : Person() {...</code> 这种东西。</p>
+<p>构造函数分为主构造函数和次构造函数。主构造函数可以写参数</p>
+<figure class="highlight kotlin"><table><tr><td class="code"><pre><span class="line"><span class="keyword">open</span> <span class="class"><span class="keyword">class</span> <span class="title">Person</span></span>(<span class="keyword">val</span> name: String, <span class="keyword">var</span> age: <span class="built_in">Int</span>) &#123;</span><br><span class="line">    <span class="function"><span class="keyword">fun</span> <span class="title">eat</span><span class="params">()</span></span> &#123;</span><br><span class="line">        println(<span class="string">"name is "</span> + name + <span class="string">", age is "</span> + age)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>加了 val/var 以后的参数自动成为本类的字段。所以说 Student 可以改造为 <code>class Student(val school: String, name: String, age: Int) : Person(name, age) {...</code> 这种东西，不加 val/var 就能把作用域限定在主构造函数里头。</p>
+<p>顺带一提每个类都可以写个 <code>init{ ... }</code> 执行一些代码。所有次构造函数都必须调用主构造函数。例如 Person 写一个 <code>constructor() : this(&quot;&quot;, 0) {}</code>。可以没有主构造函数。</p>
+<p>修饰符就是把 java 四种修饰符的 default 变成了 internal。public 变成了什么都不写的默认项目（java 是 default），internal 是同一模块可见。protected 去掉了同一包路径可见。</p>
+<p>数据类就像 java bean，前面加个 data 就行了，equals 什么的都不用写了……没有代码的话花括号都不用了（喜</p>
+<p>单例类直接把 class 换成 object 完事（tql</p>
+<figure class="highlight kotlin"><table><tr><td class="code"><pre><span class="line"><span class="keyword">data</span> <span class="class"><span class="keyword">class</span> <span class="title">CellPhone</span></span>(<span class="keyword">val</span> brand: String, <span class="keyword">val</span> price: <span class="built_in">Double</span>)</span><br></pre></td></tr></table></figure>
+
+<h2 id="接口"><a href="#接口" class="headerlink" title="接口"></a>接口</h2><p>没有 extends 和 implements 了，直接冒号后头跟上继承的类和实现的接口。逗号隔开。<code>@Override</code> 变成了扎起 fun 前头加 <code>override</code>。接口也可以有默认的实现函数。</p>
+<h2 id="Lambda"><a href="#Lambda" class="headerlink" title="Lambda"></a>Lambda</h2><p>listOf(a, b, c) 创建不可变集合，mutableListOf 创建可变的（当然也可以一个一个 add）。</p>
+<p>lambda 表达式：<code>{param1: Type, xxx -&gt; 函数体}</code>。</p>
+<p>函数式 api：</p>
+<figure class="highlight kotlin"><table><tr><td class="code"><pre><span class="line"><span class="keyword">val</span> list = listOf(<span class="string">"apple"</span>, <span class="string">"banana"</span>, <span class="string">"billy"</span>)</span><br><span class="line">println(list.maxBy(&#123;fruit: String -&gt; fruit.length&#125;))</span><br></pre></td></tr></table></figure>
+
+<p>lambda 表达式是函数最后一个参数可以把 lambda 表达式移到外头，小括号也可以省略，一个参数也可以直接用 it 表示。所以上面的可以写成 <code>list.maxBy {it.length}</code></p>
+<p>和 js 一样，也有 filter 和 map。用 any 和 all 做判断。这东西自行百度吧。来一段省略带师：</p>
+<figure class="highlight kotlin"><table><tr><td class="code"><pre><span class="line">Thread(<span class="keyword">object</span>: Runnable &#123;<span class="comment">// java 的 new 变成了 object</span></span><br><span class="line">    <span class="keyword">override</span> <span class="function"><span class="keyword">fun</span> <span class="title">run</span><span class="params">()</span></span> &#123;</span><br><span class="line">        println(<span class="string">"new thread"</span>)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;).start()</span><br><span class="line"><span class="comment">// 省略 object:</span></span><br><span class="line"><span class="comment">// 因为就一个待实现方法，所以 run 那一行也能省略</span></span><br><span class="line"><span class="comment">// 因为参数列表只有一个单抽象方法接口参数，Runnable 也可以省略</span></span><br><span class="line"><span class="comment">// 还能把 lambda 提到外头</span></span><br><span class="line">Thread &#123;</span><br><span class="line">    println(<span class="string">"new thread"</span>)</span><br><span class="line">&#125;.start()</span><br></pre></td></tr></table></figure>
+
+<p>对一个对象使用 let 可将调用对象传递到 lambda里头，例子看下头。</p>
+<h2 id="空指针"><a href="#空指针" class="headerlink" title="空指针"></a>空指针</h2><p>kotlin 把空指针异常消灭在编译期。<code>Int</code> 不为空，<code>Int?</code> 表示可以为空。敢写第二种就要判空了。</p>
+<p>例如一个 <code>student: Student?</code>，直接 <code>student.study()</code> 是不行的。要么包一个 if 判 null，要么就用 <code>student?.study()</code>，非空才执行。用 <code>a ?: b</code> 表示 a 非空的时候为 a，a 为空则为 b。</p>
+<figure class="highlight kotlin"><table><tr><td class="code"><pre><span class="line">student?.let &#123;stu -&gt; </span><br><span class="line">    stu.study()</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>字符串可以内嵌表达式，比如 </p>
+<figure class="highlight kotlin"><table><tr><td class="code"><pre><span class="line"><span class="keyword">val</span> a = <span class="number">1</span></span><br><span class="line">println(<span class="string">"a is <span class="subst">$&#123;a&#125;</span> or <span class="variable">$a</span>"</span>)。</span><br></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>笔记</category>
+      </categories>
+      <tags>
+        <tag>Android</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>《计算机程序的构造和解释》学习笔记 1</title>
     <url>/2020/07/28/sicp1/</url>
     <content><![CDATA[<p><a href="https://www.bilibili.com/video/BV1Xx41117tr" target="_blank" rel="noopener">课程来源</a></p>
