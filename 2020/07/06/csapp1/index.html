@@ -64,7 +64,7 @@
         <span class="post-meta-item-icon">
             <i class="ri-quill-pen-line"></i>
             <span class="post-meta-item-text"> 字数统计:</span>
-            <span class="post-count">337字</span>
+            <span class="post-count">601字</span>
         </span>
     </span>
 
@@ -73,7 +73,7 @@
         <span class="post-meta-item-icon">
             <i class="ri-book-open-line"></i>
             <span class="post-meta-item-text"> 阅读时长≈</span>
-            <span class="post-count">1分钟</span>
+            <span class="post-count">2分钟</span>
         </span>
     </span>
 </div>
@@ -114,6 +114,19 @@
 <p>%rsp 是从很高的值开始减。栈是倒过来的，高地址画在上头。</p>
 <p>call 的时候会把栈指针减 8 然后写进去下一条指令的地址。ret 的时候 pop 出该地址然后返回。</p>
 <p><img src="/images/csapp/1.bmp" alt="1.bmp"></p>
+<h1 id="存储器层次结构"><a href="#存储器层次结构" class="headerlink" title="存储器层次结构"></a>存储器层次结构</h1><p>sram，静态 ram，稳定的，复杂的，昂贵的，快速的，应用于高速缓存存储器。</p>
+<p>dram，动态 ram，便宜，慢，用于主存和帧缓冲区。</p>
+<p>他们掉电就会白给。</p>
+<p>闪存是一种 rom。</p>
+<p><img src="/images/csapp/2.png" alt="image"></p>
+<p>顺带提一下南北桥。（干 南 桥！不过这一套好像过时了。</p>
+<p><img src="/images/csapp/3.png" alt="image"></p>
+<p>计算机械硬盘容量的公式：</p>
+<p><img src="/images/csapp/4.png" alt="image"></p>
+<p>（我怎么贴图这么多（（</p>
+<p>对扇区的访问时间由寻道、旋转、传送时间构成。主要耗时是寻道和旋转，并且它们时间大致相等。</p>
+<h2 id="通用高速缓存存储器结构"><a href="#通用高速缓存存储器结构" class="headerlink" title="通用高速缓存存储器结构"></a>通用高速缓存存储器结构</h2><p>存储器地址 $m$ 位，形成 $2^m$ 个不同的地址。存储器有 $S=2^s$ 个高速缓存组，每组有 $E$ 行，每行有一个 $B=2^b$ 字节的数据块，一个有效位，$t=m-s-b$ 个标记位。因此地址从高位到低位是 $t$ 位标记位，$s$ 位组索引，$b$ 位块偏移。</p>
+<p>直接映射高速缓存，$E=1$。$E\not =1$ 是 $E$ 路组相联高速缓存。</p>
 
       
       <!-- 打赏 -->

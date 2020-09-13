@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://jwdu6v.coding-pages.com/"/>
-  <updated>2020-08-15T09:45:40.450Z</updated>
+  <updated>2020-09-13T15:41:51.745Z</updated>
   <id>https://jwdu6v.coding-pages.com/</id>
   
   <author>
@@ -17,11 +17,53 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>CSP2020-09游记</title>
+    <link href="https://jwdu6v.coding-pages.com/2020/09/13/csp202009/"/>
+    <id>https://jwdu6v.coding-pages.com/2020/09/13/csp202009/</id>
+    <published>2020-09-13T15:23:17.000Z</published>
+    <updated>2020-09-13T15:41:51.745Z</updated>
+    
+    <summary type="html">
+    
+      &lt;p&gt;感谢 wls 和学院让我白嫖一个考试机会（跑&lt;/p&gt;
+    
+    </summary>
+    
+    
+      <category term="游记" scheme="https://jwdu6v.coding-pages.com/categories/%E6%B8%B8%E8%AE%B0/"/>
+    
+    
+      <category term="游记" scheme="https://jwdu6v.coding-pages.com/tags/%E6%B8%B8%E8%AE%B0/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>初秋杂谈</title>
+    <link href="https://jwdu6v.coding-pages.com/2020/09/09/zatan1/"/>
+    <id>https://jwdu6v.coding-pages.com/2020/09/09/zatan1/</id>
+    <published>2020-09-09T07:12:18.000Z</published>
+    <updated>2020-09-09T07:31:07.433Z</updated>
+    
+    <summary type="html">
+    
+      &lt;p&gt;一篇和技术无关的文章。&lt;/p&gt;
+    
+    </summary>
+    
+    
+      <category term="杂记" scheme="https://jwdu6v.coding-pages.com/categories/%E6%9D%82%E8%AE%B0/"/>
+    
+    
+      <category term="杂记" scheme="https://jwdu6v.coding-pages.com/tags/%E6%9D%82%E8%AE%B0/"/>
+    
+  </entry>
+  
+  <entry>
     <title>关于 Android 的笔记 1</title>
     <link href="https://jwdu6v.coding-pages.com/2020/08/15/android1/"/>
     <id>https://jwdu6v.coding-pages.com/2020/08/15/android1/</id>
     <published>2020-08-15T08:30:22.000Z</published>
-    <updated>2020-08-15T09:45:40.450Z</updated>
+    <updated>2020-09-04T04:30:59.506Z</updated>
     
     <summary type="html">
     
@@ -109,7 +151,7 @@
     <link href="https://jwdu6v.coding-pages.com/2020/07/06/csapp1/"/>
     <id>https://jwdu6v.coding-pages.com/2020/07/06/csapp1/</id>
     <published>2020-07-06T05:06:55.000Z</published>
-    <updated>2020-07-07T05:59:36.773Z</updated>
+    <updated>2020-09-12T05:49:40.455Z</updated>
     
     <summary type="html">
     
@@ -417,52 +459,6 @@
     <summary type="html">
     
       &lt;p&gt;第八章&lt;/p&gt;
-    
-    </summary>
-    
-    
-      <category term="笔记" scheme="https://jwdu6v.coding-pages.com/categories/%E7%AC%94%E8%AE%B0/"/>
-    
-    
-      <category term="笔记" scheme="https://jwdu6v.coding-pages.com/tags/%E7%AC%94%E8%AE%B0/"/>
-    
-      <category term="计算机网络" scheme="https://jwdu6v.coding-pages.com/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>《计算机网络：自顶向下方法》笔记7 无线网络和移动网络</title>
-    <link href="https://jwdu6v.coding-pages.com/2020/05/01/topdown_chapter7/"/>
-    <id>https://jwdu6v.coding-pages.com/2020/05/01/topdown_chapter7/</id>
-    <published>2020-05-01T02:00:06.000Z</published>
-    <updated>2020-05-12T11:00:31.000Z</updated>
-    
-    <summary type="html">
-    
-      &lt;p&gt;第七章&lt;/p&gt;
-    
-    </summary>
-    
-    
-      <category term="笔记" scheme="https://jwdu6v.coding-pages.com/categories/%E7%AC%94%E8%AE%B0/"/>
-    
-    
-      <category term="笔记" scheme="https://jwdu6v.coding-pages.com/tags/%E7%AC%94%E8%AE%B0/"/>
-    
-      <category term="计算机网络" scheme="https://jwdu6v.coding-pages.com/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>《计算机网络：自顶向下方法》笔记6 链路层和局域网</title>
-    <link href="https://jwdu6v.coding-pages.com/2020/05/01/topdown_chapter6/"/>
-    <id>https://jwdu6v.coding-pages.com/2020/05/01/topdown_chapter6/</id>
-    <published>2020-05-01T02:00:05.000Z</published>
-    <updated>2020-05-12T11:00:31.000Z</updated>
-    
-    <summary type="html">
-    
-      &lt;p&gt;第六章&lt;/p&gt;
     
     </summary>
     

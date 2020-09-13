@@ -64,7 +64,7 @@
         <span class="post-meta-item-icon">
             <i class="ri-quill-pen-line"></i>
             <span class="post-meta-item-text"> 字数统计:</span>
-            <span class="post-count">967字</span>
+            <span class="post-count">1.7k字</span>
         </span>
     </span>
 
@@ -73,7 +73,7 @@
         <span class="post-meta-item-icon">
             <i class="ri-book-open-line"></i>
             <span class="post-meta-item-text"> 阅读时长≈</span>
-            <span class="post-count">4分钟</span>
+            <span class="post-count">7分钟</span>
         </span>
     </span>
 </div>
@@ -142,6 +142,30 @@
 <p>字符串可以内嵌表达式，比如 </p>
 <figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">val</span> a = <span class="number">1</span></span><br><span class="line">println(<span class="string">"a is <span class="subst">$&#123;a&#125;</span> or <span class="variable">$a</span>"</span>)。</span><br></pre></td></tr></table></figure>
 
+<p>可以用 lateinit 告诉编译器某个变量是延迟初始化的。</p>
+<h2 id="一些标准函数"><a href="#一些标准函数" class="headerlink" title="一些标准函数"></a>一些标准函数</h2><p>with 接收一个对象和一个 lambda 表达式，在表达式中提供那个对象的上下文并以最后一行语句为返回值。</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">fun</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">    <span class="keyword">val</span> list = listOf(<span class="string">"apple"</span>, <span class="string">"banana"</span>)</span><br><span class="line">    <span class="keyword">val</span> result = with(StringBuilder()) &#123;</span><br><span class="line">        append(<span class="string">"Start eating fruits\n"</span>)</span><br><span class="line">        <span class="keyword">for</span> (fruit <span class="keyword">in</span> list) &#123;</span><br><span class="line">            append(<span class="string">"eating <span class="variable">$fruit</span>\n"</span>)</span><br><span class="line">        &#125;</span><br><span class="line">        toString()</span><br><span class="line">    &#125;</span><br><span class="line">    print(result)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>run 差不多，不过是要 obj.run {xxx}，不能直接用。</p>
+<p>apply 和 run 差不多，但是没有返回值而是返回对象本身。</p>
+<h2 id="静态方法"><a href="#静态方法" class="headerlink" title="静态方法"></a>静态方法</h2><p>kotlin 弱化了静态方法的概念，要么用单例类，要么套一个 companion object。（其实调用的就是这个伴生类的方法）。真正的静态方法加 @JvmStatic 或者是顶层方法。</p>
+<h2 id="高阶函数"><a href="#高阶函数" class="headerlink" title="高阶函数"></a>高阶函数</h2><p>在参数列表里里头写 <code>func: (String, Int) -&gt; Unit</code>，表示接受一个以 String 和 Int 为参数并什么也不返回（Unit 类比 void）的函数（lambda）。引用一个函数可以使用 <code>::funcName</code>。</p>
+<h2 id="输入输出"><a href="#输入输出" class="headerlink" title="输入输出"></a>输入输出</h2><p>对一个 writer 使用 use，例如 <code>writer.use { xxx }</code>，会在 lambda 执行完毕以后关闭外面的流。</p>
+<h1 id="Activity"><a href="#Activity" class="headerlink" title="Activity"></a>Activity</h1><p>可以使用 Intent 来调起别的 activity。可以通过指定一个 action 多个 category（不一定都要有）来让系统找出合适的 activity 启动（隐式的），也可以直接钦点 activity（显式的）。自己的 activity 在 AndroidManifest.xml 里头对应的 activity 标签下写 intent-filter，用处看名字就能猜出来。</p>
+<p>比如：</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">button1.setOnClickListener &#123;</span><br><span class="line">    <span class="keyword">val</span> intent = Intent(Intent.ACTION_VIEW)</span><br><span class="line">    intent.<span class="keyword">data</span> = Uri.parse(<span class="string">"https://www.baidu.com"</span>)</span><br><span class="line">    startActivity(intent)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>可以自己在 intent-filter 标签里头写上 data 标签响应 https 协议，之类的操作。（感觉这就是实现用别的应用打开的方式啊2333</p>
+<p>intent 还能携带额外的 data。也可以用 startActivityForResult 来调用一个 activity 让它返回数据。</p>
+<h2 id="生命周期"><a href="#生命周期" class="headerlink" title="生命周期"></a>生命周期</h2><p>使用任务栈来管理 activity。activity 有运行、暂停、停止、销毁状态。</p>
+<p><img src="/images/android/1.png" alt="activity"></p>
+<h2 id="启动模式"><a href="#启动模式" class="headerlink" title="启动模式"></a>启动模式</h2><p>standard，singleTop（栈顶是当前 activity 就不会再创建一个了），singleTask（返回栈里就一个），singleInstance（存放在单独的返回栈）</p>
+<h2 id="类委托"><a href="#类委托" class="headerlink" title="类委托"></a>类委托</h2><p>使用 by 关键字。</p>
+<h1 id="BroadcastReceiver"><a href="#BroadcastReceiver" class="headerlink" title="BroadcastReceiver"></a>BroadcastReceiver</h1><p>属于四大组件。就像 activity 一样，继承 BroadcastReceiver 并重写 onReceive 方法即可。动态注册也一定要取消注册。</p>
+<p>intent setPackage 以后变成显式广播，静态注册的 BroadcastReceiver 可以收到，然后 sendBroadcast。</p>
+<p>有序广播可以截断，同步执行，标准广播不行。有序广播用 sendOrderBroadcast，在 AndroidManifest 中设置优先级，在 onReceive 中用 abortBroadcast 截断。</p>
+<h1 id="持久化"><a href="#持久化" class="headerlink" title="持久化"></a>持久化</h1><p>存文件，SharedPreferences 存储键值对，数据库。</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">MainActivity</span> : <span class="type">AppCompatActivity</span></span>() &#123;</span><br><span class="line">    <span class="keyword">override</span> <span class="function"><span class="keyword">fun</span> <span class="title">onCreate</span><span class="params">(savedInstanceState: <span class="type">Bundle</span>?)</span></span> &#123;</span><br><span class="line">        <span class="keyword">super</span>.onCreate(savedInstanceState)</span><br><span class="line">        setContentView(R.layout.activity_main)</span><br><span class="line">        <span class="keyword">val</span> inputText = load()</span><br><span class="line">        <span class="keyword">if</span> (inputText.isNotEmpty()) &#123;</span><br><span class="line">            editText.setText(inputText)</span><br><span class="line">            editText.setSelection(inputText.length)</span><br><span class="line">            Toast.makeText(<span class="keyword">this</span>, <span class="string">"Restoring succeeded"</span>, Toast.LENGTH_SHORT).show()</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="function"><span class="keyword">fun</span> <span class="title">load</span><span class="params">()</span></span>: String &#123;</span><br><span class="line">        <span class="keyword">val</span> content = StringBuilder()</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            <span class="keyword">val</span> input = openFileInput(<span class="string">"data"</span>)</span><br><span class="line">            <span class="keyword">val</span> reader = BufferedReader(InputStreamReader(input))</span><br><span class="line">            reader.use &#123;</span><br><span class="line">                reader.forEachLine &#123;</span><br><span class="line">                    content.append(it)</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125; <span class="keyword">catch</span> (e: IOException) &#123;</span><br><span class="line">            e.printStackTrace()</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> content.toString()</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">override</span> <span class="function"><span class="keyword">fun</span> <span class="title">onDestroy</span><span class="params">()</span></span> &#123;</span><br><span class="line">        <span class="keyword">super</span>.onDestroy()</span><br><span class="line">        <span class="keyword">val</span> inputText = editText.text.toString()</span><br><span class="line">        save(inputText)</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">fun</span> <span class="title">save</span><span class="params">(inputText: <span class="type">String</span>)</span></span> &#123;</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            <span class="keyword">val</span> output = openFileOutput(<span class="string">"data"</span>, Context.MODE_PRIVATE)</span><br><span class="line">            <span class="keyword">val</span> writer = BufferedWriter(OutputStreamWriter(output))</span><br><span class="line">            writer.use &#123;</span><br><span class="line">                it.write(inputText)</span><br><span class="line">            &#125;</span><br><span class="line">        &#125; <span class="keyword">catch</span> (e: IOException) &#123;</span><br><span class="line">            e.printStackTrace()</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
       
       <!-- 打赏 -->
       
@@ -162,6 +186,15 @@
   
   
   <nav class="article-nav">
+    
+      <a href="/2020/09/09/zatan1/" class="article-nav-link">
+        <strong class="article-nav-caption">上一篇</strong>
+        <div class="article-nav-title">
+          
+            初秋杂谈
+          
+        </div>
+      </a>
     
     
       <a href="/2020/07/28/sicp1/" class="article-nav-link">
