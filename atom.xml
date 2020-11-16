@@ -1,0 +1,473 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>一路春白</title>
+  
+  <subtitle>poorpool&#39;s blog</subtitle>
+  <link href="/atom.xml" rel="self"/>
+  
+  <link href="https://jwdu6v.coding-pages.com/"/>
+  <updated>2020-11-16T11:06:23.658Z</updated>
+  <id>https://jwdu6v.coding-pages.com/</id>
+  
+  <author>
+    <name>poorpool</name>
+    
+  </author>
+  
+  <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>在线记俄语一到一千的数字</title>
+    <link href="https://jwdu6v.coding-pages.com/2020/11/16/remember-russian/"/>
+    <id>https://jwdu6v.coding-pages.com/2020/11/16/remember-russian/</id>
+    <published>2020-11-16T10:42:29.000Z</published>
+    <updated>2020-11-16T11:06:23.658Z</updated>
+    
+    <summary type="html">
+    
+      &lt;p&gt;用 js 写的&lt;/p&gt;
+    
+    </summary>
+    
+    
+      <category term="杂记" scheme="https://jwdu6v.coding-pages.com/categories/%E6%9D%82%E8%AE%B0/"/>
+    
+    
+      <category term="杂记" scheme="https://jwdu6v.coding-pages.com/tags/%E6%9D%82%E8%AE%B0/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>《图解TCP/IP》笔记1</title>
+    <link href="https://jwdu6v.coding-pages.com/2020/11/03/tjtcpip1/"/>
+    <id>https://jwdu6v.coding-pages.com/2020/11/03/tjtcpip1/</id>
+    <published>2020-11-03T07:47:36.000Z</published>
+    <updated>2020-11-16T08:59:08.263Z</updated>
+    
+    <summary type="html">
+    
+      &lt;p&gt;看一看&lt;/p&gt;
+    
+    </summary>
+    
+    
+      <category term="笔记" scheme="https://jwdu6v.coding-pages.com/categories/%E7%AC%94%E8%AE%B0/"/>
+    
+    
+      <category term="笔记" scheme="https://jwdu6v.coding-pages.com/tags/%E7%AC%94%E8%AE%B0/"/>
+    
+      <category term="计算机网络" scheme="https://jwdu6v.coding-pages.com/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>CSP2020-09游记</title>
+    <link href="https://jwdu6v.coding-pages.com/2020/09/13/csp202009/"/>
+    <id>https://jwdu6v.coding-pages.com/2020/09/13/csp202009/</id>
+    <published>2020-09-13T15:23:17.000Z</published>
+    <updated>2020-11-16T08:59:08.257Z</updated>
+    
+    <summary type="html">
+    
+      &lt;p&gt;感谢 wls 和学院让我白嫖一个考试机会（跑&lt;/p&gt;
+    
+    </summary>
+    
+    
+      <category term="游记" scheme="https://jwdu6v.coding-pages.com/categories/%E6%B8%B8%E8%AE%B0/"/>
+    
+    
+      <category term="游记" scheme="https://jwdu6v.coding-pages.com/tags/%E6%B8%B8%E8%AE%B0/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>初秋杂谈</title>
+    <link href="https://jwdu6v.coding-pages.com/2020/09/09/zatan1/"/>
+    <id>https://jwdu6v.coding-pages.com/2020/09/09/zatan1/</id>
+    <published>2020-09-09T07:12:18.000Z</published>
+    <updated>2020-11-16T08:59:08.267Z</updated>
+    
+    <summary type="html">
+    
+      &lt;p&gt;一篇和技术无关的文章。&lt;/p&gt;
+    
+    </summary>
+    
+    
+      <category term="杂记" scheme="https://jwdu6v.coding-pages.com/categories/%E6%9D%82%E8%AE%B0/"/>
+    
+    
+      <category term="杂记" scheme="https://jwdu6v.coding-pages.com/tags/%E6%9D%82%E8%AE%B0/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>关于 Android 的笔记 1</title>
+    <link href="https://jwdu6v.coding-pages.com/2020/08/15/android1/"/>
+    <id>https://jwdu6v.coding-pages.com/2020/08/15/android1/</id>
+    <published>2020-08-15T08:30:22.000Z</published>
+    <updated>2020-11-16T08:59:08.257Z</updated>
+    
+    <summary type="html">
+    
+      &lt;p&gt;来自《第一行代码》&lt;/p&gt;
+    
+    </summary>
+    
+    
+      <category term="笔记" scheme="https://jwdu6v.coding-pages.com/categories/%E7%AC%94%E8%AE%B0/"/>
+    
+    
+      <category term="Android" scheme="https://jwdu6v.coding-pages.com/tags/Android/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>《计算机程序的构造和解释》学习笔记 1</title>
+    <link href="https://jwdu6v.coding-pages.com/2020/07/28/sicp1/"/>
+    <id>https://jwdu6v.coding-pages.com/2020/07/28/sicp1/</id>
+    <published>2020-07-28T02:03:11.000Z</published>
+    <updated>2020-11-16T08:59:08.263Z</updated>
+    
+    <summary type="html">
+    
+      &lt;p&gt;&lt;a href=&quot;https://www.bilibili.com/video/BV1Xx41117tr&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;课程来源&lt;/a&gt;&lt;/p&gt;
+    
+    </summary>
+    
+    
+      <category term="笔记" scheme="https://jwdu6v.coding-pages.com/categories/%E7%AC%94%E8%AE%B0/"/>
+    
+    
+      <category term="lisp" scheme="https://jwdu6v.coding-pages.com/tags/lisp/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>vue 学习笔记 2</title>
+    <link href="https://jwdu6v.coding-pages.com/2020/07/13/vue2/"/>
+    <id>https://jwdu6v.coding-pages.com/2020/07/13/vue2/</id>
+    <published>2020-07-13T12:29:31.000Z</published>
+    <updated>2020-11-16T08:59:08.267Z</updated>
+    
+    <summary type="html">
+    
+      &lt;p&gt;&lt;a href=&quot;https://www.bilibili.com/video/BV15741177Eh&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;课程来源&lt;/a&gt;&lt;/p&gt;
+    
+    </summary>
+    
+    
+      <category term="笔记" scheme="https://jwdu6v.coding-pages.com/categories/%E7%AC%94%E8%AE%B0/"/>
+    
+    
+      <category term="前端" scheme="https://jwdu6v.coding-pages.com/tags/%E5%89%8D%E7%AB%AF/"/>
+    
+      <category term="vue" scheme="https://jwdu6v.coding-pages.com/tags/vue/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>vue 学习笔记 1</title>
+    <link href="https://jwdu6v.coding-pages.com/2020/07/08/vue1/"/>
+    <id>https://jwdu6v.coding-pages.com/2020/07/08/vue1/</id>
+    <published>2020-07-08T09:08:41.000Z</published>
+    <updated>2020-11-16T08:59:08.267Z</updated>
+    
+    <summary type="html">
+    
+      &lt;p&gt;&lt;a href=&quot;https://www.bilibili.com/video/BV15741177Eh&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;课程来源&lt;/a&gt;&lt;/p&gt;
+    
+    </summary>
+    
+    
+      <category term="笔记" scheme="https://jwdu6v.coding-pages.com/categories/%E7%AC%94%E8%AE%B0/"/>
+    
+    
+      <category term="前端" scheme="https://jwdu6v.coding-pages.com/tags/%E5%89%8D%E7%AB%AF/"/>
+    
+      <category term="vue" scheme="https://jwdu6v.coding-pages.com/tags/vue/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>《深入理解计算机系统》重修记 1</title>
+    <link href="https://jwdu6v.coding-pages.com/2020/07/06/csapp1/"/>
+    <id>https://jwdu6v.coding-pages.com/2020/07/06/csapp1/</id>
+    <published>2020-07-06T05:06:55.000Z</published>
+    <updated>2020-11-16T08:59:08.257Z</updated>
+    
+    <summary type="html">
+    
+      &lt;p&gt;&lt;a href=&quot;https://www.bilibili.com/video/BV1iW411d7hd&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;课程来源&lt;/a&gt;&lt;/p&gt;
+    
+    </summary>
+    
+    
+      <category term="底层" scheme="https://jwdu6v.coding-pages.com/categories/%E5%BA%95%E5%B1%82/"/>
+    
+    
+      <category term="底层" scheme="https://jwdu6v.coding-pages.com/tags/%E5%BA%95%E5%B1%82/"/>
+    
+      <category term="笔记" scheme="https://jwdu6v.coding-pages.com/tags/%E7%AC%94%E8%AE%B0/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>SSM 框架学习笔记 5</title>
+    <link href="https://jwdu6v.coding-pages.com/2020/07/02/ssm5/"/>
+    <id>https://jwdu6v.coding-pages.com/2020/07/02/ssm5/</id>
+    <published>2020-07-02T15:13:14.000Z</published>
+    <updated>2020-11-16T08:59:08.263Z</updated>
+    
+    <summary type="html">
+    
+      &lt;p&gt;&lt;a href=&quot;https://www.bilibili.com/video/BV1d4411g7tv&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;课程来源&lt;/a&gt;&lt;/p&gt;
+    
+    </summary>
+    
+    
+      <category term="框架" scheme="https://jwdu6v.coding-pages.com/categories/%E6%A1%86%E6%9E%B6/"/>
+    
+    
+      <category term="Java" scheme="https://jwdu6v.coding-pages.com/tags/Java/"/>
+    
+      <category term="Spring" scheme="https://jwdu6v.coding-pages.com/tags/Spring/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>SSM 框架学习笔记 4</title>
+    <link href="https://jwdu6v.coding-pages.com/2020/06/30/ssm4/"/>
+    <id>https://jwdu6v.coding-pages.com/2020/06/30/ssm4/</id>
+    <published>2020-06-30T08:46:49.000Z</published>
+    <updated>2020-11-16T08:59:08.263Z</updated>
+    
+    <summary type="html">
+    
+      &lt;p&gt;&lt;a href=&quot;https://www.bilibili.com/video/BV1d4411g7tv&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;课程来源&lt;/a&gt;&lt;/p&gt;
+    
+    </summary>
+    
+    
+      <category term="框架" scheme="https://jwdu6v.coding-pages.com/categories/%E6%A1%86%E6%9E%B6/"/>
+    
+    
+      <category term="Java" scheme="https://jwdu6v.coding-pages.com/tags/Java/"/>
+    
+      <category term="Spring" scheme="https://jwdu6v.coding-pages.com/tags/Spring/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>SSM 框架学习笔记 3</title>
+    <link href="https://jwdu6v.coding-pages.com/2020/06/25/ssm3/"/>
+    <id>https://jwdu6v.coding-pages.com/2020/06/25/ssm3/</id>
+    <published>2020-06-25T03:13:12.000Z</published>
+    <updated>2020-11-16T08:59:08.263Z</updated>
+    
+    <summary type="html">
+    
+      &lt;p&gt;&lt;a href=&quot;https://www.bilibili.com/video/BV1d4411g7tv&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;课程来源&lt;/a&gt;&lt;/p&gt;
+    
+    </summary>
+    
+    
+      <category term="框架" scheme="https://jwdu6v.coding-pages.com/categories/%E6%A1%86%E6%9E%B6/"/>
+    
+    
+      <category term="Java" scheme="https://jwdu6v.coding-pages.com/tags/Java/"/>
+    
+      <category term="Spring" scheme="https://jwdu6v.coding-pages.com/tags/Spring/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>SSM 框架学习笔记 2</title>
+    <link href="https://jwdu6v.coding-pages.com/2020/06/20/ssm2/"/>
+    <id>https://jwdu6v.coding-pages.com/2020/06/20/ssm2/</id>
+    <published>2020-06-20T08:42:36.000Z</published>
+    <updated>2020-11-16T08:59:08.263Z</updated>
+    
+    <summary type="html">
+    
+      &lt;p&gt;&lt;a href=&quot;https://www.bilibili.com/video/BV1d4411g7tv&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;课程来源&lt;/a&gt;&lt;/p&gt;
+    
+    </summary>
+    
+    
+      <category term="框架" scheme="https://jwdu6v.coding-pages.com/categories/%E6%A1%86%E6%9E%B6/"/>
+    
+    
+      <category term="Java" scheme="https://jwdu6v.coding-pages.com/tags/Java/"/>
+    
+      <category term="Spring" scheme="https://jwdu6v.coding-pages.com/tags/Spring/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>SSM 框架学习笔记 1</title>
+    <link href="https://jwdu6v.coding-pages.com/2020/06/18/ssm1/"/>
+    <id>https://jwdu6v.coding-pages.com/2020/06/18/ssm1/</id>
+    <published>2020-06-18T08:06:34.000Z</published>
+    <updated>2020-11-16T08:59:08.263Z</updated>
+    
+    <summary type="html">
+    
+      &lt;p&gt;&lt;a href=&quot;https://www.bilibili.com/video/BV1d4411g7tv&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;课程来源&lt;/a&gt;&lt;/p&gt;
+    
+    </summary>
+    
+    
+      <category term="框架" scheme="https://jwdu6v.coding-pages.com/categories/%E6%A1%86%E6%9E%B6/"/>
+    
+    
+      <category term="Java" scheme="https://jwdu6v.coding-pages.com/tags/Java/"/>
+    
+      <category term="Spring" scheme="https://jwdu6v.coding-pages.com/tags/Spring/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Java Web 学习札记4</title>
+    <link href="https://jwdu6v.coding-pages.com/2020/06/09/javaweb4/"/>
+    <id>https://jwdu6v.coding-pages.com/2020/06/09/javaweb4/</id>
+    <published>2020-06-09T10:21:57.000Z</published>
+    <updated>2020-11-16T08:59:08.260Z</updated>
+    
+    <summary type="html">
+    
+      &lt;p&gt;建议改名游记.jpg&lt;/p&gt;
+&lt;p&gt;课程&lt;a href=&quot;https://www.bilibili.com/video/BV1Y7411K7zz&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;来源&lt;/a&gt;。&lt;/p&gt;
+    
+    </summary>
+    
+    
+      <category term="Web" scheme="https://jwdu6v.coding-pages.com/categories/Web/"/>
+    
+    
+      <category term="Java" scheme="https://jwdu6v.coding-pages.com/tags/Java/"/>
+    
+      <category term="Web" scheme="https://jwdu6v.coding-pages.com/tags/Web/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Java Web 学习札记3</title>
+    <link href="https://jwdu6v.coding-pages.com/2020/06/02/javaweb3/"/>
+    <id>https://jwdu6v.coding-pages.com/2020/06/02/javaweb3/</id>
+    <published>2020-06-02T12:15:57.000Z</published>
+    <updated>2020-11-16T08:59:08.260Z</updated>
+    
+    <summary type="html">
+    
+      &lt;p&gt;建议改名游记.jpg&lt;/p&gt;
+&lt;p&gt;课程&lt;a href=&quot;https://www.bilibili.com/video/BV1Y7411K7zz&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;来源&lt;/a&gt;。&lt;/p&gt;
+    
+    </summary>
+    
+    
+      <category term="Web" scheme="https://jwdu6v.coding-pages.com/categories/Web/"/>
+    
+    
+      <category term="Java" scheme="https://jwdu6v.coding-pages.com/tags/Java/"/>
+    
+      <category term="Web" scheme="https://jwdu6v.coding-pages.com/tags/Web/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>JDBC 学习札记</title>
+    <link href="https://jwdu6v.coding-pages.com/2020/06/02/javajdbc/"/>
+    <id>https://jwdu6v.coding-pages.com/2020/06/02/javajdbc/</id>
+    <published>2020-06-02T03:09:34.000Z</published>
+    <updated>2020-11-16T08:59:08.257Z</updated>
+    
+    <summary type="html">
+    
+      &lt;p&gt;课程&lt;a href=&quot;https://www.bilibili.com/video/BV1eJ411c7rf?from=search&amp;seid=1514951991050910155&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;来源&lt;/a&gt;&lt;/p&gt;
+    
+    </summary>
+    
+    
+      <category term="编程语言" scheme="https://jwdu6v.coding-pages.com/categories/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/"/>
+    
+    
+      <category term="Java" scheme="https://jwdu6v.coding-pages.com/tags/Java/"/>
+    
+      <category term="数据库" scheme="https://jwdu6v.coding-pages.com/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Java Web 学习札记2</title>
+    <link href="https://jwdu6v.coding-pages.com/2020/05/30/javaweb2/"/>
+    <id>https://jwdu6v.coding-pages.com/2020/05/30/javaweb2/</id>
+    <published>2020-05-30T10:38:58.000Z</published>
+    <updated>2020-11-16T08:59:08.260Z</updated>
+    
+    <summary type="html">
+    
+      &lt;p&gt;建议改名游记.jpg&lt;/p&gt;
+&lt;p&gt;课程&lt;a href=&quot;https://www.bilibili.com/video/BV1Y7411K7zz&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;来源&lt;/a&gt;。&lt;/p&gt;
+    
+    </summary>
+    
+    
+      <category term="Web" scheme="https://jwdu6v.coding-pages.com/categories/Web/"/>
+    
+    
+      <category term="Java" scheme="https://jwdu6v.coding-pages.com/tags/Java/"/>
+    
+      <category term="Web" scheme="https://jwdu6v.coding-pages.com/tags/Web/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Java Web 学习札记1</title>
+    <link href="https://jwdu6v.coding-pages.com/2020/05/28/javaweb1/"/>
+    <id>https://jwdu6v.coding-pages.com/2020/05/28/javaweb1/</id>
+    <published>2020-05-28T13:09:47.000Z</published>
+    <updated>2020-11-16T08:59:08.260Z</updated>
+    
+    <summary type="html">
+    
+      &lt;p&gt;建议改名游记.jpg&lt;/p&gt;
+&lt;p&gt;课程&lt;a href=&quot;https://www.bilibili.com/video/BV1Y7411K7zz&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;来源&lt;/a&gt;。&lt;/p&gt;
+    
+    </summary>
+    
+    
+      <category term="Web" scheme="https://jwdu6v.coding-pages.com/categories/Web/"/>
+    
+    
+      <category term="Java" scheme="https://jwdu6v.coding-pages.com/tags/Java/"/>
+    
+      <category term="Web" scheme="https://jwdu6v.coding-pages.com/tags/Web/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Java的一些知识2</title>
+    <link href="https://jwdu6v.coding-pages.com/2020/05/20/javaknows2/"/>
+    <id>https://jwdu6v.coding-pages.com/2020/05/20/javaknows2/</id>
+    <published>2020-05-20T06:47:37.000Z</published>
+    <updated>2020-11-16T08:59:08.257Z</updated>
+    
+    <summary type="html">
+    
+      &lt;p&gt;杂项&lt;/p&gt;
+    
+    </summary>
+    
+    
+      <category term="编程语言" scheme="https://jwdu6v.coding-pages.com/categories/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/"/>
+    
+    
+      <category term="Java" scheme="https://jwdu6v.coding-pages.com/tags/Java/"/>
+    
+      <category term="面向对象" scheme="https://jwdu6v.coding-pages.com/tags/%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1/"/>
+    
+  </entry>
+  
+</feed>
