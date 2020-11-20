@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://jwdu6v.coding-pages.com/"/>
-  <updated>2020-11-16T11:06:23.658Z</updated>
+  <updated>2020-11-20T02:43:00.444Z</updated>
   <id>https://jwdu6v.coding-pages.com/</id>
   
   <author>
@@ -15,6 +15,27 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>捡了一个路由器</title>
+    <link href="https://jwdu6v.coding-pages.com/2020/11/20/router1/"/>
+    <id>https://jwdu6v.coding-pages.com/2020/11/20/router1/</id>
+    <published>2020-11-20T02:39:46.000Z</published>
+    <updated>2020-11-20T02:43:00.444Z</updated>
+    
+    <summary type="html">
+    
+      &lt;p&gt;最近买了一个路由器放在宿舍，第一次买这种东西，记录一下。&lt;/p&gt;
+    
+    </summary>
+    
+    
+      <category term="捡垃圾" scheme="https://jwdu6v.coding-pages.com/categories/%E6%8D%A1%E5%9E%83%E5%9C%BE/"/>
+    
+    
+      <category term="捡垃圾" scheme="https://jwdu6v.coding-pages.com/tags/%E6%8D%A1%E5%9E%83%E5%9C%BE/"/>
+    
+  </entry>
   
   <entry>
     <title>在线记俄语一到一千的数字</title>
@@ -444,29 +465,6 @@
       <category term="Java" scheme="https://jwdu6v.coding-pages.com/tags/Java/"/>
     
       <category term="Web" scheme="https://jwdu6v.coding-pages.com/tags/Web/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Java的一些知识2</title>
-    <link href="https://jwdu6v.coding-pages.com/2020/05/20/javaknows2/"/>
-    <id>https://jwdu6v.coding-pages.com/2020/05/20/javaknows2/</id>
-    <published>2020-05-20T06:47:37.000Z</published>
-    <updated>2020-11-16T08:59:08.257Z</updated>
-    
-    <summary type="html">
-    
-      &lt;p&gt;杂项&lt;/p&gt;
-    
-    </summary>
-    
-    
-      <category term="编程语言" scheme="https://jwdu6v.coding-pages.com/categories/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/"/>
-    
-    
-      <category term="Java" scheme="https://jwdu6v.coding-pages.com/tags/Java/"/>
-    
-      <category term="面向对象" scheme="https://jwdu6v.coding-pages.com/tags/%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1/"/>
     
   </entry>
   
