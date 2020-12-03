@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://jwdu6v.coding-pages.com/"/>
-  <updated>2020-11-20T02:43:00.444Z</updated>
+  <updated>2020-12-03T15:20:02.595Z</updated>
   <id>https://jwdu6v.coding-pages.com/</id>
   
   <author>
@@ -15,6 +15,48 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Educational Codeforces Round 99 部分题记录</title>
+    <link href="https://jwdu6v.coding-pages.com/2020/12/03/edu99/"/>
+    <id>https://jwdu6v.coding-pages.com/2020/12/03/edu99/</id>
+    <published>2020-12-03T15:17:36.000Z</published>
+    <updated>2020-12-03T15:20:02.595Z</updated>
+    
+    <summary type="html">
+    
+      &lt;p&gt;老年复健敷衍题解。&lt;/p&gt;
+    
+    </summary>
+    
+    
+      <category term="算法竞赛" scheme="https://jwdu6v.coding-pages.com/categories/%E7%AE%97%E6%B3%95%E7%AB%9E%E8%B5%9B/"/>
+    
+    
+      <category term="思维" scheme="https://jwdu6v.coding-pages.com/tags/%E6%80%9D%E7%BB%B4/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>A tour of go 笔记</title>
+    <link href="https://jwdu6v.coding-pages.com/2020/11/26/atourofgo/"/>
+    <id>https://jwdu6v.coding-pages.com/2020/11/26/atourofgo/</id>
+    <published>2020-11-26T02:33:55.000Z</published>
+    <updated>2020-11-26T05:04:24.335Z</updated>
+    
+    <summary type="html">
+    
+      &lt;p&gt;突击人&lt;/p&gt;
+    
+    </summary>
+    
+    
+      <category term="编程语言" scheme="https://jwdu6v.coding-pages.com/categories/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/"/>
+    
+    
+      <category term="go" scheme="https://jwdu6v.coding-pages.com/tags/go/"/>
+    
+  </entry>
   
   <entry>
     <title>捡了一个路由器</title>
@@ -417,54 +459,6 @@
       <category term="Java" scheme="https://jwdu6v.coding-pages.com/tags/Java/"/>
     
       <category term="数据库" scheme="https://jwdu6v.coding-pages.com/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Java Web 学习札记2</title>
-    <link href="https://jwdu6v.coding-pages.com/2020/05/30/javaweb2/"/>
-    <id>https://jwdu6v.coding-pages.com/2020/05/30/javaweb2/</id>
-    <published>2020-05-30T10:38:58.000Z</published>
-    <updated>2020-11-16T08:59:08.260Z</updated>
-    
-    <summary type="html">
-    
-      &lt;p&gt;建议改名游记.jpg&lt;/p&gt;
-&lt;p&gt;课程&lt;a href=&quot;https://www.bilibili.com/video/BV1Y7411K7zz&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;来源&lt;/a&gt;。&lt;/p&gt;
-    
-    </summary>
-    
-    
-      <category term="Web" scheme="https://jwdu6v.coding-pages.com/categories/Web/"/>
-    
-    
-      <category term="Java" scheme="https://jwdu6v.coding-pages.com/tags/Java/"/>
-    
-      <category term="Web" scheme="https://jwdu6v.coding-pages.com/tags/Web/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Java Web 学习札记1</title>
-    <link href="https://jwdu6v.coding-pages.com/2020/05/28/javaweb1/"/>
-    <id>https://jwdu6v.coding-pages.com/2020/05/28/javaweb1/</id>
-    <published>2020-05-28T13:09:47.000Z</published>
-    <updated>2020-11-16T08:59:08.260Z</updated>
-    
-    <summary type="html">
-    
-      &lt;p&gt;建议改名游记.jpg&lt;/p&gt;
-&lt;p&gt;课程&lt;a href=&quot;https://www.bilibili.com/video/BV1Y7411K7zz&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;来源&lt;/a&gt;。&lt;/p&gt;
-    
-    </summary>
-    
-    
-      <category term="Web" scheme="https://jwdu6v.coding-pages.com/categories/Web/"/>
-    
-    
-      <category term="Java" scheme="https://jwdu6v.coding-pages.com/tags/Java/"/>
-    
-      <category term="Web" scheme="https://jwdu6v.coding-pages.com/tags/Web/"/>
     
   </entry>
   
