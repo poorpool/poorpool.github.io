@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://jwdu6v.coding-pages.com/"/>
-  <updated>2020-12-03T15:20:02.595Z</updated>
+  <updated>2020-12-20T15:27:31.125Z</updated>
   <id>https://jwdu6v.coding-pages.com/</id>
   
   <author>
@@ -15,6 +15,83 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>败亦可喜</title>
+    <link href="https://jwdu6v.coding-pages.com/2020/12/20/icpcnanjing2020/"/>
+    <id>https://jwdu6v.coding-pages.com/2020/12/20/icpcnanjing2020/</id>
+    <published>2020-12-20T14:57:14.000Z</published>
+    <updated>2020-12-20T15:27:31.125Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;p&gt;如你所见在 icpc 2020 南京站（线上赛）我们队打铁了，但是我反而感觉不错，，？&lt;/p&gt;
+&lt;p&gt;说感觉不错应该不是阿 Q，主要是因为我们队似乎已经做得还好了：我想起了相邻的数互素的结论，和 ljm 构造出了 K 的解，他一发过了。wsy 想出了 L
+        
+      
+    
+    </summary>
+    
+    
+      <category term="游记" scheme="https://jwdu6v.coding-pages.com/categories/%E6%B8%B8%E8%AE%B0/"/>
+    
+    
+      <category term="游记" scheme="https://jwdu6v.coding-pages.com/tags/%E6%B8%B8%E8%AE%B0/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>HUST ACM 2020 新生赛补题</title>
+    <link href="https://jwdu6v.coding-pages.com/2020/12/06/hustacm2020/"/>
+    <id>https://jwdu6v.coding-pages.com/2020/12/06/hustacm2020/</id>
+    <published>2020-12-06T11:32:01.000Z</published>
+    <updated>2020-12-06T14:22:59.821Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;p&gt;虽然是老油条，但还是来玩了玩。题目在 &lt;a href=&quot;http://jjikkollp.icu&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;hls 的 OJ&lt;/a&gt;。做出来了 A、B、C、E 四个题。补的题都有题意。&lt;/p&gt;
+&lt;h1
+        
+      
+    
+    </summary>
+    
+    
+      <category term="算法竞赛" scheme="https://jwdu6v.coding-pages.com/categories/%E7%AE%97%E6%B3%95%E7%AB%9E%E8%B5%9B/"/>
+    
+    
+      <category term="算法竞赛" scheme="https://jwdu6v.coding-pages.com/tags/%E7%AE%97%E6%B3%95%E7%AB%9E%E8%B5%9B/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>CCPC 2020 长春站补题</title>
+    <link href="https://jwdu6v.coding-pages.com/2020/12/06/ccpc2020changchun/"/>
+    <id>https://jwdu6v.coding-pages.com/2020/12/06/ccpc2020changchun/</id>
+    <published>2020-12-06T11:15:42.000Z</published>
+    <updated>2020-12-06T11:20:35.541Z</updated>
+    
+    <summary type="html">
+    
+      &lt;p&gt;没去，自己做着玩。&lt;a href=&quot;https://codeforces.com/gym/102832&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;2020 China Collegiate Programming Contest Changchun Onsite&lt;/a&gt;&lt;/p&gt;
+    
+    </summary>
+    
+    
+      <category term="算法竞赛" scheme="https://jwdu6v.coding-pages.com/categories/%E7%AE%97%E6%B3%95%E7%AB%9E%E8%B5%9B/"/>
+    
+    
+      <category term="算法竞赛" scheme="https://jwdu6v.coding-pages.com/tags/%E7%AE%97%E6%B3%95%E7%AB%9E%E8%B5%9B/"/>
+    
+  </entry>
   
   <entry>
     <title>Educational Codeforces Round 99 部分题记录</title>
@@ -388,77 +465,6 @@
       <category term="Java" scheme="https://jwdu6v.coding-pages.com/tags/Java/"/>
     
       <category term="Spring" scheme="https://jwdu6v.coding-pages.com/tags/Spring/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Java Web 学习札记4</title>
-    <link href="https://jwdu6v.coding-pages.com/2020/06/09/javaweb4/"/>
-    <id>https://jwdu6v.coding-pages.com/2020/06/09/javaweb4/</id>
-    <published>2020-06-09T10:21:57.000Z</published>
-    <updated>2020-11-16T08:59:08.260Z</updated>
-    
-    <summary type="html">
-    
-      &lt;p&gt;建议改名游记.jpg&lt;/p&gt;
-&lt;p&gt;课程&lt;a href=&quot;https://www.bilibili.com/video/BV1Y7411K7zz&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;来源&lt;/a&gt;。&lt;/p&gt;
-    
-    </summary>
-    
-    
-      <category term="Web" scheme="https://jwdu6v.coding-pages.com/categories/Web/"/>
-    
-    
-      <category term="Java" scheme="https://jwdu6v.coding-pages.com/tags/Java/"/>
-    
-      <category term="Web" scheme="https://jwdu6v.coding-pages.com/tags/Web/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Java Web 学习札记3</title>
-    <link href="https://jwdu6v.coding-pages.com/2020/06/02/javaweb3/"/>
-    <id>https://jwdu6v.coding-pages.com/2020/06/02/javaweb3/</id>
-    <published>2020-06-02T12:15:57.000Z</published>
-    <updated>2020-11-16T08:59:08.260Z</updated>
-    
-    <summary type="html">
-    
-      &lt;p&gt;建议改名游记.jpg&lt;/p&gt;
-&lt;p&gt;课程&lt;a href=&quot;https://www.bilibili.com/video/BV1Y7411K7zz&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;来源&lt;/a&gt;。&lt;/p&gt;
-    
-    </summary>
-    
-    
-      <category term="Web" scheme="https://jwdu6v.coding-pages.com/categories/Web/"/>
-    
-    
-      <category term="Java" scheme="https://jwdu6v.coding-pages.com/tags/Java/"/>
-    
-      <category term="Web" scheme="https://jwdu6v.coding-pages.com/tags/Web/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>JDBC 学习札记</title>
-    <link href="https://jwdu6v.coding-pages.com/2020/06/02/javajdbc/"/>
-    <id>https://jwdu6v.coding-pages.com/2020/06/02/javajdbc/</id>
-    <published>2020-06-02T03:09:34.000Z</published>
-    <updated>2020-11-16T08:59:08.257Z</updated>
-    
-    <summary type="html">
-    
-      &lt;p&gt;课程&lt;a href=&quot;https://www.bilibili.com/video/BV1eJ411c7rf?from=search&amp;seid=1514951991050910155&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;来源&lt;/a&gt;&lt;/p&gt;
-    
-    </summary>
-    
-    
-      <category term="编程语言" scheme="https://jwdu6v.coding-pages.com/categories/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/"/>
-    
-    
-      <category term="Java" scheme="https://jwdu6v.coding-pages.com/tags/Java/"/>
-    
-      <category term="数据库" scheme="https://jwdu6v.coding-pages.com/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/"/>
     
   </entry>
   
