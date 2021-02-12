@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://jwdu6v.coding-pages.com/"/>
-  <updated>2020-12-20T15:29:13.999Z</updated>
+  <updated>2021-02-12T02:24:06.224Z</updated>
   <id>https://jwdu6v.coding-pages.com/</id>
   
   <author>
@@ -15,6 +15,73 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>准备一些杂项知识</title>
+    <link href="https://jwdu6v.coding-pages.com/2021/02/12/prepare-interview-1/"/>
+    <id>https://jwdu6v.coding-pages.com/2021/02/12/prepare-interview-1/</id>
+    <published>2021-02-12T02:22:15.000Z</published>
+    <updated>2021-02-12T02:24:06.224Z</updated>
+    
+    <summary type="html">
+    
+      Here&#39;s something encrypted, password is required to continue reading.
+    
+    </summary>
+    
+    
+      <category term="笔记" scheme="https://jwdu6v.coding-pages.com/categories/%E7%AC%94%E8%AE%B0/"/>
+    
+    
+      <category term="杂" scheme="https://jwdu6v.coding-pages.com/tags/%E6%9D%82/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>模拟退火</title>
+    <link href="https://jwdu6v.coding-pages.com/2021/02/10/monituihuo/"/>
+    <id>https://jwdu6v.coding-pages.com/2021/02/10/monituihuo/</id>
+    <published>2021-02-10T05:59:27.000Z</published>
+    <updated>2021-02-10T09:32:44.320Z</updated>
+    
+    <summary type="html">
+    
+      &lt;p&gt;其实这玩意很好理解，首先看：&lt;a href=&quot;https://www.cnblogs.com/flashhu/p/8884132.html&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;讲解&lt;/a&gt;&lt;/p&gt;
+    
+    </summary>
+    
+    
+      <category term="OI" scheme="https://jwdu6v.coding-pages.com/categories/OI/"/>
+    
+      <category term="乱搞" scheme="https://jwdu6v.coding-pages.com/categories/OI/%E4%B9%B1%E6%90%9E/"/>
+    
+    
+      <category term="模拟退火" scheme="https://jwdu6v.coding-pages.com/tags/%E6%A8%A1%E6%8B%9F%E9%80%80%E7%81%AB/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>《编译原理》第二版（龙书）学习笔记</title>
+    <link href="https://jwdu6v.coding-pages.com/2021/01/27/compileprinciple1/"/>
+    <id>https://jwdu6v.coding-pages.com/2021/01/27/compileprinciple1/</id>
+    <published>2021-01-27T07:53:36.000Z</published>
+    <updated>2021-01-27T08:58:58.512Z</updated>
+    
+    <summary type="html">
+    
+      &lt;p&gt;因为做课设要用，先随便学一学&lt;/p&gt;
+    
+    </summary>
+    
+    
+      <category term="笔记" scheme="https://jwdu6v.coding-pages.com/categories/%E7%AC%94%E8%AE%B0/"/>
+    
+    
+      <category term="笔记" scheme="https://jwdu6v.coding-pages.com/tags/%E7%AC%94%E8%AE%B0/"/>
+    
+      <category term="编译原理" scheme="https://jwdu6v.coding-pages.com/tags/%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%86/"/>
+    
+  </entry>
   
   <entry>
     <title>败亦可喜</title>
@@ -42,18 +109,11 @@
     <link href="https://jwdu6v.coding-pages.com/2020/12/06/hustacm2020/"/>
     <id>https://jwdu6v.coding-pages.com/2020/12/06/hustacm2020/</id>
     <published>2020-12-06T11:32:01.000Z</published>
-    <updated>2020-12-06T14:22:59.821Z</updated>
+    <updated>2021-01-27T07:56:10.412Z</updated>
     
     <summary type="html">
     
-      
-      
-        
-        
-          &lt;p&gt;虽然是老油条，但还是来玩了玩。题目在 &lt;a href=&quot;http://jjikkollp.icu&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;hls 的 OJ&lt;/a&gt;。做出来了 A、B、C、E 四个题。补的题都有题意。&lt;/p&gt;
-&lt;h1
-        
-      
+      &lt;p&gt;虽然是老油条，但还是来玩了玩。题目在 &lt;a href=&quot;http://jjikkollp.icu&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;hls 的 OJ&lt;/a&gt;。做出来了 A、B、C、E 四个题。补的题都有题意。&lt;/p&gt;
     
     </summary>
     
@@ -374,75 +434,6 @@
     <link href="https://jwdu6v.coding-pages.com/2020/06/30/ssm4/"/>
     <id>https://jwdu6v.coding-pages.com/2020/06/30/ssm4/</id>
     <published>2020-06-30T08:46:49.000Z</published>
-    <updated>2020-11-16T08:59:08.263Z</updated>
-    
-    <summary type="html">
-    
-      &lt;p&gt;&lt;a href=&quot;https://www.bilibili.com/video/BV1d4411g7tv&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;课程来源&lt;/a&gt;&lt;/p&gt;
-    
-    </summary>
-    
-    
-      <category term="框架" scheme="https://jwdu6v.coding-pages.com/categories/%E6%A1%86%E6%9E%B6/"/>
-    
-    
-      <category term="Java" scheme="https://jwdu6v.coding-pages.com/tags/Java/"/>
-    
-      <category term="Spring" scheme="https://jwdu6v.coding-pages.com/tags/Spring/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>SSM 框架学习笔记 3</title>
-    <link href="https://jwdu6v.coding-pages.com/2020/06/25/ssm3/"/>
-    <id>https://jwdu6v.coding-pages.com/2020/06/25/ssm3/</id>
-    <published>2020-06-25T03:13:12.000Z</published>
-    <updated>2020-11-16T08:59:08.263Z</updated>
-    
-    <summary type="html">
-    
-      &lt;p&gt;&lt;a href=&quot;https://www.bilibili.com/video/BV1d4411g7tv&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;课程来源&lt;/a&gt;&lt;/p&gt;
-    
-    </summary>
-    
-    
-      <category term="框架" scheme="https://jwdu6v.coding-pages.com/categories/%E6%A1%86%E6%9E%B6/"/>
-    
-    
-      <category term="Java" scheme="https://jwdu6v.coding-pages.com/tags/Java/"/>
-    
-      <category term="Spring" scheme="https://jwdu6v.coding-pages.com/tags/Spring/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>SSM 框架学习笔记 2</title>
-    <link href="https://jwdu6v.coding-pages.com/2020/06/20/ssm2/"/>
-    <id>https://jwdu6v.coding-pages.com/2020/06/20/ssm2/</id>
-    <published>2020-06-20T08:42:36.000Z</published>
-    <updated>2020-11-16T08:59:08.263Z</updated>
-    
-    <summary type="html">
-    
-      &lt;p&gt;&lt;a href=&quot;https://www.bilibili.com/video/BV1d4411g7tv&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;课程来源&lt;/a&gt;&lt;/p&gt;
-    
-    </summary>
-    
-    
-      <category term="框架" scheme="https://jwdu6v.coding-pages.com/categories/%E6%A1%86%E6%9E%B6/"/>
-    
-    
-      <category term="Java" scheme="https://jwdu6v.coding-pages.com/tags/Java/"/>
-    
-      <category term="Spring" scheme="https://jwdu6v.coding-pages.com/tags/Spring/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>SSM 框架学习笔记 1</title>
-    <link href="https://jwdu6v.coding-pages.com/2020/06/18/ssm1/"/>
-    <id>https://jwdu6v.coding-pages.com/2020/06/18/ssm1/</id>
-    <published>2020-06-18T08:06:34.000Z</published>
     <updated>2020-11-16T08:59:08.263Z</updated>
     
     <summary type="html">
