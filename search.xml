@@ -1,10 +1,50 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>CS144 Lab 记录</title>
+    <url>/2021/02/12/cs144lab/</url>
+    <content><![CDATA[<p>计算机网络课</p>
+<a id="more"></a>
+
+<h1 id="Lab-0"><a href="#Lab-0" class="headerlink" title="Lab 0"></a>Lab 0</h1><h2 id="手工-telnet-发邮件"><a href="#手工-telnet-发邮件" class="headerlink" title="手工 telnet 发邮件"></a>手工 telnet 发邮件</h2><p>来个 163 邮箱<a href="https://blog.csdn.net/csdnliwenqi/article/details/108558969" target="_blank" rel="noopener">的</a></p>
+<h2 id="netcat"><a href="#netcat" class="headerlink" title="netcat"></a>netcat</h2><p><code>nc -v -l -p 9090</code> 监听 9090 端口，用 telnet/nc 连接成功以后可以互发信息。</p>
+<h2 id="webget"><a href="#webget" class="headerlink" title="webget"></a>webget</h2><p>使用文档中提供的包裹类即可</p>
+<h2 id="简单-stream"><a href="#简单-stream" class="headerlink" title="简单 stream"></a>简单 stream</h2><p>先学个大括号初始化，这玩意又叫 initializer_list。C++ 11 的。</p>
+<p>然后就拿一个 string 当作内部存储就好了。</p>
+<h1 id="Lab-1"><a href="#Lab-1" class="headerlink" title="Lab 1"></a>Lab 1</h1><p>实现一个分组重排器：</p>
+<p><img src="/images/cs144/1.png" alt="image"></p>
+<p>一旦能够排好，立刻输入到 ByteStream 里头，这样应用层就可以读字节了。</p>
+<h1 id="Lab-2"><a href="#Lab-2" class="headerlink" title="Lab 2"></a>Lab 2</h1><p>first_unassembled 即为 tcp 中 ackno，first_unassembled 和 first_unacceptable 的差即为 window size。</p>
+<p>ack，ackno 都是 acknowledgement，代表已经全部收到小于 ackno 的字节。</p>
+<p>ByteStream 的下标是 64 位，但是 tcp seqno 是 32 位的，需要转换。</p>
+<p>一个字节一个下标，SYN 和 FIN 单独占一个下标。开头是随机的，也即 SYN 的下标为 ISN（initial sequence number）</p>
+<p><img src="/images/cs144/2.png" alt="image"></p>
+<h1 id="Lab-3"><a href="#Lab-3" class="headerlink" title="Lab 3"></a>Lab 3</h1><p>lab 3 实现一个发送方，仔细看材料吧。</p>
+<h1 id="Lab-4"><a href="#Lab-4" class="headerlink" title="Lab 4"></a>Lab 4</h1><p>把东西接起来，实现 TCPConnection。</p>
+<p><strong>文档摘编</strong>：</p>
+<p>收到 segment 时：如果 rst 设置了，立刻结束连接；给 receiver 提供 segment；给 sender 提供 ackno（如果有）；研究是否要返回 ackno。</p>
+<p>发送 segment 时：看 pdf。</p>
+<p>tick 时：告诉 sender 时间流逝。可能提早结束连接，或者干净地结束连接。</p>
+<p>主要还是看文档，，，然后写出来的东西肯定炸得一塌糊涂，不要慌，先 make check_lab3 确定都过了，然后一个一个慢慢修改。<strong>注意不要随便 debug printf 输出！</strong>不然后面的自动测试过不了。最终我的 benchmark 为 4.6 和 3.3 Gbit/s，很神奇。</p>
+<h1 id="Lab-5"><a href="#Lab-5" class="headerlink" title="Lab 5"></a>Lab 5</h1><p>实现 arp 协议，通过 ip 找到 mac。很简单，照着做就可以了。没有特意降低复杂度。</p>
+<h1 id="Lab-6"><a href="#Lab-6" class="headerlink" title="Lab 6"></a>Lab 6</h1><p>最长前缀匹配路由转发，好写。</p>
+<h1 id="Lab-7"><a href="#Lab-7" class="headerlink" title="Lab 7"></a>Lab 7</h1><p>这个不用写。</p>
+<p><img src="/images/cs144/3.png" alt="image"></p>
+<p>结束啦，撒花～</p>
+]]></content>
+      <categories>
+        <category>笔记</category>
+      </categories>
+      <tags>
+        <tag>笔记</tag>
+        <tag>计算机网络</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>准备一些杂项知识</title>
     <url>/2021/02/12/prepare-interview-1/</url>
     <content><![CDATA[<div class="hbe hbe-container" id="hexo-blog-encrypt" data-wpm="Oh, this is an invalid password. Check and try again, please." data-whm="OOPS, these decrypted content may changed, but you can still have a look.">
-  <script id="hbeData" type="hbeData" data-hmacdigest="1367a726d237efcb48ba415132b7412d8329ae7b3535aa05d10f661ffbd4c4a7">4630436162ade97ba2718b7d0c4b3b6351e3b167c5c2d058e20f52aefac715f954cf5d6b47af194d7812b57d0d53702b499b74601b72f3948a3a759fb4baabb23fccfd17c80b1a1254efa13c5eed99aeb9c0a5e2ea22a3b6fc16059bd67fb15442e86c28a6426a58cbbbc816fb8a2924845e2e27f1160d1b8291d6a846ab9c64b32474d66d546a5983d114d2bfc8440f4f5180155314368cf98c4190c99a48c0d26898495525faef808036b2e623396c470206a355cb406f5ea846daecedee1f9f354912e96429f8e1c9974cda62b2f4f55094e212e8a398b2c9922896dfc51ef1917c4140431241c86c0ea303b8e1c1</script>
+  <script id="hbeData" type="hbeData" data-hmacdigest="a562c8a1b40180811e515440b1e7924b7a719d90bbab0a67a8cbce6bb28763c7">4630436162ade97ba2718b7d0c4b3b6351e3b167c5c2d058e20f52aefac715f954cf5d6b47af194d7812b57d0d53702b499b74601b72f3948a3a759fb4baabb23fccfd17c80b1a1254efa13c5eed99aeb9c0a5e2ea22a3b6fc16059bd67fb15442e86c28a6426a58cbbbc816fb8a2924845e2e27f1160d1b8291d6a846ab9c64b32474d66d546a5983d114d2bfc8440f4f5180155314368cf98c4190c99a48c0d26898495525faef808036b2e623396c470206a355cb406f5ea846daecedee1f9f354912e96429f8e1c9974cda62b2f4f55094e212e8a398b2c9922896dfc51ec91d16ad1823576a37ce97fa51db8be8bb345298e7f57f184a4bd8eb5dd2bd7d67883ed14b570da1a9ff58937f23cc3796ca3ea37e4fd8ec1d4df2a2c1df9c9e2b8220c9bcc4e59e3df0d811a781e9779a036c35dfef8880673988dc91b4a343d9a8446150baa3ea55d6d3075a161fcc12298c0a8b4ff0b9425d0ff063dd64a1aebb220b37b5b7aded4795d3387178840091a86385b72378dd427a0fab0e3866cffb432b09db7d4256d7c7dc9192b2f7ecc1a48639315a2a7aa482ba104ba48c1f4be780d40d7b81da99a0b1366a3eb4e81f1db7bafaddd0c92b58bca4d23430aa30da8ceb209cceb3eddfe7d511ed5927ee96bca96fa5c9264d909c4e5a954fd010b73fde9ea6317e13eacdb3c2d08eb121c26ee438abe3a385a65dcf09f1d3dee368706742b8dbc714022bba5a7711fc6c23b8f29b39f8d959d1f2fffd7b5f821675aaadb6dff05940b7adb81b1118b07a503bc86fa0de62ba6fa5ba7f63ba439dd0a5454d4be8ec0cc4da50a44a9e665ed84e57f3b4e7e3f238c809f09f1f11f972622f893adb1a40af6ef744a4134c7da3018a5db8a32f973640d1baa16a8920af30de724993744a8d5a76c4449596fae563e2be8c12076de8bfa28503fd</script>
   <div class="hbe hbe-content">
     <div class="hbe hbe-input hbe-input-default">
       <input class="hbe hbe-input-field hbe-input-field-default" type="password" id="hbePass">

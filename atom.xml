@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://jwdu6v.coding-pages.com/"/>
-  <updated>2021-02-12T02:24:06.224Z</updated>
+  <updated>2021-02-18T10:10:29.684Z</updated>
   <id>https://jwdu6v.coding-pages.com/</id>
   
   <author>
@@ -17,11 +17,34 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>CS144 Lab 记录</title>
+    <link href="https://jwdu6v.coding-pages.com/2021/02/12/cs144lab/"/>
+    <id>https://jwdu6v.coding-pages.com/2021/02/12/cs144lab/</id>
+    <published>2021-02-12T07:26:44.000Z</published>
+    <updated>2021-02-18T10:10:29.684Z</updated>
+    
+    <summary type="html">
+    
+      &lt;p&gt;计算机网络课&lt;/p&gt;
+    
+    </summary>
+    
+    
+      <category term="笔记" scheme="https://jwdu6v.coding-pages.com/categories/%E7%AC%94%E8%AE%B0/"/>
+    
+    
+      <category term="笔记" scheme="https://jwdu6v.coding-pages.com/tags/%E7%AC%94%E8%AE%B0/"/>
+    
+      <category term="计算机网络" scheme="https://jwdu6v.coding-pages.com/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/"/>
+    
+  </entry>
+  
+  <entry>
     <title>准备一些杂项知识</title>
     <link href="https://jwdu6v.coding-pages.com/2021/02/12/prepare-interview-1/"/>
     <id>https://jwdu6v.coding-pages.com/2021/02/12/prepare-interview-1/</id>
     <published>2021-02-12T02:22:15.000Z</published>
-    <updated>2021-02-12T02:24:06.224Z</updated>
+    <updated>2021-02-12T02:52:02.080Z</updated>
     
     <summary type="html">
     
@@ -411,29 +434,6 @@
     <link href="https://jwdu6v.coding-pages.com/2020/07/02/ssm5/"/>
     <id>https://jwdu6v.coding-pages.com/2020/07/02/ssm5/</id>
     <published>2020-07-02T15:13:14.000Z</published>
-    <updated>2020-11-16T08:59:08.263Z</updated>
-    
-    <summary type="html">
-    
-      &lt;p&gt;&lt;a href=&quot;https://www.bilibili.com/video/BV1d4411g7tv&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;课程来源&lt;/a&gt;&lt;/p&gt;
-    
-    </summary>
-    
-    
-      <category term="框架" scheme="https://jwdu6v.coding-pages.com/categories/%E6%A1%86%E6%9E%B6/"/>
-    
-    
-      <category term="Java" scheme="https://jwdu6v.coding-pages.com/tags/Java/"/>
-    
-      <category term="Spring" scheme="https://jwdu6v.coding-pages.com/tags/Spring/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>SSM 框架学习笔记 4</title>
-    <link href="https://jwdu6v.coding-pages.com/2020/06/30/ssm4/"/>
-    <id>https://jwdu6v.coding-pages.com/2020/06/30/ssm4/</id>
-    <published>2020-06-30T08:46:49.000Z</published>
     <updated>2020-11-16T08:59:08.263Z</updated>
     
     <summary type="html">
