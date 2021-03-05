@@ -64,7 +64,7 @@
         <span class="post-meta-item-icon">
             <i class="ri-quill-pen-line"></i>
             <span class="post-meta-item-text"> 字数统计:</span>
-            <span class="post-count">5字</span>
+            <span class="post-count">426字</span>
         </span>
     </span>
 
@@ -84,6 +84,8 @@
 
     
     
+    <div class="tocbot"></div>
+
 
 
 
@@ -100,6 +102,36 @@
       <p>随便记一下</p>
 <a id="more"></a>
 
+<h1 id="基础"><a href="#基础" class="headerlink" title="基础"></a>基础</h1><p>源代码 .java，编译成 .class。</p>
+<p>applet 只能在网页里面运行。</p>
+<p>javac 编译，java 运行，jdb 调试 java 程序。</p>
+<p>Java 没有全局函数，没有全局变量。</p>
+<p>main 函数签名一定是 <code>public static void main(String[] args)</code>。</p>
+<p>.class 是字节码，可以在任何装有 jvm 的机器上运行。</p>
+<p>命令行运行 java 程序的时候要指定 classpath。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">java -classpath . net.yxchen.test.Main</span><br></pre></td></tr></table></figure>
+
+<p>在存放 net 文件夹的地方输入上述命令。</p>
+<p>Java 有三种注释，第三种是 JavaDoc 注释</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">*/</span></span><br></pre></td></tr></table></figure>
+
+<p>可以注释类，类的方法，类的数据成员之类的。</p>
+<h1 id="输入输出和成员"><a href="#输入输出和成员" class="headerlink" title="输入输出和成员"></a>输入输出和成员</h1><p>System.in InputStream 的对象。</p>
+<p>java.util.Scanner 读入。</p>
+<p>Scanner scanner = new Scanner(System.in)</p>
+<p>scanner.nextDouble() 之类的。</p>
+<p>java 标识符可以有美元号。</p>
+<p>常量用 final。</p>
+<p>函数里的<strong>局部变量</strong>在使用前必须赋值。成员变量有默认值。</p>
+<p>值类型作为方法调用参数的时候是传值调用，引用类型作为方法调用参数的时候是<strong>传引用调用</strong>。</p>
+<p>引用类型有 class，interface，<strong>array</strong>。</p>
+<p>代码风格检查工具可以用 CheckStyle。</p>
+<p>&amp;&amp; 和 &amp; 的区别（除了位运算）：前者会截断。</p>
+<p>boolean 类型和其他任何类型不能相互转换！</p>
+<p>二元运算符必定先算左边，这个有规定，不像 cpp。</p>
+<p>switch 不支持 long，只支持 char byte short int 及其包裹类、String、枚举。</p>
+<p>从大类型转小类型要显示说明。</p>
+<p>一个 Java 源文件可以包含多个类定义，但最多只能包含一个 public 类定义；如果 Java 源文件里包含 public 类定义，则该源文件的文件名必须与这个 public 类的类名相同。</p>
 
       
       <!-- 打赏 -->
