@@ -6,7 +6,7 @@
     
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
   <title>
-    华科 Java 笔记 1 |  一路春白
+    华科 Java 笔记 1 |  怀中落霞
   </title>
   <meta name="generator" content="hexo-theme-yilia-plus">
   
@@ -23,7 +23,7 @@
 
   
 
-<link rel="alternate" href="/atom.xml" title="一路春白" type="application/atom+xml">
+<link rel="alternate" href="/atom.xml" title="怀中落霞" type="application/atom+xml">
 </head>
 
 </html>
@@ -64,7 +64,7 @@
         <span class="post-meta-item-icon">
             <i class="ri-quill-pen-line"></i>
             <span class="post-meta-item-text"> 字数统计:</span>
-            <span class="post-count">426字</span>
+            <span class="post-count">730字</span>
         </span>
     </span>
 
@@ -73,7 +73,7 @@
         <span class="post-meta-item-icon">
             <i class="ri-book-open-line"></i>
             <span class="post-meta-item-text"> 阅读时长≈</span>
-            <span class="post-count">1分钟</span>
+            <span class="post-count">2分钟</span>
         </span>
     </span>
 </div>
@@ -132,6 +132,14 @@
 <p>switch 不支持 long，只支持 char byte short int 及其包裹类、String、枚举。</p>
 <p>从大类型转小类型要显示说明。</p>
 <p>一个 Java 源文件可以包含多个类定义，但最多只能包含一个 public 类定义；如果 Java 源文件里包含 public 类定义，则该源文件的文件名必须与这个 public 类的类名相同。</p>
+<h1 id="函数和字符串"><a href="#函数和字符串" class="headerlink" title="函数和字符串"></a>函数和字符串</h1><p>Math.random方法生成[0.0,1.0)之间的double类型的随机数</p>
+<p>由于字符串是不可变的，为了提高效率和节省内存，Java中的字符串字面值维护在字符串常量池中）。这样的字符串称为规范字符串(canonical string)。</p>
+<p>可以使用字符串对象（假设内容为Welcome to Java）的intern方法返回规范化字符串。intern方法会在字符串常量池中找是否已存在”Welcome to Java”,如果有返回其地址。如果没有，在池中添加“Welcome to java”再返回地址。即intern方法一定返回一个指向常量池里的字符串对象引用。</p>
+<p>字符串对象创建之后，其内容是不可修改的。</p>
+<p>StringBuilder与StringBuffer(final类）初始化后还可以修改字符串。</p>
+<p>StringBuffer修改缓冲区的方法是同步（synchronized）的，更适合多线程环境。StringBuilder 快。</p>
+<p>形参不允许有默认值，最后一个可为变长参数（可用…或数组定义，参见第7章数组）。方法里不允许定义static局部变量。</p>
+<p>子类实例函数里用” super.方法名“调用父类实例方法。</p>
 
       
       <!-- 打赏 -->
@@ -237,7 +245,7 @@
 <nav class="navbar">
   
   <div class="logo">
-    <a href="/"><img src="/images/ayer-side.png" alt="一路春白"></a>
+    <a href="/"><img src="/images/ayer-side.png" alt="怀中落霞"></a>
   </div>
   
   <ul class="nav nav-main">
