@@ -64,7 +64,7 @@
         <span class="post-meta-item-icon">
             <i class="ri-quill-pen-line"></i>
             <span class="post-meta-item-text"> 字数统计:</span>
-            <span class="post-count">730字</span>
+            <span class="post-count">816字</span>
         </span>
     </span>
 
@@ -73,7 +73,7 @@
         <span class="post-meta-item-icon">
             <i class="ri-book-open-line"></i>
             <span class="post-meta-item-text"> 阅读时长≈</span>
-            <span class="post-count">2分钟</span>
+            <span class="post-count">3分钟</span>
         </span>
     </span>
 </div>
@@ -124,6 +124,7 @@
 <p>常量用 final。</p>
 <p>函数里的<strong>局部变量</strong>在使用前必须赋值。成员变量有默认值。</p>
 <p>值类型作为方法调用参数的时候是传值调用，引用类型作为方法调用参数的时候是<strong>传引用调用</strong>。</p>
+<p>值类型 boolean,char, byte, short,int, long, float,double,void。</p>
 <p>引用类型有 class，interface，<strong>array</strong>。</p>
 <p>代码风格检查工具可以用 CheckStyle。</p>
 <p>&amp;&amp; 和 &amp; 的区别（除了位运算）：前者会截断。</p>
@@ -140,6 +141,9 @@
 <p>StringBuffer修改缓冲区的方法是同步（synchronized）的，更适合多线程环境。StringBuilder 快。</p>
 <p>形参不允许有默认值，最后一个可为变长参数（可用…或数组定义，参见第7章数组）。方法里不允许定义static局部变量。</p>
 <p>子类实例函数里用” super.方法名“调用父类实例方法。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">String s5 = <span class="string">"Wel"</span>;</span><br><span class="line">String s6 = <span class="string">"come"</span>;</span><br><span class="line">String s7 = s5 + s6;</span><br><span class="line"><span class="comment">// s7 != "Welcome" !!!!!!</span></span><br><span class="line"><span class="comment">//"Wel" + "come" == "Welcome"</span></span><br></pre></td></tr></table></figure>
+
+<p>当String作为形参传递到方法里的时候,实际上传递的是str引用的拷贝,改变的是str引用的拷贝,而后方法结束，形参str被销毁, 原str的引用保持不变。</p>
 
       
       <!-- 打赏 -->
@@ -161,6 +165,15 @@
   
   
   <nav class="article-nav">
+    
+      <a href="/2021/03/12/nowcoderleetcodes/" class="article-nav-link">
+        <strong class="article-nav-caption">上一篇</strong>
+        <div class="article-nav-title">
+          
+            牛客和 leetcode 及类似 OJ 的部分题目刷题记录
+          
+        </div>
+      </a>
     
     
       <a href="/2021/02/12/cs144lab/" class="article-nav-link">
