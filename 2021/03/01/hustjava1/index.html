@@ -64,7 +64,7 @@
         <span class="post-meta-item-icon">
             <i class="ri-quill-pen-line"></i>
             <span class="post-meta-item-text"> 字数统计:</span>
-            <span class="post-count">816字</span>
+            <span class="post-count">934字</span>
         </span>
     </span>
 
@@ -143,7 +143,11 @@
 <p>子类实例函数里用” super.方法名“调用父类实例方法。</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">String s5 = <span class="string">"Wel"</span>;</span><br><span class="line">String s6 = <span class="string">"come"</span>;</span><br><span class="line">String s7 = s5 + s6;</span><br><span class="line"><span class="comment">// s7 != "Welcome" !!!!!!</span></span><br><span class="line"><span class="comment">//"Wel" + "come" == "Welcome"</span></span><br></pre></td></tr></table></figure>
 
-<p>当String作为形参传递到方法里的时候,实际上传递的是str引用的拷贝,改变的是str引用的拷贝,而后方法结束，形参str被销毁, 原str的引用保持不变。</p>
+<blockquote>
+<p>引用类型的实参传递给形参后，实参、形参指向同一个对象。<br>但是，对于String类、基本数据类型的包装类型的实参传递给形参，形参变了不会导致实参变化。这是为什么？<br>这是因为String、Integer的内容是不可更改的（里头是 final）<br>赋值实际上是创建一个新对象，也就是指向变了<br>包装类要和基本数据类型行为一致</p>
+</blockquote>
+<p>java.util.Arrays类包括各种静态方法，其中实现了数组的排序和查找</p>
+<p>二维数组每一行的的列数可以不同。也就是只指定第一维大小。不指定的为 null。</p>
 
       
       <!-- 打赏 -->
