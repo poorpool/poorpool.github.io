@@ -55,6 +55,16 @@ password: 123456
 
 看[这里](https://www.cnblogs.com/huenchao/p/6266352.html)，讲得非常好。
 
+## C++
+
+### static
+
+主要是 static 局部变量，全局变量，函数，成员变量，成员函数。看[这里](https://blog.csdn.net/lwbeyond/article/details/6184035)。
+
+### 多态
+
+
+
 ## Java
 
 ### 反射
