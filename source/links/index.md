@@ -9,6 +9,8 @@ date: 2020-08-05 11:46:08
 
 [margatroid](https://margatroid.xyz)
 
+[hxj](https://husthxj.top/)
+
 # HUST
 
 [KSKun](https://ksmeow.moe)
