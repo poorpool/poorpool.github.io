@@ -12,3 +12,5 @@ date: 2020-08-05 11:46:08
 # HUST
 
 [KSKun](https://ksmeow.moe)
+
+[jjikkollp](https://blog.jjikkollp.icu/)

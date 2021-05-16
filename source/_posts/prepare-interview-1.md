@@ -12,6 +12,12 @@ password: 123456
 
 <!--more-->
 
+> 面试官你好，我的名字是chenyixiao。我来自华中科技大学计算机科学与技术学院。我现在在上大二。
+> 技能方面，高中时我参加过NOI并获得铜牌，所以我能够比较熟练的使用一些常用的数据结构和算法。我能够比较熟练地使用C和C++语言，也使用过一段时间的Java和Go。我日常使用Linux，熟悉Linux和Shell的常用操作。
+> 知识方面，虽然我们还没有开始主要专业课的学习，但我也自学过计算机网络，使用过数据库。
+> 能力方面，我认为最突出的一点是我有比较强的编程能力。寒假的时候我参加了PingCAP的Talent Plan，学习并实现了raft算法、分布式事务等知识，并借助Raft算法构建了一个简要版本的分布式KV数据库。我还用五天左右的时间做了CS144的Lab，深化了对计算机网络的认知。平常我也喜欢自己编一些小程序。
+> 性格方面，我有比较强的团队协作能力，加入了华中科技大学联创团队lab组，并且无论是作为课程设计的小组长还是组员，都能按时完成自己的工作。我还有比较强的沟通能力，是华中科技大学的网络助管之一。如果我有幸进入腾讯实习，我一定努力学习，积极工作，争取保质保量地完成任务。
+
 [八股1](https://github.com/huihut/interview)。
 
 # 知识
@@ -45,6 +51,8 @@ password: 123456
 
 [看这里](https://github.com/huihut/interview#tcp-%E4%B8%8E-udp-%E7%9A%84%E5%8C%BA%E5%88%AB)
 
+UDP 包最大长度 64k 左右（长度字段决定），但是局域网中建议不超过1472，因特网 548（MTU 最大传输单元）决定。
+
 ### 浏览器输入 url
 
 [一个比较好的有图的版本](https://www.jianshu.com/p/c1dfc6caa520)。
@@ -55,6 +63,10 @@ password: 123456
 
 看[这里](https://www.cnblogs.com/huenchao/p/6266352.html)，讲得非常好。
 
+## 消息队列
+
+主要是为了实现异步、削峰、解耦。
+
 ## C++
 
 ### static
@@ -63,7 +75,9 @@ password: 123456
 
 ### 多态
 
+虚函数。
 
+每个类的实例化对象都会拥有虚函数指针并且都排列在对象的地址首部。而它们也都是按照一定的顺序组织起来的，从而构成了一种表状结构，称为虚函数表 (virtual table) 。
 
 ## Java
 
@@ -173,6 +187,8 @@ public:
 Multi-Raft 部分，主要是处理数据分片。将数据根据 key 分成不同的 key region。[这里](https://blog.csdn.net/qq_38289815/article/details/107682089)大概介绍了一下 multi-raft。[这里](https://segmentfault.com/a/1190000008007027)为 PingCAP 的 TiKV 的 multi-raft。总的就是一个 store 存放多个 raft group 的副本。
 
 Percolator 是 2PC（两阶段提交）的强化版。[这里](https://blog.csdn.net/maxlovezyy/article/details/88572692)介绍了一下 percolator。[这里](https://pingcap.com/blog-cn/percolator-and-txn/)是 TiDB 的操作。这些 lock，write，data 是写在不同的 column family 里头。COLUMN_LOCK 放锁，COLUMN_WRITE 放写/删操作记录，COLUMN_FAMILY 放真正的数据。[这里](https://github.com/poorpool/TinyKV-of-poorpool/blob/course/doc/project4-Transaction.md)是实验文档。
+
+调度能力是啥，，？add node delete node。multi-raft 是 region split 那一套。
 
 ### CS144 TCP
 
