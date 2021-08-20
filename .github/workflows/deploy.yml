@@ -1,41 +1,34 @@
-name: Hexo Deploy
-
+name: CI
 on:
   push:
     branches:
       - hexo
-
 jobs:
   build:
-    runs-on: ubuntu-18.04
-    if: github.event.repository.owner.id == github.event.sender.id
+    runs-on: ubuntu-latest
 
     steps:
       - name: Checkout source
-        uses: actions/checkout@v2
+        uses: actions/checkout@v1
         with:
-          ref: master
-
-      - name: Setup Node.js
+          ref: hexo
+      - name: Use Node.js ${{ matrix.node_version }}
         uses: actions/setup-node@v1
         with:
-          node-version: '12'
-
-      - name: Setup Hexo
+          version: ${{ matrix.node_version }}
+      - name: Setup hexo
         env:
-          ACTION_DEPLOY_KEY: ${{ secrets.HEXO_DEPLOY_KEY }}
+          ACTION_DEPLOY_KEY: ${{ secrets.TENCENT_DEPLOY }}
         run: |
           mkdir -p ~/.ssh/
           echo "$ACTION_DEPLOY_KEY" > ~/.ssh/id_rsa
-          chmod 700 ~/.ssh
           chmod 600 ~/.ssh/id_rsa
           ssh-keyscan github.com >> ~/.ssh/known_hosts
           git config --global user.email "489679970@qq.com"
           git config --global user.name "poorpool"
           npm install hexo-cli -g
           npm install
-
-      - name: Deploy
+      - name: Hexo deploy
         run: |
           hexo clean
-          hexo deploy
+          hexo d
