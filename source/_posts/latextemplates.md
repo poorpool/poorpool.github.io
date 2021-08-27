@@ -15,7 +15,8 @@ categories:
 \documentclass[UTF8,12pt]{ctexart}
 \usepackage[T1]{fontenc}
 \usepackage{newpxtext,newpxmath} % palatino风格字体
-
+\usepackage{geometry} % 调整页边距
+\geometry{a4paper,scale=0.8} % 调整页边距
 \ctexset{section={format={\large\bfseries\raggedright}}}  % section居左
 
 \setCJKmainfont[BoldFont=FandolHei, ItalicFont=FandolKai]{FandolSong} % 字体设置overleaf
