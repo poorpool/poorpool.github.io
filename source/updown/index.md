@@ -1,9 +1,10 @@
 ---
 title: UPDOWNLOADER
+type: updown
 date: 2022-02-15 13:43:52
 ---
 
-http://124.222.102.137/updown/
+[http://124.222.102.137/updown/](http://124.222.102.137/updown/)
 
 https://github.com/poorpool/updownloader
 
@@ -13,11 +14,11 @@ https://github.com/poorpool/updownloader
 
 取得文件：
 
-![file](./images/1-file.png)
+![file](../images/updown/1-file.png)
 
 取得文本：
 
-![text](./images/2-text.png)
+![text](../images/updown/2-text.png)
 
 命令行：
 
