@@ -35,3 +35,5 @@ categories:
 
 ## Raft 论文精读
 
+[Raft 中文论文](https://github.com/maemual/raft-zh_cn/blob/master/raft-zh_cn.md)
+
