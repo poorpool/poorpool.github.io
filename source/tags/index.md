@@ -1,5 +1,5 @@
 ---
 title: tags
 type: tags
-layout: "tags"
+layout: "tag"
 ---

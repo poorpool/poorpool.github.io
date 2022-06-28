@@ -1,6 +1,7 @@
 ---
 title: 友链
 date: 2020-08-05 11:46:08
+layout: post
 ---
 
 # Unique
