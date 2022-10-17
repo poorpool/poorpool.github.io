@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+    <meta charset="utf-8">
+
+    
+
+    <!-- 渲染优化 -->
+    <meta name="renderer" content="webkit">
+    <meta name="force-rendering" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta name="HandheldFriendly" content="True" >
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+    <!--icon-->
+
+    
+        <link rel="shortcut icon" href="/images/icons/favicon.ico">
+    
+    
+    
+    
+        <link rel="apple-touch-icon" sizes="180x180" href="/images/icons/logo.png">
+    
+    
+
+
+    <!-- meta -->
+
+
+<title>CSP2019-12游记 | 怀中落霞</title>
+
+
+    <meta name="keywords" content="游记">
+
+
+
+
+    <!-- OpenGraph -->
+ 
+    <meta name="description" content="没想到上了带学也要打CSP（">
+<meta property="og:type" content="article">
+<meta property="og:title" content="CSP2019-12游记">
+<meta property="og:url" content="https://poorpool.github.io/2019/12/24/algorithm_contest/csp201912/index.html">
+<meta property="og:site_name" content="怀中落霞">
+<meta property="og:description" content="没想到上了带学也要打CSP（">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2019-12-24T19:10:25.000Z">
+<meta property="article:modified_time" content="2022-10-17T07:18:55.904Z">
+<meta property="article:author" content="poorpool">
+<meta property="article:tag" content="游记">
+<meta name="twitter:card" content="summary_large_image">
+
+
+    
+<link rel="stylesheet" href="/css/style/main.css">
+ 
+
+    
+    
+        <link rel="stylesheet" id="hl-default-theme" href="/css/highlight/a11y-light.css" media="none" onload="this.media='all'">
+        
+    
+
+    
+    
+
+    
+
+     
+
+    <!-- custom head -->
+
+<meta name="generator" content="Hexo 4.2.1"><link rel="alternate" href="/atom.xml" title="怀中落霞" type="application/atom+xml">
+</head>
+
+    <body>
+        <div id="app">
+            <header class="header">
+    <div class="header__left">
+        <a href="/" class="button">
+            <span class="logo__text">怀中落霞</span>
+        </a>
+    </div>
+    <div class="header__right">
+        
+            <div class="navbar__menus">
+                
+                    <a href="/" class="navbar-menu button">首页</a>
+                
+                    <a href="/tags/" class="navbar-menu button">标签</a>
+                
+                    <a href="/categories/" class="navbar-menu button">分类</a>
+                
+                    <a href="/archives/" class="navbar-menu button">归档</a>
+                
+                    <a href="/links/" class="navbar-menu button">友链</a>
+                
+                    <a href="/about/" class="navbar-menu button">关于</a>
+                
+            </div>
+        
+        
+        
+    <a href="/search/" id="btn-search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024" width="24" height="24" fill="currentColor" stroke="currentColor" stroke-width="32"><path d="M192 448c0-141.152 114.848-256 256-256s256 114.848 256 256-114.848 256-256 256-256-114.848-256-256z m710.624 409.376l-206.88-206.88A318.784 318.784 0 0 0 768 448c0-176.736-143.264-320-320-320S128 271.264 128 448s143.264 320 320 320a318.784 318.784 0 0 0 202.496-72.256l206.88 206.88 45.248-45.248z"></path></svg>
+    </a>
+
+
+        
+        
+
+        
+            <a class="dropdown-icon button" id="btn-dropdown" tabindex="0"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" width='24' height='24' fill="none" stroke="currentColor" stroke-width="0.7" stroke-linecap="round" stroke-linejoin="round"><path fill="currentColor" d="M3.314,4.8h13.372c0.41,0,0.743-0.333,0.743-0.743c0-0.41-0.333-0.743-0.743-0.743H3.314c-0.41,0-0.743,0.333-0.743,0.743C2.571,4.467,2.904,4.8,3.314,4.8z M16.686,15.2H3.314c-0.41,0-0.743,0.333-0.743,0.743s0.333,0.743,0.743,0.743h13.372c0.41,0,0.743-0.333,0.743-0.743S17.096,15.2,16.686,15.2z M16.686,9.257H3.314c-0.41,0-0.743,0.333-0.743,0.743s0.333,0.743,0.743,0.743h13.372c0.41,0,0.743-0.333,0.743-0.743S17.096,9.257,16.686,9.257z"></path></svg></a>
+            <div class="dropdown-menus" id="dropdown-menus">
+                
+                    <a href="/" class="dropdown-menu button">首页</a>
+                
+                    <a href="/tags/" class="dropdown-menu button">标签</a>
+                
+                    <a href="/categories/" class="dropdown-menu button">分类</a>
+                
+                    <a href="/archives/" class="dropdown-menu button">归档</a>
+                
+                    <a href="/links/" class="dropdown-menu button">友链</a>
+                
+                    <a href="/about/" class="dropdown-menu button">关于</a>
+                
+            </div>
+        
+    </div>
+</header>
+
+
+            <main class="main">
+    
+
+<div class="post-title">
+    <h1 class="post-title__text">
+        CSP2019-12游记
+    </h1>
+    <div class="post-title__meta">
+        <a href="/archives/2019/12/" class="post-meta__date button">2019-12-24</a>
+        
+    <span class="separate-dot"></span><a href="/categories/%E6%B8%B8%E8%AE%B0/" class="button">游记</a>
+
+ 
+        
+    
+    
+
+
+ 
+
+ 
+    </div>
+</div>
+
+
+    <aside class="post-side">
+        <div class="post-side__toc">
+            
+        </div>
+    </aside>
+    <a class="btn-toc button" id="btn-toc" tabindex="0">
+        <svg viewBox="0 0 1024 1024" width="32" height="32" xmlns="http://www.w3.org/2000/svg">
+            <path d="M128 256h64V192H128zM320 256h576V192H320zM128 544h64v-64H128zM320 544h576v-64H320zM128 832h64v-64H128zM320 832h576v-64H320z" fill="currentColor"></path>
+        </svg>
+    </a>
+    <div class="toc-menus" id="toc-menus">
+        <div class="toc-title">文章目录</div>
+        
+    </div>
+
+
+<article class="post post__with-toc content-card">
+    <div class="post__header"></div>
+    <div class="post__content">
+        <p>没想到上了带学也要打CSP（</p>
+<a id="more"></a>
+
+<p>不过这个CSP是“专业组”的，就是比“非专业组”还蔡的那种。</p>
+<p>考试时间是12月15日。然而我悲剧地发现华科考点满了……满了……不得已报了武大考点。</p>
+<p>考试那天上午，我和margatroid和ks在东一食堂会合。学子烤坊大胜利（不</p>
+<p>然后我们坐地铁去武大。在街道口下了地铁，意外地发现计算机大楼不在信息学部……本世纪最大迷惑（不。然后我们在本群唯一去过武大的mgt带路下成功摸到了学大汉武立国的牌楼下，接着走向计算机大楼。</p>
+<p>感想是，武大的游客太多了……甚至还有兜售武大地图、武大纪念品的。<del>华科就很好，根本不会有人来参观（</del>。感慨是武大的绿化不是很好，跟一中一样。这样一看华科的树真的好多呀23333（醒一醒，海军工程大学绿化74%，比你科还多2%。因为秋日之萧瑟，感觉也没有武大官网上的那么好康了。</p>
+<p>走入考场，准备考试。因为这个考试不像NOIP、NOI那样决定命运一般，所以大家也都轻轻松松的，不很紧张。（到大三下能考八九次呢，给CCF送钱无数……领到题，开干。</p>
+<p>前两题水题切了，感觉没啥坑点，不像什么小中大之类的玩意，不管了。第三题，判断化学方程式配平未……好嘛，传统艺能大模拟。看第四题，题面也好长。想来想去，好像没啥算法，也是大模拟……看第五题，数字一个一个都长得一批，一股子数论味。我是不会的，所以也是模拟。这样一看，本次CSP是模拟考试……白给了。</p>
+<p>根据以往惯例，我跳过第三题直接日第四题。我想了一下，拿一个set维护一下就差不多了吧。于是我写啊写，写完就调，仍然boom。此时已经过去两个半小时。我觉得我不应当再耗时间了，我立刻回去看第三题。</p>
+<p>考虑到时间因素，我果断放弃AC，只追求部分分。部分分很好写的，一个小时少一点就写完了60分的。</p>
+<p>这时我面临这两个选择：改T4/开T5。因为T5我还没动，所以我开了T5。这么大的数不太会研究，找规律也没找出来什么规律……果断放弃，开始调第四题。期间修改了多次排序依据，总代码行数一度突破210行（连同调试）。终于，我通过了样例一。我兴高采烈地测试样例二，然后booooooooom。但是没有办法了。时间只有十几分钟了，我必须提交本题然后进行T5。</p>
+<p>提交完，打开T5，留给我的时间只剩10分9秒左右。我必须立刻写下暴力算法。面对这样大的模数，我的脑子立刻跳出龟速乘。我写了最朴素的一个暴力。然而此时仍然错误！我想：无所谓，暴力没多少分。脑子虽然这么想，但我还是在查bug。突然我查出来了！我立刻修改了程序，得到了正确的结果。我马上交了上去。我提交了五个题的程序，此时离考试结束余一分钟。</p>
+<p>考试没有那么重要，所以考完心情也没多沉重。我和mgt和ks去恰饭！银泰创意城，选了又选，选了橘味餐厅。是一个江浙菜餐厅。鸡汤好喝。后来我又想吃冰激凌了，去买了一杯独角兽冰沙，好冰……喝得我头疼。</p>
+<p>CSP出分快。第二天我便查到了分。100+100+60+60+25=345，十分意外。这相当于我前三题没有翻车，第四题骗到了60分，第五题10分钟糊的暴力拿了暴力分。分虽然不高，但是本次全国排名有0.35%左右好像，也不算特别差吧。这个分倒是给我以后考CSP减轻了心理负担qwq。总的来说考试体验还不错ovo</p>
+
+    </div>
+     
+    <div class="post-footer__meta"><p>更新于 2022-10-17</p></div> 
+    <div class="post-entry__tags"><a href="/tags/%E6%B8%B8%E8%AE%B0/" class="post-tags__link button"># 游记</a></div> 
+</article>
+
+
+    <div class="nav">
+        <div class="nav__prev">
+            
+                <a href="/2020/02/09/unique_studio/shelllab/" class="nav__link">
+                    <div>
+                        <svg viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg" width="24" height="24"><path d="M589.088 790.624L310.464 512l278.624-278.624 45.248 45.248L400.96 512l233.376 233.376z" fill="#808080"></path></svg>
+                    </div>
+                    <div>
+                        <div class="nav__label">
+                            Previous Post
+                        </div>
+                        <div class="nav__title">
+                            shelllab
+                        </div>
+                    </div>
+                </a>
+            
+        </div>
+        <div class="nav__next">
+            
+                <a href="/2019/12/19/unique_studio/suodxc/" class="nav__link">
+                    <div>
+                        <div class="nav__label">
+                            Next Post
+                        </div>
+                        <div class="nav__title">
+                            联创OS任务——多线程和锁
+                        </div>
+                    </div>
+                    <div>
+                        <svg viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg" width="24" height="24"><path d="M434.944 790.624l-45.248-45.248L623.04 512l-233.376-233.376 45.248-45.248L713.568 512z" fill="#808080"></path></svg>
+                    </div>
+                </a>
+            
+        </div>
+    </div>
+
+
+
+
+
+</main>
+
+            <footer class="footer">
+     
+    <a href="#" class="button" id="b2t" aria-label="回到顶部" title="回到顶部">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024" width="32" height="32">
+            <path d="M233.376 722.752L278.624 768 512 534.624 745.376 768l45.248-45.248L512 444.128zM192 352h640V288H192z" fill="currentColor"></path>
+        </svg>
+    </a>
+
+    
+
+
+    
+     
+ 
+
+ 
+    
+        
+        <p class="footer-copyright">
+            Copyright © 2017&nbsp;-&nbsp;2022 <a href="/">怀中落霞</a>
+        </p>
+    
+    
+    <p>Powered by <a href="https://hexo.io" target="_blank">Hexo</a> | Theme - <a href="https://github.com/ChrAlpha/hexo-theme-cards" target="_blank">Cards</a></p>
+</footer>
+
+        </div>
+        
+    <script defer src="https://cdn.jsdelivr.net/npm/vanilla-lazyload@17.1.0/dist/lazyload.min.js"></script>
+    <script>
+        window.lazyLoadOptions = {
+            elements_selector: ".lazy",
+            threshold: 0
+        };
+    </script>
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+
+
+ 
+
+
+
+ 
+
+
+    
+ 
+
+
+    
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.4.1/dist/jquery.min.js"></script>
+
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.4.1/dist/jquery.fancybox.min.css">
+
+    
+<script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.4.1/dist/jquery.fancybox.min.js"></script>
+
+    <script>
+        let lazyloadT = Boolean('true'),
+            auto_fancybox = Boolean('true')
+        if (auto_fancybox) {
+            $(".post__content").find('img').each(function () {
+                var element = document.createElement("a");
+                $(element).attr("data-fancybox", "gallery");
+                $(element).attr("href", $(this).attr("src"));
+                if (lazyloadT) {
+                    $(element).attr("href", $(this).attr("data-srcset"));
+                }
+                $(this).wrap(element);
+            });
+        } else {
+            $(".post__content").find("fancybox").find('img').each(function () {
+                var element = document.createElement("a");
+                $(element).attr("data-fancybox", "gallery");
+                $(element).attr("href", $(this).attr("src"));
+                if (lazyloadT) {
+                    $(element).attr("href", $(this).attr("data-srcset"));
+                }
+                $(this).wrap(element);
+            });
+        }
+    </script>
+ 
+
+
+    <script>
+        if (typeof MathJax === 'undefined') {
+            window.MathJax = {
+                loader: {
+                    source: {
+                        '[tex]/amsCd': '[tex]/amscd',
+                        '[tex]/AMScd': '[tex]/amscd'
+                    }
+                },
+                tex: {
+                    inlineMath: {'[+]': [['$', '$']]},
+                    tags: 'ams'
+                },
+                options: {
+                    renderActions: {
+                        findScript: [10, doc => {
+                            document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+                                const display = !!node.type.match(/; *mode=display/);
+                                const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+                                const text = document.createTextNode('');
+                                node.parentNode.replaceChild(text, node);
+                                math.start = {node: text, delim: '', n: 0};
+                                math.end = {node: text, delim: '', n: 0};
+                                doc.math.push(math);
+                            });
+                        }, '', false],
+                        insertedScript: [200, () => {
+                            document.querySelectorAll('mjx-container').forEach(node => {
+                                let target = node.parentNode;
+                                if (target.nodeName.toLowerCase() === 'li') {
+                                    target.parentNode.classList.add('has-jax');
+                                }
+                            });
+                        }, '', false]
+                    }
+                }
+            };
+            (function () {
+                var script = document.createElement('script');
+                script.src = "https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js";
+                script.defer = true;
+                document.head.appendChild(script);
+            })();
+        } else {
+            MathJax.startup.document.state(0);
+            MathJax.texReset();
+            MathJax.typeset();
+        }
+    </script>
+
+ 
+
+ 
+
+ 
+
+ 
+
+
+
+
+    </body>
+</html>

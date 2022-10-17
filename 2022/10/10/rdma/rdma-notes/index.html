@@ -1,0 +1,508 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+    <meta charset="utf-8">
+
+    
+
+    <!-- 渲染优化 -->
+    <meta name="renderer" content="webkit">
+    <meta name="force-rendering" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta name="HandheldFriendly" content="True" >
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+    <!--icon-->
+
+    
+        <link rel="shortcut icon" href="/images/icons/favicon.ico">
+    
+    
+    
+    
+        <link rel="apple-touch-icon" sizes="180x180" href="/images/icons/logo.png">
+    
+    
+
+
+    <!-- meta -->
+
+
+<title>RDMA 学习笔记 | 怀中落霞</title>
+
+
+    <meta name="keywords" content="笔记, PDSL, RDMA">
+
+
+
+
+    <!-- OpenGraph -->
+ 
+    <meta name="description" content="知乎专题文章 rdma杂谈，这个写得太好了，可以先看知乎看一两节，再看tutorial，再看回来 tutorial 很多都是我复制的">
+<meta property="og:type" content="article">
+<meta property="og:title" content="RDMA 学习笔记">
+<meta property="og:url" content="https://poorpool.github.io/2022/10/10/rdma/rdma-notes/index.html">
+<meta property="og:site_name" content="怀中落霞">
+<meta property="og:description" content="知乎专题文章 rdma杂谈，这个写得太好了，可以先看知乎看一两节，再看tutorial，再看回来 tutorial 很多都是我复制的">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://poorpool.github.io/images/rdma/1-options.png">
+<meta property="og:image" content="https://poorpool.github.io/images/rdma/3-socket.png">
+<meta property="og:image" content="https://poorpool.github.io/images/rdma/4-rdma.png">
+<meta property="og:image" content="https://poorpool.github.io/images/rdma/2-workflow.png">
+<meta property="og:image" content="https://poorpool.github.io/images/rdma/5-context.png">
+<meta property="og:image" content="https://poorpool.github.io/images/rdma/6-svrtpe.png">
+<meta property="og:image" content="https://poorpool.github.io/images/rdma/7-mr.png">
+<meta property="og:image" content="https://poorpool.github.io/images/rdma/8-ah.png">
+<meta property="og:image" content="https://poorpool.github.io/images/rdma/9-qp.png">
+<meta property="og:image" content="https://poorpool.github.io/images/rdma/10-qpm.png">
+<meta property="article:published_time" content="2022-10-10T15:50:06.000Z">
+<meta property="article:modified_time" content="2022-10-17T07:18:55.916Z">
+<meta property="article:author" content="poorpool">
+<meta property="article:tag" content="笔记">
+<meta property="article:tag" content="PDSL">
+<meta property="article:tag" content="RDMA">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://poorpool.github.io/images/rdma/1-options.png">
+
+
+    
+<link rel="stylesheet" href="/css/style/main.css">
+ 
+
+    
+    
+        <link rel="stylesheet" id="hl-default-theme" href="/css/highlight/a11y-light.css" media="none" onload="this.media='all'">
+        
+    
+
+    
+    
+
+    
+
+     
+
+    <!-- custom head -->
+
+<meta name="generator" content="Hexo 4.2.1"><link rel="alternate" href="/atom.xml" title="怀中落霞" type="application/atom+xml">
+</head>
+
+    <body>
+        <div id="app">
+            <header class="header">
+    <div class="header__left">
+        <a href="/" class="button">
+            <span class="logo__text">怀中落霞</span>
+        </a>
+    </div>
+    <div class="header__right">
+        
+            <div class="navbar__menus">
+                
+                    <a href="/" class="navbar-menu button">首页</a>
+                
+                    <a href="/tags/" class="navbar-menu button">标签</a>
+                
+                    <a href="/categories/" class="navbar-menu button">分类</a>
+                
+                    <a href="/archives/" class="navbar-menu button">归档</a>
+                
+                    <a href="/links/" class="navbar-menu button">友链</a>
+                
+                    <a href="/about/" class="navbar-menu button">关于</a>
+                
+            </div>
+        
+        
+        
+    <a href="/search/" id="btn-search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024" width="24" height="24" fill="currentColor" stroke="currentColor" stroke-width="32"><path d="M192 448c0-141.152 114.848-256 256-256s256 114.848 256 256-114.848 256-256 256-256-114.848-256-256z m710.624 409.376l-206.88-206.88A318.784 318.784 0 0 0 768 448c0-176.736-143.264-320-320-320S128 271.264 128 448s143.264 320 320 320a318.784 318.784 0 0 0 202.496-72.256l206.88 206.88 45.248-45.248z"></path></svg>
+    </a>
+
+
+        
+        
+
+        
+            <a class="dropdown-icon button" id="btn-dropdown" tabindex="0"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" width='24' height='24' fill="none" stroke="currentColor" stroke-width="0.7" stroke-linecap="round" stroke-linejoin="round"><path fill="currentColor" d="M3.314,4.8h13.372c0.41,0,0.743-0.333,0.743-0.743c0-0.41-0.333-0.743-0.743-0.743H3.314c-0.41,0-0.743,0.333-0.743,0.743C2.571,4.467,2.904,4.8,3.314,4.8z M16.686,15.2H3.314c-0.41,0-0.743,0.333-0.743,0.743s0.333,0.743,0.743,0.743h13.372c0.41,0,0.743-0.333,0.743-0.743S17.096,15.2,16.686,15.2z M16.686,9.257H3.314c-0.41,0-0.743,0.333-0.743,0.743s0.333,0.743,0.743,0.743h13.372c0.41,0,0.743-0.333,0.743-0.743S17.096,9.257,16.686,9.257z"></path></svg></a>
+            <div class="dropdown-menus" id="dropdown-menus">
+                
+                    <a href="/" class="dropdown-menu button">首页</a>
+                
+                    <a href="/tags/" class="dropdown-menu button">标签</a>
+                
+                    <a href="/categories/" class="dropdown-menu button">分类</a>
+                
+                    <a href="/archives/" class="dropdown-menu button">归档</a>
+                
+                    <a href="/links/" class="dropdown-menu button">友链</a>
+                
+                    <a href="/about/" class="dropdown-menu button">关于</a>
+                
+            </div>
+        
+    </div>
+</header>
+
+
+            <main class="main">
+    
+
+<div class="post-title">
+    <h1 class="post-title__text">
+        RDMA 学习笔记
+    </h1>
+    <div class="post-title__meta">
+        <a href="/archives/2022/10/" class="post-meta__date button">2022-10-10</a>
+        
+    <span class="separate-dot"></span><a href="/categories/%E7%AC%94%E8%AE%B0/" class="button">笔记</a>
+
+ 
+        
+    
+    
+
+
+ 
+
+ 
+    </div>
+</div>
+
+
+    <aside class="post-side">
+        <div class="post-side__toc">
+            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#RDMA概述"><span class="toc-number">1.</span> <span class="toc-text">RDMA概述</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#三种硬件实现"><span class="toc-number">1.1.</span> <span class="toc-text">三种硬件实现</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#比较基于传统以太网与RDMA技术的通信"><span class="toc-number">2.</span> <span class="toc-text">比较基于传统以太网与RDMA技术的通信</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#RDMA基本元素和缩写（待补充）"><span class="toc-number">3.</span> <span class="toc-text">RDMA基本元素和缩写（待补充）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#RDMA操作类型"><span class="toc-number">4.</span> <span class="toc-text">RDMA操作类型</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#RDMA基本服务类型"><span class="toc-number">5.</span> <span class="toc-text">RDMA基本服务类型</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#RDMA之Memory-Region"><span class="toc-number">6.</span> <span class="toc-text">RDMA之Memory Region</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#实现虚拟地址与物理地址转换"><span class="toc-number">6.1.</span> <span class="toc-text">实现虚拟地址与物理地址转换</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#控制HCA访问内存的权限"><span class="toc-number">6.2.</span> <span class="toc-text">控制HCA访问内存的权限</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#避免换页"><span class="toc-number">6.3.</span> <span class="toc-text">避免换页</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#RDMA之Protection-Domain"><span class="toc-number">7.</span> <span class="toc-text">RDMA之Protection Domain</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#RDMA之Address-Handle"><span class="toc-number">8.</span> <span class="toc-text">RDMA之Address Handle</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#RDMA之queue-pair"><span class="toc-number">9.</span> <span class="toc-text">RDMA之queue pair</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#RDMA之Completion-Queue"><span class="toc-number">10.</span> <span class="toc-text">RDMA之Completion Queue</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#RDMA之Shared-Receive-Queue"><span class="toc-number">11.</span> <span class="toc-text">RDMA之Shared Receive Queue</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#RDMA之memory-window"><span class="toc-number">12.</span> <span class="toc-text">RDMA之memory window</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#rdma-tutorial-阅读"><span class="toc-number">13.</span> <span class="toc-text">rdma-tutorial 阅读</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#ib-write-bw"><span class="toc-number">14.</span> <span class="toc-text">ib_write_bw</span></a></li></ol>
+        </div>
+    </aside>
+    <a class="btn-toc button" id="btn-toc" tabindex="0">
+        <svg viewBox="0 0 1024 1024" width="32" height="32" xmlns="http://www.w3.org/2000/svg">
+            <path d="M128 256h64V192H128zM320 256h576V192H320zM128 544h64v-64H128zM320 544h576v-64H320zM128 832h64v-64H128zM320 832h576v-64H320z" fill="currentColor"></path>
+        </svg>
+    </a>
+    <div class="toc-menus" id="toc-menus">
+        <div class="toc-title">文章目录</div>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#RDMA概述"><span class="toc-number">1.</span> <span class="toc-text">RDMA概述</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#三种硬件实现"><span class="toc-number">1.1.</span> <span class="toc-text">三种硬件实现</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#比较基于传统以太网与RDMA技术的通信"><span class="toc-number">2.</span> <span class="toc-text">比较基于传统以太网与RDMA技术的通信</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#RDMA基本元素和缩写（待补充）"><span class="toc-number">3.</span> <span class="toc-text">RDMA基本元素和缩写（待补充）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#RDMA操作类型"><span class="toc-number">4.</span> <span class="toc-text">RDMA操作类型</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#RDMA基本服务类型"><span class="toc-number">5.</span> <span class="toc-text">RDMA基本服务类型</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#RDMA之Memory-Region"><span class="toc-number">6.</span> <span class="toc-text">RDMA之Memory Region</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#实现虚拟地址与物理地址转换"><span class="toc-number">6.1.</span> <span class="toc-text">实现虚拟地址与物理地址转换</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#控制HCA访问内存的权限"><span class="toc-number">6.2.</span> <span class="toc-text">控制HCA访问内存的权限</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#避免换页"><span class="toc-number">6.3.</span> <span class="toc-text">避免换页</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#RDMA之Protection-Domain"><span class="toc-number">7.</span> <span class="toc-text">RDMA之Protection Domain</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#RDMA之Address-Handle"><span class="toc-number">8.</span> <span class="toc-text">RDMA之Address Handle</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#RDMA之queue-pair"><span class="toc-number">9.</span> <span class="toc-text">RDMA之queue pair</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#RDMA之Completion-Queue"><span class="toc-number">10.</span> <span class="toc-text">RDMA之Completion Queue</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#RDMA之Shared-Receive-Queue"><span class="toc-number">11.</span> <span class="toc-text">RDMA之Shared Receive Queue</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#RDMA之memory-window"><span class="toc-number">12.</span> <span class="toc-text">RDMA之memory window</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#rdma-tutorial-阅读"><span class="toc-number">13.</span> <span class="toc-text">rdma-tutorial 阅读</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#ib-write-bw"><span class="toc-number">14.</span> <span class="toc-text">ib_write_bw</span></a></li></ol>
+    </div>
+
+
+<article class="post post__with-toc content-card">
+    <div class="post__header"></div>
+    <div class="post__content">
+        <p><a href="https://www.zhihu.com/column/rdmatechnology" target="_blank" rel="noopener">知乎专题文章</a></p>
+<p><a href="https://www.zhihu.com/column/c_1231181516811390976" target="_blank" rel="noopener">rdma杂谈</a>，这个写得太好了，可以先看知乎看一两节，再看tutorial，再看回来</p>
+<p><a href="https://github.com/jcxue/RDMA-Tutorial" target="_blank" rel="noopener">tutorial</a></p>
+<p>很多都是我复制的</p>
+<a id="more"></a>
+
+<h2 id="RDMA概述"><a href="#RDMA概述" class="headerlink" title="RDMA概述"></a>RDMA概述</h2><p>回忆一下组原有个dma，设备把数据直接发送到内存，不需要cpu参与</p>
+<p>但是如果两台机器要发消息，就要通过传统网络栈，用户空间内存通过cpu拷贝到内核空间内存，内核空间内存dma到网卡，才能用网卡发送出去；接受的时候也是。</p>
+<p>rdma：remote direct memory access</p>
+<p>从一个主机的内存直接访问另一个主机的内存</p>
+<p>将rdma协议固化到网卡上</p>
+<p>优势：</p>
+<ul>
+<li>零拷贝（不需要用户空间内核空间来回拷贝）</li>
+<li>内核旁路</li>
+<li>不需要cpu干预</li>
+<li>消息基于事务（数据不是流而是离散的）</li>
+<li>支持分散聚合条目</li>
+</ul>
+<h3 id="三种硬件实现"><a href="#三种硬件实现" class="headerlink" title="三种硬件实现"></a>三种硬件实现</h3><ul>
+<li><p>InfiniBand/IB，全新协议，全新交换机网卡</p>
+</li>
+<li><p>RDMA over Ethernet/ RoCE，普通以太网交换机，新网卡(pdsl用这一套)</p>
+<ul>
+<li>v1基于以太网交换机</li>
+<li>v2基于udp</li>
+</ul>
+</li>
+<li><p>iWARP/RDMA over TCP</p>
+</li>
+</ul>
+<p><img src="/images/rdma/1-options.png" class="lazy" data-srcset="/images/rdma/1-options.png" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABAQMAAAAl21bKAAAABlBMVEXMzMyWlpYU2uzLAAAACXBIWXMAAA7EAAAOxAGVKw4bAAAACklEQVQImWNgAAAAAgAB9HFkpgAAAABJRU5ErkJggg==" alt="options"></p>
+<h2 id="比较基于传统以太网与RDMA技术的通信"><a href="#比较基于传统以太网与RDMA技术的通信" class="headerlink" title="比较基于传统以太网与RDMA技术的通信"></a>比较基于传统以太网与RDMA技术的通信</h2><p><img src="/images/rdma/3-socket.png" class="lazy" data-srcset="/images/rdma/3-socket.png" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABAQMAAAAl21bKAAAABlBMVEXMzMyWlpYU2uzLAAAACXBIWXMAAA7EAAAOxAGVKw4bAAAACklEQVQImWNgAAAAAgAB9HFkpgAAAABJRU5ErkJggg==" alt="socket"></p>
+<p>注意的重点：陷入内核态、网卡DMA拷贝</p>
+<p>至于rdma，也不是完全离开了cpu和内核，控制还是需要一点的。</p>
+<p><img src="/images/rdma/4-rdma.png" class="lazy" data-srcset="/images/rdma/4-rdma.png" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABAQMAAAAl21bKAAAABlBMVEXMzMyWlpYU2uzLAAAACXBIWXMAAA7EAAAOxAGVKw4bAAAACklEQVQImWNgAAAAAgAB9HFkpgAAAABJRU5ErkJggg==" alt="rdma"></p>
+<h2 id="RDMA基本元素和缩写（待补充）"><a href="#RDMA基本元素和缩写（待补充）" class="headerlink" title="RDMA基本元素和缩写（待补充）"></a>RDMA基本元素和缩写（待补充）</h2><p>好好看，好好背</p>
+<p>WQ work queue，其中的元素叫WQE work queue entry，可以理解为任务说明。这个是概念。它们的实例是SQ send queue, RQ receive queue</p>
+<p>SQ和RQ组成QP queue pair，这才是通信的基本单位。QP有编号，称为QPN.一个进程可能有好几对qp</p>
+<p>有SQR shared receive queue（不是s&amp;r q），几个qp共享一个rq，因为使用rq的情况小</p>
+<p>CQ completion queue，自然也有CQE。</p>
+<p>WQ是软件push硬件pop，CQ是硬件push软件pop</p>
+<p>WR是work request，WC是work completion，是WQE和CQE在用户层的映射，用户收发的也是它们。而wqe和cqe其实是驱动的概念。</p>
+<p>后面提到的术语：</p>
+<p>QPC queue pair context，qp上下文，标识着qp的连接信息</p>
+<p>MR memory region（见第六节）</p>
+<p>HCA host channel adapter 宿主通道适配器，可以理解为硬件部分</p>
+<p>L_KEY（Local Key）和R_KEY（Remote Key），保障本端远端内存访问权限</p>
+<p>PD protection domain PD像是一个容纳了各种资源（QP、MR等）的“容器”，将这些资源纳入自己的保护范围内，避免他们被未经授权的访问。</p>
+<p>GID Global Identifier 全局id</p>
+<p>AH Address Handle</p>
+<p>cm communication management  建链用</p>
+<p><img src="/images/rdma/2-workflow.png" class="lazy" data-srcset="/images/rdma/2-workflow.png" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABAQMAAAAl21bKAAAABlBMVEXMzMyWlpYU2uzLAAAACXBIWXMAAA7EAAAOxAGVKw4bAAAACklEQVQImWNgAAAAAgAB9HFkpgAAAABJRU5ErkJggg==" alt="workflow"></p>
+<h2 id="RDMA操作类型"><a href="#RDMA操作类型" class="headerlink" title="RDMA操作类型"></a>RDMA操作类型</h2><p>双端操作：一端进行send，另一端必须进行recv，收端要先下发wqe。</p>
+<p>write：本端主动写入远端内存。除了准备阶段，远端cpu不参与</p>
+<p>本端是通过虚拟地址读写远端内存的，而虚拟地址到物理地址转换是rdma网卡干的。</p>
+<p>RDMA WRITE/READ才是大量传输数据时所应用的操作类型，SEND/RECV通常只是用来传输一些控制信息。</p>
+<h2 id="RDMA基本服务类型"><a href="#RDMA基本服务类型" class="headerlink" title="RDMA基本服务类型"></a>RDMA基本服务类型</h2><p>就像tcpip有tcp udp一样，rdma也有以可靠/不可靠、连接/数据包区分的四种服务类型</p>
+<p>可靠服务在发送和接受者之间保证了信息最多只会传递一次，并且能够保证其按照发送顺序完整的被接收</p>
+<ul>
+<li>应答机制</li>
+<li>校验机制</li>
+<li>保序机制</li>
+</ul>
+<p>对于基于连接的服务来说，每个QP都和另一个远端节点相关联。在这种情况下，QP Context中包含有远端节点的QP信息。在<strong>建立通信的过程中，两个节点会交换包括稍后用于通信的QP在内的对端信息</strong></p>
+<p>QPC 即QP context ，QP 上下文。</p>
+<p><img src="/images/rdma/5-context.png" class="lazy" data-srcset="/images/rdma/5-context.png" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABAQMAAAAl21bKAAAABlBMVEXMzMyWlpYU2uzLAAAACXBIWXMAAA7EAAAOxAGVKw4bAAAACklEQVQImWNgAAAAAgAB9HFkpgAAAABJRU5ErkJggg==" alt="context"></p>
+<p>在连接服务类型中的每个QP，都和唯一的另一个QP建立了连接，也就是说QP下发的每个WQE的目的地都是唯一的。</p>
+<p>对于数据包来说，不会保存远端节点</p>
+<p><img src="/images/rdma/6-svrtpe.png" class="lazy" data-srcset="/images/rdma/6-svrtpe.png" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABAQMAAAAl21bKAAAABlBMVEXMzMyWlpYU2uzLAAAACXBIWXMAAA7EAAAOxAGVKw4bAAAACklEQVQImWNgAAAAAgAB9HFkpgAAAABJRU5ErkJggg==" alt="svrtpe"></p>
+<p>RC和UD使用最多，可以类比为tcp udp</p>
+<h2 id="RDMA之Memory-Region"><a href="#RDMA之Memory-Region" class="headerlink" title="RDMA之Memory Region"></a>RDMA之Memory Region</h2><p><img src="/images/rdma/7-mr.png" class="lazy" data-srcset="/images/rdma/7-mr.png" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABAQMAAAAl21bKAAAABlBMVEXMzMyWlpYU2uzLAAAACXBIWXMAAA7EAAAOxAGVKw4bAAAACklEQVQImWNgAAAAAgAB9HFkpgAAAABJRU5ErkJggg==" alt="mr"></p>
+<h3 id="实现虚拟地址与物理地址转换"><a href="#实现虚拟地址与物理地址转换" class="headerlink" title="实现虚拟地址与物理地址转换"></a>实现虚拟地址与物理地址转换</h3><p>注册MR的过程中，硬件会在内存中创建并填写一个VA to PA的映射表，这样需要的时候就能通过查表把VA转换成PA了</p>
+<ul>
+<li>首先本端APP会下发一个WQE给HCA，告知HCA，用于存放待发送数据的本地Buffer的虚拟地址，以及即将写入的对端数据Buffer的虚拟地址。</li>
+<li>本端HCA查询VA-&gt;PA映射表，得知待发数据的物理地址，然后从内存中拿到数据，组装数据包并发送出去。</li>
+<li>对端HCA收到了数据包，从中解析出了目的VA。</li>
+<li>对端HCA通过存储在本地内存中的VA-&gt;PA映射表，查到真实的物理地址，核对权限无误后，将数据存放到内存中。</li>
+</ul>
+<p>对于远端节点来说，地址转换和写入内存都不需要cpu参与（下发wqe也许需要）</p>
+<h3 id="控制HCA访问内存的权限"><a href="#控制HCA访问内存的权限" class="headerlink" title="控制HCA访问内存的权限"></a>控制HCA访问内存的权限</h3><p>建链的时候，要知道远端节点的可用va和rkey，是通过先建立链路交换而实现的（cm，socket）</p>
+<h3 id="避免换页"><a href="#避免换页" class="headerlink" title="避免换页"></a>避免换页</h3><p>由于HCA经常会绕过CPU对用户提供的VA所指向的物理内存区域进行读写，如果因为cpu换页前后的VA-PA映射关系发生改变，前文提到的VA-&gt;PA映射表将失去意义，HCA将无法找到正确的物理地址。注册MR时”Pin”住这块内存就好了。</p>
+<h2 id="RDMA之Protection-Domain"><a href="#RDMA之Protection-Domain" class="headerlink" title="RDMA之Protection Domain"></a>RDMA之Protection Domain</h2><p>一个节点中可以定义多个保护域，各个PD所容纳的资源彼此隔离，无法一起使用。</p>
+<p>每个节点都至少要有一个PD，每个QP都必须属于一个PD，每个MR也必须属于一个PD。</p>
+<p>PD是本地概念，仅存在于节点内部，对其他节点是不可见的；而MR是对本端和对端都可见的。</p>
+<h2 id="RDMA之Address-Handle"><a href="#RDMA之Address-Handle" class="headerlink" title="RDMA之Address Handle"></a>RDMA之Address Handle</h2><p>qpn是每个qp独立维护的，并不是整个网络唯一的。整个网络唯一的是gid.</p>
+<p>RC建链以后，对端信息存在qpc里。ud是在wqe中填写好对端地址。地址指的是gid、端口啥的。</p>
+<p>这个对端地址不是直接填，而是通过AH来索引。AH就像一个地址簿</p>
+<p><img src="/images/rdma/8-ah.png" class="lazy" data-srcset="/images/rdma/8-ah.png" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABAQMAAAAl21bKAAAABlBMVEXMzMyWlpYU2uzLAAAACXBIWXMAAA7EAAAOxAGVKw4bAAAACklEQVQImWNgAAAAAgAB9HFkpgAAAABJRU5ErkJggg==" alt="ah"></p>
+<h2 id="RDMA之queue-pair"><a href="#RDMA之queue-pair" class="headerlink" title="RDMA之queue pair"></a>RDMA之queue pair</h2><p>QPC主要是给硬件看的，也会用来在软硬件之间同步qp信息</p>
+<p>qpn为0 1 是特殊的，qp1可以用于cm communication management</p>
+<p>控制面来说，qp有增删改查操作，类似ibv_create_qp()的样子</p>
+<p>数据面来说，一个qp对上层只有两种接口，用来向qp中填写发送和接受请求。这里的发送不是send，而是一次通信过程的发起放。例如send write read，，，</p>
+<p><img src="/images/rdma/9-qp.png" class="lazy" data-srcset="/images/rdma/9-qp.png" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABAQMAAAAl21bKAAAABlBMVEXMzMyWlpYU2uzLAAAACXBIWXMAAA7EAAAOxAGVKw4bAAAACklEQVQImWNgAAAAAgAB9HFkpgAAAABJRU5ErkJggg==" alt="qp"></p>
+<p>绿色正常态，红色错误态</p>
+<p><img src="/images/rdma/10-qpm.png" class="lazy" data-srcset="/images/rdma/10-qpm.png" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABAQMAAAAl21bKAAAABlBMVEXMzMyWlpYU2uzLAAAACXBIWXMAAA7EAAAOxAGVKw4bAAAACklEQVQImWNgAAAAAgAB9HFkpgAAAABJRU5ErkJggg==" alt="qpm"></p>
+<h2 id="RDMA之Completion-Queue"><a href="#RDMA之Completion-Queue" class="headerlink" title="RDMA之Completion Queue"></a>RDMA之Completion Queue</h2><p>如果一个WQE对应的CQE没有产生，那么这个WQE就会一直被认为还未处理完</p>
+<p>同一个WQ中的WQE，其对应的CQE间是保序的</p>
+<p>在RDMA协议中，CQE就相当于是网卡收到的数据包，RDMA硬件把它传递给CPU去处理。RDMA框架定义了两种对上层的接口，分别是poll和notify，对应着传统网卡轮询和中断模式。</p>
+<h2 id="RDMA之Shared-Receive-Queue"><a href="#RDMA之Shared-Receive-Queue" class="headerlink" title="RDMA之Shared Receive Queue"></a>RDMA之Shared Receive Queue</h2><p>通常来说sq任务数量远大于rq（write不需要rqe）</p>
+<h2 id="RDMA之memory-window"><a href="#RDMA之memory-window" class="headerlink" title="RDMA之memory window"></a>RDMA之memory window</h2><p>每个MW都会绑定（称为bind）在一个已经注册的MR上，但是它相比于MR可以提供更灵活的权限控制。MW可以粗略理解为是MR的子集，一个MR上可以划分出很多MW，每个MW都可以设置自己的权限。</p>
+<p>​                                                                                                                                                                                                                             </p>
+<h2 id="rdma-tutorial-阅读"><a href="#rdma-tutorial-阅读" class="headerlink" title="rdma-tutorial 阅读"></a>rdma-tutorial 阅读</h2><p><a href="https://github.com/jcxue/RDMA-Tutorial/wiki" target="_blank" rel="noopener">https://github.com/jcxue/RDMA-Tutorial/wiki</a></p>
+<p>先看example1，主要就是看代码，不需要写东西。试着编译一下</p>
+<p>在实验室s33服务器checkout到对应提交，然后make，提示两个错误</p>
+<ul>
+<li>atoi，要用stdlib.h</li>
+<li>找不到ibv_xxx函数，链接命令要 -libverbs</li>
+</ul>
+<p>在试图跑example1的时候，会出现create_qp参数错误的报错。不好debug。翻一下pr issue，<a href="https://github.com/jcxue/RDMA-Tutorial/pull/10" target="_blank" rel="noopener">https://github.com/jcxue/RDMA-Tutorial/pull/10</a> 这个pr里面fix了一些RoCE的issue，我记得我们实验室刚好是roce,,,</p>
+<p>把他clone下来，使用<code>-w -Wno-address-of-packed-membe</code>屏蔽掉一些报错，就可以运行了。</p>
+<p>里面有一些参数，dev_index是<code>ibv_devinfo</code>命令列出的设备索引，服务器有两台，server/client我填了0/1</p>
+<p>gid_index 是 <code>ibv_devinfo -v -d mlx5_XXX</code>显示出的索引，我看到了4个，所以都填了3，这个随缘吧</p>
+<p>测试命令：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">/rdma-tutorial 64 8 7283 0 3 &amp;</span><br><span class="line">/rdma-tutorial localhost 64 8 7283 1 3</span><br></pre></td></tr></table></figure>
+
+<p>上面的是服务端：message大小64，8个消息并发，监听7283端口，dev_index=0，gid_index=3，&amp;为后台运行</p>
+<p>下面的是客户端。测试是把他们放在一台服务器跑了，实际可能可以放好几台分开跑吧</p>
+<p>如果看不到输出，像是卡在那里，两个log都不动，也不怕。打开debug模式，可以看到一直在发包，不过要发1000000个才结束，还是要很久的。</p>
+<p>我觉得没有太大的必要跑前面的example，重点在阅读代码</p>
+<h2 id="ib-write-bw"><a href="#ib-write-bw" class="headerlink" title="ib_write_bw"></a>ib_write_bw</h2><p>测试rdma写贷款bandwidth</p>
+
+    </div>
+     
+    <div class="post-footer__meta"><p>更新于 2022-10-17</p></div> 
+    <div class="post-entry__tags"><a href="/tags/%E7%AC%94%E8%AE%B0/" class="post-tags__link button"># 笔记</a><a href="/tags/PDSL/" class="post-tags__link button"># PDSL</a><a href="/tags/RDMA/" class="post-tags__link button"># RDMA</a></div> 
+</article>
+
+
+    <div class="nav">
+        <div class="nav__prev">
+            
+        </div>
+        <div class="nav__next">
+            
+                <a href="/2022/09/02/programming/redis-notes/" class="nav__link">
+                    <div>
+                        <div class="nav__label">
+                            Next Post
+                        </div>
+                        <div class="nav__title">
+                            Redis 学习笔记
+                        </div>
+                    </div>
+                    <div>
+                        <svg viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg" width="24" height="24"><path d="M434.944 790.624l-45.248-45.248L623.04 512l-233.376-233.376 45.248-45.248L713.568 512z" fill="#808080"></path></svg>
+                    </div>
+                </a>
+            
+        </div>
+    </div>
+
+
+
+
+
+</main>
+
+            <footer class="footer">
+     
+    <a href="#" class="button" id="b2t" aria-label="回到顶部" title="回到顶部">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024" width="32" height="32">
+            <path d="M233.376 722.752L278.624 768 512 534.624 745.376 768l45.248-45.248L512 444.128zM192 352h640V288H192z" fill="currentColor"></path>
+        </svg>
+    </a>
+
+    
+
+
+    
+     
+ 
+
+ 
+    
+        
+        <p class="footer-copyright">
+            Copyright © 2017&nbsp;-&nbsp;2022 <a href="/">怀中落霞</a>
+        </p>
+    
+    
+    <p>Powered by <a href="https://hexo.io" target="_blank">Hexo</a> | Theme - <a href="https://github.com/ChrAlpha/hexo-theme-cards" target="_blank">Cards</a></p>
+</footer>
+
+        </div>
+        
+    <script defer src="https://cdn.jsdelivr.net/npm/vanilla-lazyload@17.1.0/dist/lazyload.min.js"></script>
+    <script>
+        window.lazyLoadOptions = {
+            elements_selector: ".lazy",
+            threshold: 0
+        };
+    </script>
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+
+
+ 
+
+
+
+ 
+
+
+    
+ 
+
+
+    
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.4.1/dist/jquery.min.js"></script>
+
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.4.1/dist/jquery.fancybox.min.css">
+
+    
+<script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.4.1/dist/jquery.fancybox.min.js"></script>
+
+    <script>
+        let lazyloadT = Boolean('true'),
+            auto_fancybox = Boolean('true')
+        if (auto_fancybox) {
+            $(".post__content").find('img').each(function () {
+                var element = document.createElement("a");
+                $(element).attr("data-fancybox", "gallery");
+                $(element).attr("href", $(this).attr("src"));
+                if (lazyloadT) {
+                    $(element).attr("href", $(this).attr("data-srcset"));
+                }
+                $(this).wrap(element);
+            });
+        } else {
+            $(".post__content").find("fancybox").find('img').each(function () {
+                var element = document.createElement("a");
+                $(element).attr("data-fancybox", "gallery");
+                $(element).attr("href", $(this).attr("src"));
+                if (lazyloadT) {
+                    $(element).attr("href", $(this).attr("data-srcset"));
+                }
+                $(this).wrap(element);
+            });
+        }
+    </script>
+ 
+
+
+    <script>
+        if (typeof MathJax === 'undefined') {
+            window.MathJax = {
+                loader: {
+                    source: {
+                        '[tex]/amsCd': '[tex]/amscd',
+                        '[tex]/AMScd': '[tex]/amscd'
+                    }
+                },
+                tex: {
+                    inlineMath: {'[+]': [['$', '$']]},
+                    tags: 'ams'
+                },
+                options: {
+                    renderActions: {
+                        findScript: [10, doc => {
+                            document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+                                const display = !!node.type.match(/; *mode=display/);
+                                const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+                                const text = document.createTextNode('');
+                                node.parentNode.replaceChild(text, node);
+                                math.start = {node: text, delim: '', n: 0};
+                                math.end = {node: text, delim: '', n: 0};
+                                doc.math.push(math);
+                            });
+                        }, '', false],
+                        insertedScript: [200, () => {
+                            document.querySelectorAll('mjx-container').forEach(node => {
+                                let target = node.parentNode;
+                                if (target.nodeName.toLowerCase() === 'li') {
+                                    target.parentNode.classList.add('has-jax');
+                                }
+                            });
+                        }, '', false]
+                    }
+                }
+            };
+            (function () {
+                var script = document.createElement('script');
+                script.src = "https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js";
+                script.defer = true;
+                document.head.appendChild(script);
+            })();
+        } else {
+            MathJax.startup.document.state(0);
+            MathJax.texReset();
+            MathJax.typeset();
+        }
+    </script>
+
+ 
+
+ 
+
+ 
+
+ 
+
+
+
+
+    </body>
+</html>

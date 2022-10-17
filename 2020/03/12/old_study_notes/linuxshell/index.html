@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+    <meta charset="utf-8">
+
+    
+
+    <!-- 渲染优化 -->
+    <meta name="renderer" content="webkit">
+    <meta name="force-rendering" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta name="HandheldFriendly" content="True" >
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+    <!--icon-->
+
+    
+        <link rel="shortcut icon" href="/images/icons/favicon.ico">
+    
+    
+    
+    
+        <link rel="apple-touch-icon" sizes="180x180" href="/images/icons/logo.png">
+    
+    
+
+
+    <!-- meta -->
+
+
+<title>Linux命令行与shell脚本编程大全 一些奇妙的写法 | 怀中落霞</title>
+
+
+    <meta name="keywords" content="shell, Linux">
+
+
+
+
+    <!-- OpenGraph -->
+ 
+    <meta name="description" content="牙疼不是病，疼起来真要命。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Linux命令行与shell脚本编程大全 一些奇妙的写法">
+<meta property="og:url" content="https://poorpool.github.io/2020/03/12/old_study_notes/linuxshell/index.html">
+<meta property="og:site_name" content="怀中落霞">
+<meta property="og:description" content="牙疼不是病，疼起来真要命。">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2020-03-12T16:58:44.000Z">
+<meta property="article:modified_time" content="2022-10-17T07:18:55.912Z">
+<meta property="article:author" content="poorpool">
+<meta property="article:tag" content="shell">
+<meta property="article:tag" content="Linux">
+<meta name="twitter:card" content="summary_large_image">
+
+
+    
+<link rel="stylesheet" href="/css/style/main.css">
+ 
+
+    
+    
+        <link rel="stylesheet" id="hl-default-theme" href="/css/highlight/a11y-light.css" media="none" onload="this.media='all'">
+        
+    
+
+    
+    
+
+    
+
+     
+
+    <!-- custom head -->
+
+<meta name="generator" content="Hexo 4.2.1"><link rel="alternate" href="/atom.xml" title="怀中落霞" type="application/atom+xml">
+</head>
+
+    <body>
+        <div id="app">
+            <header class="header">
+    <div class="header__left">
+        <a href="/" class="button">
+            <span class="logo__text">怀中落霞</span>
+        </a>
+    </div>
+    <div class="header__right">
+        
+            <div class="navbar__menus">
+                
+                    <a href="/" class="navbar-menu button">首页</a>
+                
+                    <a href="/tags/" class="navbar-menu button">标签</a>
+                
+                    <a href="/categories/" class="navbar-menu button">分类</a>
+                
+                    <a href="/archives/" class="navbar-menu button">归档</a>
+                
+                    <a href="/links/" class="navbar-menu button">友链</a>
+                
+                    <a href="/about/" class="navbar-menu button">关于</a>
+                
+            </div>
+        
+        
+        
+    <a href="/search/" id="btn-search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024" width="24" height="24" fill="currentColor" stroke="currentColor" stroke-width="32"><path d="M192 448c0-141.152 114.848-256 256-256s256 114.848 256 256-114.848 256-256 256-256-114.848-256-256z m710.624 409.376l-206.88-206.88A318.784 318.784 0 0 0 768 448c0-176.736-143.264-320-320-320S128 271.264 128 448s143.264 320 320 320a318.784 318.784 0 0 0 202.496-72.256l206.88 206.88 45.248-45.248z"></path></svg>
+    </a>
+
+
+        
+        
+
+        
+            <a class="dropdown-icon button" id="btn-dropdown" tabindex="0"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" width='24' height='24' fill="none" stroke="currentColor" stroke-width="0.7" stroke-linecap="round" stroke-linejoin="round"><path fill="currentColor" d="M3.314,4.8h13.372c0.41,0,0.743-0.333,0.743-0.743c0-0.41-0.333-0.743-0.743-0.743H3.314c-0.41,0-0.743,0.333-0.743,0.743C2.571,4.467,2.904,4.8,3.314,4.8z M16.686,15.2H3.314c-0.41,0-0.743,0.333-0.743,0.743s0.333,0.743,0.743,0.743h13.372c0.41,0,0.743-0.333,0.743-0.743S17.096,15.2,16.686,15.2z M16.686,9.257H3.314c-0.41,0-0.743,0.333-0.743,0.743s0.333,0.743,0.743,0.743h13.372c0.41,0,0.743-0.333,0.743-0.743S17.096,9.257,16.686,9.257z"></path></svg></a>
+            <div class="dropdown-menus" id="dropdown-menus">
+                
+                    <a href="/" class="dropdown-menu button">首页</a>
+                
+                    <a href="/tags/" class="dropdown-menu button">标签</a>
+                
+                    <a href="/categories/" class="dropdown-menu button">分类</a>
+                
+                    <a href="/archives/" class="dropdown-menu button">归档</a>
+                
+                    <a href="/links/" class="dropdown-menu button">友链</a>
+                
+                    <a href="/about/" class="dropdown-menu button">关于</a>
+                
+            </div>
+        
+    </div>
+</header>
+
+
+            <main class="main">
+    
+
+<div class="post-title">
+    <h1 class="post-title__text">
+        Linux命令行与shell脚本编程大全 一些奇妙的写法
+    </h1>
+    <div class="post-title__meta">
+        <a href="/archives/2020/03/" class="post-meta__date button">2020-03-12</a>
+        
+    <span class="separate-dot"></span><a href="/categories/Linux/" class="button">Linux</a>
+
+ 
+        
+    
+    
+
+
+ 
+
+ 
+    </div>
+</div>
+
+
+    <aside class="post-side">
+        <div class="post-side__toc">
+            
+        </div>
+    </aside>
+    <a class="btn-toc button" id="btn-toc" tabindex="0">
+        <svg viewBox="0 0 1024 1024" width="32" height="32" xmlns="http://www.w3.org/2000/svg">
+            <path d="M128 256h64V192H128zM320 256h576V192H320zM128 544h64v-64H128zM320 544h576v-64H320zM128 832h64v-64H128zM320 832h576v-64H320z" fill="currentColor"></path>
+        </svg>
+    </a>
+    <div class="toc-menus" id="toc-menus">
+        <div class="toc-title">文章目录</div>
+        
+    </div>
+
+
+<article class="post post__with-toc content-card">
+    <div class="post__header"></div>
+    <div class="post__content">
+        <p>牙疼不是病，疼起来真要命。</p>
+<a id="more"></a>
+
+<h1 id="处理命令行参数"><a href="#处理命令行参数" class="headerlink" title="处理命令行参数"></a>处理命令行参数</h1><p>可以使用getopt，太菜了，不说了。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#!/bin/bash</span></span><br><span class="line"><span class="keyword">while</span> <span class="built_in">getopts</span> :ab:<span class="built_in">cd</span> opt</span><br><span class="line"><span class="keyword">do</span></span><br><span class="line">    <span class="keyword">case</span> <span class="variable">$opt</span> <span class="keyword">in</span></span><br><span class="line">    a) <span class="built_in">echo</span> <span class="string">"Found -a option"</span>;;</span><br><span class="line">    b) <span class="built_in">echo</span> <span class="string">"Found -b option, with value <span class="variable">$OPTARG</span>"</span>;;</span><br><span class="line">    c) <span class="built_in">echo</span> <span class="string">"Found -c option"</span>;;</span><br><span class="line">    d) <span class="built_in">echo</span> <span class="string">"Found -d option"</span>;;</span><br><span class="line">    *) <span class="built_in">echo</span> <span class="string">"Unknown option: <span class="variable">$opt</span>"</span>;;</span><br><span class="line">    <span class="keyword">esac</span></span><br><span class="line"><span class="keyword">done</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">shift</span> $[ <span class="variable">$OPTIND</span> - 1 ]</span><br><span class="line"></span><br><span class="line">count=1</span><br><span class="line"><span class="keyword">for</span> param <span class="keyword">in</span> <span class="string">"<span class="variable">$@</span>"</span></span><br><span class="line"><span class="keyword">do</span></span><br><span class="line">    <span class="built_in">echo</span> <span class="string">"Param #<span class="variable">$count</span>: <span class="variable">$param</span>"</span></span><br><span class="line">    count=$[ <span class="variable">$count</span> + 1 ]</span><br><span class="line"><span class="keyword">done</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">$ .&#x2F;qwq.sh -a -b test1 -d test2 test3 test4</span><br><span class="line">Found -a option</span><br><span class="line">Found -b option, with value test1</span><br><span class="line">Found -d option</span><br><span class="line">Param #1: test2</span><br><span class="line">Param #2: test3</span><br><span class="line">Param #3: test4</span><br></pre></td></tr></table></figure>
+
+<h1 id="读入"><a href="#读入" class="headerlink" title="读入"></a>读入</h1><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">read</span> -p <span class="string">"input your name: "</span> first last</span><br></pre></td></tr></table></figure>
+
+<h1 id="重定向"><a href="#重定向" class="headerlink" title="重定向"></a>重定向</h1><p><code>2&gt;</code>是重定向stderr，<code>1&gt;</code>是重定向stdout。<code>&amp;&gt;</code>是重定向stderr和stdout，但是err会有更高的优先级，也就是出现在更前面。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ls -al AFileThatDoesntExist 2&gt; log.txt</span><br></pre></td></tr></table></figure>
+
+<p>有意地输出错误信息，例如<code>&gt;&amp;2</code></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">echo</span> <span class="string">"This is a wrong message"</span> &gt;&amp;2</span><br></pre></td></tr></table></figure>
+<p>上面是临时重定向，下面是永久重定向。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">exec</span> 2&gt;<span class="built_in">test</span></span><br></pre></td></tr></table></figure>
+<p>把本来发给stderr的通通重定向到test。顺带一提创建文件描述符也是这个语法。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">exec</span> 3&gt;&amp;1</span><br><span class="line"><span class="built_in">exec</span> 1&gt;testout</span><br><span class="line"><span class="built_in">exec</span> 1&gt;&amp;3</span><br></pre></td></tr></table></figure>
+<p>这个体现了保存、恢复文件描述符的过程。关闭就用 <code>exec 3&gt;&amp;-</code>。</p>
+<h1 id="sed、gawk与正则"><a href="#sed、gawk与正则" class="headerlink" title="sed、gawk与正则"></a>sed、gawk与正则</h1><p><code>^$</code>分别是锁定在行首和锁定在行尾的锚字符。它们也可以组合起来用（他俩连用过滤掉空白行）。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="built_in">echo</span> <span class="string">"This is a test"</span> | sed -n <span class="string">'/^This/s/test/big test/p'</span></span><br><span class="line">This is a big <span class="built_in">test</span></span><br><span class="line">$ <span class="built_in">echo</span> <span class="string">"is This is a test"</span> | sed -n <span class="string">'/^This/s/test/big test/p'</span></span><br><span class="line">$ <span class="built_in">echo</span> <span class="string">"is This is a test"</span> | sed -n <span class="string">'/test$/s/test/big test/p'</span></span><br><span class="line">is This is a big <span class="built_in">test</span></span><br><span class="line">$ <span class="built_in">echo</span> <span class="string">"is This is a test is"</span> | sed -n <span class="string">'/test$/s/test/big test/p'</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="built_in">echo</span> <span class="string">"QwQ at home"</span> | sed -n <span class="string">"/[^ch]at/p"</span></span><br><span class="line">QwQ at home</span><br></pre></td></tr></table></figure>
+<p>方括号里加个脱字符表示一个除了c和h之外的任意字符。但是要有一个字符（空格），不然就不行（例如at在行首）。</p>
+<p>区间：<code>[a-ch-m]</code>是a到c，以及h到m的并。</p>
+<p><code>&amp;</code>表示匹配的模式。</p>
+<p>字符后面放星号表示该字符出现0到任意多次。放星号甚至可以用在点、区间后头。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="built_in">echo</span> <span class="string">"this fdferer fsdf siht"</span> | sed -n <span class="string">"/this.*siht/p"</span></span><br><span class="line">this fdferer fsdf siht</span><br></pre></td></tr></table></figure>
+<p>你看，多么奇妙。</p>
+<p>下面是扩展正则表达式了。sed不支持，gawk支持。</p>
+<p>后头放问号是出现0、1次，加号是至少出现一次。</p>
+<p>后头加<code>{3}</code>这种的花括号是刚好出现3次，<code>{3,6}</code>是出现3到6次。注意gawk使用这个的时候应该加上 <code>--re-interval</code>。</p>
+<p>管道符号<code>|</code>表示或。它和正则表达式之间不能有空格不然就被认为是正则的一部分了。</p>
+<p>可以拿圆括号分组。<code>(urtay)?</code>表示urtay出现0或1次。</p>
+<p>匹配美国电话号和电子邮件：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">gawk --re-interval <span class="string">'/^\(?[2-9][0-9]&#123;2&#125;\)?(| |-|\.)[0-9]&#123;3&#125;( |-|\.)[0-9]&#123;4&#125;$/&#123;print $0&#125;'</span></span><br><span class="line">gawk --re-interval <span class="string">'/^([a-zA-Z0-9_\-\.\+]+)@([a-zA-Z0-9_\-\.\+]+)\.([a-zA-Z]&#123;2,5&#125;)$/&#123;print $0&#125;'</span></span><br></pre></td></tr></table></figure>
+<p>给数字加逗号</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">sed <span class="string">'&#123;</span></span><br><span class="line"><span class="string">:start</span></span><br><span class="line"><span class="string">s/\(.*[0-9]\)\([0-9]\&#123;3\&#125;\)/\1,\2/</span></span><br><span class="line"><span class="string">t start</span></span><br><span class="line"><span class="string">&#125;'</span></span><br></pre></td></tr></table></figure>
+<p>波浪线将正则表达式限定在特定数据字段：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ gawk -F: <span class="string">'$1 ~ /poorpool/&#123;print $1,$NF&#125;'</span> /etc/passwd </span><br><span class="line">poorpool /usr/bin/fish</span><br></pre></td></tr></table></figure>
+    </div>
+     
+    <div class="post-footer__meta"><p>更新于 2022-10-17</p></div> 
+    <div class="post-entry__tags"><a href="/tags/shell/" class="post-tags__link button"># shell</a><a href="/tags/Linux/" class="post-tags__link button"># Linux</a></div> 
+</article>
+
+
+    <div class="nav">
+        <div class="nav__prev">
+            
+                <a href="/2020/03/24/language_notes/alittlecppproblem/" class="nav__link">
+                    <div>
+                        <svg viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg" width="24" height="24"><path d="M589.088 790.624L310.464 512l278.624-278.624 45.248 45.248L400.96 512l233.376 233.376z" fill="#808080"></path></svg>
+                    </div>
+                    <div>
+                        <div class="nav__label">
+                            Previous Post
+                        </div>
+                        <div class="nav__title">
+                            一个C++小问题
+                        </div>
+                    </div>
+                </a>
+            
+        </div>
+        <div class="nav__next">
+            
+                <a href="/2020/02/18/projects/tastyPOST-1/" class="nav__link">
+                    <div>
+                        <div class="nav__label">
+                            Next Post
+                        </div>
+                        <div class="nav__title">
+                            tastyPOST 开发笔记 1 —— 基本构想
+                        </div>
+                    </div>
+                    <div>
+                        <svg viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg" width="24" height="24"><path d="M434.944 790.624l-45.248-45.248L623.04 512l-233.376-233.376 45.248-45.248L713.568 512z" fill="#808080"></path></svg>
+                    </div>
+                </a>
+            
+        </div>
+    </div>
+
+
+
+
+
+</main>
+
+            <footer class="footer">
+     
+    <a href="#" class="button" id="b2t" aria-label="回到顶部" title="回到顶部">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024" width="32" height="32">
+            <path d="M233.376 722.752L278.624 768 512 534.624 745.376 768l45.248-45.248L512 444.128zM192 352h640V288H192z" fill="currentColor"></path>
+        </svg>
+    </a>
+
+    
+
+
+    
+     
+ 
+
+ 
+    
+        
+        <p class="footer-copyright">
+            Copyright © 2017&nbsp;-&nbsp;2022 <a href="/">怀中落霞</a>
+        </p>
+    
+    
+    <p>Powered by <a href="https://hexo.io" target="_blank">Hexo</a> | Theme - <a href="https://github.com/ChrAlpha/hexo-theme-cards" target="_blank">Cards</a></p>
+</footer>
+
+        </div>
+        
+    <script defer src="https://cdn.jsdelivr.net/npm/vanilla-lazyload@17.1.0/dist/lazyload.min.js"></script>
+    <script>
+        window.lazyLoadOptions = {
+            elements_selector: ".lazy",
+            threshold: 0
+        };
+    </script>
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+
+
+ 
+
+
+
+ 
+
+
+    
+ 
+
+
+    
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.4.1/dist/jquery.min.js"></script>
+
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.4.1/dist/jquery.fancybox.min.css">
+
+    
+<script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.4.1/dist/jquery.fancybox.min.js"></script>
+
+    <script>
+        let lazyloadT = Boolean('true'),
+            auto_fancybox = Boolean('true')
+        if (auto_fancybox) {
+            $(".post__content").find('img').each(function () {
+                var element = document.createElement("a");
+                $(element).attr("data-fancybox", "gallery");
+                $(element).attr("href", $(this).attr("src"));
+                if (lazyloadT) {
+                    $(element).attr("href", $(this).attr("data-srcset"));
+                }
+                $(this).wrap(element);
+            });
+        } else {
+            $(".post__content").find("fancybox").find('img').each(function () {
+                var element = document.createElement("a");
+                $(element).attr("data-fancybox", "gallery");
+                $(element).attr("href", $(this).attr("src"));
+                if (lazyloadT) {
+                    $(element).attr("href", $(this).attr("data-srcset"));
+                }
+                $(this).wrap(element);
+            });
+        }
+    </script>
+ 
+
+
+    <script>
+        if (typeof MathJax === 'undefined') {
+            window.MathJax = {
+                loader: {
+                    source: {
+                        '[tex]/amsCd': '[tex]/amscd',
+                        '[tex]/AMScd': '[tex]/amscd'
+                    }
+                },
+                tex: {
+                    inlineMath: {'[+]': [['$', '$']]},
+                    tags: 'ams'
+                },
+                options: {
+                    renderActions: {
+                        findScript: [10, doc => {
+                            document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+                                const display = !!node.type.match(/; *mode=display/);
+                                const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+                                const text = document.createTextNode('');
+                                node.parentNode.replaceChild(text, node);
+                                math.start = {node: text, delim: '', n: 0};
+                                math.end = {node: text, delim: '', n: 0};
+                                doc.math.push(math);
+                            });
+                        }, '', false],
+                        insertedScript: [200, () => {
+                            document.querySelectorAll('mjx-container').forEach(node => {
+                                let target = node.parentNode;
+                                if (target.nodeName.toLowerCase() === 'li') {
+                                    target.parentNode.classList.add('has-jax');
+                                }
+                            });
+                        }, '', false]
+                    }
+                }
+            };
+            (function () {
+                var script = document.createElement('script');
+                script.src = "https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js";
+                script.defer = true;
+                document.head.appendChild(script);
+            })();
+        } else {
+            MathJax.startup.document.state(0);
+            MathJax.texReset();
+            MathJax.typeset();
+        }
+    </script>
+
+ 
+
+ 
+
+ 
+
+ 
+
+
+
+
+    </body>
+</html>

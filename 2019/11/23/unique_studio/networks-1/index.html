@@ -1,0 +1,466 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+    <meta charset="utf-8">
+
+    
+
+    <!-- 渲染优化 -->
+    <meta name="renderer" content="webkit">
+    <meta name="force-rendering" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta name="HandheldFriendly" content="True" >
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+    <!--icon-->
+
+    
+        <link rel="shortcut icon" href="/images/icons/favicon.ico">
+    
+    
+    
+    
+        <link rel="apple-touch-icon" sizes="180x180" href="/images/icons/logo.png">
+    
+    
+
+
+    <!-- meta -->
+
+
+<title>联创计网笔记1——OSPF | 怀中落霞</title>
+
+
+    <meta name="keywords" content="网络, 联创">
+
+
+
+
+    <!-- OpenGraph -->
+ 
+    <meta name="description" content="docker实现OSPF测试通信（以下内容复制自网络并根据实际情况修改）">
+<meta property="og:type" content="article">
+<meta property="og:title" content="联创计网笔记1——OSPF">
+<meta property="og:url" content="https://poorpool.github.io/2019/11/23/unique_studio/networks-1/index.html">
+<meta property="og:site_name" content="怀中落霞">
+<meta property="og:description" content="docker实现OSPF测试通信（以下内容复制自网络并根据实际情况修改）">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://files.jb51.net/file_images/article/201410/201410100911302.jpg">
+<meta property="article:published_time" content="2019-11-23T14:34:04.000Z">
+<meta property="article:modified_time" content="2022-10-17T07:18:55.916Z">
+<meta property="article:author" content="poorpool">
+<meta property="article:tag" content="网络">
+<meta property="article:tag" content="联创">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://files.jb51.net/file_images/article/201410/201410100911302.jpg">
+
+
+    
+<link rel="stylesheet" href="/css/style/main.css">
+ 
+
+    
+    
+        <link rel="stylesheet" id="hl-default-theme" href="/css/highlight/a11y-light.css" media="none" onload="this.media='all'">
+        
+    
+
+    
+    
+
+    
+
+     
+
+    <!-- custom head -->
+
+<meta name="generator" content="Hexo 4.2.1"><link rel="alternate" href="/atom.xml" title="怀中落霞" type="application/atom+xml">
+</head>
+
+    <body>
+        <div id="app">
+            <header class="header">
+    <div class="header__left">
+        <a href="/" class="button">
+            <span class="logo__text">怀中落霞</span>
+        </a>
+    </div>
+    <div class="header__right">
+        
+            <div class="navbar__menus">
+                
+                    <a href="/" class="navbar-menu button">首页</a>
+                
+                    <a href="/tags/" class="navbar-menu button">标签</a>
+                
+                    <a href="/categories/" class="navbar-menu button">分类</a>
+                
+                    <a href="/archives/" class="navbar-menu button">归档</a>
+                
+                    <a href="/links/" class="navbar-menu button">友链</a>
+                
+                    <a href="/about/" class="navbar-menu button">关于</a>
+                
+            </div>
+        
+        
+        
+    <a href="/search/" id="btn-search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024" width="24" height="24" fill="currentColor" stroke="currentColor" stroke-width="32"><path d="M192 448c0-141.152 114.848-256 256-256s256 114.848 256 256-114.848 256-256 256-256-114.848-256-256z m710.624 409.376l-206.88-206.88A318.784 318.784 0 0 0 768 448c0-176.736-143.264-320-320-320S128 271.264 128 448s143.264 320 320 320a318.784 318.784 0 0 0 202.496-72.256l206.88 206.88 45.248-45.248z"></path></svg>
+    </a>
+
+
+        
+        
+
+        
+            <a class="dropdown-icon button" id="btn-dropdown" tabindex="0"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" width='24' height='24' fill="none" stroke="currentColor" stroke-width="0.7" stroke-linecap="round" stroke-linejoin="round"><path fill="currentColor" d="M3.314,4.8h13.372c0.41,0,0.743-0.333,0.743-0.743c0-0.41-0.333-0.743-0.743-0.743H3.314c-0.41,0-0.743,0.333-0.743,0.743C2.571,4.467,2.904,4.8,3.314,4.8z M16.686,15.2H3.314c-0.41,0-0.743,0.333-0.743,0.743s0.333,0.743,0.743,0.743h13.372c0.41,0,0.743-0.333,0.743-0.743S17.096,15.2,16.686,15.2z M16.686,9.257H3.314c-0.41,0-0.743,0.333-0.743,0.743s0.333,0.743,0.743,0.743h13.372c0.41,0,0.743-0.333,0.743-0.743S17.096,9.257,16.686,9.257z"></path></svg></a>
+            <div class="dropdown-menus" id="dropdown-menus">
+                
+                    <a href="/" class="dropdown-menu button">首页</a>
+                
+                    <a href="/tags/" class="dropdown-menu button">标签</a>
+                
+                    <a href="/categories/" class="dropdown-menu button">分类</a>
+                
+                    <a href="/archives/" class="dropdown-menu button">归档</a>
+                
+                    <a href="/links/" class="dropdown-menu button">友链</a>
+                
+                    <a href="/about/" class="dropdown-menu button">关于</a>
+                
+            </div>
+        
+    </div>
+</header>
+
+
+            <main class="main">
+    
+
+<div class="post-title">
+    <h1 class="post-title__text">
+        联创计网笔记1——OSPF
+    </h1>
+    <div class="post-title__meta">
+        <a href="/archives/2019/11/" class="post-meta__date button">2019-11-23</a>
+        
+    <span class="separate-dot"></span><a href="/categories/%E7%BD%91%E7%BB%9C/" class="button">网络</a>
+
+ 
+        
+    
+    
+
+
+ 
+
+ 
+    </div>
+</div>
+
+
+    <aside class="post-side">
+        <div class="post-side__toc">
+            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#第一个阶段：配置Zebra"><span class="toc-number">1.</span> <span class="toc-text">第一个阶段：配置Zebra</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#第2个阶段：配置OSPF"><span class="toc-number">2.</span> <span class="toc-text">第2个阶段：配置OSPF</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#验证"><span class="toc-number">3.</span> <span class="toc-text">验证</span></a></li></ol>
+        </div>
+    </aside>
+    <a class="btn-toc button" id="btn-toc" tabindex="0">
+        <svg viewBox="0 0 1024 1024" width="32" height="32" xmlns="http://www.w3.org/2000/svg">
+            <path d="M128 256h64V192H128zM320 256h576V192H320zM128 544h64v-64H128zM320 544h576v-64H320zM128 832h64v-64H128zM320 832h576v-64H320z" fill="currentColor"></path>
+        </svg>
+    </a>
+    <div class="toc-menus" id="toc-menus">
+        <div class="toc-title">文章目录</div>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#第一个阶段：配置Zebra"><span class="toc-number">1.</span> <span class="toc-text">第一个阶段：配置Zebra</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#第2个阶段：配置OSPF"><span class="toc-number">2.</span> <span class="toc-text">第2个阶段：配置OSPF</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#验证"><span class="toc-number">3.</span> <span class="toc-text">验证</span></a></li></ol>
+    </div>
+
+
+<article class="post post__with-toc content-card">
+    <div class="post__header"></div>
+    <div class="post__content">
+        <p>docker实现OSPF测试通信（以下内容复制自网络并根据实际情况修改）</p>
+<a id="more"></a>
+
+<p>docker-compose.yml</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">version:</span> <span class="string">'2.0'</span></span><br><span class="line"></span><br><span class="line"><span class="attr">services:</span>              </span><br><span class="line">    <span class="attr">SITE-A:</span></span><br><span class="line">        <span class="attr">image:</span> <span class="string">iwaseyusuke/quagga</span></span><br><span class="line">        <span class="attr">container_name:</span> <span class="string">SITE-A</span></span><br><span class="line">        <span class="attr">networks:</span></span><br><span class="line">            <span class="bullet">-</span> <span class="string">TEST-NET</span></span><br><span class="line">            <span class="bullet">-</span> <span class="string">SUBNET-A</span></span><br><span class="line">        <span class="attr">entrypoint:</span> <span class="string">sh</span> <span class="string">-c</span> <span class="string">"service quagga start &amp;&amp; tail -f /dev/null"</span></span><br><span class="line">        <span class="attr">privileged:</span> <span class="literal">true</span></span><br><span class="line"></span><br><span class="line">    <span class="attr">SITE-B:</span></span><br><span class="line">        <span class="attr">image:</span> <span class="string">iwaseyusuke/quagga</span></span><br><span class="line">        <span class="attr">container_name:</span> <span class="string">SITE-B</span></span><br><span class="line">        <span class="attr">networks:</span></span><br><span class="line">            <span class="bullet">-</span> <span class="string">TEST-NET</span></span><br><span class="line">            <span class="bullet">-</span> <span class="string">SUBNET-B</span></span><br><span class="line">        <span class="attr">entrypoint:</span> <span class="string">sh</span> <span class="string">-c</span> <span class="string">"service quagga start &amp;&amp; tail -f /dev/null"</span></span><br><span class="line">        <span class="attr">privileged:</span> <span class="literal">true</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="attr">networks:</span></span><br><span class="line">    <span class="attr">TEST-NET:</span></span><br><span class="line">      <span class="attr">driver:</span> <span class="string">bridge</span></span><br><span class="line">    <span class="attr">SUBNET-A:</span></span><br><span class="line">      <span class="attr">driver:</span> <span class="string">bridge</span></span><br><span class="line">    <span class="attr">SUBNET-B:</span></span><br><span class="line">      <span class="attr">driver:</span> <span class="string">bridge</span></span><br></pre></td></tr></table></figure>
+<p>执行docker-compose up -d于存放该yaml的文件夹。</p>
+<p><img src="https://files.jb51.net/file_images/article/201410/201410100911302.jpg" class="lazy" data-srcset="https://files.jb51.net/file_images/article/201410/201410100911302.jpg" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABAQMAAAAl21bKAAAABlBMVEXMzMyWlpYU2uzLAAAACXBIWXMAAA7EAAAOxAGVKw4bAAAACklEQVQImWNgAAAAAgAB9HFkpgAAAABJRU5ErkJggg==" alt="net"></p>
+<p>我们的设备位于这条专用链路的两端。下面提供了IP地址的信息信息。</p>
+<p>Site-A：192.168.1.0/24</p>
+<p>Site-B：172.16.1.0/24</p>
+<p>两个Linux设备之间的对等：10.10.10.0/30</p>
+<p>Quagga软件包含有几个协同运行的后台程序。我们在本教程中将着重介绍设置下列后台程序。</p>
+<p>Zebra：核心后台程序，负责内核接口和静态路由。</p>
+<p>Ospfd：IPv4 OSPF后台程序。</p>
+<h2 id="第一个阶段：配置Zebra"><a href="#第一个阶段：配置Zebra" class="headerlink" title="第一个阶段：配置Zebra"></a>第一个阶段：配置Zebra</h2><p>我们首先创建一个Zebra配置文件，然后启动Zebra后台程序。要是已经启动了就不用了。</p>
+<p>这里的路径可能不一样，要自己找。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cp /usr/share/doc/quagga/examples/zebra.conf.sample /etc/quagga/zebra.conf</span><br><span class="line">/usr/lib/quagga/zebra -d</span><br></pre></td></tr></table></figure>
+
+<p>在配置路由前，如果你是用docker启动的，先ip route show看一下，要是有什么default via 什么什么之类的，<strong>第一步先删了它！</strong>不然你的流量就会通过这个跑到物理机上头然后nat跑出去，简直白给。</p>
+<p>启动vtysh命令外壳：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vtysh</span><br></pre></td></tr></table></figure>
+<p>首先，我们为Zebra配置日志文件。为此，输入下列内容，进入vtysh中的全局配置模式：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">site-A-RTR<span class="comment"># configure terminal</span></span><br></pre></td></tr></table></figure>
+<p>并指定日志文件位置，然后退出该模式：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">site-A-RTR(config)<span class="comment"># log file /var/log/quagga/quagga.log</span></span><br><span class="line">site-A-RTR(config)<span class="comment"># exit</span></span><br></pre></td></tr></table></figure>
+<p>永久性保存配置：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">site-A-RTR<span class="comment"># write</span></span><br></pre></td></tr></table></figure>
+<p>下一步，我们在必要时确定可用接口，然后配置IP地址。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">site-A-RTR<span class="comment"># show interface</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Interface eth0 is up, line protocol detection is disabled</span><br><span class="line">. . . . .</span><br><span class="line">Interface eth1 is up, line protocol detection is disabled</span><br><span class="line">. . . . .</span><br></pre></td></tr></table></figure>
+<p>这里哪个eth配那个也不一定，要根据互相ping出来的确定是哪一个<br>配置eth0参数：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">site-A-RTR<span class="comment"># configure terminal</span></span><br><span class="line">site-A-RTR(config)<span class="comment"># interface eth0</span></span><br><span class="line">site-A-RTR(config-if)<span class="comment"># ip address 10.10.10.1/30</span></span><br><span class="line">site-A-RTR(config-if)<span class="comment"># description to-site-B</span></span><br><span class="line">site-A-RTR(config-if)<span class="comment"># no shutdown</span></span><br></pre></td></tr></table></figure>
+<p>继续配置eth1参数：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">site-A-RTR(config)<span class="comment"># interface eth1</span></span><br><span class="line">site-A-RTR(config-if)<span class="comment"># ip address 192.168.1.1/24</span></span><br><span class="line">site-A-RTR(config-if)<span class="comment"># description to-site-A-LAN</span></span><br><span class="line">site-A-RTR(config-if)<span class="comment"># no shutdown</span></span><br></pre></td></tr></table></figure>
+<p>现在验证配置：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">site-A-RTR(config-if)<span class="comment"># do show interface</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">Interface eth0 is up, line protocol detection is disabled</span><br><span class="line">. . . . .</span><br><span class="line">inet 10.10.10.1/30 broadcast 10.10.10.3</span><br><span class="line">. . . . .</span><br><span class="line">Interface eth1 is up, line protocol detection is disabled</span><br><span class="line">. . . . .</span><br><span class="line">inet 192.168.1.1/24 broadcast 192.168.1.255</span><br><span class="line">. . . . .</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">site-A-RTR(config-if)<span class="comment"># do show interface description</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Interface Status Protocol Description</span><br><span class="line">eth0 up unknown to-site-B</span><br><span class="line">eth1 up unknown to-site-A-LAN</span><br></pre></td></tr></table></figure>
+<p>永久性保存配置：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">site-A-RTR(config-if)<span class="comment"># do write</span></span><br></pre></td></tr></table></figure>
+<p>针对site-B服务器，也重复IP地址配置这个步骤。</p>
+<p>要是一切顺利，你应该能够从site-A服务器来ping检测site-B的对等IP 10.10.10.2。</p>
+<p>请注意：一旦Zebra后台程序已启动，用vtysh的命令行接口进行的任何更改会立即生效。不需要在配置变更后重启Zebra后台程序。</p>
+<h2 id="第2个阶段：配置OSPF"><a href="#第2个阶段：配置OSPF" class="headerlink" title="第2个阶段：配置OSPF"></a>第2个阶段：配置OSPF</h2><p>我们先创建一个OSPF配置文件，然后启动OSPF后台程序：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">cp /usr/share/doc/quagga/examples/ospfd.conf.sample /etc/quagga/ospfd.conf</span><br><span class="line"></span><br><span class="line">/usr/lib/quagga/ospfd -d</span><br></pre></td></tr></table></figure>
+<p>现在启动vtysh外壳，继续进行OSPF配置：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vtysh</span><br></pre></td></tr></table></figure>
+<p>进入路由器配置模式：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">site-A-RTR<span class="comment"># configure terminal</span></span><br><span class="line">site-A-RTR(config)<span class="comment"># router ospf</span></span><br></pre></td></tr></table></figure>
+<p>手动设置router-id：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">site-A-RTR(config-router)<span class="comment"># router-id 10.10.10.1</span></span><br></pre></td></tr></table></figure>
+<p>添加将参与OSPF的网络：</p>
+<p>注意这里的网段，如果不是8/16/24,就要手动考虑一下是不是要更改倒数第二位/第三位之类的了</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">site-A-RTR(config-router)<span class="comment"># network 10.10.10.0/30 area 0</span></span><br><span class="line">site-A-RTR(config-router)<span class="comment"># network 192.168.1.0/24 area 0</span></span><br></pre></td></tr></table></figure>
+<p>永久性保存配置：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">site-A-RTR(config-router)<span class="comment"># do write</span></span><br></pre></td></tr></table></figure>
+<p>针对site-B，也重复类似的OSPF配置：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">site-B-RTR(config-router)<span class="comment"># network 10.10.10.0/30 area 0</span></span><br><span class="line">site-B-RTR(config-router)<span class="comment"># network 172.16.1.0/24 area 0</span></span><br><span class="line">site-B-RTR(config-router)<span class="comment"># do write</span></span><br></pre></td></tr></table></figure>
+<p>OSPF邻居现在应该会出现。只要ospfd在运行，通过vtysh外壳所作的任何与OSPF有关的配置变更都会立即生效，没必要重启ospfd。</p>
+<p>在下一个部分，我们将验证已安装的Quagga环境。</p>
+<h2 id="验证"><a href="#验证" class="headerlink" title="验证"></a>验证</h2><ol>
+<li>用ping来测试</li>
+</ol>
+<p>首先，你应该能够从site-A来ping检测site-B的局域网了网。确保你的防火墙没有阻止ping检测流量。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root@site-A-RTR ~]<span class="comment"># ping 172.16.1.1 -c 2</span></span><br></pre></td></tr></table></figure>
+<ol start="2">
+<li>检查路由表</li>
+</ol>
+<p>内核和Quagga路由表里面应该都有必要的路由。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">[root@site-A-RTR ~]<span class="comment"># ip route</span></span><br><span class="line">10.10.10.0/30 dev eth0 proto kernel scope link src 10.10.10.1</span><br><span class="line">172.16.1.0/30 via 10.10.10.2 dev eth0 proto zebra metric 20</span><br><span class="line">192.168.1.0/24 dev eth1 proto kernel scope link src 192.168.1.1</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">[root@site-A-RTR ~]<span class="comment"># vtysh</span></span><br><span class="line">site-A-RTR<span class="comment"># show ip route</span></span><br><span class="line">Codes: K - kernel route, C - connected, S - static, R - RIP, O - OSPF,</span><br><span class="line">I - ISIS, B - BGP, &gt; - selected route, * - FIB route</span><br><span class="line">O 10.10.10.0/30 [110/10] is directly connected, eth0, 00:14:29</span><br><span class="line">C&gt;* 10.10.10.0/30 is directly connected, eth0</span><br><span class="line">C&gt;* 127.0.0.0/8 is directly connected, lo</span><br><span class="line">O&gt;* 172.16.1.0/30 [110/20] via 10.10.10.2, eth0, 00:14:14</span><br><span class="line">C&gt;* 192.168.1.0/24 is directly connected, eth1</span><br></pre></td></tr></table></figure>
+<p>3．验证OSPF邻居和路由器</p>
+<p>在vtysh外壳里面，你可以检查必要的邻居有没有出现，是否记住合适的路由。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[root@site-A-RTR ~]<span class="comment"># vtysh</span></span><br><span class="line">site-A-RTR<span class="comment"># show ip ospf neighbor</span></span><br></pre></td></tr></table></figure>
+
+    </div>
+     
+    <div class="post-footer__meta"><p>更新于 2022-10-17</p></div> 
+    <div class="post-entry__tags"><a href="/tags/%E7%BD%91%E7%BB%9C/" class="post-tags__link button"># 网络</a><a href="/tags/%E8%81%94%E5%88%9B/" class="post-tags__link button"># 联创</a></div> 
+</article>
+
+
+    <div class="nav">
+        <div class="nav__prev">
+            
+                <a href="/2019/11/26/unique_studio/network-2/" class="nav__link">
+                    <div>
+                        <svg viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg" width="24" height="24"><path d="M589.088 790.624L310.464 512l278.624-278.624 45.248 45.248L400.96 512l233.376 233.376z" fill="#808080"></path></svg>
+                    </div>
+                    <div>
+                        <div class="nav__label">
+                            Previous Post
+                        </div>
+                        <div class="nav__title">
+                            联创计网笔记2——总体架构
+                        </div>
+                    </div>
+                </a>
+            
+        </div>
+        <div class="nav__next">
+            
+                <a href="/2019/11/02/unique_studio/fibheap/" class="nav__link">
+                    <div>
+                        <div class="nav__label">
+                            Next Post
+                        </div>
+                        <div class="nav__title">
+                            斐波那契堆（简单版）
+                        </div>
+                    </div>
+                    <div>
+                        <svg viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg" width="24" height="24"><path d="M434.944 790.624l-45.248-45.248L623.04 512l-233.376-233.376 45.248-45.248L713.568 512z" fill="#808080"></path></svg>
+                    </div>
+                </a>
+            
+        </div>
+    </div>
+
+
+
+
+
+</main>
+
+            <footer class="footer">
+     
+    <a href="#" class="button" id="b2t" aria-label="回到顶部" title="回到顶部">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024" width="32" height="32">
+            <path d="M233.376 722.752L278.624 768 512 534.624 745.376 768l45.248-45.248L512 444.128zM192 352h640V288H192z" fill="currentColor"></path>
+        </svg>
+    </a>
+
+    
+
+
+    
+     
+ 
+
+ 
+    
+        
+        <p class="footer-copyright">
+            Copyright © 2017&nbsp;-&nbsp;2022 <a href="/">怀中落霞</a>
+        </p>
+    
+    
+    <p>Powered by <a href="https://hexo.io" target="_blank">Hexo</a> | Theme - <a href="https://github.com/ChrAlpha/hexo-theme-cards" target="_blank">Cards</a></p>
+</footer>
+
+        </div>
+        
+    <script defer src="https://cdn.jsdelivr.net/npm/vanilla-lazyload@17.1.0/dist/lazyload.min.js"></script>
+    <script>
+        window.lazyLoadOptions = {
+            elements_selector: ".lazy",
+            threshold: 0
+        };
+    </script>
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+
+
+ 
+
+
+
+ 
+
+
+    
+ 
+
+
+    
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.4.1/dist/jquery.min.js"></script>
+
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.4.1/dist/jquery.fancybox.min.css">
+
+    
+<script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.4.1/dist/jquery.fancybox.min.js"></script>
+
+    <script>
+        let lazyloadT = Boolean('true'),
+            auto_fancybox = Boolean('true')
+        if (auto_fancybox) {
+            $(".post__content").find('img').each(function () {
+                var element = document.createElement("a");
+                $(element).attr("data-fancybox", "gallery");
+                $(element).attr("href", $(this).attr("src"));
+                if (lazyloadT) {
+                    $(element).attr("href", $(this).attr("data-srcset"));
+                }
+                $(this).wrap(element);
+            });
+        } else {
+            $(".post__content").find("fancybox").find('img').each(function () {
+                var element = document.createElement("a");
+                $(element).attr("data-fancybox", "gallery");
+                $(element).attr("href", $(this).attr("src"));
+                if (lazyloadT) {
+                    $(element).attr("href", $(this).attr("data-srcset"));
+                }
+                $(this).wrap(element);
+            });
+        }
+    </script>
+ 
+
+
+    <script>
+        if (typeof MathJax === 'undefined') {
+            window.MathJax = {
+                loader: {
+                    source: {
+                        '[tex]/amsCd': '[tex]/amscd',
+                        '[tex]/AMScd': '[tex]/amscd'
+                    }
+                },
+                tex: {
+                    inlineMath: {'[+]': [['$', '$']]},
+                    tags: 'ams'
+                },
+                options: {
+                    renderActions: {
+                        findScript: [10, doc => {
+                            document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+                                const display = !!node.type.match(/; *mode=display/);
+                                const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+                                const text = document.createTextNode('');
+                                node.parentNode.replaceChild(text, node);
+                                math.start = {node: text, delim: '', n: 0};
+                                math.end = {node: text, delim: '', n: 0};
+                                doc.math.push(math);
+                            });
+                        }, '', false],
+                        insertedScript: [200, () => {
+                            document.querySelectorAll('mjx-container').forEach(node => {
+                                let target = node.parentNode;
+                                if (target.nodeName.toLowerCase() === 'li') {
+                                    target.parentNode.classList.add('has-jax');
+                                }
+                            });
+                        }, '', false]
+                    }
+                }
+            };
+            (function () {
+                var script = document.createElement('script');
+                script.src = "https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js";
+                script.defer = true;
+                document.head.appendChild(script);
+            })();
+        } else {
+            MathJax.startup.document.state(0);
+            MathJax.texReset();
+            MathJax.typeset();
+        }
+    </script>
+
+ 
+
+ 
+
+ 
+
+ 
+
+
+
+
+    </body>
+</html>

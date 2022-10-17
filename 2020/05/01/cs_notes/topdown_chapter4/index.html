@@ -1,0 +1,474 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+    <meta charset="utf-8">
+
+    
+
+    <!-- 渲染优化 -->
+    <meta name="renderer" content="webkit">
+    <meta name="force-rendering" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta name="HandheldFriendly" content="True" >
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+    <!--icon-->
+
+    
+        <link rel="shortcut icon" href="/images/icons/favicon.ico">
+    
+    
+    
+    
+        <link rel="apple-touch-icon" sizes="180x180" href="/images/icons/logo.png">
+    
+    
+
+
+    <!-- meta -->
+
+
+<title>《计算机网络：自顶向下方法》笔记4 网络层：数据平面 | 怀中落霞</title>
+
+
+    <meta name="keywords" content="笔记, 计算机网络">
+
+
+
+
+    <!-- OpenGraph -->
+ 
+    <meta name="description" content="第四章">
+<meta property="og:type" content="article">
+<meta property="og:title" content="《计算机网络：自顶向下方法》笔记4 网络层：数据平面">
+<meta property="og:url" content="https://poorpool.github.io/2020/05/01/cs_notes/topdown_chapter4/index.html">
+<meta property="og:site_name" content="怀中落霞">
+<meta property="og:description" content="第四章">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://poorpool.github.io/images/topdown/cpt4-1.png">
+<meta property="og:image" content="https://poorpool.github.io/images/topdown/cpt4-2.png">
+<meta property="og:image" content="https://poorpool.github.io/images/topdown/cpt4-3.png">
+<meta property="og:image" content="https://poorpool.github.io/images/topdown/cpt4-4.png">
+<meta property="og:image" content="https://poorpool.github.io/images/topdown/cpt4-5.png">
+<meta property="og:image" content="https://poorpool.github.io/images/topdown/cpt4-6.png">
+<meta property="og:image" content="https://poorpool.github.io/images/topdown/cpt4-7.png">
+<meta property="og:image" content="https://poorpool.github.io/images/topdown/cpt4-8.png">
+<meta property="og:image" content="https://poorpool.github.io/images/topdown/cpt4-9.png">
+<meta property="og:image" content="https://poorpool.github.io/images/topdown/cpt4-10.png">
+<meta property="og:image" content="https://poorpool.github.io/images/topdown/cpt4-11.png">
+<meta property="article:published_time" content="2020-05-01T10:00:03.000Z">
+<meta property="article:modified_time" content="2022-10-17T07:18:55.908Z">
+<meta property="article:author" content="poorpool">
+<meta property="article:tag" content="笔记">
+<meta property="article:tag" content="计算机网络">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://poorpool.github.io/images/topdown/cpt4-1.png">
+
+
+    
+<link rel="stylesheet" href="/css/style/main.css">
+ 
+
+    
+    
+        <link rel="stylesheet" id="hl-default-theme" href="/css/highlight/a11y-light.css" media="none" onload="this.media='all'">
+        
+    
+
+    
+    
+
+    
+
+     
+
+    <!-- custom head -->
+
+<meta name="generator" content="Hexo 4.2.1"><link rel="alternate" href="/atom.xml" title="怀中落霞" type="application/atom+xml">
+</head>
+
+    <body>
+        <div id="app">
+            <header class="header">
+    <div class="header__left">
+        <a href="/" class="button">
+            <span class="logo__text">怀中落霞</span>
+        </a>
+    </div>
+    <div class="header__right">
+        
+            <div class="navbar__menus">
+                
+                    <a href="/" class="navbar-menu button">首页</a>
+                
+                    <a href="/tags/" class="navbar-menu button">标签</a>
+                
+                    <a href="/categories/" class="navbar-menu button">分类</a>
+                
+                    <a href="/archives/" class="navbar-menu button">归档</a>
+                
+                    <a href="/links/" class="navbar-menu button">友链</a>
+                
+                    <a href="/about/" class="navbar-menu button">关于</a>
+                
+            </div>
+        
+        
+        
+    <a href="/search/" id="btn-search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024" width="24" height="24" fill="currentColor" stroke="currentColor" stroke-width="32"><path d="M192 448c0-141.152 114.848-256 256-256s256 114.848 256 256-114.848 256-256 256-256-114.848-256-256z m710.624 409.376l-206.88-206.88A318.784 318.784 0 0 0 768 448c0-176.736-143.264-320-320-320S128 271.264 128 448s143.264 320 320 320a318.784 318.784 0 0 0 202.496-72.256l206.88 206.88 45.248-45.248z"></path></svg>
+    </a>
+
+
+        
+        
+
+        
+            <a class="dropdown-icon button" id="btn-dropdown" tabindex="0"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" width='24' height='24' fill="none" stroke="currentColor" stroke-width="0.7" stroke-linecap="round" stroke-linejoin="round"><path fill="currentColor" d="M3.314,4.8h13.372c0.41,0,0.743-0.333,0.743-0.743c0-0.41-0.333-0.743-0.743-0.743H3.314c-0.41,0-0.743,0.333-0.743,0.743C2.571,4.467,2.904,4.8,3.314,4.8z M16.686,15.2H3.314c-0.41,0-0.743,0.333-0.743,0.743s0.333,0.743,0.743,0.743h13.372c0.41,0,0.743-0.333,0.743-0.743S17.096,15.2,16.686,15.2z M16.686,9.257H3.314c-0.41,0-0.743,0.333-0.743,0.743s0.333,0.743,0.743,0.743h13.372c0.41,0,0.743-0.333,0.743-0.743S17.096,9.257,16.686,9.257z"></path></svg></a>
+            <div class="dropdown-menus" id="dropdown-menus">
+                
+                    <a href="/" class="dropdown-menu button">首页</a>
+                
+                    <a href="/tags/" class="dropdown-menu button">标签</a>
+                
+                    <a href="/categories/" class="dropdown-menu button">分类</a>
+                
+                    <a href="/archives/" class="dropdown-menu button">归档</a>
+                
+                    <a href="/links/" class="dropdown-menu button">友链</a>
+                
+                    <a href="/about/" class="dropdown-menu button">关于</a>
+                
+            </div>
+        
+    </div>
+</header>
+
+
+            <main class="main">
+    
+
+<div class="post-title">
+    <h1 class="post-title__text">
+        《计算机网络：自顶向下方法》笔记4 网络层：数据平面
+    </h1>
+    <div class="post-title__meta">
+        <a href="/archives/2020/05/" class="post-meta__date button">2020-05-01</a>
+        
+    <span class="separate-dot"></span><a href="/categories/%E7%AC%94%E8%AE%B0/" class="button">笔记</a>
+
+ 
+        
+    
+    
+
+
+ 
+
+ 
+    </div>
+</div>
+
+
+    <aside class="post-side">
+        <div class="post-side__toc">
+            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#网络层概述"><span class="toc-number">1.</span> <span class="toc-text">网络层概述</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#两种功能"><span class="toc-number">1.0.1.</span> <span class="toc-text">两种功能</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#控制平面的方法"><span class="toc-number">1.0.2.</span> <span class="toc-text">控制平面的方法</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#网络服务模型"><span class="toc-number">1.0.3.</span> <span class="toc-text">网络服务模型</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#路由器工作原理"><span class="toc-number">2.</span> <span class="toc-text">路由器工作原理</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#路由器结构"><span class="toc-number">2.0.1.</span> <span class="toc-text">路由器结构 </span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#输入端口"><span class="toc-number">2.0.2.</span> <span class="toc-text">输入端口</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#转发表"><span class="toc-number">2.0.3.</span> <span class="toc-text">转发表</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#输出端口"><span class="toc-number">2.0.4.</span> <span class="toc-text">输出端口</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#排队"><span class="toc-number">2.0.5.</span> <span class="toc-text">排队</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#分组调度"><span class="toc-number">2.0.6.</span> <span class="toc-text">分组调度</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#网际协议：IPv4、寻址、IPv6及其他"><span class="toc-number">3.</span> <span class="toc-text">网际协议：IPv4、寻址、IPv6及其他</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#ipv4数据报"><span class="toc-number">3.0.1.</span> <span class="toc-text">ipv4数据报</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#数据报分片"><span class="toc-number">3.0.2.</span> <span class="toc-text">数据报分片</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#ipv4编址"><span class="toc-number">3.0.3.</span> <span class="toc-text">ipv4编址</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#路由聚合"><span class="toc-number">3.0.4.</span> <span class="toc-text">路由聚合</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#动态主机配置协议"><span class="toc-number">3.0.5.</span> <span class="toc-text">动态主机配置协议</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#网络地址转换"><span class="toc-number">3.0.6.</span> <span class="toc-text">网络地址转换</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#IPv6"><span class="toc-number">3.0.7.</span> <span class="toc-text">IPv6</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#通用转发和SDN"><span class="toc-number">4.</span> <span class="toc-text">通用转发和SDN</span></a></li></ol>
+        </div>
+    </aside>
+    <a class="btn-toc button" id="btn-toc" tabindex="0">
+        <svg viewBox="0 0 1024 1024" width="32" height="32" xmlns="http://www.w3.org/2000/svg">
+            <path d="M128 256h64V192H128zM320 256h576V192H320zM128 544h64v-64H128zM320 544h576v-64H320zM128 832h64v-64H128zM320 832h576v-64H320z" fill="currentColor"></path>
+        </svg>
+    </a>
+    <div class="toc-menus" id="toc-menus">
+        <div class="toc-title">文章目录</div>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#网络层概述"><span class="toc-number">1.</span> <span class="toc-text">网络层概述</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#两种功能"><span class="toc-number">1.0.1.</span> <span class="toc-text">两种功能</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#控制平面的方法"><span class="toc-number">1.0.2.</span> <span class="toc-text">控制平面的方法</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#网络服务模型"><span class="toc-number">1.0.3.</span> <span class="toc-text">网络服务模型</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#路由器工作原理"><span class="toc-number">2.</span> <span class="toc-text">路由器工作原理</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#路由器结构"><span class="toc-number">2.0.1.</span> <span class="toc-text">路由器结构 </span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#输入端口"><span class="toc-number">2.0.2.</span> <span class="toc-text">输入端口</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#转发表"><span class="toc-number">2.0.3.</span> <span class="toc-text">转发表</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#输出端口"><span class="toc-number">2.0.4.</span> <span class="toc-text">输出端口</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#排队"><span class="toc-number">2.0.5.</span> <span class="toc-text">排队</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#分组调度"><span class="toc-number">2.0.6.</span> <span class="toc-text">分组调度</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#网际协议：IPv4、寻址、IPv6及其他"><span class="toc-number">3.</span> <span class="toc-text">网际协议：IPv4、寻址、IPv6及其他</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#ipv4数据报"><span class="toc-number">3.0.1.</span> <span class="toc-text">ipv4数据报</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#数据报分片"><span class="toc-number">3.0.2.</span> <span class="toc-text">数据报分片</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#ipv4编址"><span class="toc-number">3.0.3.</span> <span class="toc-text">ipv4编址</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#路由聚合"><span class="toc-number">3.0.4.</span> <span class="toc-text">路由聚合</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#动态主机配置协议"><span class="toc-number">3.0.5.</span> <span class="toc-text">动态主机配置协议</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#网络地址转换"><span class="toc-number">3.0.6.</span> <span class="toc-text">网络地址转换</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#IPv6"><span class="toc-number">3.0.7.</span> <span class="toc-text">IPv6</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#通用转发和SDN"><span class="toc-number">4.</span> <span class="toc-text">通用转发和SDN</span></a></li></ol>
+    </div>
+
+
+<article class="post post__with-toc content-card">
+    <div class="post__header"></div>
+    <div class="post__content">
+        <p>第四章</p>
+<a id="more"></a>
+
+<h2 id="网络层概述"><a href="#网络层概述" class="headerlink" title="网络层概述"></a>网络层概述</h2><h4 id="两种功能"><a href="#两种功能" class="headerlink" title="两种功能"></a>两种功能</h4><ul>
+<li>转发。当一个分组到达某路由器的一条输入链路时，该路由器必须将该分组移动到适当的输出链路。这个是<strong>数据平面</strong>的唯一功能。当然也可能被现有的路由器阻挡或者可能是冗余的并经过多条出链路发送。</li>
+<li>路由选择。当分组从发送方流向接收方时，网络层决定这些分组采用的路由or路径。这是在<strong>控制平面</strong>中实现。</li>
+</ul>
+<p>转发这个路由器本地动作时间尺度很短，常用硬件实现。路由选择是确定分组从源到目的地的端到端路径的网络范围处理过程，时间尺度长（几秒），软件实现。转发就是走一个立交桥，路由选择就是规划路径。</p>
+<h4 id="控制平面的方法"><a href="#控制平面的方法" class="headerlink" title="控制平面的方法"></a>控制平面的方法</h4><p>传统方法：</p>
+<p><img src="/images/topdown/cpt4-1.png" class="lazy" data-srcset="/images/topdown/cpt4-1.png" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABAQMAAAAl21bKAAAABlBMVEXMzMyWlpYU2uzLAAAACXBIWXMAAA7EAAAOxAGVKw4bAAAACklEQVQImWNgAAAAAgAB9HFkpgAAAABJRU5ErkJggg==" alt="traditional"></p>
+<p>路由选择算法决定了插入该路由转发表的内容。路由选择算法运行在每台路由器上。</p>
+<p>SDN（软件定义网络）方法：</p>
+<p><img src="/images/topdown/cpt4-2.png" class="lazy" data-srcset="/images/topdown/cpt4-2.png" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABAQMAAAAl21bKAAAABlBMVEXMzMyWlpYU2uzLAAAACXBIWXMAAA7EAAAOxAGVKw4bAAAACklEQVQImWNgAAAAAgAB9HFkpgAAAABJRU5ErkJggg==" alt="sdn"></p>
+<p>这是路由选择厂商的传统方法。远程控制器计算和分发转发表供使用。</p>
+<h4 id="网络服务模型"><a href="#网络服务模型" class="headerlink" title="网络服务模型"></a>网络服务模型</h4><p>因特网的网络层只提供尽力而为服务……</p>
+<h2 id="路由器工作原理"><a href="#路由器工作原理" class="headerlink" title="路由器工作原理"></a>路由器工作原理</h2><h4 id="路由器结构"><a href="#路由器结构" class="headerlink" title="路由器结构 "></a>路由器结构 <img src="/images/topdown/cpt4-3.png" class="lazy" data-srcset="/images/topdown/cpt4-3.png" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABAQMAAAAl21bKAAAABlBMVEXMzMyWlpYU2uzLAAAACXBIWXMAAA7EAAAOxAGVKw4bAAAACklEQVQImWNgAAAAAgAB9HFkpgAAAABJRU5ErkJggg==" alt="route arch"></h4><p>如图。在输入端口还要执行查找功能，决定输出端口。</p>
+<p>输入端口、输出端口、交换结构几乎总是用硬件实现。交换可以用内存/总线/互联网络之类的。</p>
+<h4 id="输入端口"><a href="#输入端口" class="headerlink" title="输入端口"></a>输入端口</h4><p><img src="/images/topdown/cpt4-4.png" class="lazy" data-srcset="/images/topdown/cpt4-4.png" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABAQMAAAAl21bKAAAABlBMVEXMzMyWlpYU2uzLAAAACXBIWXMAAA7EAAAOxAGVKw4bAAAACklEQVQImWNgAAAAAgAB9HFkpgAAAABJRU5ErkJggg==" alt="4-4"></p>
+<p>输入端口，线路端接（物理层）、数据链路处理（链路层）、查找转发排队。</p>
+<h4 id="转发表"><a href="#转发表" class="headerlink" title="转发表"></a>转发表</h4><p>转发表通常用最长前缀匹配规则。</p>
+<h4 id="输出端口"><a href="#输出端口" class="headerlink" title="输出端口"></a>输出端口</h4><p><img src="/images/topdown/cpt4-5.png" class="lazy" data-srcset="/images/topdown/cpt4-5.png" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABAQMAAAAl21bKAAAABlBMVEXMzMyWlpYU2uzLAAAACXBIWXMAAA7EAAAOxAGVKw4bAAAACklEQVQImWNgAAAAAgAB9HFkpgAAAABJRU5ErkJggg==" alt="4-5"></p>
+<h4 id="排队"><a href="#排队" class="headerlink" title="排队"></a>排队</h4><p>输入排队：交换结构不能快得让所有到达分组无时延地通过它传送。有时候一个分组的输出端口没有竞争，但是统一输入端口前面的分组应为竞争而等待导致它也要等待，这叫线路前部HOL阻塞。</p>
+<p>当然也有输出排队。</p>
+<p>现在研究出缓存需要的数据量是$\dfrac{\mathrm{RTT}\times C}{\sqrt N}$。$N$是tcp连接数量。</p>
+<h4 id="分组调度"><a href="#分组调度" class="headerlink" title="分组调度"></a>分组调度</h4><p><strong>先进先出</strong>：FCFS（也称FIFO）</p>
+<p><strong>优先权排队</strong>：分几个优先权类，先执行高优先权的，同权就fifo。</p>
+<p><strong>循环和加权公平排队</strong>：分组被分类，每个类轮着来，但是不允许链路空闲（保持工作排队）。</p>
+<h2 id="网际协议：IPv4、寻址、IPv6及其他"><a href="#网际协议：IPv4、寻址、IPv6及其他" class="headerlink" title="网际协议：IPv4、寻址、IPv6及其他"></a>网际协议：IPv4、寻址、IPv6及其他</h2><h4 id="ipv4数据报"><a href="#ipv4数据报" class="headerlink" title="ipv4数据报"></a>ipv4数据报</h4><p><img src="/images/topdown/cpt4-6.png" class="lazy" data-srcset="/images/topdown/cpt4-6.png" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABAQMAAAAl21bKAAAABlBMVEXMzMyWlpYU2uzLAAAACXBIWXMAAA7EAAAOxAGVKw4bAAAACklEQVQImWNgAAAAAgAB9HFkpgAAAABJRU5ErkJggg==" alt="ipv4"></p>
+<ul>
+<li>版本号</li>
+<li>首部长度</li>
+<li>服务类型</li>
+<li>数据报长度（总长度）。理论最大长度65535，但很少超过1500</li>
+<li>标识、标志、片偏移（和ip分片有关）</li>
+<li>寿命TTL。TTL减为0时数据报必须丢弃。</li>
+<li>协议。通常到达目的地才有用，6是tcp，17是udp。</li>
+<li>首部检验和。只对首部计算检验和。每台路由器都要重新计算并写入检验和。</li>
+<li>源和目的ip地址</li>
+<li>选项（如果有）</li>
+<li>数据（有效载荷）</li>
+</ul>
+<p>一个ip数据报首部20字节（如果没有选项），加上20字节tcp首部，则每个（没有分片的）数据报共有40字节首部。</p>
+<h4 id="数据报分片"><a href="#数据报分片" class="headerlink" title="数据报分片"></a>数据报分片</h4><p>由于最大传输单元MTU，数据报可能会被分片。但是数据报的重新组装在端系统中。发送方生成一个数据报，就贴上一个标识号，标识号每次+1。具有相同标识的多个分片，最后一个片的标志bit为0，其他的为1。为了让端系统按正确位置组装，偏移字段指定该片该房在初始ip数据报的哪个位置。</p>
+<h4 id="ipv4编址"><a href="#ipv4编址" class="headerlink" title="ipv4编址"></a>ipv4编址</h4><p>主机和物理链路之间的边界叫接口。一个ip地址和一个接口相关联。</p>
+<p><img src="/images/topdown/cpt4-7.png" class="lazy" data-srcset="/images/topdown/cpt4-7.png" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABAQMAAAAl21bKAAAABlBMVEXMzMyWlpYU2uzLAAAACXBIWXMAAA7EAAAOxAGVKw4bAAAACklEQVQImWNgAAAAAgAB9HFkpgAAAABJRU5ErkJggg==" alt="subnet"></p>
+<p>如图，左边三个主机接口和一个路由器接口的网络形成一个子网，为<code>223.1.1.0/24</code>，24是子网掩码。就是最左边24bit定义了子网地址。</p>
+<p>因特网的地址分配策略是无类别域间路由选择CIDR。</p>
+<p>一个组织通常有一块连续的地址。</p>
+<p>剩下的$32-x$比特可以认为是区分内部设备的。</p>
+<p>广播地址<code>255.255.255.255</code>，目的地是它时，报文会交付给同一个网络中的所有主机。</p>
+<h4 id="路由聚合"><a href="#路由聚合" class="headerlink" title="路由聚合"></a>路由聚合</h4><p><img src="/images/topdown/cpt4-8.png" class="lazy" data-srcset="/images/topdown/cpt4-8.png" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABAQMAAAAl21bKAAAABlBMVEXMzMyWlpYU2uzLAAAACXBIWXMAAA7EAAAOxAGVKw4bAAAACklEQVQImWNgAAAAAgAB9HFkpgAAAABJRU5ErkJggg==" alt="lyjh"></p>
+<p>单个网络前缀可以通告多个网络，这就是地址聚合/路由聚合/路由摘要。</p>
+<p>如果有人想路由选择到<code>200.23.18.0/23</code>里的某个地址，那使用最长前缀匹配，会朝着ISPs-R-Us前进。</p>
+<h4 id="动态主机配置协议"><a href="#动态主机配置协议" class="headerlink" title="动态主机配置协议"></a>动态主机配置协议</h4><p>dhcp是个即插即用/零配置协议。子网中要有一台dhcp服务器（或者dhcp中继代理，通常是一台路由器）</p>
+<p><img src="/images/topdown/cpt4-9.png" class="lazy" data-srcset="/images/topdown/cpt4-9.png" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABAQMAAAAl21bKAAAABlBMVEXMzMyWlpYU2uzLAAAACXBIWXMAAA7EAAAOxAGVKw4bAAAACklEQVQImWNgAAAAAgAB9HFkpgAAAABJRU5ErkJggg==" alt="dhcp"></p>
+<ul>
+<li>dhcp服务器发现。客户广播一条dhcp发现报文，向端口67。</li>
+<li>dhcp服务器提供。dhcp服务器广播一个dhcp提供报文。</li>
+<li>dhcp请求。客户从一个或多个服务器提供中选一个，并以dhcp请求报文响应那个服务器。</li>
+<li>dhcp ack。服务器用dhcp ack报文证实要求的参数。</li>
+</ul>
+<h4 id="网络地址转换"><a href="#网络地址转换" class="headerlink" title="网络地址转换"></a>网络地址转换</h4><p>nat路由器对外界的行为就如同一个具有单一ip地址的单一设备。用一个nat转换表。</p>
+<p><img src="/images/topdown/cpt4-10.png" class="lazy" data-srcset="/images/topdown/cpt4-10.png" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABAQMAAAAl21bKAAAABlBMVEXMzMyWlpYU2uzLAAAACXBIWXMAAA7EAAAOxAGVKw4bAAAACklEQVQImWNgAAAAAgAB9HFkpgAAAABJRU5ErkJggg==" alt="nat"></p>
+<h4 id="IPv6"><a href="#IPv6" class="headerlink" title="IPv6"></a>IPv6</h4><p><img src="/images/topdown/cpt4-11.png" class="lazy" data-srcset="/images/topdown/cpt4-11.png" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABAQMAAAAl21bKAAAABlBMVEXMzMyWlpYU2uzLAAAACXBIWXMAAA7EAAAOxAGVKw4bAAAACklEQVQImWNgAAAAAgAB9HFkpgAAAABJRU5ErkJggg==" alt="ipv6"></p>
+<p>地址容量扩大了。还引入了任播地址，将数据报交付给一组主机中的任意一个。</p>
+<p>首部长度固定40字节。</p>
+<p>流量类型类似于ipv4中的服务类型。</p>
+<p>下一个首部：数据字段交付给哪个协议（tcp、udp）</p>
+<p>跳限制：转发数据报的每台路由器对该字段的内容减一。到0丢弃。</p>
+<p>ipv6没有分片/重新组装，没有首部检验和，没有首部了。 </p>
+<p>一种从ipv4到ipv6的过渡方法是建隧道，不支持ipv6的地方把ipv6数据报套在ipv4里头。</p>
+<h2 id="通用转发和SDN"><a href="#通用转发和SDN" class="headerlink" title="通用转发和SDN"></a>通用转发和SDN</h2><p>匹配加动作转发表在openflow中称为流表，包括首部字段值的集合，计数器集合，动作集合。</p>
+<p>可以实现简单转发，负载均衡，充当防火墙等功能，具体看书吧。</p>
+
+    </div>
+     
+    <div class="post-footer__meta"><p>更新于 2022-10-17</p></div> 
+    <div class="post-entry__tags"><a href="/tags/%E7%AC%94%E8%AE%B0/" class="post-tags__link button"># 笔记</a><a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/" class="post-tags__link button"># 计算机网络</a></div> 
+</article>
+
+
+    <div class="nav">
+        <div class="nav__prev">
+            
+                <a href="/2020/05/01/cs_notes/topdown_chapter5/" class="nav__link">
+                    <div>
+                        <svg viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg" width="24" height="24"><path d="M589.088 790.624L310.464 512l278.624-278.624 45.248 45.248L400.96 512l233.376 233.376z" fill="#808080"></path></svg>
+                    </div>
+                    <div>
+                        <div class="nav__label">
+                            Previous Post
+                        </div>
+                        <div class="nav__title">
+                            《计算机网络：自顶向下方法》笔记5 网络层：控制平面
+                        </div>
+                    </div>
+                </a>
+            
+        </div>
+        <div class="nav__next">
+            
+                <a href="/2020/05/01/cs_notes/topdown_chapter2/" class="nav__link">
+                    <div>
+                        <div class="nav__label">
+                            Next Post
+                        </div>
+                        <div class="nav__title">
+                            《计算机网络：自顶向下方法》笔记2 应用层
+                        </div>
+                    </div>
+                    <div>
+                        <svg viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg" width="24" height="24"><path d="M434.944 790.624l-45.248-45.248L623.04 512l-233.376-233.376 45.248-45.248L713.568 512z" fill="#808080"></path></svg>
+                    </div>
+                </a>
+            
+        </div>
+    </div>
+
+
+
+
+
+</main>
+
+            <footer class="footer">
+     
+    <a href="#" class="button" id="b2t" aria-label="回到顶部" title="回到顶部">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024" width="32" height="32">
+            <path d="M233.376 722.752L278.624 768 512 534.624 745.376 768l45.248-45.248L512 444.128zM192 352h640V288H192z" fill="currentColor"></path>
+        </svg>
+    </a>
+
+    
+
+
+    
+     
+ 
+
+ 
+    
+        
+        <p class="footer-copyright">
+            Copyright © 2017&nbsp;-&nbsp;2022 <a href="/">怀中落霞</a>
+        </p>
+    
+    
+    <p>Powered by <a href="https://hexo.io" target="_blank">Hexo</a> | Theme - <a href="https://github.com/ChrAlpha/hexo-theme-cards" target="_blank">Cards</a></p>
+</footer>
+
+        </div>
+        
+    <script defer src="https://cdn.jsdelivr.net/npm/vanilla-lazyload@17.1.0/dist/lazyload.min.js"></script>
+    <script>
+        window.lazyLoadOptions = {
+            elements_selector: ".lazy",
+            threshold: 0
+        };
+    </script>
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+
+
+ 
+
+
+
+ 
+
+
+    
+ 
+
+
+    
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.4.1/dist/jquery.min.js"></script>
+
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.4.1/dist/jquery.fancybox.min.css">
+
+    
+<script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.4.1/dist/jquery.fancybox.min.js"></script>
+
+    <script>
+        let lazyloadT = Boolean('true'),
+            auto_fancybox = Boolean('true')
+        if (auto_fancybox) {
+            $(".post__content").find('img').each(function () {
+                var element = document.createElement("a");
+                $(element).attr("data-fancybox", "gallery");
+                $(element).attr("href", $(this).attr("src"));
+                if (lazyloadT) {
+                    $(element).attr("href", $(this).attr("data-srcset"));
+                }
+                $(this).wrap(element);
+            });
+        } else {
+            $(".post__content").find("fancybox").find('img').each(function () {
+                var element = document.createElement("a");
+                $(element).attr("data-fancybox", "gallery");
+                $(element).attr("href", $(this).attr("src"));
+                if (lazyloadT) {
+                    $(element).attr("href", $(this).attr("data-srcset"));
+                }
+                $(this).wrap(element);
+            });
+        }
+    </script>
+ 
+
+
+    <script>
+        if (typeof MathJax === 'undefined') {
+            window.MathJax = {
+                loader: {
+                    source: {
+                        '[tex]/amsCd': '[tex]/amscd',
+                        '[tex]/AMScd': '[tex]/amscd'
+                    }
+                },
+                tex: {
+                    inlineMath: {'[+]': [['$', '$']]},
+                    tags: 'ams'
+                },
+                options: {
+                    renderActions: {
+                        findScript: [10, doc => {
+                            document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+                                const display = !!node.type.match(/; *mode=display/);
+                                const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+                                const text = document.createTextNode('');
+                                node.parentNode.replaceChild(text, node);
+                                math.start = {node: text, delim: '', n: 0};
+                                math.end = {node: text, delim: '', n: 0};
+                                doc.math.push(math);
+                            });
+                        }, '', false],
+                        insertedScript: [200, () => {
+                            document.querySelectorAll('mjx-container').forEach(node => {
+                                let target = node.parentNode;
+                                if (target.nodeName.toLowerCase() === 'li') {
+                                    target.parentNode.classList.add('has-jax');
+                                }
+                            });
+                        }, '', false]
+                    }
+                }
+            };
+            (function () {
+                var script = document.createElement('script');
+                script.src = "https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js";
+                script.defer = true;
+                document.head.appendChild(script);
+            })();
+        } else {
+            MathJax.startup.document.state(0);
+            MathJax.texReset();
+            MathJax.typeset();
+        }
+    </script>
+
+ 
+
+ 
+
+ 
+
+ 
+
+
+
+
+    </body>
+</html>

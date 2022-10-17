@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+    <meta charset="utf-8">
+
+    
+
+    <!-- 渲染优化 -->
+    <meta name="renderer" content="webkit">
+    <meta name="force-rendering" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta name="HandheldFriendly" content="True" >
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+    <!--icon-->
+
+    
+        <link rel="shortcut icon" href="/images/icons/favicon.ico">
+    
+    
+    
+    
+        <link rel="apple-touch-icon" sizes="180x180" href="/images/icons/logo.png">
+    
+    
+
+
+    <!-- meta -->
+
+
+<title>《计算机网络：自顶向下方法》笔记5 网络层：控制平面 | 怀中落霞</title>
+
+
+    <meta name="keywords" content="笔记, 计算机网络">
+
+
+
+
+    <!-- OpenGraph -->
+ 
+    <meta name="description" content="第五章">
+<meta property="og:type" content="article">
+<meta property="og:title" content="《计算机网络：自顶向下方法》笔记5 网络层：控制平面">
+<meta property="og:url" content="https://poorpool.github.io/2020/05/01/cs_notes/topdown_chapter5/index.html">
+<meta property="og:site_name" content="怀中落霞">
+<meta property="og:description" content="第五章">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://poorpool.github.io/images/topdown/cpt5-1.png">
+<meta property="og:image" content="https://poorpool.github.io/images/topdown/cpt5-2.png">
+<meta property="article:published_time" content="2020-05-01T10:00:04.000Z">
+<meta property="article:modified_time" content="2022-10-17T07:18:55.908Z">
+<meta property="article:author" content="poorpool">
+<meta property="article:tag" content="笔记">
+<meta property="article:tag" content="计算机网络">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://poorpool.github.io/images/topdown/cpt5-1.png">
+
+
+    
+<link rel="stylesheet" href="/css/style/main.css">
+ 
+
+    
+    
+        <link rel="stylesheet" id="hl-default-theme" href="/css/highlight/a11y-light.css" media="none" onload="this.media='all'">
+        
+    
+
+    
+    
+
+    
+
+     
+
+    <!-- custom head -->
+
+<meta name="generator" content="Hexo 4.2.1"><link rel="alternate" href="/atom.xml" title="怀中落霞" type="application/atom+xml">
+</head>
+
+    <body>
+        <div id="app">
+            <header class="header">
+    <div class="header__left">
+        <a href="/" class="button">
+            <span class="logo__text">怀中落霞</span>
+        </a>
+    </div>
+    <div class="header__right">
+        
+            <div class="navbar__menus">
+                
+                    <a href="/" class="navbar-menu button">首页</a>
+                
+                    <a href="/tags/" class="navbar-menu button">标签</a>
+                
+                    <a href="/categories/" class="navbar-menu button">分类</a>
+                
+                    <a href="/archives/" class="navbar-menu button">归档</a>
+                
+                    <a href="/links/" class="navbar-menu button">友链</a>
+                
+                    <a href="/about/" class="navbar-menu button">关于</a>
+                
+            </div>
+        
+        
+        
+    <a href="/search/" id="btn-search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024" width="24" height="24" fill="currentColor" stroke="currentColor" stroke-width="32"><path d="M192 448c0-141.152 114.848-256 256-256s256 114.848 256 256-114.848 256-256 256-256-114.848-256-256z m710.624 409.376l-206.88-206.88A318.784 318.784 0 0 0 768 448c0-176.736-143.264-320-320-320S128 271.264 128 448s143.264 320 320 320a318.784 318.784 0 0 0 202.496-72.256l206.88 206.88 45.248-45.248z"></path></svg>
+    </a>
+
+
+        
+        
+
+        
+            <a class="dropdown-icon button" id="btn-dropdown" tabindex="0"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" width='24' height='24' fill="none" stroke="currentColor" stroke-width="0.7" stroke-linecap="round" stroke-linejoin="round"><path fill="currentColor" d="M3.314,4.8h13.372c0.41,0,0.743-0.333,0.743-0.743c0-0.41-0.333-0.743-0.743-0.743H3.314c-0.41,0-0.743,0.333-0.743,0.743C2.571,4.467,2.904,4.8,3.314,4.8z M16.686,15.2H3.314c-0.41,0-0.743,0.333-0.743,0.743s0.333,0.743,0.743,0.743h13.372c0.41,0,0.743-0.333,0.743-0.743S17.096,15.2,16.686,15.2z M16.686,9.257H3.314c-0.41,0-0.743,0.333-0.743,0.743s0.333,0.743,0.743,0.743h13.372c0.41,0,0.743-0.333,0.743-0.743S17.096,9.257,16.686,9.257z"></path></svg></a>
+            <div class="dropdown-menus" id="dropdown-menus">
+                
+                    <a href="/" class="dropdown-menu button">首页</a>
+                
+                    <a href="/tags/" class="dropdown-menu button">标签</a>
+                
+                    <a href="/categories/" class="dropdown-menu button">分类</a>
+                
+                    <a href="/archives/" class="dropdown-menu button">归档</a>
+                
+                    <a href="/links/" class="dropdown-menu button">友链</a>
+                
+                    <a href="/about/" class="dropdown-menu button">关于</a>
+                
+            </div>
+        
+    </div>
+</header>
+
+
+            <main class="main">
+    
+
+<div class="post-title">
+    <h1 class="post-title__text">
+        《计算机网络：自顶向下方法》笔记5 网络层：控制平面
+    </h1>
+    <div class="post-title__meta">
+        <a href="/archives/2020/05/" class="post-meta__date button">2020-05-01</a>
+        
+    <span class="separate-dot"></span><a href="/categories/%E7%AC%94%E8%AE%B0/" class="button">笔记</a>
+
+ 
+        
+    
+    
+
+
+ 
+
+ 
+    </div>
+</div>
+
+
+    <aside class="post-side">
+        <div class="post-side__toc">
+            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#路由选择算法"><span class="toc-number">1.</span> <span class="toc-text">路由选择算法</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#链路状态路由选择算法"><span class="toc-number">1.0.1.</span> <span class="toc-text">链路状态路由选择算法</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#距离向量路由选择算法"><span class="toc-number">1.0.2.</span> <span class="toc-text">距离向量路由选择算法</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#毒性逆转"><span class="toc-number">1.0.3.</span> <span class="toc-text">毒性逆转</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#优劣"><span class="toc-number">1.0.4.</span> <span class="toc-text">优劣</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#因特网中自治系统内部的路由选择：OSPF"><span class="toc-number">2.</span> <span class="toc-text">因特网中自治系统内部的路由选择：OSPF</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#ISP之间的路由选择：BGP"><span class="toc-number">3.</span> <span class="toc-text">ISP之间的路由选择：BGP</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#通告bgp路由信息"><span class="toc-number">3.0.1.</span> <span class="toc-text">通告bgp路由信息</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#确定最好的路由"><span class="toc-number">3.0.2.</span> <span class="toc-text">确定最好的路由</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#路由选择算法-1"><span class="toc-number">3.0.3.</span> <span class="toc-text">路由选择算法</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#IP任播"><span class="toc-number">3.0.4.</span> <span class="toc-text">IP任播</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#路由选择测略"><span class="toc-number">3.0.5.</span> <span class="toc-text">路由选择测略</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#SDN控制平面"><span class="toc-number">4.</span> <span class="toc-text">SDN控制平面</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#ICMP：因特网控制报文协议"><span class="toc-number">5.</span> <span class="toc-text">ICMP：因特网控制报文协议</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#网络管理和SNMP"><span class="toc-number">6.</span> <span class="toc-text">网络管理和SNMP</span></a></li></ol>
+        </div>
+    </aside>
+    <a class="btn-toc button" id="btn-toc" tabindex="0">
+        <svg viewBox="0 0 1024 1024" width="32" height="32" xmlns="http://www.w3.org/2000/svg">
+            <path d="M128 256h64V192H128zM320 256h576V192H320zM128 544h64v-64H128zM320 544h576v-64H320zM128 832h64v-64H128zM320 832h576v-64H320z" fill="currentColor"></path>
+        </svg>
+    </a>
+    <div class="toc-menus" id="toc-menus">
+        <div class="toc-title">文章目录</div>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#路由选择算法"><span class="toc-number">1.</span> <span class="toc-text">路由选择算法</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#链路状态路由选择算法"><span class="toc-number">1.0.1.</span> <span class="toc-text">链路状态路由选择算法</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#距离向量路由选择算法"><span class="toc-number">1.0.2.</span> <span class="toc-text">距离向量路由选择算法</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#毒性逆转"><span class="toc-number">1.0.3.</span> <span class="toc-text">毒性逆转</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#优劣"><span class="toc-number">1.0.4.</span> <span class="toc-text">优劣</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#因特网中自治系统内部的路由选择：OSPF"><span class="toc-number">2.</span> <span class="toc-text">因特网中自治系统内部的路由选择：OSPF</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#ISP之间的路由选择：BGP"><span class="toc-number">3.</span> <span class="toc-text">ISP之间的路由选择：BGP</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#通告bgp路由信息"><span class="toc-number">3.0.1.</span> <span class="toc-text">通告bgp路由信息</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#确定最好的路由"><span class="toc-number">3.0.2.</span> <span class="toc-text">确定最好的路由</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#路由选择算法-1"><span class="toc-number">3.0.3.</span> <span class="toc-text">路由选择算法</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#IP任播"><span class="toc-number">3.0.4.</span> <span class="toc-text">IP任播</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#路由选择测略"><span class="toc-number">3.0.5.</span> <span class="toc-text">路由选择测略</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#SDN控制平面"><span class="toc-number">4.</span> <span class="toc-text">SDN控制平面</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#ICMP：因特网控制报文协议"><span class="toc-number">5.</span> <span class="toc-text">ICMP：因特网控制报文协议</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#网络管理和SNMP"><span class="toc-number">6.</span> <span class="toc-text">网络管理和SNMP</span></a></li></ol>
+    </div>
+
+
+<article class="post post__with-toc content-card">
+    <div class="post__header"></div>
+    <div class="post__content">
+        <p>第五章</p>
+<a id="more"></a>
+
+<h2 id="路由选择算法"><a href="#路由选择算法" class="headerlink" title="路由选择算法"></a>路由选择算法</h2><p>分类方式多样，可以集中/分散，可以动态/静态，可以负载敏感/负载迟钝。</p>
+<h4 id="链路状态路由选择算法"><a href="#链路状态路由选择算法" class="headerlink" title="链路状态路由选择算法"></a>链路状态路由选择算法</h4><p>链路状态广播使得每个节点都具有网络的统一完整的视图，每个节点都可以运行LS算法并计算出相同的最低开销路径集合。</p>
+<p>其实就是个dijkstra。</p>
+<p>如果链路开销等于链路上承载的负载这类的东西，就有可能出现振荡。</p>
+<h4 id="距离向量路由选择算法"><a href="#距离向量路由选择算法" class="headerlink" title="距离向量路由选择算法"></a>距离向量路由选择算法</h4><p>距离向量DV算法是一种迭代的、异步的、分布式的算法。这个又和bellman-fiord方程相关。</p>
+<p>每个点维护自己的距离向量：到所有节点的最低开销路径的开销（估计值），然后时不时给邻居发送方向向量副本。任何节点$x$从邻居$v$收到方向向量的时候更新自己的方向向量：$D_x(y)=\min_v{c(x,v)+D_v(y)}$。要是$x$的距离向量因为这个更新步骤改变，就向另据发送更新以后的距离向量。</p>
+<p>其实$x$真正想知道的是沿着最短路径到$y$的下一跳路由器邻居节点$v^*(y)$。</p>
+<p><img src="/images/topdown/cpt5-1.png" class="lazy" data-srcset="/images/topdown/cpt5-1.png" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABAQMAAAAl21bKAAAABlBMVEXMzMyWlpYU2uzLAAAACXBIWXMAAA7EAAAOxAGVKw4bAAAACklEQVQImWNgAAAAAgAB9HFkpgAAAABJRU5ErkJggg==" alt="dv"></p>
+<p>路径开销降低好说，但是增大就……</p>
+<p>原来的话$D_y(x)=4$，$D_y(z)=1$，$D_z(x)=5$，$D_z(y)=1$。更新以后$D_y(x)=\min{c(y,x)+D_x(x), c(y,z)+D_z(y)}=6$，距离向量发生变化，通知$z$。然后$D_z(x)$更新，……居然需要44轮迭代。这有时被称为无穷计数问题。</p>
+<h4 id="毒性逆转"><a href="#毒性逆转" class="headerlink" title="毒性逆转"></a>毒性逆转</h4><p>如果$z$通过$y$路由选择到目的地$x$，那么$z$通告$y$ $D_z(x)=\infty$，这就让$y$不可能通过$z$到达$x$（这就成回路了）。但是它没有解决一般的无穷计数问题。涉及三个或更多节点的环路没法检测到。</p>
+<h4 id="优劣"><a href="#优劣" class="headerlink" title="优劣"></a>优劣</h4><p>ls算法是求$O(NE)$个报文的$O(N^2)$算法。dv报文少，收敛慢，会遇到选择环路。LS的路由计算某种程度上是分离的，一定的健壮性。DV却可能向任意节点通告不正确的最低开销路径。</p>
+<h2 id="因特网中自治系统内部的路由选择：OSPF"><a href="#因特网中自治系统内部的路由选择：OSPF" class="headerlink" title="因特网中自治系统内部的路由选择：OSPF"></a>因特网中自治系统内部的路由选择：OSPF</h2><p>开放最短路优先OSPF，路由器向自治系统内所有其他路由器广播路由选择信息。每台路由器确定一个以自身为根节点到所有子网的最短路径树。链路开销由管理员配置。</p>
+<p>当一条链路的状态发生变化或者是每个一段时间，路由器就会广播链路状态信息。</p>
+<p>它安全，允许使用多条相同开销的路径，综合支持单播多播路由选择，支持在单个AS内的层次结构。</p>
+<p>一个ospf自治系统能配置多个区域，AS中只能有一个ospf区域配置成主干区域，包含本AS所有区域边界路由器和一些非边界路由器。主干区域为AS中其他区域之间的流量提供路由选择。AS中区域间路由选择要求分组先路由到一个区域边界路由器（区域内路由选择）然后通过主干路由到位于目的区域的区域边界路由器，然后路由到最终目的地。</p>
+<h2 id="ISP之间的路由选择：BGP"><a href="#ISP之间的路由选择：BGP" class="headerlink" title="ISP之间的路由选择：BGP"></a>ISP之间的路由选择：BGP</h2><p>所有AS都运行相同的AS间路由选择协议：边界网关协议BGP。</p>
+<p>BGP是路由到CIDR化的前缀，例如<code>138.16.6.8/22</code>。</p>
+<p>他使得AS可从邻居AS获得前缀的可达性信息，确定到该前缀的“最好的”路由。</p>
+<h4 id="通告bgp路由信息"><a href="#通告bgp路由信息" class="headerlink" title="通告bgp路由信息"></a>通告bgp路由信息</h4><p>对于每个as，路由器要么是网关路由器，要么是内部路由器。网关路由器直连其他as中一台或多台路由器。</p>
+<p>跨越两个as的bgp连接称为外部bgp连接（eBGP），自然也有内部iBGP。</p>
+<h4 id="确定最好的路由"><a href="#确定最好的路由" class="headerlink" title="确定最好的路由"></a>确定最好的路由</h4><p>bgp前缀和属性称为路由。比较重要的属性是AS-PATH和NEXT-HOP。</p>
+<p>当一个前缀通过某AS时，该ASN加入AS-PATH的现有列表。</p>
+<p>例如在AS1，AS2，AS3构成的环路中从AS1到子网x（在AS3内）可以有两条路，AS-PATH分别为<code>AS2 AS3</code>，<code>AS3</code>。</p>
+<p>如果一台路由器在路径列表里看到了包含它自己的AS，它将拒绝通告，这样避免了环路。</p>
+<p>NEXT-HOP是AS-PATH起始的路由器接口的ip地址。</p>
+<p><img src="/images/topdown/cpt5-2.png" class="lazy" data-srcset="/images/topdown/cpt5-2.png" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABAQMAAAAl21bKAAAABlBMVEXMzMyWlpYU2uzLAAAACXBIWXMAAA7EAAAOxAGVKw4bAAAACklEQVQImWNgAAAAAgAB9HFkpgAAAABJRU5ErkJggg==" alt="nexthop"></p>
+<p>NEXT-HOP属性是不属于AS1的某路由器的ip地址，但是包含该ip地址的子网直接连接到AS1。</p>
+<h4 id="路由选择算法-1"><a href="#路由选择算法-1" class="headerlink" title="路由选择算法"></a>路由选择算法</h4><p>热土豆（烫手山芋2333）路由选择：对于一个路由器来说，它选择的路由到开始该路由的NEXT-HOP路由器要有最小开销。哪个开销小选那个。</p>
+<p>真正的路由选择：</p>
+<ul>
+<li>路由被指派一个本地偏好值作为属性之一。最高的将被选择</li>
+<li>余下路由（如果没选好的话）选AS-PATH最短的。如果该路由是路由选择的唯一规则，那么bgp用dv算法决定路径。距离测度用的是AS跳数而不是路由器跳数。</li>
+<li>余下路由（没选好，这时候最高本地偏好值和AS-PATH长度均相同），热土豆</li>
+<li>还有就用bgp标识符选择</li>
+</ul>
+<h4 id="IP任播"><a href="#IP任播" class="headerlink" title="IP任播"></a>IP任播</h4><p>一个例子：CDN公司给多台服务器指派相同的ip地址，并且使用标准的bgp从每台服务器通告该ip地址。配置路由选择表的时候每台路由器将本地化地使用bgp路由选择算法来挑选到该ip地址最好的路由。</p>
+<h4 id="路由选择测略"><a href="#路由选择测略" class="headerlink" title="路由选择测略"></a>路由选择测略</h4><p>路由选择算法先根据本地偏好属性选择路由，本地偏好值由本地AS策略决定。</p>
+<p>如果一个AS，自身是进入/离开它的所有流量的源/目的地，它就是桩网络。它可以向邻居通告它没有通向任何其他目的地的路径。</p>
+<h2 id="SDN控制平面"><a href="#SDN控制平面" class="headerlink" title="SDN控制平面"></a>SDN控制平面</h2><p>这东西太难懂了，不看了。</p>
+<h2 id="ICMP：因特网控制报文协议"><a href="#ICMP：因特网控制报文协议" class="headerlink" title="ICMP：因特网控制报文协议"></a>ICMP：因特网控制报文协议</h2><p>icmp被主机和路由器用来彼此沟通网络层的信息，例如差错报告。</p>
+<p>icmp报文作为ip有效载荷。</p>
+<p>traceroute用icmp数据报实现。每个数据报携带一个具有不可达udp端口号的udp报文段，第一个数据报ttl为1，第二个为2,……第$n$个数据报到达第$n$个路由器的时候刚好过期，返回一个icmp告警报文，包含路由器名字和ip地址。源主机从定时器得到往返时延，从icmp报文得到第n台路由器的名字和ip地址。停止的时候收到的是端口不可达的icmp报文，知道不需要再发送另外的探测分组。</p>
+<h2 id="网络管理和SNMP"><a href="#网络管理和SNMP" class="headerlink" title="网络管理和SNMP"></a>网络管理和SNMP</h2><p>网络管理的关键组件是管理服务器，被管设备，管理信息库（MIB），网络管理代理（被管设备中的进程）和网络管理协议。</p>
+<p>简单网络管理协议SNMP是个应用层协议。常用的是请求响应模式：SNMP管理服务器向snmp代理发送请求，代理收到请求执行动作发送回答。还有陷阱报文，用于通知管理服务器异常情况导致mib对象值改变。</p>
+<p>snmp定义了7种类型的报文，一般称为协议数据单元PDU。通常作为udp数据报载荷运输。</p>
+
+    </div>
+     
+    <div class="post-footer__meta"><p>更新于 2022-10-17</p></div> 
+    <div class="post-entry__tags"><a href="/tags/%E7%AC%94%E8%AE%B0/" class="post-tags__link button"># 笔记</a><a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/" class="post-tags__link button"># 计算机网络</a></div> 
+</article>
+
+
+    <div class="nav">
+        <div class="nav__prev">
+            
+                <a href="/2020/05/01/cs_notes/topdown_chapter6/" class="nav__link">
+                    <div>
+                        <svg viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg" width="24" height="24"><path d="M589.088 790.624L310.464 512l278.624-278.624 45.248 45.248L400.96 512l233.376 233.376z" fill="#808080"></path></svg>
+                    </div>
+                    <div>
+                        <div class="nav__label">
+                            Previous Post
+                        </div>
+                        <div class="nav__title">
+                            《计算机网络：自顶向下方法》笔记6 链路层和局域网
+                        </div>
+                    </div>
+                </a>
+            
+        </div>
+        <div class="nav__next">
+            
+                <a href="/2020/05/01/cs_notes/topdown_chapter4/" class="nav__link">
+                    <div>
+                        <div class="nav__label">
+                            Next Post
+                        </div>
+                        <div class="nav__title">
+                            《计算机网络：自顶向下方法》笔记4 网络层：数据平面
+                        </div>
+                    </div>
+                    <div>
+                        <svg viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg" width="24" height="24"><path d="M434.944 790.624l-45.248-45.248L623.04 512l-233.376-233.376 45.248-45.248L713.568 512z" fill="#808080"></path></svg>
+                    </div>
+                </a>
+            
+        </div>
+    </div>
+
+
+
+
+
+</main>
+
+            <footer class="footer">
+     
+    <a href="#" class="button" id="b2t" aria-label="回到顶部" title="回到顶部">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024" width="32" height="32">
+            <path d="M233.376 722.752L278.624 768 512 534.624 745.376 768l45.248-45.248L512 444.128zM192 352h640V288H192z" fill="currentColor"></path>
+        </svg>
+    </a>
+
+    
+
+
+    
+     
+ 
+
+ 
+    
+        
+        <p class="footer-copyright">
+            Copyright © 2017&nbsp;-&nbsp;2022 <a href="/">怀中落霞</a>
+        </p>
+    
+    
+    <p>Powered by <a href="https://hexo.io" target="_blank">Hexo</a> | Theme - <a href="https://github.com/ChrAlpha/hexo-theme-cards" target="_blank">Cards</a></p>
+</footer>
+
+        </div>
+        
+    <script defer src="https://cdn.jsdelivr.net/npm/vanilla-lazyload@17.1.0/dist/lazyload.min.js"></script>
+    <script>
+        window.lazyLoadOptions = {
+            elements_selector: ".lazy",
+            threshold: 0
+        };
+    </script>
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+
+
+ 
+
+
+
+ 
+
+
+    
+ 
+
+
+    
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.4.1/dist/jquery.min.js"></script>
+
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.4.1/dist/jquery.fancybox.min.css">
+
+    
+<script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.4.1/dist/jquery.fancybox.min.js"></script>
+
+    <script>
+        let lazyloadT = Boolean('true'),
+            auto_fancybox = Boolean('true')
+        if (auto_fancybox) {
+            $(".post__content").find('img').each(function () {
+                var element = document.createElement("a");
+                $(element).attr("data-fancybox", "gallery");
+                $(element).attr("href", $(this).attr("src"));
+                if (lazyloadT) {
+                    $(element).attr("href", $(this).attr("data-srcset"));
+                }
+                $(this).wrap(element);
+            });
+        } else {
+            $(".post__content").find("fancybox").find('img').each(function () {
+                var element = document.createElement("a");
+                $(element).attr("data-fancybox", "gallery");
+                $(element).attr("href", $(this).attr("src"));
+                if (lazyloadT) {
+                    $(element).attr("href", $(this).attr("data-srcset"));
+                }
+                $(this).wrap(element);
+            });
+        }
+    </script>
+ 
+
+
+    <script>
+        if (typeof MathJax === 'undefined') {
+            window.MathJax = {
+                loader: {
+                    source: {
+                        '[tex]/amsCd': '[tex]/amscd',
+                        '[tex]/AMScd': '[tex]/amscd'
+                    }
+                },
+                tex: {
+                    inlineMath: {'[+]': [['$', '$']]},
+                    tags: 'ams'
+                },
+                options: {
+                    renderActions: {
+                        findScript: [10, doc => {
+                            document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+                                const display = !!node.type.match(/; *mode=display/);
+                                const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+                                const text = document.createTextNode('');
+                                node.parentNode.replaceChild(text, node);
+                                math.start = {node: text, delim: '', n: 0};
+                                math.end = {node: text, delim: '', n: 0};
+                                doc.math.push(math);
+                            });
+                        }, '', false],
+                        insertedScript: [200, () => {
+                            document.querySelectorAll('mjx-container').forEach(node => {
+                                let target = node.parentNode;
+                                if (target.nodeName.toLowerCase() === 'li') {
+                                    target.parentNode.classList.add('has-jax');
+                                }
+                            });
+                        }, '', false]
+                    }
+                }
+            };
+            (function () {
+                var script = document.createElement('script');
+                script.src = "https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js";
+                script.defer = true;
+                document.head.appendChild(script);
+            })();
+        } else {
+            MathJax.startup.document.state(0);
+            MathJax.texReset();
+            MathJax.typeset();
+        }
+    </script>
+
+ 
+
+ 
+
+ 
+
+ 
+
+
+
+
+    </body>
+</html>

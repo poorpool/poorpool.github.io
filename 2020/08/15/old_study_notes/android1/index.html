@@ -1,0 +1,456 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+    <meta charset="utf-8">
+
+    
+
+    <!-- 渲染优化 -->
+    <meta name="renderer" content="webkit">
+    <meta name="force-rendering" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta name="HandheldFriendly" content="True" >
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+    <!--icon-->
+
+    
+        <link rel="shortcut icon" href="/images/icons/favicon.ico">
+    
+    
+    
+    
+        <link rel="apple-touch-icon" sizes="180x180" href="/images/icons/logo.png">
+    
+    
+
+
+    <!-- meta -->
+
+
+<title>关于 Android 的笔记 1 | 怀中落霞</title>
+
+
+    <meta name="keywords" content="Android">
+
+
+
+
+    <!-- OpenGraph -->
+ 
+    <meta name="description" content="来自《第一行代码》">
+<meta property="og:type" content="article">
+<meta property="og:title" content="关于 Android 的笔记 1">
+<meta property="og:url" content="https://poorpool.github.io/2020/08/15/old_study_notes/android1/index.html">
+<meta property="og:site_name" content="怀中落霞">
+<meta property="og:description" content="来自《第一行代码》">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://poorpool.github.io/images/android/1.png">
+<meta property="article:published_time" content="2020-08-15T16:30:22.000Z">
+<meta property="article:modified_time" content="2022-10-17T07:18:55.912Z">
+<meta property="article:author" content="poorpool">
+<meta property="article:tag" content="Android">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://poorpool.github.io/images/android/1.png">
+
+
+    
+<link rel="stylesheet" href="/css/style/main.css">
+ 
+
+    
+    
+        <link rel="stylesheet" id="hl-default-theme" href="/css/highlight/a11y-light.css" media="none" onload="this.media='all'">
+        
+    
+
+    
+    
+
+    
+
+     
+
+    <!-- custom head -->
+
+<meta name="generator" content="Hexo 4.2.1"><link rel="alternate" href="/atom.xml" title="怀中落霞" type="application/atom+xml">
+</head>
+
+    <body>
+        <div id="app">
+            <header class="header">
+    <div class="header__left">
+        <a href="/" class="button">
+            <span class="logo__text">怀中落霞</span>
+        </a>
+    </div>
+    <div class="header__right">
+        
+            <div class="navbar__menus">
+                
+                    <a href="/" class="navbar-menu button">首页</a>
+                
+                    <a href="/tags/" class="navbar-menu button">标签</a>
+                
+                    <a href="/categories/" class="navbar-menu button">分类</a>
+                
+                    <a href="/archives/" class="navbar-menu button">归档</a>
+                
+                    <a href="/links/" class="navbar-menu button">友链</a>
+                
+                    <a href="/about/" class="navbar-menu button">关于</a>
+                
+            </div>
+        
+        
+        
+    <a href="/search/" id="btn-search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024" width="24" height="24" fill="currentColor" stroke="currentColor" stroke-width="32"><path d="M192 448c0-141.152 114.848-256 256-256s256 114.848 256 256-114.848 256-256 256-256-114.848-256-256z m710.624 409.376l-206.88-206.88A318.784 318.784 0 0 0 768 448c0-176.736-143.264-320-320-320S128 271.264 128 448s143.264 320 320 320a318.784 318.784 0 0 0 202.496-72.256l206.88 206.88 45.248-45.248z"></path></svg>
+    </a>
+
+
+        
+        
+
+        
+            <a class="dropdown-icon button" id="btn-dropdown" tabindex="0"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" width='24' height='24' fill="none" stroke="currentColor" stroke-width="0.7" stroke-linecap="round" stroke-linejoin="round"><path fill="currentColor" d="M3.314,4.8h13.372c0.41,0,0.743-0.333,0.743-0.743c0-0.41-0.333-0.743-0.743-0.743H3.314c-0.41,0-0.743,0.333-0.743,0.743C2.571,4.467,2.904,4.8,3.314,4.8z M16.686,15.2H3.314c-0.41,0-0.743,0.333-0.743,0.743s0.333,0.743,0.743,0.743h13.372c0.41,0,0.743-0.333,0.743-0.743S17.096,15.2,16.686,15.2z M16.686,9.257H3.314c-0.41,0-0.743,0.333-0.743,0.743s0.333,0.743,0.743,0.743h13.372c0.41,0,0.743-0.333,0.743-0.743S17.096,9.257,16.686,9.257z"></path></svg></a>
+            <div class="dropdown-menus" id="dropdown-menus">
+                
+                    <a href="/" class="dropdown-menu button">首页</a>
+                
+                    <a href="/tags/" class="dropdown-menu button">标签</a>
+                
+                    <a href="/categories/" class="dropdown-menu button">分类</a>
+                
+                    <a href="/archives/" class="dropdown-menu button">归档</a>
+                
+                    <a href="/links/" class="dropdown-menu button">友链</a>
+                
+                    <a href="/about/" class="dropdown-menu button">关于</a>
+                
+            </div>
+        
+    </div>
+</header>
+
+
+            <main class="main">
+    
+
+<div class="post-title">
+    <h1 class="post-title__text">
+        关于 Android 的笔记 1
+    </h1>
+    <div class="post-title__meta">
+        <a href="/archives/2020/08/" class="post-meta__date button">2020-08-15</a>
+        
+    <span class="separate-dot"></span><a href="/categories/%E7%AC%94%E8%AE%B0/" class="button">笔记</a>
+
+ 
+        
+    
+    
+
+
+ 
+
+ 
+    </div>
+</div>
+
+
+    <aside class="post-side">
+        <div class="post-side__toc">
+            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#控制语句"><span class="toc-number">1.</span> <span class="toc-text">控制语句</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#对象"><span class="toc-number">2.</span> <span class="toc-text">对象</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#接口"><span class="toc-number">3.</span> <span class="toc-text">接口</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Lambda"><span class="toc-number">4.</span> <span class="toc-text">Lambda</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#空指针"><span class="toc-number">5.</span> <span class="toc-text">空指针</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#一些标准函数"><span class="toc-number">6.</span> <span class="toc-text">一些标准函数</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#静态方法"><span class="toc-number">7.</span> <span class="toc-text">静态方法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#高阶函数"><span class="toc-number">8.</span> <span class="toc-text">高阶函数</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#输入输出"><span class="toc-number">9.</span> <span class="toc-text">输入输出</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#生命周期"><span class="toc-number">10.</span> <span class="toc-text">生命周期</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#启动模式"><span class="toc-number">11.</span> <span class="toc-text">启动模式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#类委托"><span class="toc-number">12.</span> <span class="toc-text">类委托</span></a></li></ol>
+        </div>
+    </aside>
+    <a class="btn-toc button" id="btn-toc" tabindex="0">
+        <svg viewBox="0 0 1024 1024" width="32" height="32" xmlns="http://www.w3.org/2000/svg">
+            <path d="M128 256h64V192H128zM320 256h576V192H320zM128 544h64v-64H128zM320 544h576v-64H320zM128 832h64v-64H128zM320 832h576v-64H320z" fill="currentColor"></path>
+        </svg>
+    </a>
+    <div class="toc-menus" id="toc-menus">
+        <div class="toc-title">文章目录</div>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#控制语句"><span class="toc-number">1.</span> <span class="toc-text">控制语句</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#对象"><span class="toc-number">2.</span> <span class="toc-text">对象</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#接口"><span class="toc-number">3.</span> <span class="toc-text">接口</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Lambda"><span class="toc-number">4.</span> <span class="toc-text">Lambda</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#空指针"><span class="toc-number">5.</span> <span class="toc-text">空指针</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#一些标准函数"><span class="toc-number">6.</span> <span class="toc-text">一些标准函数</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#静态方法"><span class="toc-number">7.</span> <span class="toc-text">静态方法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#高阶函数"><span class="toc-number">8.</span> <span class="toc-text">高阶函数</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#输入输出"><span class="toc-number">9.</span> <span class="toc-text">输入输出</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#生命周期"><span class="toc-number">10.</span> <span class="toc-text">生命周期</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#启动模式"><span class="toc-number">11.</span> <span class="toc-text">启动模式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#类委托"><span class="toc-number">12.</span> <span class="toc-text">类委托</span></a></li></ol>
+    </div>
+
+
+<article class="post post__with-toc content-card">
+    <div class="post__header"></div>
+    <div class="post__content">
+        <p>来自《第一行代码》</p>
+<a id="more"></a>
+
+<h1 id="基础"><a href="#基础" class="headerlink" title="基础"></a>基础</h1><h2 id="控制语句"><a href="#控制语句" class="headerlink" title="控制语句"></a>控制语句</h2><p>Kotlin 的 if 可以有返回值，就是花括号里头最后一行代码。</p>
+<p>when 比 switch 更高级。也能有返回值。如果不写小括号和里头的东西，就可以在条件的地方写上 <code>someParam == 1</code> 这种东西。不必使用 equals。</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">fun</span> <span class="title">qwq</span><span class="params">(name: <span class="type">String</span>)</span></span> = <span class="keyword">when</span> (name) &#123;</span><br><span class="line">    <span class="string">"tom"</span> -&gt; <span class="number">1</span></span><br><span class="line">    <span class="string">"jack"</span> -&gt; <span class="number">3</span></span><br><span class="line">    <span class="string">"poorpool"</span> -&gt; -<span class="number">1</span></span><br><span class="line">    <span class="keyword">else</span> -&gt; <span class="number">0</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">fun</span> <span class="title">checkNumber</span><span class="params">(num: <span class="type">Number</span>)</span></span> &#123;</span><br><span class="line">    <span class="keyword">when</span> (num) &#123;</span><br><span class="line">        <span class="keyword">is</span> <span class="built_in">Int</span> -&gt; println(<span class="string">"int"</span>)</span><br><span class="line">        <span class="keyword">is</span> <span class="built_in">Double</span> -&gt; println(<span class="string">"double"</span>)</span><br><span class="line">        <span class="keyword">else</span> -&gt; println(<span class="string">"others"</span>)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>for-i 循环没了（震撼我妈，用：</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> (i <span class="keyword">in</span> <span class="number">0</span>..<span class="number">10</span>) &#123;</span><br><span class="line">    println(i)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>两个点是闭区间。until 是左闭右开区间。在后头加上 <code>step 2</code> 可以设置步长。<code>for (i in 10 downTo 1)</code> 倒序。</p>
+<h2 id="对象"><a href="#对象" class="headerlink" title="对象"></a>对象</h2><p>定义类就：</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Person</span> </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> name = <span class="string">""</span></span><br><span class="line">    <span class="keyword">var</span> age = <span class="number">0</span></span><br><span class="line">    <span class="function"><span class="keyword">fun</span> <span class="title">eat</span><span class="params">()</span></span> &#123;</span><br><span class="line">        println(<span class="string">"name is "</span> + name + <span class="string">", age is "</span> + age)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>直接点运算符访问、修改对象和执行函数。注意，类默认不可继承。要继承的话父类 class 前头加 open,子类用 <code>class Student : Person() {...</code> 这种东西。</p>
+<p>构造函数分为主构造函数和次构造函数。主构造函数可以写参数</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">open</span> <span class="class"><span class="keyword">class</span> <span class="title">Person</span></span>(<span class="keyword">val</span> name: String, <span class="keyword">var</span> age: <span class="built_in">Int</span>) &#123;</span><br><span class="line">    <span class="function"><span class="keyword">fun</span> <span class="title">eat</span><span class="params">()</span></span> &#123;</span><br><span class="line">        println(<span class="string">"name is "</span> + name + <span class="string">", age is "</span> + age)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>加了 val/var 以后的参数自动成为本类的字段。所以说 Student 可以改造为 <code>class Student(val school: String, name: String, age: Int) : Person(name, age) {...</code> 这种东西，不加 val/var 就能把作用域限定在主构造函数里头。</p>
+<p>顺带一提每个类都可以写个 <code>init{ ... }</code> 执行一些代码。所有次构造函数都必须调用主构造函数。例如 Person 写一个 <code>constructor() : this(&quot;&quot;, 0) {}</code>。可以没有主构造函数。</p>
+<p>修饰符就是把 java 四种修饰符的 default 变成了 internal。public 变成了什么都不写的默认项目（java 是 default），internal 是同一模块可见。protected 去掉了同一包路径可见。</p>
+<p>数据类就像 java bean，前面加个 data 就行了，equals 什么的都不用写了……没有代码的话花括号都不用了（喜</p>
+<p>单例类直接把 class 换成 object 完事（tql</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">data</span> <span class="class"><span class="keyword">class</span> <span class="title">CellPhone</span></span>(<span class="keyword">val</span> brand: String, <span class="keyword">val</span> price: <span class="built_in">Double</span>)</span><br></pre></td></tr></table></figure>
+
+<h2 id="接口"><a href="#接口" class="headerlink" title="接口"></a>接口</h2><p>没有 extends 和 implements 了，直接冒号后头跟上继承的类和实现的接口。逗号隔开。<code>@Override</code> 变成了扎起 fun 前头加 <code>override</code>。接口也可以有默认的实现函数。</p>
+<h2 id="Lambda"><a href="#Lambda" class="headerlink" title="Lambda"></a>Lambda</h2><p>listOf(a, b, c) 创建不可变集合，mutableListOf 创建可变的（当然也可以一个一个 add）。</p>
+<p>lambda 表达式：<code>{param1: Type, xxx -&gt; 函数体}</code>。</p>
+<p>函数式 api：</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">val</span> list = listOf(<span class="string">"apple"</span>, <span class="string">"banana"</span>, <span class="string">"billy"</span>)</span><br><span class="line">println(list.maxBy(&#123;fruit: String -&gt; fruit.length&#125;))</span><br></pre></td></tr></table></figure>
+
+<p>lambda 表达式是函数最后一个参数可以把 lambda 表达式移到外头，小括号也可以省略，一个参数也可以直接用 it 表示。所以上面的可以写成 <code>list.maxBy {it.length}</code></p>
+<p>和 js 一样，也有 filter 和 map。用 any 和 all 做判断。这东西自行百度吧。来一段省略带师：</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">Thread(<span class="keyword">object</span>: Runnable &#123;<span class="comment">// java 的 new 变成了 object</span></span><br><span class="line">    <span class="keyword">override</span> <span class="function"><span class="keyword">fun</span> <span class="title">run</span><span class="params">()</span></span> &#123;</span><br><span class="line">        println(<span class="string">"new thread"</span>)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;).start()</span><br><span class="line"><span class="comment">// 省略 object:</span></span><br><span class="line"><span class="comment">// 因为就一个待实现方法，所以 run 那一行也能省略</span></span><br><span class="line"><span class="comment">// 因为参数列表只有一个单抽象方法接口参数，Runnable 也可以省略</span></span><br><span class="line"><span class="comment">// 还能把 lambda 提到外头</span></span><br><span class="line">Thread &#123;</span><br><span class="line">    println(<span class="string">"new thread"</span>)</span><br><span class="line">&#125;.start()</span><br></pre></td></tr></table></figure>
+
+<p>对一个对象使用 let 可将调用对象传递到 lambda里头，例子看下头。</p>
+<h2 id="空指针"><a href="#空指针" class="headerlink" title="空指针"></a>空指针</h2><p>kotlin 把空指针异常消灭在编译期。<code>Int</code> 不为空，<code>Int?</code> 表示可以为空。敢写第二种就要判空了。</p>
+<p>例如一个 <code>student: Student?</code>，直接 <code>student.study()</code> 是不行的。要么包一个 if 判 null，要么就用 <code>student?.study()</code>，非空才执行。用 <code>a ?: b</code> 表示 a 非空的时候为 a，a 为空则为 b。</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">student?.let &#123;stu -&gt; </span><br><span class="line">    stu.study()</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>字符串可以内嵌表达式，比如 </p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">val</span> a = <span class="number">1</span></span><br><span class="line">println(<span class="string">"a is <span class="subst">$&#123;a&#125;</span> or <span class="variable">$a</span>"</span>)。</span><br></pre></td></tr></table></figure>
+
+<p>可以用 lateinit 告诉编译器某个变量是延迟初始化的。</p>
+<h2 id="一些标准函数"><a href="#一些标准函数" class="headerlink" title="一些标准函数"></a>一些标准函数</h2><p>with 接收一个对象和一个 lambda 表达式，在表达式中提供那个对象的上下文并以最后一行语句为返回值。</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">fun</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">    <span class="keyword">val</span> list = listOf(<span class="string">"apple"</span>, <span class="string">"banana"</span>)</span><br><span class="line">    <span class="keyword">val</span> result = with(StringBuilder()) &#123;</span><br><span class="line">        append(<span class="string">"Start eating fruits\n"</span>)</span><br><span class="line">        <span class="keyword">for</span> (fruit <span class="keyword">in</span> list) &#123;</span><br><span class="line">            append(<span class="string">"eating <span class="variable">$fruit</span>\n"</span>)</span><br><span class="line">        &#125;</span><br><span class="line">        toString()</span><br><span class="line">    &#125;</span><br><span class="line">    print(result)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>run 差不多，不过是要 obj.run {xxx}，不能直接用。</p>
+<p>apply 和 run 差不多，但是没有返回值而是返回对象本身。</p>
+<h2 id="静态方法"><a href="#静态方法" class="headerlink" title="静态方法"></a>静态方法</h2><p>kotlin 弱化了静态方法的概念，要么用单例类，要么套一个 companion object。（其实调用的就是这个伴生类的方法）。真正的静态方法加 @JvmStatic 或者是顶层方法。</p>
+<h2 id="高阶函数"><a href="#高阶函数" class="headerlink" title="高阶函数"></a>高阶函数</h2><p>在参数列表里里头写 <code>func: (String, Int) -&gt; Unit</code>，表示接受一个以 String 和 Int 为参数并什么也不返回（Unit 类比 void）的函数（lambda）。引用一个函数可以使用 <code>::funcName</code>。</p>
+<h2 id="输入输出"><a href="#输入输出" class="headerlink" title="输入输出"></a>输入输出</h2><p>对一个 writer 使用 use，例如 <code>writer.use { xxx }</code>，会在 lambda 执行完毕以后关闭外面的流。</p>
+<h1 id="Activity"><a href="#Activity" class="headerlink" title="Activity"></a>Activity</h1><p>可以使用 Intent 来调起别的 activity。可以通过指定一个 action 多个 category（不一定都要有）来让系统找出合适的 activity 启动（隐式的），也可以直接钦点 activity（显式的）。自己的 activity 在 AndroidManifest.xml 里头对应的 activity 标签下写 intent-filter，用处看名字就能猜出来。</p>
+<p>比如：</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">button1.setOnClickListener &#123;</span><br><span class="line">    <span class="keyword">val</span> intent = Intent(Intent.ACTION_VIEW)</span><br><span class="line">    intent.<span class="keyword">data</span> = Uri.parse(<span class="string">"https://www.baidu.com"</span>)</span><br><span class="line">    startActivity(intent)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>可以自己在 intent-filter 标签里头写上 data 标签响应 https 协议，之类的操作。（感觉这就是实现用别的应用打开的方式啊2333</p>
+<p>intent 还能携带额外的 data。也可以用 startActivityForResult 来调用一个 activity 让它返回数据。</p>
+<h2 id="生命周期"><a href="#生命周期" class="headerlink" title="生命周期"></a>生命周期</h2><p>使用任务栈来管理 activity。activity 有运行、暂停、停止、销毁状态。</p>
+<p><img src="/images/android/1.png" class="lazy" data-srcset="/images/android/1.png" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABAQMAAAAl21bKAAAABlBMVEXMzMyWlpYU2uzLAAAACXBIWXMAAA7EAAAOxAGVKw4bAAAACklEQVQImWNgAAAAAgAB9HFkpgAAAABJRU5ErkJggg==" alt="activity"></p>
+<h2 id="启动模式"><a href="#启动模式" class="headerlink" title="启动模式"></a>启动模式</h2><p>standard，singleTop（栈顶是当前 activity 就不会再创建一个了），singleTask（返回栈里就一个），singleInstance（存放在单独的返回栈）</p>
+<h2 id="类委托"><a href="#类委托" class="headerlink" title="类委托"></a>类委托</h2><p>使用 by 关键字。</p>
+<h1 id="BroadcastReceiver"><a href="#BroadcastReceiver" class="headerlink" title="BroadcastReceiver"></a>BroadcastReceiver</h1><p>属于四大组件。就像 activity 一样，继承 BroadcastReceiver 并重写 onReceive 方法即可。动态注册也一定要取消注册。</p>
+<p>intent setPackage 以后变成显式广播，静态注册的 BroadcastReceiver 可以收到，然后 sendBroadcast。</p>
+<p>有序广播可以截断，同步执行，标准广播不行。有序广播用 sendOrderBroadcast，在 AndroidManifest 中设置优先级，在 onReceive 中用 abortBroadcast 截断。</p>
+<h1 id="持久化"><a href="#持久化" class="headerlink" title="持久化"></a>持久化</h1><p>存文件，SharedPreferences 存储键值对，数据库。</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">MainActivity</span> : <span class="type">AppCompatActivity</span></span>() &#123;</span><br><span class="line">    <span class="keyword">override</span> <span class="function"><span class="keyword">fun</span> <span class="title">onCreate</span><span class="params">(savedInstanceState: <span class="type">Bundle</span>?)</span></span> &#123;</span><br><span class="line">        <span class="keyword">super</span>.onCreate(savedInstanceState)</span><br><span class="line">        setContentView(R.layout.activity_main)</span><br><span class="line">        <span class="keyword">val</span> inputText = load()</span><br><span class="line">        <span class="keyword">if</span> (inputText.isNotEmpty()) &#123;</span><br><span class="line">            editText.setText(inputText)</span><br><span class="line">            editText.setSelection(inputText.length)</span><br><span class="line">            Toast.makeText(<span class="keyword">this</span>, <span class="string">"Restoring succeeded"</span>, Toast.LENGTH_SHORT).show()</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="function"><span class="keyword">fun</span> <span class="title">load</span><span class="params">()</span></span>: String &#123;</span><br><span class="line">        <span class="keyword">val</span> content = StringBuilder()</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            <span class="keyword">val</span> input = openFileInput(<span class="string">"data"</span>)</span><br><span class="line">            <span class="keyword">val</span> reader = BufferedReader(InputStreamReader(input))</span><br><span class="line">            reader.use &#123;</span><br><span class="line">                reader.forEachLine &#123;</span><br><span class="line">                    content.append(it)</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125; <span class="keyword">catch</span> (e: IOException) &#123;</span><br><span class="line">            e.printStackTrace()</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> content.toString()</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">override</span> <span class="function"><span class="keyword">fun</span> <span class="title">onDestroy</span><span class="params">()</span></span> &#123;</span><br><span class="line">        <span class="keyword">super</span>.onDestroy()</span><br><span class="line">        <span class="keyword">val</span> inputText = editText.text.toString()</span><br><span class="line">        save(inputText)</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">fun</span> <span class="title">save</span><span class="params">(inputText: <span class="type">String</span>)</span></span> &#123;</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            <span class="keyword">val</span> output = openFileOutput(<span class="string">"data"</span>, Context.MODE_PRIVATE)</span><br><span class="line">            <span class="keyword">val</span> writer = BufferedWriter(OutputStreamWriter(output))</span><br><span class="line">            writer.use &#123;</span><br><span class="line">                it.write(inputText)</span><br><span class="line">            &#125;</span><br><span class="line">        &#125; <span class="keyword">catch</span> (e: IOException) &#123;</span><br><span class="line">            e.printStackTrace()</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+    </div>
+     
+    <div class="post-footer__meta"><p>更新于 2022-10-17</p></div> 
+    <div class="post-entry__tags"><a href="/tags/Android/" class="post-tags__link button"># Android</a></div> 
+</article>
+
+
+    <div class="nav">
+        <div class="nav__prev">
+            
+                <a href="/2020/09/09/miscellanies/zatan1/" class="nav__link">
+                    <div>
+                        <svg viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg" width="24" height="24"><path d="M589.088 790.624L310.464 512l278.624-278.624 45.248 45.248L400.96 512l233.376 233.376z" fill="#808080"></path></svg>
+                    </div>
+                    <div>
+                        <div class="nav__label">
+                            Previous Post
+                        </div>
+                        <div class="nav__title">
+                            初秋杂谈
+                        </div>
+                    </div>
+                </a>
+            
+        </div>
+        <div class="nav__next">
+            
+                <a href="/2020/07/28/unique_studio/sicp1/" class="nav__link">
+                    <div>
+                        <div class="nav__label">
+                            Next Post
+                        </div>
+                        <div class="nav__title">
+                            《计算机程序的构造和解释》学习笔记 1
+                        </div>
+                    </div>
+                    <div>
+                        <svg viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg" width="24" height="24"><path d="M434.944 790.624l-45.248-45.248L623.04 512l-233.376-233.376 45.248-45.248L713.568 512z" fill="#808080"></path></svg>
+                    </div>
+                </a>
+            
+        </div>
+    </div>
+
+
+
+
+
+</main>
+
+            <footer class="footer">
+     
+    <a href="#" class="button" id="b2t" aria-label="回到顶部" title="回到顶部">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024" width="32" height="32">
+            <path d="M233.376 722.752L278.624 768 512 534.624 745.376 768l45.248-45.248L512 444.128zM192 352h640V288H192z" fill="currentColor"></path>
+        </svg>
+    </a>
+
+    
+
+
+    
+     
+ 
+
+ 
+    
+        
+        <p class="footer-copyright">
+            Copyright © 2017&nbsp;-&nbsp;2022 <a href="/">怀中落霞</a>
+        </p>
+    
+    
+    <p>Powered by <a href="https://hexo.io" target="_blank">Hexo</a> | Theme - <a href="https://github.com/ChrAlpha/hexo-theme-cards" target="_blank">Cards</a></p>
+</footer>
+
+        </div>
+        
+    <script defer src="https://cdn.jsdelivr.net/npm/vanilla-lazyload@17.1.0/dist/lazyload.min.js"></script>
+    <script>
+        window.lazyLoadOptions = {
+            elements_selector: ".lazy",
+            threshold: 0
+        };
+    </script>
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+
+
+ 
+
+
+
+ 
+
+
+    
+ 
+
+
+    
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.4.1/dist/jquery.min.js"></script>
+
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.4.1/dist/jquery.fancybox.min.css">
+
+    
+<script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.4.1/dist/jquery.fancybox.min.js"></script>
+
+    <script>
+        let lazyloadT = Boolean('true'),
+            auto_fancybox = Boolean('true')
+        if (auto_fancybox) {
+            $(".post__content").find('img').each(function () {
+                var element = document.createElement("a");
+                $(element).attr("data-fancybox", "gallery");
+                $(element).attr("href", $(this).attr("src"));
+                if (lazyloadT) {
+                    $(element).attr("href", $(this).attr("data-srcset"));
+                }
+                $(this).wrap(element);
+            });
+        } else {
+            $(".post__content").find("fancybox").find('img').each(function () {
+                var element = document.createElement("a");
+                $(element).attr("data-fancybox", "gallery");
+                $(element).attr("href", $(this).attr("src"));
+                if (lazyloadT) {
+                    $(element).attr("href", $(this).attr("data-srcset"));
+                }
+                $(this).wrap(element);
+            });
+        }
+    </script>
+ 
+
+
+    <script>
+        if (typeof MathJax === 'undefined') {
+            window.MathJax = {
+                loader: {
+                    source: {
+                        '[tex]/amsCd': '[tex]/amscd',
+                        '[tex]/AMScd': '[tex]/amscd'
+                    }
+                },
+                tex: {
+                    inlineMath: {'[+]': [['$', '$']]},
+                    tags: 'ams'
+                },
+                options: {
+                    renderActions: {
+                        findScript: [10, doc => {
+                            document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+                                const display = !!node.type.match(/; *mode=display/);
+                                const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+                                const text = document.createTextNode('');
+                                node.parentNode.replaceChild(text, node);
+                                math.start = {node: text, delim: '', n: 0};
+                                math.end = {node: text, delim: '', n: 0};
+                                doc.math.push(math);
+                            });
+                        }, '', false],
+                        insertedScript: [200, () => {
+                            document.querySelectorAll('mjx-container').forEach(node => {
+                                let target = node.parentNode;
+                                if (target.nodeName.toLowerCase() === 'li') {
+                                    target.parentNode.classList.add('has-jax');
+                                }
+                            });
+                        }, '', false]
+                    }
+                }
+            };
+            (function () {
+                var script = document.createElement('script');
+                script.src = "https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js";
+                script.defer = true;
+                document.head.appendChild(script);
+            })();
+        } else {
+            MathJax.startup.document.state(0);
+            MathJax.texReset();
+            MathJax.typeset();
+        }
+    </script>
+
+ 
+
+ 
+
+ 
+
+ 
+
+
+
+
+    </body>
+</html>

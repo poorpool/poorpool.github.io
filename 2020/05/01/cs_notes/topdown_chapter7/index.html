@@ -1,0 +1,499 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+    <meta charset="utf-8">
+
+    
+
+    <!-- 渲染优化 -->
+    <meta name="renderer" content="webkit">
+    <meta name="force-rendering" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta name="HandheldFriendly" content="True" >
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+    <!--icon-->
+
+    
+        <link rel="shortcut icon" href="/images/icons/favicon.ico">
+    
+    
+    
+    
+        <link rel="apple-touch-icon" sizes="180x180" href="/images/icons/logo.png">
+    
+    
+
+
+    <!-- meta -->
+
+
+<title>《计算机网络：自顶向下方法》笔记7 无线网络和移动网络 | 怀中落霞</title>
+
+
+    <meta name="keywords" content="笔记, 计算机网络">
+
+
+
+
+    <!-- OpenGraph -->
+ 
+    <meta name="description" content="第七章">
+<meta property="og:type" content="article">
+<meta property="og:title" content="《计算机网络：自顶向下方法》笔记7 无线网络和移动网络">
+<meta property="og:url" content="https://poorpool.github.io/2020/05/01/cs_notes/topdown_chapter7/index.html">
+<meta property="og:site_name" content="怀中落霞">
+<meta property="og:description" content="第七章">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://poorpool.github.io/images/topdown/cpt6-7.png">
+<meta property="og:image" content="https://poorpool.github.io/images/topdown/cpt6-8.png">
+<meta property="og:image" content="https://poorpool.github.io/images/topdown/cpt6-9.png">
+<meta property="og:image" content="https://poorpool.github.io/images/topdown/cpt6-10.png">
+<meta property="og:image" content="https://poorpool.github.io/images/topdown/cpt6-11.png">
+<meta property="og:image" content="https://poorpool.github.io/images/topdown/cpt6-12.png">
+<meta property="og:image" content="https://poorpool.github.io/images/topdown/cpt6-13.png">
+<meta property="og:image" content="https://poorpool.github.io/images/topdown/cpt6-14.png">
+<meta property="og:image" content="https://poorpool.github.io/images/topdown/cpt6-15.png">
+<meta property="og:image" content="https://poorpool.github.io/images/topdown/cpt6-16.png">
+<meta property="og:image" content="https://poorpool.github.io/images/topdown/cpt6-17.png">
+<meta property="og:image" content="https://poorpool.github.io/images/topdown/cpt6-18.png">
+<meta property="og:image" content="https://poorpool.github.io/images/topdown/cpt6-19.png">
+<meta property="og:image" content="https://poorpool.github.io/images/topdown/cpt6-20.png">
+<meta property="article:published_time" content="2020-05-01T10:00:06.000Z">
+<meta property="article:modified_time" content="2022-10-17T07:18:55.908Z">
+<meta property="article:author" content="poorpool">
+<meta property="article:tag" content="笔记">
+<meta property="article:tag" content="计算机网络">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://poorpool.github.io/images/topdown/cpt6-7.png">
+
+
+    
+<link rel="stylesheet" href="/css/style/main.css">
+ 
+
+    
+    
+        <link rel="stylesheet" id="hl-default-theme" href="/css/highlight/a11y-light.css" media="none" onload="this.media='all'">
+        
+    
+
+    
+    
+
+    
+
+     
+
+    <!-- custom head -->
+
+<meta name="generator" content="Hexo 4.2.1"><link rel="alternate" href="/atom.xml" title="怀中落霞" type="application/atom+xml">
+</head>
+
+    <body>
+        <div id="app">
+            <header class="header">
+    <div class="header__left">
+        <a href="/" class="button">
+            <span class="logo__text">怀中落霞</span>
+        </a>
+    </div>
+    <div class="header__right">
+        
+            <div class="navbar__menus">
+                
+                    <a href="/" class="navbar-menu button">首页</a>
+                
+                    <a href="/tags/" class="navbar-menu button">标签</a>
+                
+                    <a href="/categories/" class="navbar-menu button">分类</a>
+                
+                    <a href="/archives/" class="navbar-menu button">归档</a>
+                
+                    <a href="/links/" class="navbar-menu button">友链</a>
+                
+                    <a href="/about/" class="navbar-menu button">关于</a>
+                
+            </div>
+        
+        
+        
+    <a href="/search/" id="btn-search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024" width="24" height="24" fill="currentColor" stroke="currentColor" stroke-width="32"><path d="M192 448c0-141.152 114.848-256 256-256s256 114.848 256 256-114.848 256-256 256-256-114.848-256-256z m710.624 409.376l-206.88-206.88A318.784 318.784 0 0 0 768 448c0-176.736-143.264-320-320-320S128 271.264 128 448s143.264 320 320 320a318.784 318.784 0 0 0 202.496-72.256l206.88 206.88 45.248-45.248z"></path></svg>
+    </a>
+
+
+        
+        
+
+        
+            <a class="dropdown-icon button" id="btn-dropdown" tabindex="0"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" width='24' height='24' fill="none" stroke="currentColor" stroke-width="0.7" stroke-linecap="round" stroke-linejoin="round"><path fill="currentColor" d="M3.314,4.8h13.372c0.41,0,0.743-0.333,0.743-0.743c0-0.41-0.333-0.743-0.743-0.743H3.314c-0.41,0-0.743,0.333-0.743,0.743C2.571,4.467,2.904,4.8,3.314,4.8z M16.686,15.2H3.314c-0.41,0-0.743,0.333-0.743,0.743s0.333,0.743,0.743,0.743h13.372c0.41,0,0.743-0.333,0.743-0.743S17.096,15.2,16.686,15.2z M16.686,9.257H3.314c-0.41,0-0.743,0.333-0.743,0.743s0.333,0.743,0.743,0.743h13.372c0.41,0,0.743-0.333,0.743-0.743S17.096,9.257,16.686,9.257z"></path></svg></a>
+            <div class="dropdown-menus" id="dropdown-menus">
+                
+                    <a href="/" class="dropdown-menu button">首页</a>
+                
+                    <a href="/tags/" class="dropdown-menu button">标签</a>
+                
+                    <a href="/categories/" class="dropdown-menu button">分类</a>
+                
+                    <a href="/archives/" class="dropdown-menu button">归档</a>
+                
+                    <a href="/links/" class="dropdown-menu button">友链</a>
+                
+                    <a href="/about/" class="dropdown-menu button">关于</a>
+                
+            </div>
+        
+    </div>
+</header>
+
+
+            <main class="main">
+    
+
+<div class="post-title">
+    <h1 class="post-title__text">
+        《计算机网络：自顶向下方法》笔记7 无线网络和移动网络
+    </h1>
+    <div class="post-title__meta">
+        <a href="/archives/2020/05/" class="post-meta__date button">2020-05-01</a>
+        
+    <span class="separate-dot"></span><a href="/categories/%E7%AC%94%E8%AE%B0/" class="button">笔记</a>
+
+ 
+        
+    
+    
+
+
+ 
+
+ 
+    </div>
+</div>
+
+
+    <aside class="post-side">
+        <div class="post-side__toc">
+            <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#概述"><span class="toc-number">1.</span> <span class="toc-text">概述</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#无线链路和网络特征"><span class="toc-number"></span> <span class="toc-text">无线链路和网络特征</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#CDMA"><span class="toc-number">1.</span> <span class="toc-text">CDMA</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#WiFi：802-11无线LAN"><span class="toc-number"></span> <span class="toc-text">WiFi：802.11无线LAN</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#802-11体系结构"><span class="toc-number">1.</span> <span class="toc-text">802.11体系结构</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#信道与关联"><span class="toc-number">2.</span> <span class="toc-text">信道与关联</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#802-11MAC协议"><span class="toc-number">3.</span> <span class="toc-text">802.11MAC协议</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#处理隐藏终端：RTS和CTS"><span class="toc-number">4.</span> <span class="toc-text">处理隐藏终端：RTS和CTS</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#IEEE802-11帧"><span class="toc-number">5.</span> <span class="toc-text">IEEE802.11帧</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#在相同的ip子网中的移动性"><span class="toc-number">6.</span> <span class="toc-text">在相同的ip子网中的移动性</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#蜂窝因特网接入"><span class="toc-number"></span> <span class="toc-text">蜂窝因特网接入</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#走向4G：LTE"><span class="toc-number">1.</span> <span class="toc-text">走向4G：LTE</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#移动管理：原理"><span class="toc-number"></span> <span class="toc-text">移动管理：原理</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#寻址"><span class="toc-number">1.</span> <span class="toc-text">寻址</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#移动节点的间接路由选择"><span class="toc-number">2.</span> <span class="toc-text">移动节点的间接路由选择</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#移动节点的直接路由选择"><span class="toc-number">3.</span> <span class="toc-text">移动节点的直接路由选择</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#移动IP"><span class="toc-number"></span> <span class="toc-text">移动IP</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#管理蜂窝网中的移动性"><span class="toc-number"></span> <span class="toc-text">管理蜂窝网中的移动性</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#无线和移动性：对高层协议的影响"><span class="toc-number"></span> <span class="toc-text">无线和移动性：对高层协议的影响</span></a>
+        </div>
+    </aside>
+    <a class="btn-toc button" id="btn-toc" tabindex="0">
+        <svg viewBox="0 0 1024 1024" width="32" height="32" xmlns="http://www.w3.org/2000/svg">
+            <path d="M128 256h64V192H128zM320 256h576V192H320zM128 544h64v-64H128zM320 544h576v-64H320zM128 832h64v-64H128zM320 832h576v-64H320z" fill="currentColor"></path>
+        </svg>
+    </a>
+    <div class="toc-menus" id="toc-menus">
+        <div class="toc-title">文章目录</div>
+        <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#概述"><span class="toc-number">1.</span> <span class="toc-text">概述</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#无线链路和网络特征"><span class="toc-number"></span> <span class="toc-text">无线链路和网络特征</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#CDMA"><span class="toc-number">1.</span> <span class="toc-text">CDMA</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#WiFi：802-11无线LAN"><span class="toc-number"></span> <span class="toc-text">WiFi：802.11无线LAN</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#802-11体系结构"><span class="toc-number">1.</span> <span class="toc-text">802.11体系结构</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#信道与关联"><span class="toc-number">2.</span> <span class="toc-text">信道与关联</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#802-11MAC协议"><span class="toc-number">3.</span> <span class="toc-text">802.11MAC协议</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#处理隐藏终端：RTS和CTS"><span class="toc-number">4.</span> <span class="toc-text">处理隐藏终端：RTS和CTS</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#IEEE802-11帧"><span class="toc-number">5.</span> <span class="toc-text">IEEE802.11帧</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#在相同的ip子网中的移动性"><span class="toc-number">6.</span> <span class="toc-text">在相同的ip子网中的移动性</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#蜂窝因特网接入"><span class="toc-number"></span> <span class="toc-text">蜂窝因特网接入</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#走向4G：LTE"><span class="toc-number">1.</span> <span class="toc-text">走向4G：LTE</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#移动管理：原理"><span class="toc-number"></span> <span class="toc-text">移动管理：原理</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#寻址"><span class="toc-number">1.</span> <span class="toc-text">寻址</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#移动节点的间接路由选择"><span class="toc-number">2.</span> <span class="toc-text">移动节点的间接路由选择</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#移动节点的直接路由选择"><span class="toc-number">3.</span> <span class="toc-text">移动节点的直接路由选择</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#移动IP"><span class="toc-number"></span> <span class="toc-text">移动IP</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#管理蜂窝网中的移动性"><span class="toc-number"></span> <span class="toc-text">管理蜂窝网中的移动性</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#无线和移动性：对高层协议的影响"><span class="toc-number"></span> <span class="toc-text">无线和移动性：对高层协议的影响</span></a>
+    </div>
+
+
+<article class="post post__with-toc content-card">
+    <div class="post__header"></div>
+    <div class="post__content">
+        <p>第七章</p>
+<a id="more"></a>
+
+<h4 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h4><p>三要素：无线主机、无线链路、基站。</p>
+<p>蜂窝网络的蜂窝塔，无线LAN中的接入点都是基站。</p>
+<p>基础设施模式是所有传统的网络服务例如地址分配和路由选择都是网络通过基站向相连的主机提供，自组织网络是主机自身提供路由选择地址分配等服务。</p>
+<p>移动主机从一个基站的覆盖范围跑到另一个基站的覆盖范围是切换。</p>
+<p>按照跳数和基础设施分类：</p>
+<ul>
+<li>单跳，基于基础设施。平常的802.11网络、4G LTE网络都是。</li>
+<li>单跳，无基础设施。蓝牙和具有自组织模式的802.11网络。</li>
+<li>多跳，基于基础设施。一个基站有线地连接到较大网络，但是某些无线节点不得不经过其他无线节点中继来经该基站通信。</li>
+<li>多跳，无基础设施。</li>
+</ul>
+<h2 id="无线链路和网络特征"><a href="#无线链路和网络特征" class="headerlink" title="无线链路和网络特征"></a>无线链路和网络特征</h2><p>对于无线网络，重点是链路层：</p>
+<ul>
+<li>递减的信号强度</li>
+<li>来自其他源的干扰</li>
+<li>多径传播（经反射等）</li>
+</ul>
+<p>它更容易出现比特差错，所以用crc错误检测码加上链路层ARQ协议来重传受损的帧。</p>
+<p>信噪比SNR是所收到的信号和噪声强度的相对测量，单位是分贝dB。</p>
+<p>比特差错率BER大致是接收方收到的有错传输比特的概率。</p>
+<ul>
+<li>对于给定的调制方案，snr越高，ber越低。</li>
+<li>对于给定的snr，具有较高比特传输率的调制技术将具有更高的ber。</li>
+<li>物理层调制技术的动态选择能用于适配对信道条件的调制技术。</li>
+</ul>
+<p>还有隐藏终端问题和衰减使得多路访问在无线网络中更复杂。</p>
+<h4 id="CDMA"><a href="#CDMA" class="headerlink" title="CDMA"></a>CDMA</h4><p>码分多址CDMA属于信道划分协议族，挺有意思的，虽然现在好像要退网了……</p>
+<p>比方说一对男生一对女生在一个地方同时谈话，男生谈球鞋型号，女生谈口红色号，虽然他们同时同频，但是他们都能获取到自己的信息。</p>
+<p>在cdma中要发送的每个bit都通过乘以一个信号（比特）的编码来进行编码，这个信号的变化速率（码片速率）比初始比特序列的变化快得多。为了数学的方便，我们把0比特取值为-1。</p>
+<p><img src="/images/topdown/cpt6-7.png" class="lazy" data-srcset="/images/topdown/cpt6-7.png" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABAQMAAAAl21bKAAAABlBMVEXMzMyWlpYU2uzLAAAACXBIWXMAAA7EAAAOxAGVKw4bAAAACklEQVQImWNgAAAAAgAB9HFkpgAAAABJRU5ErkJggg==" alt="cdma1"></p>
+<p>如图。稍微详细一点的看书。</p>
+<p>如果有干扰呢？如果<strong>精心</strong>选择发送方的编码，那么有干扰也会被干掉。</p>
+<p><img src="/images/topdown/cpt6-8.png" class="lazy" data-srcset="/images/topdown/cpt6-8.png" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABAQMAAAAl21bKAAAABlBMVEXMzMyWlpYU2uzLAAAACXBIWXMAAA7EAAAOxAGVKw4bAAAACklEQVQImWNgAAAAAgAB9HFkpgAAAABJRU5ErkJggg==" alt="cdma2"></p>
+<h2 id="WiFi：802-11无线LAN"><a href="#WiFi：802-11无线LAN" class="headerlink" title="WiFi：802.11无线LAN"></a>WiFi：802.11无线LAN</h2><p>802.11设备工作在2.4-2.485GHZ和5.1-5.8GHz两个频段（2.4GHz和5GHz），2.4GHz频段无需执照，电话和微波炉可能会争用频谱。5GHz对于给定的功率等级有更短的传输距离，受多径传播影响大，但是传输速率高。</p>
+<h4 id="802-11体系结构"><a href="#802-11体系结构" class="headerlink" title="802.11体系结构"></a>802.11体系结构</h4><p>802.11体系结构的基本构件模块是基本服务集BSS，一个bss包含一个或多个无线站点和被称为接入点AP的中央基站。</p>
+<p><img src="/images/topdown/cpt6-9.png" class="lazy" data-srcset="/images/topdown/cpt6-9.png" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABAQMAAAAl21bKAAAABlBMVEXMzMyWlpYU2uzLAAAACXBIWXMAAA7EAAAOxAGVKw4bAAAACklEQVQImWNgAAAAAgAB9HFkpgAAAABJRU5ErkJggg==" alt="qwq"></p>
+<p>每个无线站点都有一个6字节mac地址，在适配器固件中，每个ap的无线接口也有一个mac地址，这些地址由ieee管理，理论上唯一。</p>
+<h4 id="信道与关联"><a href="#信道与关联" class="headerlink" title="信道与关联"></a>信道与关联</h4><p>每个无线站点在能够发送接收网络层数据前必须和一个ap相关联。当网管安装一个ap时，为该接入点分配一个单字or双字的服务集标识ssid，为该ap分配一个信道号。在2.4-2.4835GHZ这85MHz的频段内，802.11定义了11个部分重叠的信道，1、6、11是惟一三个非重叠信号的集合。所以网管可以在同一个物理网络中安装3个802.11b AP，每个ap都连到一台交换机上。</p>
+<p>WiFi丛林是一个无线站点能从两个或多个ap中收到很强的信号的物理位置。你的无线站点需要加入其中一个子网因此需要跟其中一个AP关联。802.11要求每个ap周期性地发送信标帧，包括该ap的ssid和mac地址。你的无线站点为了得知在发送信标帧的ap，扫描十一个信道，找出可能的信标帧。然后选择一个ap关联。</p>
+<p>扫描信道和监听信标帧是被动扫描，当然也能主动扫描，就是向位于无线主机范围内所有ap广播探测帧。</p>
+<p>无线站点鉴别自身的方法是mac地址或者用户名+口令。</p>
+<h4 id="802-11MAC协议"><a href="#802-11MAC协议" class="headerlink" title="802.11MAC协议"></a>802.11MAC协议</h4><p>随机访问协议：带碰撞避免的CSMA也就是CSMA/CA 。802.11使用碰撞避免而非碰撞检测。并且使用链路层确认/重传ARQ方案。</p>
+<p>站点包括无线站点和ap。一旦站点开始发送一个帧，它就完全地发送这个帧。</p>
+<p>链路层确认： 目的站点收到一个通过crc校验的帧后等待一个短帧间间隔SIFS，然后返回一个确认帧。发送站点在给定的时间没有收到确认帧就假定出现了错误并重传该帧，使用CSMA/CA协议访问信道。如果若干固定次重传以后仍未收到确认就放弃发送并丢弃该帧。</p>
+<p><img src="/images/topdown/cpt6-10.png" class="lazy" data-srcset="/images/topdown/cpt6-10.png" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABAQMAAAAl21bKAAAABlBMVEXMzMyWlpYU2uzLAAAACXBIWXMAAA7EAAAOxAGVKw4bAAAACklEQVQImWNgAAAAAgAB9HFkpgAAAABJRU5ErkJggg==" alt="csmaca"></p>
+<p>如图是csma/ca协议的示意图，具体看书。</p>
+<p>为啥要等一段时间？假设两个站点各有一个数据帧要发送，如果不等，检测到信道里第三方传输完毕后它们立刻开始发送，那么这两个碰撞憨了。所以它们立即随机回退，希望借助不同的回退值来解决碰撞，也就是（如果两个站点没有对对方隐藏）让“失败站点”听到“胜利站点”的信号。当然，这种情况不一定能完全避免。</p>
+<h4 id="处理隐藏终端：RTS和CTS"><a href="#处理隐藏终端：RTS和CTS" class="headerlink" title="处理隐藏终端：RTS和CTS"></a>处理隐藏终端：RTS和CTS</h4><p><img src="/images/topdown/cpt6-11.png" class="lazy" data-srcset="/images/topdown/cpt6-11.png" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABAQMAAAAl21bKAAAABlBMVEXMzMyWlpYU2uzLAAAACXBIWXMAAA7EAAAOxAGVKw4bAAAACklEQVQImWNgAAAAAgAB9HFkpgAAAABJRU5ErkJggg==" alt="qwq"></p>
+<p>如图，h1和h2都没有对ap隐藏，但是对对方隐藏了。这样等待一个difs就是无用功。</p>
+<p>它允许站点使用一个短请求发送RTS控制帧和短允许发送CTS控制帧来预约对信道的访问。</p>
+<p><img src="/images/topdown/cpt6-12.png" class="lazy" data-srcset="/images/topdown/cpt6-12.png" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABAQMAAAAl21bKAAAABlBMVEXMzMyWlpYU2uzLAAAACXBIWXMAAA7EAAAOxAGVKw4bAAAACklEQVQImWNgAAAAAgAB9HFkpgAAAABJRU5ErkJggg==" alt="qwq"></p>
+<p>如图，广播的cts帧有两个作用：给发送方明确的发送许可，指示其他站点在预约期内不要发送。</p>
+<p>rts/cts交换仅仅用于为长数据预约信道。</p>
+<h4 id="IEEE802-11帧"><a href="#IEEE802-11帧" class="headerlink" title="IEEE802.11帧"></a>IEEE802.11帧</h4><p><img src="/images/topdown/cpt6-13.png" class="lazy" data-srcset="/images/topdown/cpt6-13.png" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABAQMAAAAl21bKAAAABlBMVEXMzMyWlpYU2uzLAAAACXBIWXMAAA7EAAAOxAGVKw4bAAAACklEQVQImWNgAAAAAgAB9HFkpgAAAABJRU5ErkJggg==" alt="frame"></p>
+<p>尽管有效载荷的最大长度是2312字节，但它通常小于1500。</p>
+<p>地址1是要接收该帧的无线站点的mac地址。</p>
+<p>地址2是传输该帧的mac地址。</p>
+<p>地址3，回想一下bss，它是无线站点和ap所在的子网与其他子网相连的路由器接口的mac地址。</p>
+<p><img src="/images/topdown/cpt6-14.png" class="lazy" data-srcset="/images/topdown/cpt6-14.png" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABAQMAAAAl21bKAAAABlBMVEXMzMyWlpYU2uzLAAAACXBIWXMAAA7EAAAOxAGVKw4bAAAACklEQVQImWNgAAAAAgAB9HFkpgAAAABJRU5ErkJggg==" alt="qwq"></p>
+<p>考虑R1发报到H1来回的过程。</p>
+<ul>
+<li>路由器知道h1的hp地址（从数据报目的地址得到），使用arp确定h1的mac地址。r1将该数据报封装在一个以太网帧中，源地址是r1 mac地址，目的地址是h1 mac地址。</li>
+<li>以太网帧到达ap以后，被转化为一个802.11帧，地址1是h1 mac地址，地址2是自身的mac地址，地址3是r1的mac地址。</li>
+<li>h1发报给r1：h1生成一个802.11帧，用ap mac，h1 mac，r1 mac填充地址123。</li>
+<li>ap接收802.11帧时转化为以太网帧，源地址是h1 mac，目的地址是r1 mac。</li>
+</ul>
+<h4 id="在相同的ip子网中的移动性"><a href="#在相同的ip子网中的移动性" class="headerlink" title="在相同的ip子网中的移动性"></a>在相同的ip子网中的移动性</h4><p><img src="/images/topdown/cpt6-15.png" class="lazy" data-srcset="/images/topdown/cpt6-15.png" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABAQMAAAAl21bKAAAABlBMVEXMzMyWlpYU2uzLAAAACXBIWXMAAA7EAAAOxAGVKw4bAAAACklEQVQImWNgAAAAAgAB9HFkpgAAAABJRU5ErkJggg==" alt="qwq"></p>
+<p>如图，h1检测到来自ap1的信号逐渐减弱并开始扫描更强的信号，收到来自ap2的信标帧（ap2和ap1的ssid常常相同），h1和ap1解除关联，和ap2建立关联。</p>
+<p>交换机怎么知道呢？一种解决方法是新的关联形成以后让ap2以h1的源地址向交换机发送一个以太网广播帧，交换机收到该帧以后就更新转发表。</p>
+<h2 id="蜂窝因特网接入"><a href="#蜂窝因特网接入" class="headerlink" title="蜂窝因特网接入"></a>蜂窝因特网接入</h2><h4 id="走向4G：LTE"><a href="#走向4G：LTE" class="headerlink" title="走向4G：LTE"></a>走向4G：LTE</h4><p>lte在下行信道使用tdm和fdm结合的方法，叫正交频分复用OFDM。</p>
+<h2 id="移动管理：原理"><a href="#移动管理：原理" class="headerlink" title="移动管理：原理"></a>移动管理：原理</h2><p><img src="/images/topdown/cpt6-16.png" class="lazy" data-srcset="/images/topdown/cpt6-16.png" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABAQMAAAAl21bKAAAABlBMVEXMzMyWlpYU2uzLAAAACXBIWXMAAA7EAAAOxAGVKw4bAAAACklEQVQImWNgAAAAAgAB9HFkpgAAAABJRU5ErkJggg==" alt="qwq"></p>
+<p>考虑这样的情况：一个移动节点有归属网络和归属代理，所在网络在外部网络或被访网络。</p>
+<h4 id="寻址"><a href="#寻址" class="headerlink" title="寻址"></a>寻址</h4><p>某节点位于一个外部网络的时候，所有指向此节点固定地址的流量要导向外部网络，一种方法是外部网络向其他网络发通告，告诉该移动节点正在他的网络中。</p>
+<p>一种替代的方法是将移动性功能从网络核心搬到网络边缘，外部代理的作用之一就是为节点创建转交地址COA。coa有时又称为外部地址。外部代理的第二个作用就是告诉归属代理该移动节点在他的外部代理网络中有给定的coa。</p>
+<h4 id="移动节点的间接路由选择"><a href="#移动节点的间接路由选择" class="headerlink" title="移动节点的间接路由选择"></a>移动节点的间接路由选择</h4><p><img src="/images/topdown/cpt6-17.png" class="lazy" data-srcset="/images/topdown/cpt6-17.png" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABAQMAAAAl21bKAAAABlBMVEXMzMyWlpYU2uzLAAAACXBIWXMAAA7EAAAOxAGVKw4bAAAACklEQVQImWNgAAAAAgAB9HFkpgAAAABJRU5ErkJggg==" alt="qwq"></p>
+<p>如图，通信者只是将数据报寻址到移动节点的固定地址，而归属代理除了跟踪coa的变化以外，还监视到达的数据报。要是数据报寻址的节点的归属网络和归属代理所在网络相同但是节点却在某个外部网络，归属代理就将数据报转发给外部代理，外部代理转发给移动节点。为了使数据报到达的时候不变，还需要封装，相当于4.3节中的隧道。</p>
+<h4 id="移动节点的直接路由选择"><a href="#移动节点的直接路由选择" class="headerlink" title="移动节点的直接路由选择"></a>移动节点的直接路由选择</h4><p>间接路由选择有三角路由选择问题：即使在通信者和移动节点之间有一条更有效的路径，数据报也要先发给归属代理。</p>
+<p>所以引入通信者代理，这需要一个移动用户定位协议，以便通信者代理向归属代理查询获得移动节点的coa。</p>
+<p>使用直接路由选择的时候归属代理仅在会话开始的时候被通信者代理询问coa一次。因此如果在归属代理中更新coa并不能解决数据路由选择到移动节点新的外部网络的问题。</p>
+<p>解决方法是使用锚外部代理，它是首次发现移动节点的外部网络中的外部代理。如果移动节点发生移动，就让新的外部代理向锚外部代理提供移动节点的新coa。</p>
+<p><img src="/images/topdown/cpt6-18.png" class="lazy" data-srcset="/images/topdown/cpt6-18.png" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABAQMAAAAl21bKAAAABlBMVEXMzMyWlpYU2uzLAAAACXBIWXMAAA7EAAAOxAGVKw4bAAAACklEQVQImWNgAAAAAgAB9HFkpgAAAABJRU5ErkJggg==" alt="qwq"></p>
+<h2 id="移动IP"><a href="#移动IP" class="headerlink" title="移动IP"></a>移动IP</h2><p>三部分：代理发现、向归属代理注册、数据报的间接路由选择。</p>
+<p><strong>代理发现</strong>：</p>
+<p>一个移动ip节点到达新网络，首先要知道相应的外部代理or归属代理的身份。</p>
+<p>要么使用代理通告：</p>
+<p>代理周期性地在所有连接的链路上广播特殊的icmp报文</p>
+<p><img src="/images/topdown/cpt6-19.png" class="lazy" data-srcset="/images/topdown/cpt6-19.png" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABAQMAAAAl21bKAAAABlBMVEXMzMyWlpYU2uzLAAAACXBIWXMAAA7EAAAOxAGVKw4bAAAACklEQVQImWNgAAAAAgAB9HFkpgAAAABJRU5ErkJggg==" alt="qwq"></p>
+<p>要么使用代理请求：移动节点广播代理请求，收到请求的代理发送代理通告。</p>
+<p><img src="/images/topdown/cpt6-20.png" class="lazy" data-srcset="/images/topdown/cpt6-20.png" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABAQMAAAAl21bKAAAABlBMVEXMzMyWlpYU2uzLAAAACXBIWXMAAA7EAAAOxAGVKw4bAAAACklEQVQImWNgAAAAAgAB9HFkpgAAAABJRU5ErkJggg==" alt="qwq"></p>
+<h2 id="管理蜂窝网中的移动性"><a href="#管理蜂窝网中的移动性" class="headerlink" title="管理蜂窝网中的移动性"></a>管理蜂窝网中的移动性</h2><p>这一段比较繁琐，但是能解决“边打电话边开车”的疑惑，建议看书。</p>
+<h2 id="无线和移动性：对高层协议的影响"><a href="#无线和移动性：对高层协议的影响" class="headerlink" title="无线和移动性：对高层协议的影响"></a>无线和移动性：对高层协议的影响</h2><p>影响不是很大，不过tcp的拥塞控制反应在无限情况下可能会有问题，解决方法是：本地恢复、tcp发送方知晓文件线路、分离连接方法。</p>
+<p>还有需要考虑，无线网络通常带宽要小。</p>
+
+    </div>
+     
+    <div class="post-footer__meta"><p>更新于 2022-10-17</p></div> 
+    <div class="post-entry__tags"><a href="/tags/%E7%AC%94%E8%AE%B0/" class="post-tags__link button"># 笔记</a><a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/" class="post-tags__link button"># 计算机网络</a></div> 
+</article>
+
+
+    <div class="nav">
+        <div class="nav__prev">
+            
+                <a href="/2020/05/01/cs_notes/topdown_chapter8/" class="nav__link">
+                    <div>
+                        <svg viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg" width="24" height="24"><path d="M589.088 790.624L310.464 512l278.624-278.624 45.248 45.248L400.96 512l233.376 233.376z" fill="#808080"></path></svg>
+                    </div>
+                    <div>
+                        <div class="nav__label">
+                            Previous Post
+                        </div>
+                        <div class="nav__title">
+                            《计算机网络：自顶向下方法》笔记8 计算机网络中的安全
+                        </div>
+                    </div>
+                </a>
+            
+        </div>
+        <div class="nav__next">
+            
+                <a href="/2020/05/01/cs_notes/topdown_chapter6/" class="nav__link">
+                    <div>
+                        <div class="nav__label">
+                            Next Post
+                        </div>
+                        <div class="nav__title">
+                            《计算机网络：自顶向下方法》笔记6 链路层和局域网
+                        </div>
+                    </div>
+                    <div>
+                        <svg viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg" width="24" height="24"><path d="M434.944 790.624l-45.248-45.248L623.04 512l-233.376-233.376 45.248-45.248L713.568 512z" fill="#808080"></path></svg>
+                    </div>
+                </a>
+            
+        </div>
+    </div>
+
+
+
+
+
+</main>
+
+            <footer class="footer">
+     
+    <a href="#" class="button" id="b2t" aria-label="回到顶部" title="回到顶部">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024" width="32" height="32">
+            <path d="M233.376 722.752L278.624 768 512 534.624 745.376 768l45.248-45.248L512 444.128zM192 352h640V288H192z" fill="currentColor"></path>
+        </svg>
+    </a>
+
+    
+
+
+    
+     
+ 
+
+ 
+    
+        
+        <p class="footer-copyright">
+            Copyright © 2017&nbsp;-&nbsp;2022 <a href="/">怀中落霞</a>
+        </p>
+    
+    
+    <p>Powered by <a href="https://hexo.io" target="_blank">Hexo</a> | Theme - <a href="https://github.com/ChrAlpha/hexo-theme-cards" target="_blank">Cards</a></p>
+</footer>
+
+        </div>
+        
+    <script defer src="https://cdn.jsdelivr.net/npm/vanilla-lazyload@17.1.0/dist/lazyload.min.js"></script>
+    <script>
+        window.lazyLoadOptions = {
+            elements_selector: ".lazy",
+            threshold: 0
+        };
+    </script>
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+
+
+ 
+
+
+
+ 
+
+
+    
+ 
+
+
+    
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.4.1/dist/jquery.min.js"></script>
+
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.4.1/dist/jquery.fancybox.min.css">
+
+    
+<script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.4.1/dist/jquery.fancybox.min.js"></script>
+
+    <script>
+        let lazyloadT = Boolean('true'),
+            auto_fancybox = Boolean('true')
+        if (auto_fancybox) {
+            $(".post__content").find('img').each(function () {
+                var element = document.createElement("a");
+                $(element).attr("data-fancybox", "gallery");
+                $(element).attr("href", $(this).attr("src"));
+                if (lazyloadT) {
+                    $(element).attr("href", $(this).attr("data-srcset"));
+                }
+                $(this).wrap(element);
+            });
+        } else {
+            $(".post__content").find("fancybox").find('img').each(function () {
+                var element = document.createElement("a");
+                $(element).attr("data-fancybox", "gallery");
+                $(element).attr("href", $(this).attr("src"));
+                if (lazyloadT) {
+                    $(element).attr("href", $(this).attr("data-srcset"));
+                }
+                $(this).wrap(element);
+            });
+        }
+    </script>
+ 
+
+
+    <script>
+        if (typeof MathJax === 'undefined') {
+            window.MathJax = {
+                loader: {
+                    source: {
+                        '[tex]/amsCd': '[tex]/amscd',
+                        '[tex]/AMScd': '[tex]/amscd'
+                    }
+                },
+                tex: {
+                    inlineMath: {'[+]': [['$', '$']]},
+                    tags: 'ams'
+                },
+                options: {
+                    renderActions: {
+                        findScript: [10, doc => {
+                            document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+                                const display = !!node.type.match(/; *mode=display/);
+                                const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+                                const text = document.createTextNode('');
+                                node.parentNode.replaceChild(text, node);
+                                math.start = {node: text, delim: '', n: 0};
+                                math.end = {node: text, delim: '', n: 0};
+                                doc.math.push(math);
+                            });
+                        }, '', false],
+                        insertedScript: [200, () => {
+                            document.querySelectorAll('mjx-container').forEach(node => {
+                                let target = node.parentNode;
+                                if (target.nodeName.toLowerCase() === 'li') {
+                                    target.parentNode.classList.add('has-jax');
+                                }
+                            });
+                        }, '', false]
+                    }
+                }
+            };
+            (function () {
+                var script = document.createElement('script');
+                script.src = "https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js";
+                script.defer = true;
+                document.head.appendChild(script);
+            })();
+        } else {
+            MathJax.startup.document.state(0);
+            MathJax.texReset();
+            MathJax.typeset();
+        }
+    </script>
+
+ 
+
+ 
+
+ 
+
+ 
+
+
+
+
+    </body>
+</html>

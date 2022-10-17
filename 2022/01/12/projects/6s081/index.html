@@ -1,0 +1,450 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+    <meta charset="utf-8">
+
+    
+
+    <!-- 渲染优化 -->
+    <meta name="renderer" content="webkit">
+    <meta name="force-rendering" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta name="HandheldFriendly" content="True" >
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+    <!--icon-->
+
+    
+        <link rel="shortcut icon" href="/images/icons/favicon.ico">
+    
+    
+    
+    
+        <link rel="apple-touch-icon" sizes="180x180" href="/images/icons/logo.png">
+    
+    
+
+
+    <!-- meta -->
+
+
+<title>6.s081 学习笔记 | 怀中落霞</title>
+
+
+    <meta name="keywords" content="笔记, 操作系统">
+
+
+
+
+    <!-- OpenGraph -->
+ 
+    <meta name="description" content="2021年链接 https:&#x2F;&#x2F;pdos.csail.mit.edu&#x2F;6.S081&#x2F;2021&#x2F;schedule.html">
+<meta property="og:type" content="article">
+<meta property="og:title" content="6.s081 学习笔记">
+<meta property="og:url" content="https://poorpool.github.io/2022/01/12/projects/6s081/index.html">
+<meta property="og:site_name" content="怀中落霞">
+<meta property="og:description" content="2021年链接 https:&#x2F;&#x2F;pdos.csail.mit.edu&#x2F;6.S081&#x2F;2021&#x2F;schedule.html">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://poorpool.github.io/images/6s081/1.png">
+<meta property="og:image" content="https://poorpool.github.io/images/6s081/2.png">
+<meta property="og:image" content="https://poorpool.github.io/images/6s081/3.png">
+<meta property="og:image" content="https://poorpool.github.io/images/6s081/4.png">
+<meta property="og:image" content="https://poorpool.github.io/images/6s081/5.png">
+<meta property="og:image" content="https://poorpool.github.io/images/6s081/6.png">
+<meta property="article:published_time" content="2022-01-12T13:52:42.000Z">
+<meta property="article:modified_time" content="2022-10-17T07:18:55.916Z">
+<meta property="article:author" content="poorpool">
+<meta property="article:tag" content="笔记">
+<meta property="article:tag" content="操作系统">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://poorpool.github.io/images/6s081/1.png">
+
+
+    
+<link rel="stylesheet" href="/css/style/main.css">
+ 
+
+    
+    
+        <link rel="stylesheet" id="hl-default-theme" href="/css/highlight/a11y-light.css" media="none" onload="this.media='all'">
+        
+    
+
+    
+    
+
+    
+
+     
+
+    <!-- custom head -->
+
+<meta name="generator" content="Hexo 4.2.1"><link rel="alternate" href="/atom.xml" title="怀中落霞" type="application/atom+xml">
+</head>
+
+    <body>
+        <div id="app">
+            <header class="header">
+    <div class="header__left">
+        <a href="/" class="button">
+            <span class="logo__text">怀中落霞</span>
+        </a>
+    </div>
+    <div class="header__right">
+        
+            <div class="navbar__menus">
+                
+                    <a href="/" class="navbar-menu button">首页</a>
+                
+                    <a href="/tags/" class="navbar-menu button">标签</a>
+                
+                    <a href="/categories/" class="navbar-menu button">分类</a>
+                
+                    <a href="/archives/" class="navbar-menu button">归档</a>
+                
+                    <a href="/links/" class="navbar-menu button">友链</a>
+                
+                    <a href="/about/" class="navbar-menu button">关于</a>
+                
+            </div>
+        
+        
+        
+    <a href="/search/" id="btn-search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024" width="24" height="24" fill="currentColor" stroke="currentColor" stroke-width="32"><path d="M192 448c0-141.152 114.848-256 256-256s256 114.848 256 256-114.848 256-256 256-256-114.848-256-256z m710.624 409.376l-206.88-206.88A318.784 318.784 0 0 0 768 448c0-176.736-143.264-320-320-320S128 271.264 128 448s143.264 320 320 320a318.784 318.784 0 0 0 202.496-72.256l206.88 206.88 45.248-45.248z"></path></svg>
+    </a>
+
+
+        
+        
+
+        
+            <a class="dropdown-icon button" id="btn-dropdown" tabindex="0"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" width='24' height='24' fill="none" stroke="currentColor" stroke-width="0.7" stroke-linecap="round" stroke-linejoin="round"><path fill="currentColor" d="M3.314,4.8h13.372c0.41,0,0.743-0.333,0.743-0.743c0-0.41-0.333-0.743-0.743-0.743H3.314c-0.41,0-0.743,0.333-0.743,0.743C2.571,4.467,2.904,4.8,3.314,4.8z M16.686,15.2H3.314c-0.41,0-0.743,0.333-0.743,0.743s0.333,0.743,0.743,0.743h13.372c0.41,0,0.743-0.333,0.743-0.743S17.096,15.2,16.686,15.2z M16.686,9.257H3.314c-0.41,0-0.743,0.333-0.743,0.743s0.333,0.743,0.743,0.743h13.372c0.41,0,0.743-0.333,0.743-0.743S17.096,9.257,16.686,9.257z"></path></svg></a>
+            <div class="dropdown-menus" id="dropdown-menus">
+                
+                    <a href="/" class="dropdown-menu button">首页</a>
+                
+                    <a href="/tags/" class="dropdown-menu button">标签</a>
+                
+                    <a href="/categories/" class="dropdown-menu button">分类</a>
+                
+                    <a href="/archives/" class="dropdown-menu button">归档</a>
+                
+                    <a href="/links/" class="dropdown-menu button">友链</a>
+                
+                    <a href="/about/" class="dropdown-menu button">关于</a>
+                
+            </div>
+        
+    </div>
+</header>
+
+
+            <main class="main">
+    
+
+<div class="post-title">
+    <h1 class="post-title__text">
+        6.s081 学习笔记
+    </h1>
+    <div class="post-title__meta">
+        <a href="/archives/2022/01/" class="post-meta__date button">2022-01-12</a>
+        
+    <span class="separate-dot"></span><a href="/categories/%E7%AC%94%E8%AE%B0/" class="button">笔记</a>
+
+ 
+        
+    
+    
+
+
+ 
+
+ 
+    </div>
+</div>
+
+
+    <aside class="post-side">
+        <div class="post-side__toc">
+            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#LEC-1"><span class="toc-number">1.</span> <span class="toc-text">LEC 1</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Lab-Util"><span class="toc-number">2.</span> <span class="toc-text">Lab Util</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#LEC-3"><span class="toc-number">3.</span> <span class="toc-text">LEC 3</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Lab-Syscall"><span class="toc-number">4.</span> <span class="toc-text">Lab Syscall</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#xv6进行系统调用"><span class="toc-number">4.1.</span> <span class="toc-text">xv6进行系统调用</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#LEC-4"><span class="toc-number">5.</span> <span class="toc-text">LEC 4</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#内核的虚拟空间"><span class="toc-number">5.1.</span> <span class="toc-text">内核的虚拟空间</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#用户虚拟空间"><span class="toc-number">5.2.</span> <span class="toc-text">用户虚拟空间</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#代码片段"><span class="toc-number">5.3.</span> <span class="toc-text">代码片段</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#LEC-5"><span class="toc-number">6.</span> <span class="toc-text">LEC 5</span></a></li></ol>
+        </div>
+    </aside>
+    <a class="btn-toc button" id="btn-toc" tabindex="0">
+        <svg viewBox="0 0 1024 1024" width="32" height="32" xmlns="http://www.w3.org/2000/svg">
+            <path d="M128 256h64V192H128zM320 256h576V192H320zM128 544h64v-64H128zM320 544h576v-64H320zM128 832h64v-64H128zM320 832h576v-64H320z" fill="currentColor"></path>
+        </svg>
+    </a>
+    <div class="toc-menus" id="toc-menus">
+        <div class="toc-title">文章目录</div>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#LEC-1"><span class="toc-number">1.</span> <span class="toc-text">LEC 1</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Lab-Util"><span class="toc-number">2.</span> <span class="toc-text">Lab Util</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#LEC-3"><span class="toc-number">3.</span> <span class="toc-text">LEC 3</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Lab-Syscall"><span class="toc-number">4.</span> <span class="toc-text">Lab Syscall</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#xv6进行系统调用"><span class="toc-number">4.1.</span> <span class="toc-text">xv6进行系统调用</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#LEC-4"><span class="toc-number">5.</span> <span class="toc-text">LEC 4</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#内核的虚拟空间"><span class="toc-number">5.1.</span> <span class="toc-text">内核的虚拟空间</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#用户虚拟空间"><span class="toc-number">5.2.</span> <span class="toc-text">用户虚拟空间</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#代码片段"><span class="toc-number">5.3.</span> <span class="toc-text">代码片段</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#LEC-5"><span class="toc-number">6.</span> <span class="toc-text">LEC 5</span></a></li></ol>
+    </div>
+
+
+<article class="post post__with-toc content-card">
+    <div class="post__header"></div>
+    <div class="post__content">
+        <p>2021年链接 <a href="https://pdos.csail.mit.edu/6.S081/2021/schedule.html" target="_blank" rel="noopener">https://pdos.csail.mit.edu/6.S081/2021/schedule.html</a></p>
+<a id="more"></a>
+
+<h2 id="LEC-1"><a href="#LEC-1" class="headerlink" title="LEC 1"></a>LEC 1</h2><p>fork后子进程将复制父进程的数据段、BSS段、代码段、堆空间、栈空间和<strong>文件描述符</strong>。</p>
+<p>使用exec执行新的程序时，仍然可以使用原来的文件。</p>
+<p><img src="/images/6s081/1.png" class="lazy" data-srcset="/images/6s081/1.png" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABAQMAAAAl21bKAAAABlBMVEXMzMyWlpYU2uzLAAAACXBIWXMAAA7EAAAOxAGVKw4bAAAACklEQVQImWNgAAAAAgAB9HFkpgAAAABJRU5ErkJggg==" alt=""></p>
+<p>xv6 使用第一种方法。也就是子shell先关闭某个fd再打开，新fd取低值。</p>
+<p>所以分开fork和exec的好处之一是可以重定向子进程（子shell的）IO然后再exec而不会扰乱主进程的文件描述符表。</p>
+<p>fork以后的同一个文件描述符或者dup系统调用复制出来的文件描述符，他们对应的深层（underlying）IO对象都是一个，共享offset。</p>
+<p>shell中有种常见的重定向<code>2&gt;&amp;1</code>，就是说fd 2（stderr）是fd 1（stdout）的副本，也就是错误和正常输出都到一块。</p>
+<p>一个值得研读的重定向+pipe的例子：</p>
+<p><img src="/images/6s081/2.png" class="lazy" data-srcset="/images/6s081/2.png" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABAQMAAAAl21bKAAAABlBMVEXMzMyWlpYU2uzLAAAACXBIWXMAAA7EAAAOxAGVKw4bAAAACklEQVQImWNgAAAAAgAB9HFkpgAAAABJRU5ErkJggg==" alt=""></p>
+<p>关于xv6：<code>ctrl+p</code>打印进程信息，<code>ctrl+a x</code>退出qemu。</p>
+<h2 id="Lab-Util"><a href="#Lab-Util" class="headerlink" title="Lab Util"></a>Lab Util</h2><p>实现user/sleep.c，user/pingpong.c，user/primes.c，user/find.c，user/xargs.c，主要是完成这些工具。</p>
+<h2 id="LEC-3"><a href="#LEC-3" class="headerlink" title="LEC 3"></a>LEC 3</h2><p> 操作系统三大需求：多路复用、隔离、交互。</p>
+<p>宏内核monolithic kernel</p>
+<p>RISC-V有三种模式，机器模式machine mode，监督模式supervisor mode，用户模式user mode</p>
+<p>机器起于m mode，执行几条指令以后进入s mode。在s mode里面，cpu可以执行特权指令。如果u mode 的程序企图执行特权指令，那么不会执行，而是转为s mode并且停止程序。</p>
+<p>u mode的程序运行于用户空间user space，s mode的程序运行于内核空间 kernel space，也称为内核kernel。</p>
+<p>XV6为每个进程都维护了一个页表</p>
+<p><img src="/images/6s081/3.png" class="lazy" data-srcset="/images/6s081/3.png" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABAQMAAAAl21bKAAAABlBMVEXMzMyWlpYU2uzLAAAACXBIWXMAAA7EAAAOxAGVKw4bAAAACklEQVQImWNgAAAAAgAB9HFkpgAAAABJRU5ErkJggg==" alt=""></p>
+<p>每个进程都有用户栈和内核栈。执行用户指令时只用user stack，内核栈空。</p>
+<p>系统调用使用<code>ecall</code>指令。</p>
+<h2 id="Lab-Syscall"><a href="#Lab-Syscall" class="headerlink" title="Lab Syscall"></a>Lab Syscall</h2><h3 id="xv6进行系统调用"><a href="#xv6进行系统调用" class="headerlink" title="xv6进行系统调用"></a>xv6进行系统调用</h3><p>比方说我们在user/xxx.c里头写用户程序，调用了read()系统调用。这些系统调用的<strong>声明</strong>都在user/user.h中。</p>
+<p>usys.pl是一个perl脚本，生成到usys.S里头形如</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">.global read</span><br><span class="line">read:</span><br><span class="line"> li a7, SYS_read</span><br><span class="line"> ecall</span><br><span class="line"> ret</span><br></pre></td></tr></table></figure>
+
+<p>回想一下汇编语言，参数存在寄存器a0/a1……里头，a7加载上kernel/syscall.h里头定义好的标识数，ecall触发中断。</p>
+<p>中断描述符到中断处理函数这里还没讲，反正就到了kernel/trap.c usertrap()，调用了kernel/syscall.c syscall()，处理了系统调用。</p>
+<p>根据标识数和一个预先定义好的函数指针数组，来到了对应的系统调用处理函数kernel/sysfile.c sys_read()</p>
+<p>这个函数没有入参，都是自己从寄存器里面捞出来的。它里面可能调用kernel/里头的其他函数。user/xxx.c并不能调用这些函数。</p>
+<p>如果要写什么东西到用户内存，要使用copyout()。返回值的话，sys_read()的返回值存到a0里头（等同于eax）。</p>
+<h2 id="LEC-4"><a href="#LEC-4" class="headerlink" title="LEC 4"></a>LEC 4</h2><p>学到这里的时候和华科的os课设混着做了，感觉知识++</p>
+<p>硬件三级页表：</p>
+<p><img src="/images/6s081/4.png" class="lazy" data-srcset="/images/6s081/4.png" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABAQMAAAAl21bKAAAABlBMVEXMzMyWlpYU2uzLAAAACXBIWXMAAA7EAAAOxAGVKw4bAAAACklEQVQImWNgAAAAAgAB9HFkpgAAAABJRU5ErkJggg==" alt=""></p>
+<p>虚拟空间$2^39$，物理空间$2^56$</p>
+<p>快表TLB可以解决三级页表访存次数多的问题，但是记得切换进程的时候要清空tlb。</p>
+<p>PTE（page table entry）有一些标记，PTE_V for valid, PTE_R/W之类的。</p>
+<p>如果查的时候发现有不在的PTE，就发起缺页中断。</p>
+<p>每个进程（CPU）都有自己的satp寄存器，存放根页表的地址。他们各自有各自的页表。并且，内核自己也有一个页表。</p>
+<h3 id="内核的虚拟空间"><a href="#内核的虚拟空间" class="headerlink" title="内核的虚拟空间"></a>内核的虚拟空间</h3><p>内核空间映射：</p>
+<p><img src="/images/6s081/5.png" class="lazy" data-srcset="/images/6s081/5.png" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABAQMAAAAl21bKAAAABlBMVEXMzMyWlpYU2uzLAAAACXBIWXMAAA7EAAAOxAGVKw4bAAAACklEQVQImWNgAAAAAgAB9HFkpgAAAABJRU5ErkJggg==" alt=""></p>
+<p>QEMU模拟的ram从kernbase到phystop。<strong>内核虚拟空间</strong>里，ram和底下的设备都是直接映射。</p>
+<p>也有不是直接映射的：trampoline page（在虚拟空间的最高处，和用户页表一样，不过我不知道这是啥），以及内核栈页。每个进程都有一个内核栈。这些内核栈页直接都有guard page。</p>
+<h3 id="用户虚拟空间"><a href="#用户虚拟空间" class="headerlink" title="用户虚拟空间"></a>用户虚拟空间</h3><p><img src="/images/6s081/6.png" class="lazy" data-srcset="/images/6s081/6.png" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABAQMAAAAl21bKAAAABlBMVEXMzMyWlpYU2uzLAAAACXBIWXMAAA7EAAAOxAGVKw4bAAAACklEQVQImWNgAAAAAgAB9HFkpgAAAABJRU5ErkJggg==" alt=""></p>
+<h3 id="代码片段"><a href="#代码片段" class="headerlink" title="代码片段"></a>代码片段</h3><p>一个PTE是一个uint64，那么一个pagetable_t就是一个uint64的指针，，，</p>
+<p>walk是走一遍三级页表，返回va对应的pte。期间可以指定是否分配不存在的页面。</p>
+<p>空闲物理内存管理就是维护一个空闲页链表。一个页的下一个空闲页存放在这个页的最开头，用强制类型转换做。</p>
+<h2 id="LEC-5"><a href="#LEC-5" class="headerlink" title="LEC 5"></a>LEC 5</h2><p>trap有三种可能：</p>
+<ul>
+<li>ecall</li>
+<li>exception，例如除零</li>
+<li>interrupt，例如io完毕</li>
+</ul>
+
+    </div>
+     
+    <div class="post-footer__meta"><p>更新于 2022-10-17</p></div> 
+    <div class="post-entry__tags"><a href="/tags/%E7%AC%94%E8%AE%B0/" class="post-tags__link button"># 笔记</a><a href="/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" class="post-tags__link button"># 操作系统</a></div> 
+</article>
+
+
+    <div class="nav">
+        <div class="nav__prev">
+            
+                <a href="/2022/01/12/pdsl/dpukv/" class="nav__link">
+                    <div>
+                        <svg viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg" width="24" height="24"><path d="M589.088 790.624L310.464 512l278.624-278.624 45.248 45.248L400.96 512l233.376 233.376z" fill="#808080"></path></svg>
+                    </div>
+                    <div>
+                        <div class="nav__label">
+                            Previous Post
+                        </div>
+                        <div class="nav__title">
+                            6.s081 学习笔记
+                        </div>
+                    </div>
+                </a>
+            
+        </div>
+        <div class="nav__next">
+            
+                <a href="/2021/11/03/algorithm_contest/cspsharingexample/" class="nav__link">
+                    <div>
+                        <div class="nav__label">
+                            Next Post
+                        </div>
+                        <div class="nav__title">
+                            CSP 分享会中举到的代码例子
+                        </div>
+                    </div>
+                    <div>
+                        <svg viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg" width="24" height="24"><path d="M434.944 790.624l-45.248-45.248L623.04 512l-233.376-233.376 45.248-45.248L713.568 512z" fill="#808080"></path></svg>
+                    </div>
+                </a>
+            
+        </div>
+    </div>
+
+
+
+
+
+</main>
+
+            <footer class="footer">
+     
+    <a href="#" class="button" id="b2t" aria-label="回到顶部" title="回到顶部">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024" width="32" height="32">
+            <path d="M233.376 722.752L278.624 768 512 534.624 745.376 768l45.248-45.248L512 444.128zM192 352h640V288H192z" fill="currentColor"></path>
+        </svg>
+    </a>
+
+    
+
+
+    
+     
+ 
+
+ 
+    
+        
+        <p class="footer-copyright">
+            Copyright © 2017&nbsp;-&nbsp;2022 <a href="/">怀中落霞</a>
+        </p>
+    
+    
+    <p>Powered by <a href="https://hexo.io" target="_blank">Hexo</a> | Theme - <a href="https://github.com/ChrAlpha/hexo-theme-cards" target="_blank">Cards</a></p>
+</footer>
+
+        </div>
+        
+    <script defer src="https://cdn.jsdelivr.net/npm/vanilla-lazyload@17.1.0/dist/lazyload.min.js"></script>
+    <script>
+        window.lazyLoadOptions = {
+            elements_selector: ".lazy",
+            threshold: 0
+        };
+    </script>
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+
+
+ 
+
+
+
+ 
+
+
+    
+ 
+
+
+    
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.4.1/dist/jquery.min.js"></script>
+
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.4.1/dist/jquery.fancybox.min.css">
+
+    
+<script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.4.1/dist/jquery.fancybox.min.js"></script>
+
+    <script>
+        let lazyloadT = Boolean('true'),
+            auto_fancybox = Boolean('true')
+        if (auto_fancybox) {
+            $(".post__content").find('img').each(function () {
+                var element = document.createElement("a");
+                $(element).attr("data-fancybox", "gallery");
+                $(element).attr("href", $(this).attr("src"));
+                if (lazyloadT) {
+                    $(element).attr("href", $(this).attr("data-srcset"));
+                }
+                $(this).wrap(element);
+            });
+        } else {
+            $(".post__content").find("fancybox").find('img').each(function () {
+                var element = document.createElement("a");
+                $(element).attr("data-fancybox", "gallery");
+                $(element).attr("href", $(this).attr("src"));
+                if (lazyloadT) {
+                    $(element).attr("href", $(this).attr("data-srcset"));
+                }
+                $(this).wrap(element);
+            });
+        }
+    </script>
+ 
+
+
+    <script>
+        if (typeof MathJax === 'undefined') {
+            window.MathJax = {
+                loader: {
+                    source: {
+                        '[tex]/amsCd': '[tex]/amscd',
+                        '[tex]/AMScd': '[tex]/amscd'
+                    }
+                },
+                tex: {
+                    inlineMath: {'[+]': [['$', '$']]},
+                    tags: 'ams'
+                },
+                options: {
+                    renderActions: {
+                        findScript: [10, doc => {
+                            document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+                                const display = !!node.type.match(/; *mode=display/);
+                                const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+                                const text = document.createTextNode('');
+                                node.parentNode.replaceChild(text, node);
+                                math.start = {node: text, delim: '', n: 0};
+                                math.end = {node: text, delim: '', n: 0};
+                                doc.math.push(math);
+                            });
+                        }, '', false],
+                        insertedScript: [200, () => {
+                            document.querySelectorAll('mjx-container').forEach(node => {
+                                let target = node.parentNode;
+                                if (target.nodeName.toLowerCase() === 'li') {
+                                    target.parentNode.classList.add('has-jax');
+                                }
+                            });
+                        }, '', false]
+                    }
+                }
+            };
+            (function () {
+                var script = document.createElement('script');
+                script.src = "https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js";
+                script.defer = true;
+                document.head.appendChild(script);
+            })();
+        } else {
+            MathJax.startup.document.state(0);
+            MathJax.texReset();
+            MathJax.typeset();
+        }
+    </script>
+
+ 
+
+ 
+
+ 
+
+ 
+
+
+
+
+    </body>
+</html>

@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+    <meta charset="utf-8">
+
+    
+
+    <!-- 渲染优化 -->
+    <meta name="renderer" content="webkit">
+    <meta name="force-rendering" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta name="HandheldFriendly" content="True" >
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+    <!--icon-->
+
+    
+        <link rel="shortcut icon" href="/images/icons/favicon.ico">
+    
+    
+    
+    
+        <link rel="apple-touch-icon" sizes="180x180" href="/images/icons/logo.png">
+    
+    
+
+
+    <!-- meta -->
+
+
+<title>Raft 学习笔记与资料摘编 | 怀中落霞</title>
+
+
+    <meta name="keywords" content="Raft, TinyKV, 分布式">
+
+
+
+
+    <!-- OpenGraph -->
+ 
+    <meta name="description" content="重新做一遍 TinyKV，立志好好学 Raft">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Raft 学习笔记与资料摘编">
+<meta property="og:url" content="https://poorpool.github.io/2022/07/03/tinykv/raft/index.html">
+<meta property="og:site_name" content="怀中落霞">
+<meta property="og:description" content="重新做一遍 TinyKV，立志好好学 Raft">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://raw.githubusercontent.com/OneSizeFitsQuorum/raft-thesis-zh_cn/master/static/3_3.png">
+<meta property="article:published_time" content="2022-07-03T14:31:00.000Z">
+<meta property="article:modified_time" content="2022-10-17T07:18:55.916Z">
+<meta property="article:author" content="poorpool">
+<meta property="article:tag" content="Raft">
+<meta property="article:tag" content="TinyKV">
+<meta property="article:tag" content="分布式">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/OneSizeFitsQuorum/raft-thesis-zh_cn/master/static/3_3.png">
+
+
+    
+<link rel="stylesheet" href="/css/style/main.css">
+ 
+
+    
+    
+        <link rel="stylesheet" id="hl-default-theme" href="/css/highlight/a11y-light.css" media="none" onload="this.media='all'">
+        
+    
+
+    
+    
+
+    
+
+     
+
+    <!-- custom head -->
+
+<meta name="generator" content="Hexo 4.2.1"><link rel="alternate" href="/atom.xml" title="怀中落霞" type="application/atom+xml">
+</head>
+
+    <body>
+        <div id="app">
+            <header class="header">
+    <div class="header__left">
+        <a href="/" class="button">
+            <span class="logo__text">怀中落霞</span>
+        </a>
+    </div>
+    <div class="header__right">
+        
+            <div class="navbar__menus">
+                
+                    <a href="/" class="navbar-menu button">首页</a>
+                
+                    <a href="/tags/" class="navbar-menu button">标签</a>
+                
+                    <a href="/categories/" class="navbar-menu button">分类</a>
+                
+                    <a href="/archives/" class="navbar-menu button">归档</a>
+                
+                    <a href="/links/" class="navbar-menu button">友链</a>
+                
+                    <a href="/about/" class="navbar-menu button">关于</a>
+                
+            </div>
+        
+        
+        
+    <a href="/search/" id="btn-search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024" width="24" height="24" fill="currentColor" stroke="currentColor" stroke-width="32"><path d="M192 448c0-141.152 114.848-256 256-256s256 114.848 256 256-114.848 256-256 256-256-114.848-256-256z m710.624 409.376l-206.88-206.88A318.784 318.784 0 0 0 768 448c0-176.736-143.264-320-320-320S128 271.264 128 448s143.264 320 320 320a318.784 318.784 0 0 0 202.496-72.256l206.88 206.88 45.248-45.248z"></path></svg>
+    </a>
+
+
+        
+        
+
+        
+            <a class="dropdown-icon button" id="btn-dropdown" tabindex="0"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" width='24' height='24' fill="none" stroke="currentColor" stroke-width="0.7" stroke-linecap="round" stroke-linejoin="round"><path fill="currentColor" d="M3.314,4.8h13.372c0.41,0,0.743-0.333,0.743-0.743c0-0.41-0.333-0.743-0.743-0.743H3.314c-0.41,0-0.743,0.333-0.743,0.743C2.571,4.467,2.904,4.8,3.314,4.8z M16.686,15.2H3.314c-0.41,0-0.743,0.333-0.743,0.743s0.333,0.743,0.743,0.743h13.372c0.41,0,0.743-0.333,0.743-0.743S17.096,15.2,16.686,15.2z M16.686,9.257H3.314c-0.41,0-0.743,0.333-0.743,0.743s0.333,0.743,0.743,0.743h13.372c0.41,0,0.743-0.333,0.743-0.743S17.096,9.257,16.686,9.257z"></path></svg></a>
+            <div class="dropdown-menus" id="dropdown-menus">
+                
+                    <a href="/" class="dropdown-menu button">首页</a>
+                
+                    <a href="/tags/" class="dropdown-menu button">标签</a>
+                
+                    <a href="/categories/" class="dropdown-menu button">分类</a>
+                
+                    <a href="/archives/" class="dropdown-menu button">归档</a>
+                
+                    <a href="/links/" class="dropdown-menu button">友链</a>
+                
+                    <a href="/about/" class="dropdown-menu button">关于</a>
+                
+            </div>
+        
+    </div>
+</header>
+
+
+            <main class="main">
+    
+
+<div class="post-title">
+    <h1 class="post-title__text">
+        Raft 学习笔记与资料摘编
+    </h1>
+    <div class="post-title__meta">
+        <a href="/archives/2022/07/" class="post-meta__date button">2022-07-03</a>
+        
+    <span class="separate-dot"></span><a href="/categories/%E7%AC%94%E8%AE%B0/" class="button">笔记</a>
+
+ 
+        
+    
+    
+
+
+ 
+
+ 
+    </div>
+</div>
+
+
+    <aside class="post-side">
+        <div class="post-side__toc">
+            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#链接"><span class="toc-number">1.</span> <span class="toc-text">链接</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Raft-基础"><span class="toc-number">2.</span> <span class="toc-text">Raft 基础</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Raft-的保证"><span class="toc-number">2.1.</span> <span class="toc-text">Raft 的保证</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#leader-选举"><span class="toc-number">2.2.</span> <span class="toc-text">leader 选举</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#状态的变迁"><span class="toc-number">2.2.1.</span> <span class="toc-text">状态的变迁</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#处理-rpc-时考虑-term-的基本原则"><span class="toc-number">2.2.2.</span> <span class="toc-text">处理 rpc 时考虑 term 的基本原则</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#超时选举"><span class="toc-number">2.2.3.</span> <span class="toc-text">超时选举</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#日志复制"><span class="toc-number">2.3.</span> <span class="toc-text">日志复制</span></a></li></ol></li></ol>
+        </div>
+    </aside>
+    <a class="btn-toc button" id="btn-toc" tabindex="0">
+        <svg viewBox="0 0 1024 1024" width="32" height="32" xmlns="http://www.w3.org/2000/svg">
+            <path d="M128 256h64V192H128zM320 256h576V192H320zM128 544h64v-64H128zM320 544h576v-64H320zM128 832h64v-64H128zM320 832h576v-64H320z" fill="currentColor"></path>
+        </svg>
+    </a>
+    <div class="toc-menus" id="toc-menus">
+        <div class="toc-title">文章目录</div>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#链接"><span class="toc-number">1.</span> <span class="toc-text">链接</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Raft-基础"><span class="toc-number">2.</span> <span class="toc-text">Raft 基础</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Raft-的保证"><span class="toc-number">2.1.</span> <span class="toc-text">Raft 的保证</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#leader-选举"><span class="toc-number">2.2.</span> <span class="toc-text">leader 选举</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#状态的变迁"><span class="toc-number">2.2.1.</span> <span class="toc-text">状态的变迁</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#处理-rpc-时考虑-term-的基本原则"><span class="toc-number">2.2.2.</span> <span class="toc-text">处理 rpc 时考虑 term 的基本原则</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#超时选举"><span class="toc-number">2.2.3.</span> <span class="toc-text">超时选举</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#日志复制"><span class="toc-number">2.3.</span> <span class="toc-text">日志复制</span></a></li></ol></li></ol>
+    </div>
+
+
+<article class="post post__with-toc content-card">
+    <div class="post__header"></div>
+    <div class="post__content">
+        <p>重新做一遍 TinyKV，立志好好学 Raft</p>
+<a id="more"></a>
+
+<h2 id="链接"><a href="#链接" class="headerlink" title="链接"></a>链接</h2><p><a href="https://github.com/OneSizeFitsQuorum/raft-thesis-zh_cn/blob/master/raft-thesis-zh_cn.md" target="_blank" rel="noopener">Raft博士论文翻译</a></p>
+<p><a href="https://raw.githubusercontent.com/ongardie/dissertation/master/stanford.pdf" target="_blank" rel="noopener">Raft博士论文原版</a></p>
+<p><a href="https://www.codedump.info/post/20210515-raft/" target="_blank" rel="noopener">etcd中的raft实现</a></p>
+<p><a href="https://blog.betacat.io/post/raft-implementation-in-etcd/" target="_blank" rel="noopener">raft在etcd中的实现，更好</a></p>
+<h2 id="Raft-基础"><a href="#Raft-基础" class="headerlink" title="Raft 基础"></a>Raft 基础</h2><p>term 任期，index 索引，commit 提交，apply 应用</p>
+<p>Raft 通过首先选举一个 leader ，然后让 leader 完全负责管理复制的日志来实现一致性。leader 从客户端接收日志条目，再把其复制到其他服务器上，并告诉服务器何时可以安全地将日志条目应用于其状态机。</p>
+<p>拥有 leader 大大简化了复制日志的管理。例如， leader 可以决定新的日志条目需要放在日志中的什么位置而不需要和其他服务器商议，并且数据都以简单的方式从 leader 流向其他服务器。</p>
+<p>leader 可能会失败或与其他服务器断开连接，在这种情况下，将选举出新的 leader。</p>
+<p>通过 leader 机制，raft 被分为三个小问题：</p>
+<ul>
+<li>leader 选举：启动集群时以及现有 leader 失败时必须选出新的 leader</li>
+<li>日志复制：leader 必须接受来自客户端的日志条目，并在整个集群中复制它们，迫使其他日志与其自己的日志一致</li>
+<li>安全性：下文 Raft 的保证中的状态机安全：如果一个服务器在它的状态机上 apply 了一个给定 index 的日志条目，那么其他服务器不会为同一 index apply 不同的日志条目</li>
+</ul>
+<h3 id="Raft-的保证"><a href="#Raft-的保证" class="headerlink" title="Raft 的保证"></a>Raft 的保证</h3><ul>
+<li>选举安全：一个给定 term 内最多有一个 leader</li>
+<li>leader 只 append：一个 leader 从不覆盖、删除它日志中的条目，它只是 append</li>
+<li>日志匹配：如果两份日志在某个条目有相同的 index 和 term，那么从开头到这个 index 的日志都相同</li>
+<li>leader 完备：如果一个日志条目在某一特定 term 中被 commit，那么更高 term 的 leader 的日志中都会出现这个条目</li>
+<li>状态机安全：如果一个服务器在它的状态机上 apply 了一个给定 index 的日志条目，那么其他服务器不会为同一 index apply 不同的日志条目。</li>
+</ul>
+<h3 id="leader-选举"><a href="#leader-选举" class="headerlink" title="leader 选举"></a>leader 选举</h3><h4 id="状态的变迁"><a href="#状态的变迁" class="headerlink" title="状态的变迁"></a>状态的变迁</h4><p>在任何时刻，每一个服务器节点都处于这三个状态之一：leader candidate follower。通常情况下，系统中一个是 leader，其他的是 follower。candidate 是选举的时候才有的。</p>
+<p>follower 不发送请求，只是响应来自 leader candidate 的请求。leader 处理所有的请求。如果客户端把请求发给了 follower，follower 会把请求重定向给 leader 让他处理。</p>
+<p><img src="https://raw.githubusercontent.com/OneSizeFitsQuorum/raft-thesis-zh_cn/master/static/3_3.png" class="lazy" data-srcset="https://raw.githubusercontent.com/OneSizeFitsQuorum/raft-thesis-zh_cn/master/static/3_3.png" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABAQMAAAAl21bKAAAABlBMVEXMzMyWlpYU2uzLAAAACXBIWXMAAA7EAAAOxAGVKw4bAAAACklEQVQImWNgAAAAAgAB9HFkpgAAAABJRU5ErkJggg==" alt="节点状态变迁图"></p>
+<p>领导者一直是领导者，直到它宕机。</p>
+<h4 id="处理-rpc-时考虑-term-的基本原则"><a href="#处理-rpc-时考虑-term-的基本原则" class="headerlink" title="处理 rpc 时考虑 term 的基本原则"></a>处理 rpc 时考虑 term 的基本原则</h4><p>基本的 rpc有两种：请求投票 rpc，附加日志 rpc（包含心跳包）</p>
+<p>每个节点存储当前 term，这一编号在整个时期内单调的增长。当服务器之间通信的时候会交换当前 term：</p>
+<p>如果一个服务器的当前 term 比其他人小，那么他会更新自己的 term 到较大的 term 值。此外：</p>
+<ul>
+<li>如果一个候选人或者领导者发现自己的 term 过期了，那么他会立即恢复成 follower 状态（但是只有在请求明确表明自己是 leader 的情况下才会设置自己的 leader）</li>
+<li>如果一个节点接收到一个包含过期的 term 的请求，那么他会直接拒绝这个请求。</li>
+</ul>
+<p>服务器程序启动的时候，大家都是 follower。只要一个 follower 不断从 leader candidate 处接收到有效的 rpc 就一直是 follower。</p>
+<h4 id="超时选举"><a href="#超时选举" class="headerlink" title="超时选举"></a>超时选举</h4><p>leader 一直向所有跟随者发送心跳包（博士论文中就是不含日志的附加日志 rpc，tinykv 中不是）来维持权威。因此如果一个 follower 一段时间没有收到有效 rpc，就出现了选举超时，随后发起选举。</p>
+<p>选举的过程：</p>
+<ol>
+<li>follower 转换为 candidate，自增 term，给自己投票，重置计时器</li>
+<li>并行向其他节点发送请求投票 rpc，直到发生三件事情中的任何一件：<ol>
+<li>赢得选举。这个 candidate 从大多数服务器节点获得了针对同一 term 的选票，他就赢了，立刻成为 leader，发送心跳（考虑到一个节点最多只会对一个 term 投出一张选票，先来先服务，保证了选举安全）</li>
+<li>其他节点成为 leader。如果收到其他节点宣称他是 leader 的附加日志 rpc，那么如果这个 leader 的 term（包含在此次的 RPC中）不小于 candidate 当前的 term，那么 candidate 会承认 leader 合法并回到 follower 状态。 如果此次 RPC 中的 term 比自己小，那么 candidate 就会拒绝这次的 RPC 并且继续保持 candidate 状态。</li>
+<li>随机的选举超时时间内没有任何人获胜。再自增 term。发起选举。</li>
+</ol>
+</li>
+</ol>
+<h3 id="日志复制"><a href="#日志复制" class="headerlink" title="日志复制"></a>日志复制</h3><p>客户端的请求成为 propose rpc，包含一条或多条被复制状态机执行的指令。leader  将条目附加到日志中并发起附加日志 rpc，让其他节点去复制这条日志。这条日志被安全复制的时候，leader 会 apply 这条日志并返回结果给客户端。</p>
+<p>如果出现了网络丢包或者运行缓慢，leader 可能已经 apply 了日志并回复了客户端，但还是会不断重复尝试附加日志 rpc（比如心跳包返回的结果发现还有日志要附加）</p>
+<p>当 leader 将日志条目复制到绝大部分节点的时候，日志条目就会被 commit（同时意味着之前的日志条目也 commit 了）。commitIndex 也会被包含到附加日志 rpc 和心跳包中。</p>
+<p>如果 follower 知道一条日志条目 commit 了，就会 apply 这条日志条目。</p>
+<p>回到前面的日志匹配：如果两份日志在某个条目有相同的 index 和 term，那么从开头到这个 index 的日志都相同。这个特性是因为在发送附加日志 RPC  的时候，leader 会把新的日志条目紧接着之前的条目的 index 和 term 包含在里面。如果 follower 在它的日志中找不到包含相同 index 和 term 的条目，那么他就会拒绝接收新的日志条目。</p>
+<p>极端情况下，follower 可能会丢失一些在新的 leader 中有的日志条目，他也可能拥有一些 leader 没有的日志条目。因此，leader 要找到两者最后达成一致的地方。他会对每一个跟随者维护 nextIndex，表示下一个需要发送给 follower 的日志的 index。也会维护一个 matchIndex，表示两者达成一致的 index。</p>
+<p>！！要检查：成为 leader 时所有 nextIndex 为自己最后一条 index + 1。如果有一个 follower 日志和 leader 有冲突，那么 follower 会拒绝附加日志 rpc，leader 会减小对它的 nextIndex 并重试。最终 nextIndex 会在某个位置使 leader 和 follower 的日志达成一致。当这种情况发生，附加日志 RPC 就会成功，这时就会把 follower 冲突的日志条目全部删除并且加上 leader 的日志。一旦附加日志 RPC 成功，那么 follower 的日志就会和 leader 保持一致，并且在接下来的 term 里一直继续保持。</p>
+<p>实际上，leader 不会一上来就发送附加日志 rpc，而是通过心跳包协调 nextIndex。当协调到的 matchIndex 恰好比 nextIndex 小1，就立刻发送附加日志 rpc。</p>
+
+    </div>
+     
+    <div class="post-footer__meta"><p>更新于 2022-10-17</p></div> 
+    <div class="post-entry__tags"><a href="/tags/Raft/" class="post-tags__link button"># Raft</a><a href="/tags/TinyKV/" class="post-tags__link button"># TinyKV</a><a href="/tags/%E5%88%86%E5%B8%83%E5%BC%8F/" class="post-tags__link button"># 分布式</a></div> 
+</article>
+
+
+    <div class="nav">
+        <div class="nav__prev">
+            
+                <a href="/2022/08/19/english/xuanyuanyou-english/" class="nav__link">
+                    <div>
+                        <svg viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg" width="24" height="24"><path d="M589.088 790.624L310.464 512l278.624-278.624 45.248 45.248L400.96 512l233.376 233.376z" fill="#808080"></path></svg>
+                    </div>
+                    <div>
+                        <div class="nav__label">
+                            Previous Post
+                        </div>
+                        <div class="nav__title">
+                            旋元祐英语语法链接
+                        </div>
+                    </div>
+                </a>
+            
+        </div>
+        <div class="nav__next">
+            
+                <a href="/2022/07/03/tinykv/notes/" class="nav__link">
+                    <div>
+                        <div class="nav__label">
+                            Next Post
+                        </div>
+                        <div class="nav__title">
+                            TinyKV 课程报告
+                        </div>
+                    </div>
+                    <div>
+                        <svg viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg" width="24" height="24"><path d="M434.944 790.624l-45.248-45.248L623.04 512l-233.376-233.376 45.248-45.248L713.568 512z" fill="#808080"></path></svg>
+                    </div>
+                </a>
+            
+        </div>
+    </div>
+
+
+
+
+
+</main>
+
+            <footer class="footer">
+     
+    <a href="#" class="button" id="b2t" aria-label="回到顶部" title="回到顶部">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024" width="32" height="32">
+            <path d="M233.376 722.752L278.624 768 512 534.624 745.376 768l45.248-45.248L512 444.128zM192 352h640V288H192z" fill="currentColor"></path>
+        </svg>
+    </a>
+
+    
+
+
+    
+     
+ 
+
+ 
+    
+        
+        <p class="footer-copyright">
+            Copyright © 2017&nbsp;-&nbsp;2022 <a href="/">怀中落霞</a>
+        </p>
+    
+    
+    <p>Powered by <a href="https://hexo.io" target="_blank">Hexo</a> | Theme - <a href="https://github.com/ChrAlpha/hexo-theme-cards" target="_blank">Cards</a></p>
+</footer>
+
+        </div>
+        
+    <script defer src="https://cdn.jsdelivr.net/npm/vanilla-lazyload@17.1.0/dist/lazyload.min.js"></script>
+    <script>
+        window.lazyLoadOptions = {
+            elements_selector: ".lazy",
+            threshold: 0
+        };
+    </script>
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+
+
+ 
+
+
+
+ 
+
+
+    
+ 
+
+
+    
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.4.1/dist/jquery.min.js"></script>
+
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.4.1/dist/jquery.fancybox.min.css">
+
+    
+<script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.4.1/dist/jquery.fancybox.min.js"></script>
+
+    <script>
+        let lazyloadT = Boolean('true'),
+            auto_fancybox = Boolean('true')
+        if (auto_fancybox) {
+            $(".post__content").find('img').each(function () {
+                var element = document.createElement("a");
+                $(element).attr("data-fancybox", "gallery");
+                $(element).attr("href", $(this).attr("src"));
+                if (lazyloadT) {
+                    $(element).attr("href", $(this).attr("data-srcset"));
+                }
+                $(this).wrap(element);
+            });
+        } else {
+            $(".post__content").find("fancybox").find('img').each(function () {
+                var element = document.createElement("a");
+                $(element).attr("data-fancybox", "gallery");
+                $(element).attr("href", $(this).attr("src"));
+                if (lazyloadT) {
+                    $(element).attr("href", $(this).attr("data-srcset"));
+                }
+                $(this).wrap(element);
+            });
+        }
+    </script>
+ 
+
+
+    <script>
+        if (typeof MathJax === 'undefined') {
+            window.MathJax = {
+                loader: {
+                    source: {
+                        '[tex]/amsCd': '[tex]/amscd',
+                        '[tex]/AMScd': '[tex]/amscd'
+                    }
+                },
+                tex: {
+                    inlineMath: {'[+]': [['$', '$']]},
+                    tags: 'ams'
+                },
+                options: {
+                    renderActions: {
+                        findScript: [10, doc => {
+                            document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+                                const display = !!node.type.match(/; *mode=display/);
+                                const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+                                const text = document.createTextNode('');
+                                node.parentNode.replaceChild(text, node);
+                                math.start = {node: text, delim: '', n: 0};
+                                math.end = {node: text, delim: '', n: 0};
+                                doc.math.push(math);
+                            });
+                        }, '', false],
+                        insertedScript: [200, () => {
+                            document.querySelectorAll('mjx-container').forEach(node => {
+                                let target = node.parentNode;
+                                if (target.nodeName.toLowerCase() === 'li') {
+                                    target.parentNode.classList.add('has-jax');
+                                }
+                            });
+                        }, '', false]
+                    }
+                }
+            };
+            (function () {
+                var script = document.createElement('script');
+                script.src = "https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js";
+                script.defer = true;
+                document.head.appendChild(script);
+            })();
+        } else {
+            MathJax.startup.document.state(0);
+            MathJax.texReset();
+            MathJax.typeset();
+        }
+    </script>
+
+ 
+
+ 
+
+ 
+
+ 
+
+
+
+
+    </body>
+</html>

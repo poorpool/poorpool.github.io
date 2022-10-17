@@ -1,0 +1,523 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+    <meta charset="utf-8">
+
+    
+
+    <!-- 渲染优化 -->
+    <meta name="renderer" content="webkit">
+    <meta name="force-rendering" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta name="HandheldFriendly" content="True" >
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+    <!--icon-->
+
+    
+        <link rel="shortcut icon" href="/images/icons/favicon.ico">
+    
+    
+    
+    
+        <link rel="apple-touch-icon" sizes="180x180" href="/images/icons/logo.png">
+    
+    
+
+
+    <!-- meta -->
+
+
+<title>《计算机网络：自顶向下方法》笔记6 链路层和局域网 | 怀中落霞</title>
+
+
+    <meta name="keywords" content="笔记, 计算机网络">
+
+
+
+
+    <!-- OpenGraph -->
+ 
+    <meta name="description" content="第六章">
+<meta property="og:type" content="article">
+<meta property="og:title" content="《计算机网络：自顶向下方法》笔记6 链路层和局域网">
+<meta property="og:url" content="https://poorpool.github.io/2020/05/01/cs_notes/topdown_chapter6/index.html">
+<meta property="og:site_name" content="怀中落霞">
+<meta property="og:description" content="第六章">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://poorpool.github.io/images/topdown/cpt6-1.png">
+<meta property="og:image" content="https://poorpool.github.io/images/topdown/cpt6-2.png">
+<meta property="og:image" content="https://poorpool.github.io/images/topdown/cpt6-3.png">
+<meta property="og:image" content="https://poorpool.github.io/images/topdown/cpt6-4.png">
+<meta property="og:image" content="https://poorpool.github.io/images/topdown/cpt6-5.png">
+<meta property="og:image" content="https://poorpool.github.io/images/topdown/cpt6-6.png">
+<meta property="article:published_time" content="2020-05-01T10:00:05.000Z">
+<meta property="article:modified_time" content="2022-10-17T07:18:55.908Z">
+<meta property="article:author" content="poorpool">
+<meta property="article:tag" content="笔记">
+<meta property="article:tag" content="计算机网络">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://poorpool.github.io/images/topdown/cpt6-1.png">
+
+
+    
+<link rel="stylesheet" href="/css/style/main.css">
+ 
+
+    
+    
+        <link rel="stylesheet" id="hl-default-theme" href="/css/highlight/a11y-light.css" media="none" onload="this.media='all'">
+        
+    
+
+    
+    
+
+    
+
+     
+
+    <!-- custom head -->
+
+<meta name="generator" content="Hexo 4.2.1"><link rel="alternate" href="/atom.xml" title="怀中落霞" type="application/atom+xml">
+</head>
+
+    <body>
+        <div id="app">
+            <header class="header">
+    <div class="header__left">
+        <a href="/" class="button">
+            <span class="logo__text">怀中落霞</span>
+        </a>
+    </div>
+    <div class="header__right">
+        
+            <div class="navbar__menus">
+                
+                    <a href="/" class="navbar-menu button">首页</a>
+                
+                    <a href="/tags/" class="navbar-menu button">标签</a>
+                
+                    <a href="/categories/" class="navbar-menu button">分类</a>
+                
+                    <a href="/archives/" class="navbar-menu button">归档</a>
+                
+                    <a href="/links/" class="navbar-menu button">友链</a>
+                
+                    <a href="/about/" class="navbar-menu button">关于</a>
+                
+            </div>
+        
+        
+        
+    <a href="/search/" id="btn-search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024" width="24" height="24" fill="currentColor" stroke="currentColor" stroke-width="32"><path d="M192 448c0-141.152 114.848-256 256-256s256 114.848 256 256-114.848 256-256 256-256-114.848-256-256z m710.624 409.376l-206.88-206.88A318.784 318.784 0 0 0 768 448c0-176.736-143.264-320-320-320S128 271.264 128 448s143.264 320 320 320a318.784 318.784 0 0 0 202.496-72.256l206.88 206.88 45.248-45.248z"></path></svg>
+    </a>
+
+
+        
+        
+
+        
+            <a class="dropdown-icon button" id="btn-dropdown" tabindex="0"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" width='24' height='24' fill="none" stroke="currentColor" stroke-width="0.7" stroke-linecap="round" stroke-linejoin="round"><path fill="currentColor" d="M3.314,4.8h13.372c0.41,0,0.743-0.333,0.743-0.743c0-0.41-0.333-0.743-0.743-0.743H3.314c-0.41,0-0.743,0.333-0.743,0.743C2.571,4.467,2.904,4.8,3.314,4.8z M16.686,15.2H3.314c-0.41,0-0.743,0.333-0.743,0.743s0.333,0.743,0.743,0.743h13.372c0.41,0,0.743-0.333,0.743-0.743S17.096,15.2,16.686,15.2z M16.686,9.257H3.314c-0.41,0-0.743,0.333-0.743,0.743s0.333,0.743,0.743,0.743h13.372c0.41,0,0.743-0.333,0.743-0.743S17.096,9.257,16.686,9.257z"></path></svg></a>
+            <div class="dropdown-menus" id="dropdown-menus">
+                
+                    <a href="/" class="dropdown-menu button">首页</a>
+                
+                    <a href="/tags/" class="dropdown-menu button">标签</a>
+                
+                    <a href="/categories/" class="dropdown-menu button">分类</a>
+                
+                    <a href="/archives/" class="dropdown-menu button">归档</a>
+                
+                    <a href="/links/" class="dropdown-menu button">友链</a>
+                
+                    <a href="/about/" class="dropdown-menu button">关于</a>
+                
+            </div>
+        
+    </div>
+</header>
+
+
+            <main class="main">
+    
+
+<div class="post-title">
+    <h1 class="post-title__text">
+        《计算机网络：自顶向下方法》笔记6 链路层和局域网
+    </h1>
+    <div class="post-title__meta">
+        <a href="/archives/2020/05/" class="post-meta__date button">2020-05-01</a>
+        
+    <span class="separate-dot"></span><a href="/categories/%E7%AC%94%E8%AE%B0/" class="button">笔记</a>
+
+ 
+        
+    
+    
+
+
+ 
+
+ 
+    </div>
+</div>
+
+
+    <aside class="post-side">
+        <div class="post-side__toc">
+            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#链路层概述"><span class="toc-number">1.</span> <span class="toc-text">链路层概述</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#链路层在何处实现"><span class="toc-number">1.0.1.</span> <span class="toc-text">链路层在何处实现</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#差错检测和纠正技术"><span class="toc-number">2.</span> <span class="toc-text">差错检测和纠正技术</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#奇偶校验"><span class="toc-number">2.0.1.</span> <span class="toc-text">奇偶校验</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#检验和方法"><span class="toc-number">2.0.2.</span> <span class="toc-text">检验和方法</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#循环冗余检测"><span class="toc-number">2.0.3.</span> <span class="toc-text">循环冗余检测</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#多路访问链路和协议"><span class="toc-number">3.</span> <span class="toc-text">多路访问链路和协议</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#信道划分协议"><span class="toc-number">3.0.1.</span> <span class="toc-text">信道划分协议</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#随机接入协议"><span class="toc-number">3.0.2.</span> <span class="toc-text">随机接入协议</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#轮流协议"><span class="toc-number">3.0.3.</span> <span class="toc-text">轮流协议</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#交换局域网"><span class="toc-number">3.0.4.</span> <span class="toc-text">交换局域网</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#MAC地址"><span class="toc-number">3.0.5.</span> <span class="toc-text">MAC地址</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#地址解析协议"><span class="toc-number">3.0.6.</span> <span class="toc-text">地址解析协议</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#发送数据报到子网以外"><span class="toc-number">3.0.7.</span> <span class="toc-text">发送数据报到子网以外</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#以太网"><span class="toc-number">3.0.8.</span> <span class="toc-text">以太网</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#链路层交换机"><span class="toc-number">3.0.9.</span> <span class="toc-text">链路层交换机</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#虚拟局域网"><span class="toc-number">3.0.10.</span> <span class="toc-text">虚拟局域网</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#链路虚拟化：网络作为链路层"><span class="toc-number">4.</span> <span class="toc-text">链路虚拟化：网络作为链路层</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#多协议标签交换"><span class="toc-number">4.0.1.</span> <span class="toc-text">多协议标签交换</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#数据中心网络"><span class="toc-number">5.</span> <span class="toc-text">数据中心网络</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#负载均衡"><span class="toc-number">5.0.1.</span> <span class="toc-text">负载均衡</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#等级体系结构"><span class="toc-number">5.0.2.</span> <span class="toc-text">等级体系结构</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#发展趋势"><span class="toc-number">5.0.3.</span> <span class="toc-text">发展趋势</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#回顾：Web页面请求的历程"><span class="toc-number">6.</span> <span class="toc-text">回顾：Web页面请求的历程</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#准备：DHCP、UDP、IP和以太网"><span class="toc-number">6.0.1.</span> <span class="toc-text">准备：DHCP、UDP、IP和以太网</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#仍在准备：DNS和ARP"><span class="toc-number">6.0.2.</span> <span class="toc-text">仍在准备：DNS和ARP</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#仍在准备：域内路由选择到dns服务器"><span class="toc-number">6.0.3.</span> <span class="toc-text">仍在准备：域内路由选择到dns服务器</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Web客户——服务器交互：TCP和HTTP"><span class="toc-number">6.0.4.</span> <span class="toc-text">Web客户——服务器交互：TCP和HTTP</span></a></li></ol></li></ol></li></ol>
+        </div>
+    </aside>
+    <a class="btn-toc button" id="btn-toc" tabindex="0">
+        <svg viewBox="0 0 1024 1024" width="32" height="32" xmlns="http://www.w3.org/2000/svg">
+            <path d="M128 256h64V192H128zM320 256h576V192H320zM128 544h64v-64H128zM320 544h576v-64H320zM128 832h64v-64H128zM320 832h576v-64H320z" fill="currentColor"></path>
+        </svg>
+    </a>
+    <div class="toc-menus" id="toc-menus">
+        <div class="toc-title">文章目录</div>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#链路层概述"><span class="toc-number">1.</span> <span class="toc-text">链路层概述</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#链路层在何处实现"><span class="toc-number">1.0.1.</span> <span class="toc-text">链路层在何处实现</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#差错检测和纠正技术"><span class="toc-number">2.</span> <span class="toc-text">差错检测和纠正技术</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#奇偶校验"><span class="toc-number">2.0.1.</span> <span class="toc-text">奇偶校验</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#检验和方法"><span class="toc-number">2.0.2.</span> <span class="toc-text">检验和方法</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#循环冗余检测"><span class="toc-number">2.0.3.</span> <span class="toc-text">循环冗余检测</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#多路访问链路和协议"><span class="toc-number">3.</span> <span class="toc-text">多路访问链路和协议</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#信道划分协议"><span class="toc-number">3.0.1.</span> <span class="toc-text">信道划分协议</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#随机接入协议"><span class="toc-number">3.0.2.</span> <span class="toc-text">随机接入协议</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#轮流协议"><span class="toc-number">3.0.3.</span> <span class="toc-text">轮流协议</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#交换局域网"><span class="toc-number">3.0.4.</span> <span class="toc-text">交换局域网</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#MAC地址"><span class="toc-number">3.0.5.</span> <span class="toc-text">MAC地址</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#地址解析协议"><span class="toc-number">3.0.6.</span> <span class="toc-text">地址解析协议</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#发送数据报到子网以外"><span class="toc-number">3.0.7.</span> <span class="toc-text">发送数据报到子网以外</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#以太网"><span class="toc-number">3.0.8.</span> <span class="toc-text">以太网</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#链路层交换机"><span class="toc-number">3.0.9.</span> <span class="toc-text">链路层交换机</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#虚拟局域网"><span class="toc-number">3.0.10.</span> <span class="toc-text">虚拟局域网</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#链路虚拟化：网络作为链路层"><span class="toc-number">4.</span> <span class="toc-text">链路虚拟化：网络作为链路层</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#多协议标签交换"><span class="toc-number">4.0.1.</span> <span class="toc-text">多协议标签交换</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#数据中心网络"><span class="toc-number">5.</span> <span class="toc-text">数据中心网络</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#负载均衡"><span class="toc-number">5.0.1.</span> <span class="toc-text">负载均衡</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#等级体系结构"><span class="toc-number">5.0.2.</span> <span class="toc-text">等级体系结构</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#发展趋势"><span class="toc-number">5.0.3.</span> <span class="toc-text">发展趋势</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#回顾：Web页面请求的历程"><span class="toc-number">6.</span> <span class="toc-text">回顾：Web页面请求的历程</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#准备：DHCP、UDP、IP和以太网"><span class="toc-number">6.0.1.</span> <span class="toc-text">准备：DHCP、UDP、IP和以太网</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#仍在准备：DNS和ARP"><span class="toc-number">6.0.2.</span> <span class="toc-text">仍在准备：DNS和ARP</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#仍在准备：域内路由选择到dns服务器"><span class="toc-number">6.0.3.</span> <span class="toc-text">仍在准备：域内路由选择到dns服务器</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Web客户——服务器交互：TCP和HTTP"><span class="toc-number">6.0.4.</span> <span class="toc-text">Web客户——服务器交互：TCP和HTTP</span></a></li></ol></li></ol></li></ol>
+    </div>
+
+
+<article class="post post__with-toc content-card">
+    <div class="post__header"></div>
+    <div class="post__content">
+        <p>第六章</p>
+<a id="more"></a>
+
+
+<h2 id="链路层概述"><a href="#链路层概述" class="headerlink" title="链路层概述"></a>链路层概述</h2><h4 id="链路层在何处实现"><a href="#链路层在何处实现" class="headerlink" title="链路层在何处实现"></a>链路层在何处实现</h4><p>链路层的主体部分是在网络适配器（网络接口卡）实现的。大部分链路层是在硬件中实现的。</p>
+<h2 id="差错检测和纠正技术"><a href="#差错检测和纠正技术" class="headerlink" title="差错检测和纠正技术"></a>差错检测和纠正技术</h2><p>链路层有比特级差错检测和纠正。在发送节点，为了保护bit免受差错，使用差错检测和纠正比特EDC来增强数据。</p>
+<p><img src="/images/topdown/cpt6-1.png" class="lazy" data-srcset="/images/topdown/cpt6-1.png" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABAQMAAAAl21bKAAAABlBMVEXMzMyWlpYU2uzLAAAACXBIWXMAAA7EAAAOxAGVKw4bAAAACklEQVQImWNgAAAAAgAB9HFkpgAAAABJRU5ErkJggg==" alt="corr"></p>
+<p>不过即使使用EDC也有可能未检出比特差错。</p>
+<h4 id="奇偶校验"><a href="#奇偶校验" class="headerlink" title="奇偶校验"></a>奇偶校验</h4><p>假设 $D$ 有 $d$ 比特，那只需要一个附加的比特，使得 $d+1$ 个比特中1的总数是偶数。若接收方发现1的bit有奇数个，就是发生了奇数个比特错误。如果出现了偶数个比特差错，会导致一个未检出的差错，但是这个概率是极小的。然而差错经常“突发”地聚集在一起，所以这个不太健壮。</p>
+<p><img src="/images/topdown/cpt6-2.png" class="lazy" data-srcset="/images/topdown/cpt6-2.png" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABAQMAAAAl21bKAAAABlBMVEXMzMyWlpYU2uzLAAAACXBIWXMAAA7EAAAOxAGVKw4bAAAACklEQVQImWNgAAAAAgAB9HFkpgAAAABJRU5ErkJggg==" alt="evenodd"></p>
+<p>如图，二维奇偶校验能够检测并纠正一个bit错误，能检测（但不能纠正）两个bit错误的任意组合。</p>
+<p>接收方检测和纠正差错的能力叫前向纠错FEC。它们可以减少发送方重发的次数，避免了往返时延。</p>
+<h4 id="检验和方法"><a href="#检验和方法" class="headerlink" title="检验和方法"></a>检验和方法</h4><p>$d$比特数据被作为一个$k$比特整数的序列处理。因特网检验和就是将数据的字节作为16比特的整数求和取反码。接收方对接收的数据（和检验和）求和取反码，有0就出现了差错。在tcp，udp中对所有字段求因特网检验和。</p>
+<h4 id="循环冗余检测"><a href="#循环冗余检测" class="headerlink" title="循环冗余检测"></a>循环冗余检测</h4><p>循环冗余检测CRC编码也称为多项式编码，它把发送的比特串视为0/1系数多项式，对比特串的操作解释为多项式算数。</p>
+<p><img src="/images/topdown/cpt6-3.png" class="lazy" data-srcset="/images/topdown/cpt6-3.png" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABAQMAAAAl21bKAAAABlBMVEXMzMyWlpYU2uzLAAAACXBIWXMAAA7EAAAOxAGVKw4bAAAACklEQVQImWNgAAAAAgAB9HFkpgAAAABJRU5ErkJggg==" alt="crc"></p>
+<p>发送方接收方首先必须协商一个$r+1$比特模式称为生成多项式，表示为$G$。</p>
+<p>考虑$d$比特的数据$D$，发送方要选择$r$个附加比特$R$，把他们附加到$D$上，使得到的$d+r$比特模式（被解释为一个二进制数）用模2算数恰好能被$G$整除。</p>
+<p>接收方用$G$去除接收到的$d+r$比特，如果余数非0，就是出现了差错。</p>
+<p>所有CRC计算用模2算数来做，加法不进位减法不借位，其实就是个XOR……</p>
+<p>乘$2^k$就是比特模式左移$k$个位置。</p>
+<p>我们要求出$R$使得对于$n$有$D2^r\mathrm{xor} R=nG$，$D2^r=nG\mathrm{xor} R$，也就是用$G$除$D2^r$余数刚好是$R$。</p>
+<p>所以$R=\mathrm{remainder}\dfrac{D\cdot 2^r}{G}$。</p>
+<p>国际标准已经定义了8、12、16、32比特生成多项式。$G_{CRC-32}=100000100110000010001110110110111$这种。</p>
+<p>每个CRC标准都能检测小于$r+1$比特的突发差错。长度大于$r+1$比特的突发差错检测到的概率是$1-0.5^r$。每个CRC标准也都能检测任意奇数个比特差错。</p>
+<h2 id="多路访问链路和协议"><a href="#多路访问链路和协议" class="headerlink" title="多路访问链路和协议"></a>多路访问链路和协议</h2><p>有两种类型的网络链路：点对点链路和广播链路。要通过多路访问协议来规范共享的广播信道上的传输行为。</p>
+<p>因为所有节点都能传输帧，所以多节点可能会同时传输帧，这时所有节点同时接收到多个帧，传输的帧在所有接收方碰撞，结果没有一个节点能有效获得任何帧……</p>
+<h4 id="信道划分协议"><a href="#信道划分协议" class="headerlink" title="信道划分协议"></a>信道划分协议</h4><p>一种做法是划分信道，时分多路复用TDM和频分多路复用FDM。</p>
+<p>tdm非常公平。但是节点总是被限制于$R/N$的平均速率并且总是需要等待它在传输序列中的轮次。</p>
+<p>fdm的平均速率也被限制。</p>
+<p>第三种是码分多址CDMA，tdm和fdm分别为节点分配时隙和频率，而cdma对每个节点分配一种不同的编码，然后每个节点用唯一的编码来对发送的数据编码。这样不同节点能同时传输并且各自的接收方仍能正确接受发送方编码的数据（如果接收方知道发送方的编码）。</p>
+<h4 id="随机接入协议"><a href="#随机接入协议" class="headerlink" title="随机接入协议"></a>随机接入协议</h4><p>一个传输节点总是全速发送，碰撞时等待一个随机时延然后重发帧。</p>
+<p><strong>时隙ALOHA协议</strong>：菜菜的。要求所有帧由L比特组成，时间划分成长度为$L/R$秒的时隙，节点只在时隙起点传输帧，每个节点都知道时隙何时开始，如果一个时隙中出现了碰撞那么所有节点都能在该时隙结束前检测到该碰撞事件。</p>
+<p>操作是有在一个时隙开始的时候传输整个帧，要是有碰撞就以$p$的概率在后面的时隙重传，直到传输成功。但是效率非常低。纯ALOHA就更加白给。</p>
+<p><strong>载波侦听多路访问CSMA</strong>：说话之前先听（这是载波侦听）。和他人同时开始说话就停止说话（这是碰撞检测）。</p>
+<p>大致过程：侦听到信道空闲——传输——没有检测到信号能量就完成传输，检测到就中止传输，等待一个随机时间量重传</p>
+<p>选择随机时间量用二进制指数后退算法。该帧经历了一连串的$n$次碰撞，就从${0, 1, 2, \ldots, 2^n-1}$里选择一个$K$值。</p>
+<p>对于以太网，一个节点等待的实际时间量是$512K$比特时间（发送512比特进入以太网所需时间量的$K$倍），$n\leq 10$。</p>
+<h4 id="轮流协议"><a href="#轮流协议" class="headerlink" title="轮流协议"></a>轮流协议</h4><p>ALOHA和CSMA协议不具备“当有$M$个节点活跃时，每个活跃节点的吞吐量接近$R/M$的特性。</p>
+<p><strong>轮询协议</strong>：指定一个主节点，以循环的方式轮询每个节点。先给主机1发报文，告诉它能够传输的帧的最多数量。节点1传输了某些帧以后告诉节点2能传输的帧的最多数量……</p>
+<p><strong>令牌传递协议</strong>：没有主节点，一个被称为令牌的特殊帧在节点之间以某种固定次序交换。一个节点要是没有帧发送就立刻传令牌给下一个节点，有的话就发送最大数目的帧数然后传给下一个节点。</p>
+<h4 id="交换局域网"><a href="#交换局域网" class="headerlink" title="交换局域网"></a>交换局域网</h4><h4 id="MAC地址"><a href="#MAC地址" class="headerlink" title="MAC地址"></a>MAC地址</h4><p>主机或路由器的适配器（网络接口）具有链路层地址，但是链路层交换机并不具备和接口关联的链路层地址。这是因为交换机透明地执行在主机和路由器之间承载数据报的任务。</p>
+<p>MAC地址长度6字节，有$2^{48}$种可能的mac地址。它被设计成永久的，但可能通过软件修改它。</p>
+<p>一个生产适配器的公司购买前24个比特固定下来，自己生成后面的24个比特。</p>
+<p>mac地址具有扁平结构（而不是ip地址那样的层次结构）</p>
+<p>适配器接收到一个帧时检查帧的目的地址是否和自己的mac地址匹配，匹配就提取出封装的数据报并将它沿协议栈向上传递，不匹配就丢弃。当然也有mac广播地址<code>FF-FF-FF-FF-FF-FF</code>。</p>
+<h4 id="地址解析协议"><a href="#地址解析协议" class="headerlink" title="地址解析协议"></a>地址解析协议</h4><p>在网络层地址（ip地址）和链路层地址（mac地址），这是地址解析协议。</p>
+<p>用ARP将一个ip地址解析为一个mac地址。跟dns挺像，不过arp只为在同一个子网上的主机和路由器接口解析ip地址。</p>
+<p>arp表有ip地址，mac地址，ttl（寿命，常为20min），但是这张表不必为该子网上所有主机和路由器都包含一个表项。</p>
+<p>要是arp表里有目的ip地址的条目好说，没有的话就使用arp协议来解析这个地址。发送方构搞一个arp分组，指示适配器用mac广播地址来发送这个分组。arp即插即用，是跨越链路层和网络层边界两边的协议。</p>
+<h4 id="发送数据报到子网以外"><a href="#发送数据报到子网以外" class="headerlink" title="发送数据报到子网以外"></a>发送数据报到子网以外</h4><p><img src="/images/topdown/cpt6-4.png" class="lazy" data-srcset="/images/topdown/cpt6-4.png" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABAQMAAAAl21bKAAAABlBMVEXMzMyWlpYU2uzLAAAACXBIWXMAAA7EAAAOxAGVKw4bAAAACklEQVQImWNgAAAAAgAB9HFkpgAAAABJRU5ErkJggg==" alt="subnetout"></p>
+<p>如图，从左上到右下，先发给<code>111.111.111.110</code>（用arp得到mac地址，创建一个帧，发到子网中。路由器看到这个链路层帧向它寻址就把这个帧传给路由器），然后路由器查询转发表， 知道了要在右边的接口发送……就发成了</p>
+<h4 id="以太网"><a href="#以太网" class="headerlink" title="以太网"></a>以太网</h4><p>以太网是目前最流行的有限局域网技术。</p>
+<p><strong>以太网帧结构</strong>：</p>
+<p><img src="/images/topdown/cpt6-5.png" class="lazy" data-srcset="/images/topdown/cpt6-5.png" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABAQMAAAAl21bKAAAABlBMVEXMzMyWlpYU2uzLAAAACXBIWXMAAA7EAAAOxAGVKw4bAAAACklEQVQImWNgAAAAAgAB9HFkpgAAAABJRU5ErkJggg==" alt="yitai"></p>
+<p>数据字段承载ip数据报，长度在46-1500之间，多了分片少了填充。</p>
+<p>类型字段允许以太网复用多种网络层协议。</p>
+<p>crc用来循环冗余检测</p>
+<p>前同步码：前七个字节为<code>10101010</code>，最后一个字节是<code>10101011</code>，目的是唤醒接收适配器并将它们时钟和发送方时钟同步。</p>
+<p>所有以太网技术都向网络层提供无连接服务，提供不可靠服务。</p>
+<h4 id="链路层交换机"><a href="#链路层交换机" class="headerlink" title="链路层交换机"></a>链路层交换机</h4><p><strong>交换机转发和过滤</strong>：过滤是决定一个帧应该转发到某个接口还是要丢弃，转发是决定一个帧应该被导向哪个接口，并把帧移过去。它们借助于交换机表完成。交换机表有内容，接口，时间。</p>
+<p>假设有一个目的地址为<code>DD-DD-DD-DD-DD-DD</code>的帧从交换机接口$x$到达，如果</p>
+<ul>
+<li>表中没有对于它的表项，就向接口$x$以外的所有接口前面的输出缓存转发该帧副本</li>
+<li>表中有一个表项联系它和接口$x$，丢弃</li>
+<li>表中有一个表项联系它和接口$y \not = x$，该帧放到接口$y$前的输出缓存</li>
+</ul>
+<p><strong>自学习</strong>：tql</p>
+<ul>
+<li>交换机表初始为空</li>
+<li>对于每个接口接收到的每个帧，在表中存储源地址字段中的mac地址，到达接口号，当前时间</li>
+<li>一段时间（老化期）以后，没有接收到以该地址作为源地址的帧，就在表中删除这个地址</li>
+</ul>
+<p>所以交换机也是即插即用的。它还是全双工的。</p>
+<p><strong>性质</strong>：</p>
+<ul>
+<li>消除碰撞。没有因为碰撞而浪费的带宽</li>
+<li>异质的链路。交换机将链路彼此隔离，局域网中的不同链路能以不同的速率甚至是在不同的媒体上运行</li>
+<li>好管理</li>
+</ul>
+<p><strong>比较</strong>：</p>
+<p>交换机即插即用，有相对高的分组过滤和转发速率；交换网络的活跃拓扑限制为一棵生成树，要求在主机和路由器中有大的arp表，对广播风暴不提供任何保护措施。</p>
+<p>路由器没有生成树限制，可以以丰富的拓扑结构构建因特网。对第二层的广播风暴提供防火墙保护；不是即插即用的，催每个分组的处理时间比交换机更长。</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>集线器</th>
+<th>路由器</th>
+<th>交换机</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>流量隔离</td>
+<td></td>
+<td>Y</td>
+<td>Y</td>
+</tr>
+<tr>
+<td>即插即用</td>
+<td>Y</td>
+<td></td>
+<td>Y</td>
+</tr>
+<tr>
+<td>优化路由</td>
+<td></td>
+<td>Y</td>
+<td></td>
+</tr>
+</tbody></table>
+<h4 id="虚拟局域网"><a href="#虚拟局域网" class="headerlink" title="虚拟局域网"></a>虚拟局域网</h4><p>支持虚拟局域网VLAN的交换机允许经一个单一的物理局域网基础设施定义多个虚拟局域网。</p>
+<p>接口由网管划分成组，每个组构成一个vlan，每个vlan中的端口构成一个广播域（来自一个端口的广播流量仅能到达该组中其他端口）</p>
+<p>至于vlan之间的通信，看书吧。</p>
+<h2 id="链路虚拟化：网络作为链路层"><a href="#链路虚拟化：网络作为链路层" class="headerlink" title="链路虚拟化：网络作为链路层"></a>链路虚拟化：网络作为链路层</h2><h4 id="多协议标签交换"><a href="#多协议标签交换" class="headerlink" title="多协议标签交换"></a>多协议标签交换</h4><p>多协议标签交换MPLS云里雾里，跳了</p>
+<h2 id="数据中心网络"><a href="#数据中心网络" class="headerlink" title="数据中心网络"></a>数据中心网络</h2><p>数据中心的主机称为刀片，每个机架堆放20-40台刀片，每个机架顶部有一台“机架顶部交换机”，它们和机架上主机互联，和数据中心其他交换机互联。</p>
+<h4 id="负载均衡"><a href="#负载均衡" class="headerlink" title="负载均衡"></a>负载均衡</h4><p>外部请求首先被定向到一个负载均衡器，它平衡主机间的工作负载，还提供类似nat的功能。</p>
+<h4 id="等级体系结构"><a href="#等级体系结构" class="headerlink" title="等级体系结构"></a>等级体系结构</h4><p><img src="/images/topdown/cpt6-6.png" class="lazy" data-srcset="/images/topdown/cpt6-6.png" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABAQMAAAAl21bKAAAABlBMVEXMzMyWlpYU2uzLAAAACXBIWXMAAA7EAAAOxAGVKw4bAAAACklEQVQImWNgAAAAAgAB9HFkpgAAAABJRU5ErkJggg==" alt="stru"></p>
+<p>图为示意。</p>
+<h4 id="发展趋势"><a href="#发展趋势" class="headerlink" title="发展趋势"></a>发展趋势</h4><p>全连接拓扑和模块化数据中心。</p>
+<h2 id="回顾：Web页面请求的历程"><a href="#回顾：Web页面请求的历程" class="headerlink" title="回顾：Web页面请求的历程"></a>回顾：Web页面请求的历程</h2><p>掏出你的电脑，连到以太网交换机，开始冲浪（x</p>
+<p>超绝详细的部分看书</p>
+<h4 id="准备：DHCP、UDP、IP和以太网"><a href="#准备：DHCP、UDP、IP和以太网" class="headerlink" title="准备：DHCP、UDP、IP和以太网"></a>准备：DHCP、UDP、IP和以太网</h4><p>先用udp和dhcp让你的电脑知道ip地址，在ip转发表中安装默认网关。</p>
+<h4 id="仍在准备：DNS和ARP"><a href="#仍在准备：DNS和ARP" class="headerlink" title="仍在准备：DNS和ARP"></a>仍在准备：DNS和ARP</h4><p>在浏览器敲入<code>www.bilibili.com</code>的时候，浏览器生成tcp套接字，向bilibili发送http请求——在这之前要知道bilibili的dns。</p>
+<p>电脑生成一个dns查询报文丢进udp报文段向dns服务器丢过去——在这之前你需要用arp知道网关路由器的mac地址。用arp一通操作成了。</p>
+<h4 id="仍在准备：域内路由选择到dns服务器"><a href="#仍在准备：域内路由选择到dns服务器" class="headerlink" title="仍在准备：域内路由选择到dns服务器"></a>仍在准备：域内路由选择到dns服务器</h4><p>网关路由器接收到包含dns查询的报文，查找目的地址（比如dns服务商comcast），发到comcast网络的边缘路由器，根据转发表确定出接口发过去（转发表已经被rip、ospf、is-is、BGP这一套东西填好了）</p>
+<p>经过一番dns查找，确定了google服务器的ip地址，返回，准备连接</p>
+<h4 id="Web客户——服务器交互：TCP和HTTP"><a href="#Web客户——服务器交互：TCP和HTTP" class="headerlink" title="Web客户——服务器交互：TCP和HTTP"></a>Web客户——服务器交互：TCP和HTTP</h4><p>生成tcp套接字，建立连接，发送http get报文，获得http响应报文……一通操作，你看到了2233。</p>
+
+    </div>
+     
+    <div class="post-footer__meta"><p>更新于 2022-10-17</p></div> 
+    <div class="post-entry__tags"><a href="/tags/%E7%AC%94%E8%AE%B0/" class="post-tags__link button"># 笔记</a><a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/" class="post-tags__link button"># 计算机网络</a></div> 
+</article>
+
+
+    <div class="nav">
+        <div class="nav__prev">
+            
+                <a href="/2020/05/01/cs_notes/topdown_chapter7/" class="nav__link">
+                    <div>
+                        <svg viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg" width="24" height="24"><path d="M589.088 790.624L310.464 512l278.624-278.624 45.248 45.248L400.96 512l233.376 233.376z" fill="#808080"></path></svg>
+                    </div>
+                    <div>
+                        <div class="nav__label">
+                            Previous Post
+                        </div>
+                        <div class="nav__title">
+                            《计算机网络：自顶向下方法》笔记7 无线网络和移动网络
+                        </div>
+                    </div>
+                </a>
+            
+        </div>
+        <div class="nav__next">
+            
+                <a href="/2020/05/01/cs_notes/topdown_chapter5/" class="nav__link">
+                    <div>
+                        <div class="nav__label">
+                            Next Post
+                        </div>
+                        <div class="nav__title">
+                            《计算机网络：自顶向下方法》笔记5 网络层：控制平面
+                        </div>
+                    </div>
+                    <div>
+                        <svg viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg" width="24" height="24"><path d="M434.944 790.624l-45.248-45.248L623.04 512l-233.376-233.376 45.248-45.248L713.568 512z" fill="#808080"></path></svg>
+                    </div>
+                </a>
+            
+        </div>
+    </div>
+
+
+
+
+
+</main>
+
+            <footer class="footer">
+     
+    <a href="#" class="button" id="b2t" aria-label="回到顶部" title="回到顶部">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024" width="32" height="32">
+            <path d="M233.376 722.752L278.624 768 512 534.624 745.376 768l45.248-45.248L512 444.128zM192 352h640V288H192z" fill="currentColor"></path>
+        </svg>
+    </a>
+
+    
+
+
+    
+     
+ 
+
+ 
+    
+        
+        <p class="footer-copyright">
+            Copyright © 2017&nbsp;-&nbsp;2022 <a href="/">怀中落霞</a>
+        </p>
+    
+    
+    <p>Powered by <a href="https://hexo.io" target="_blank">Hexo</a> | Theme - <a href="https://github.com/ChrAlpha/hexo-theme-cards" target="_blank">Cards</a></p>
+</footer>
+
+        </div>
+        
+    <script defer src="https://cdn.jsdelivr.net/npm/vanilla-lazyload@17.1.0/dist/lazyload.min.js"></script>
+    <script>
+        window.lazyLoadOptions = {
+            elements_selector: ".lazy",
+            threshold: 0
+        };
+    </script>
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+
+
+ 
+
+
+
+ 
+
+
+    
+ 
+
+
+    
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.4.1/dist/jquery.min.js"></script>
+
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.4.1/dist/jquery.fancybox.min.css">
+
+    
+<script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.4.1/dist/jquery.fancybox.min.js"></script>
+
+    <script>
+        let lazyloadT = Boolean('true'),
+            auto_fancybox = Boolean('true')
+        if (auto_fancybox) {
+            $(".post__content").find('img').each(function () {
+                var element = document.createElement("a");
+                $(element).attr("data-fancybox", "gallery");
+                $(element).attr("href", $(this).attr("src"));
+                if (lazyloadT) {
+                    $(element).attr("href", $(this).attr("data-srcset"));
+                }
+                $(this).wrap(element);
+            });
+        } else {
+            $(".post__content").find("fancybox").find('img').each(function () {
+                var element = document.createElement("a");
+                $(element).attr("data-fancybox", "gallery");
+                $(element).attr("href", $(this).attr("src"));
+                if (lazyloadT) {
+                    $(element).attr("href", $(this).attr("data-srcset"));
+                }
+                $(this).wrap(element);
+            });
+        }
+    </script>
+ 
+
+
+    <script>
+        if (typeof MathJax === 'undefined') {
+            window.MathJax = {
+                loader: {
+                    source: {
+                        '[tex]/amsCd': '[tex]/amscd',
+                        '[tex]/AMScd': '[tex]/amscd'
+                    }
+                },
+                tex: {
+                    inlineMath: {'[+]': [['$', '$']]},
+                    tags: 'ams'
+                },
+                options: {
+                    renderActions: {
+                        findScript: [10, doc => {
+                            document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+                                const display = !!node.type.match(/; *mode=display/);
+                                const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+                                const text = document.createTextNode('');
+                                node.parentNode.replaceChild(text, node);
+                                math.start = {node: text, delim: '', n: 0};
+                                math.end = {node: text, delim: '', n: 0};
+                                doc.math.push(math);
+                            });
+                        }, '', false],
+                        insertedScript: [200, () => {
+                            document.querySelectorAll('mjx-container').forEach(node => {
+                                let target = node.parentNode;
+                                if (target.nodeName.toLowerCase() === 'li') {
+                                    target.parentNode.classList.add('has-jax');
+                                }
+                            });
+                        }, '', false]
+                    }
+                }
+            };
+            (function () {
+                var script = document.createElement('script');
+                script.src = "https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js";
+                script.defer = true;
+                document.head.appendChild(script);
+            })();
+        } else {
+            MathJax.startup.document.state(0);
+            MathJax.texReset();
+            MathJax.typeset();
+        }
+    </script>
+
+ 
+
+ 
+
+ 
+
+ 
+
+
+
+
+    </body>
+</html>

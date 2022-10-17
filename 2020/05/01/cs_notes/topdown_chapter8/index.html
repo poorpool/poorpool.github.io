@@ -1,0 +1,505 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+    <meta charset="utf-8">
+
+    
+
+    <!-- 渲染优化 -->
+    <meta name="renderer" content="webkit">
+    <meta name="force-rendering" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta name="HandheldFriendly" content="True" >
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+    <!--icon-->
+
+    
+        <link rel="shortcut icon" href="/images/icons/favicon.ico">
+    
+    
+    
+    
+        <link rel="apple-touch-icon" sizes="180x180" href="/images/icons/logo.png">
+    
+    
+
+
+    <!-- meta -->
+
+
+<title>《计算机网络：自顶向下方法》笔记8 计算机网络中的安全 | 怀中落霞</title>
+
+
+    <meta name="keywords" content="笔记, 计算机网络">
+
+
+
+
+    <!-- OpenGraph -->
+ 
+    <meta name="description" content="第八章">
+<meta property="og:type" content="article">
+<meta property="og:title" content="《计算机网络：自顶向下方法》笔记8 计算机网络中的安全">
+<meta property="og:url" content="https://poorpool.github.io/2020/05/01/cs_notes/topdown_chapter8/index.html">
+<meta property="og:site_name" content="怀中落霞">
+<meta property="og:description" content="第八章">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://poorpool.github.io/images/topdown/cpt8-1.png">
+<meta property="og:image" content="https://poorpool.github.io/images/topdown/cpt8-2.png">
+<meta property="og:image" content="https://poorpool.github.io/images/topdown/cpt8-3.png">
+<meta property="article:published_time" content="2020-05-01T10:00:07.000Z">
+<meta property="article:modified_time" content="2022-10-17T07:18:55.908Z">
+<meta property="article:author" content="poorpool">
+<meta property="article:tag" content="笔记">
+<meta property="article:tag" content="计算机网络">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://poorpool.github.io/images/topdown/cpt8-1.png">
+
+
+    
+<link rel="stylesheet" href="/css/style/main.css">
+ 
+
+    
+    
+        <link rel="stylesheet" id="hl-default-theme" href="/css/highlight/a11y-light.css" media="none" onload="this.media='all'">
+        
+    
+
+    
+    
+
+    
+
+     
+
+    <!-- custom head -->
+
+<meta name="generator" content="Hexo 4.2.1"><link rel="alternate" href="/atom.xml" title="怀中落霞" type="application/atom+xml">
+</head>
+
+    <body>
+        <div id="app">
+            <header class="header">
+    <div class="header__left">
+        <a href="/" class="button">
+            <span class="logo__text">怀中落霞</span>
+        </a>
+    </div>
+    <div class="header__right">
+        
+            <div class="navbar__menus">
+                
+                    <a href="/" class="navbar-menu button">首页</a>
+                
+                    <a href="/tags/" class="navbar-menu button">标签</a>
+                
+                    <a href="/categories/" class="navbar-menu button">分类</a>
+                
+                    <a href="/archives/" class="navbar-menu button">归档</a>
+                
+                    <a href="/links/" class="navbar-menu button">友链</a>
+                
+                    <a href="/about/" class="navbar-menu button">关于</a>
+                
+            </div>
+        
+        
+        
+    <a href="/search/" id="btn-search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024" width="24" height="24" fill="currentColor" stroke="currentColor" stroke-width="32"><path d="M192 448c0-141.152 114.848-256 256-256s256 114.848 256 256-114.848 256-256 256-256-114.848-256-256z m710.624 409.376l-206.88-206.88A318.784 318.784 0 0 0 768 448c0-176.736-143.264-320-320-320S128 271.264 128 448s143.264 320 320 320a318.784 318.784 0 0 0 202.496-72.256l206.88 206.88 45.248-45.248z"></path></svg>
+    </a>
+
+
+        
+        
+
+        
+            <a class="dropdown-icon button" id="btn-dropdown" tabindex="0"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" width='24' height='24' fill="none" stroke="currentColor" stroke-width="0.7" stroke-linecap="round" stroke-linejoin="round"><path fill="currentColor" d="M3.314,4.8h13.372c0.41,0,0.743-0.333,0.743-0.743c0-0.41-0.333-0.743-0.743-0.743H3.314c-0.41,0-0.743,0.333-0.743,0.743C2.571,4.467,2.904,4.8,3.314,4.8z M16.686,15.2H3.314c-0.41,0-0.743,0.333-0.743,0.743s0.333,0.743,0.743,0.743h13.372c0.41,0,0.743-0.333,0.743-0.743S17.096,15.2,16.686,15.2z M16.686,9.257H3.314c-0.41,0-0.743,0.333-0.743,0.743s0.333,0.743,0.743,0.743h13.372c0.41,0,0.743-0.333,0.743-0.743S17.096,9.257,16.686,9.257z"></path></svg></a>
+            <div class="dropdown-menus" id="dropdown-menus">
+                
+                    <a href="/" class="dropdown-menu button">首页</a>
+                
+                    <a href="/tags/" class="dropdown-menu button">标签</a>
+                
+                    <a href="/categories/" class="dropdown-menu button">分类</a>
+                
+                    <a href="/archives/" class="dropdown-menu button">归档</a>
+                
+                    <a href="/links/" class="dropdown-menu button">友链</a>
+                
+                    <a href="/about/" class="dropdown-menu button">关于</a>
+                
+            </div>
+        
+    </div>
+</header>
+
+
+            <main class="main">
+    
+
+<div class="post-title">
+    <h1 class="post-title__text">
+        《计算机网络：自顶向下方法》笔记8 计算机网络中的安全
+    </h1>
+    <div class="post-title__meta">
+        <a href="/archives/2020/05/" class="post-meta__date button">2020-05-01</a>
+        
+    <span class="separate-dot"></span><a href="/categories/%E7%AC%94%E8%AE%B0/" class="button">笔记</a>
+
+ 
+        
+    
+    
+
+
+ 
+
+ 
+    </div>
+</div>
+
+
+    <aside class="post-side">
+        <div class="post-side__toc">
+            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#密码学的原则"><span class="toc-number">1.</span> <span class="toc-text">密码学的原则</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#对称密钥密码体制"><span class="toc-number">1.0.1.</span> <span class="toc-text">对称密钥密码体制</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#块密码"><span class="toc-number">1.0.2.</span> <span class="toc-text">块密码</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#公开密钥加密"><span class="toc-number">1.0.3.</span> <span class="toc-text">公开密钥加密</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#RSA"><span class="toc-number">1.0.4.</span> <span class="toc-text">RSA</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#RSA的工作原理"><span class="toc-number">1.0.5.</span> <span class="toc-text">RSA的工作原理</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#报文完整性和数字签名"><span class="toc-number">2.</span> <span class="toc-text">报文完整性和数字签名</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#密码散列函数"><span class="toc-number">2.0.1.</span> <span class="toc-text">密码散列函数</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#数字签名"><span class="toc-number">2.0.2.</span> <span class="toc-text">数字签名</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#公钥认证"><span class="toc-number">2.0.3.</span> <span class="toc-text">公钥认证</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#端点鉴别"><span class="toc-number">3.</span> <span class="toc-text">端点鉴别</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#安全电子邮件"><span class="toc-number">4.</span> <span class="toc-text">安全电子邮件</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#使TCP连接安全：SSL"><span class="toc-number">5.</span> <span class="toc-text">使TCP连接安全：SSL</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#宏观描述"><span class="toc-number">5.0.1.</span> <span class="toc-text">宏观描述</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#更完整的描述"><span class="toc-number">5.0.2.</span> <span class="toc-text">更完整的描述</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#网络层安全性：IPsec和虚拟专用网"><span class="toc-number">6.</span> <span class="toc-text">网络层安全性：IPsec和虚拟专用网</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#使无线lan安全"><span class="toc-number">7.</span> <span class="toc-text">使无线lan安全</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#运行安全性：防火墙和入侵检测系统"><span class="toc-number">8.</span> <span class="toc-text">运行安全性：防火墙和入侵检测系统</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#入侵检测系统"><span class="toc-number">8.0.1.</span> <span class="toc-text">入侵检测系统</span></a></li></ol></li></ol></li></ol>
+        </div>
+    </aside>
+    <a class="btn-toc button" id="btn-toc" tabindex="0">
+        <svg viewBox="0 0 1024 1024" width="32" height="32" xmlns="http://www.w3.org/2000/svg">
+            <path d="M128 256h64V192H128zM320 256h576V192H320zM128 544h64v-64H128zM320 544h576v-64H320zM128 832h64v-64H128zM320 832h576v-64H320z" fill="currentColor"></path>
+        </svg>
+    </a>
+    <div class="toc-menus" id="toc-menus">
+        <div class="toc-title">文章目录</div>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#密码学的原则"><span class="toc-number">1.</span> <span class="toc-text">密码学的原则</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#对称密钥密码体制"><span class="toc-number">1.0.1.</span> <span class="toc-text">对称密钥密码体制</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#块密码"><span class="toc-number">1.0.2.</span> <span class="toc-text">块密码</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#公开密钥加密"><span class="toc-number">1.0.3.</span> <span class="toc-text">公开密钥加密</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#RSA"><span class="toc-number">1.0.4.</span> <span class="toc-text">RSA</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#RSA的工作原理"><span class="toc-number">1.0.5.</span> <span class="toc-text">RSA的工作原理</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#报文完整性和数字签名"><span class="toc-number">2.</span> <span class="toc-text">报文完整性和数字签名</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#密码散列函数"><span class="toc-number">2.0.1.</span> <span class="toc-text">密码散列函数</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#数字签名"><span class="toc-number">2.0.2.</span> <span class="toc-text">数字签名</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#公钥认证"><span class="toc-number">2.0.3.</span> <span class="toc-text">公钥认证</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#端点鉴别"><span class="toc-number">3.</span> <span class="toc-text">端点鉴别</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#安全电子邮件"><span class="toc-number">4.</span> <span class="toc-text">安全电子邮件</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#使TCP连接安全：SSL"><span class="toc-number">5.</span> <span class="toc-text">使TCP连接安全：SSL</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#宏观描述"><span class="toc-number">5.0.1.</span> <span class="toc-text">宏观描述</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#更完整的描述"><span class="toc-number">5.0.2.</span> <span class="toc-text">更完整的描述</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#网络层安全性：IPsec和虚拟专用网"><span class="toc-number">6.</span> <span class="toc-text">网络层安全性：IPsec和虚拟专用网</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#使无线lan安全"><span class="toc-number">7.</span> <span class="toc-text">使无线lan安全</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#运行安全性：防火墙和入侵检测系统"><span class="toc-number">8.</span> <span class="toc-text">运行安全性：防火墙和入侵检测系统</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#入侵检测系统"><span class="toc-number">8.0.1.</span> <span class="toc-text">入侵检测系统</span></a></li></ol></li></ol></li></ol>
+    </div>
+
+
+<article class="post post__with-toc content-card">
+    <div class="post__header"></div>
+    <div class="post__content">
+        <p>第八章</p>
+<a id="more"></a>
+
+<p>安全通信需要具备机密性、报文完整性、端点鉴别、运行安全性</p>
+<h2 id="密码学的原则"><a href="#密码学的原则" class="headerlink" title="密码学的原则"></a>密码学的原则</h2><p>这一部分解决了机密性的问题。</p>
+<p>在对称密钥系统中，alice和bob的密钥相同且秘密；在公开密钥系统中，一个密钥全世界都知道，另一个密钥只有alice或bob知道（而不是两个都知道）</p>
+<h4 id="对称密钥密码体制"><a href="#对称密钥密码体制" class="headerlink" title="对称密钥密码体制"></a>对称密钥密码体制</h4><p>对于凯撒密码或者单码代替密码，攻击手段：</p>
+<ul>
+<li>唯密文攻击</li>
+<li>已知明文攻击：攻击者知道(明文，密文)的一些匹配的时候</li>
+<li>选择明文攻击：如果攻击者能让alice发送The quick brown fox jump over the lazy dog，那么加密方案就能完全破译。</li>
+</ul>
+<p>多码代替密码：顾名思义，就是用多个单码代替密码，换着来。</p>
+<h4 id="块密码"><a href="#块密码" class="headerlink" title="块密码"></a>块密码</h4><p>要加密的报文处理为$k$比特的块，每块独立加密。</p>
+<p><img src="/images/topdown/cpt8-1.png" class="lazy" data-srcset="/images/topdown/cpt8-1.png" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABAQMAAAAl21bKAAAABlBMVEXMzMyWlpYU2uzLAAAACXBIWXMAAA7EAAAOxAGVKw4bAAAACklEQVQImWNgAAAAAgAB9HFkpgAAAABJRU5ErkJggg==" alt="qwq"></p>
+<p>这是一个块密码的例子，密钥是8张排列表。</p>
+<p>怎样使相同的明文的密文不同？可以引入随机性。通常使用密码块连接CBC的计数，具体思想是仅第一个报文发送一个随机值，然后让发送方和接收方用计算的编码块代替后续的随机数。</p>
+<h4 id="公开密钥加密"><a href="#公开密钥加密" class="headerlink" title="公开密钥加密"></a>公开密钥加密</h4><p>bob有全世界都知道的公钥和只有他自己知道的私钥。alice想跟bob取得联系，就先获得bob的全世界都知道的公钥然后用全世界都知道的加密算法加密发给bob，bob用全世界都知道的解密算法和只有他自己知道的私钥解密。</p>
+<p>但是这样也许会出现选择明文攻击，攻击者对所有怀疑可能被发送的报文编码。还有此时无法验证发送者的身份。</p>
+<h4 id="RSA"><a href="#RSA" class="headerlink" title="RSA"></a>RSA</h4><p>RSA几乎成了公开密钥加密的代名词。</p>
+<p>生成公钥私钥的步骤：</p>
+<ul>
+<li>选择两个大素数$p$和$q$</li>
+<li>计算$n=pq$和$z=(p-1)(q-1)$</li>
+<li>选择小于$n$且和$z$互质的$e$</li>
+<li>求一个$d$使得$ed\bmod z=1$</li>
+<li>公钥是$(n,e)$，私钥是$(n,d)$</li>
+</ul>
+<p>明文$m$的加密值：$c=m^e\bmod n$</p>
+<p>密文$c$的解密：$m=c^d\bmod n$</p>
+<p>在应用中，rsa比较慢，通常和对称密钥密码结合做。比如alice设置一个会话密钥，用rsa这一套传给b，然后用会话密钥进行加密数据传输</p>
+<h4 id="RSA的工作原理"><a href="#RSA的工作原理" class="headerlink" title="RSA的工作原理"></a>RSA的工作原理</h4><p>加密解密的结果是$(m^e\bmod n)^d \bmod n$也就是$m^{ed}\bmod n$，考虑欧拉降幂，$z=\varphi(n)=(p-1)(q-1)$，于是$m^{ed}\bmod n=m^{ed\bmod z}\bmod n=m\bmod n$。</p>
+<p>你甚至可以发现先解密后加密结果一样。这个按上面的自己推一遍就好了。</p>
+<p>rsa的安全性基于大数因式分解是困难的。</p>
+<h2 id="报文完整性和数字签名"><a href="#报文完整性和数字签名" class="headerlink" title="报文完整性和数字签名"></a>报文完整性和数字签名</h2><p>这一部分解决报文完整性的问题。</p>
+<h4 id="密码散列函数"><a href="#密码散列函数" class="headerlink" title="密码散列函数"></a>密码散列函数</h4><p>散列函数以$m$为输入，计算得到一个称为散列的固定长度字符串。</p>
+<p>因特网检验和和CRC都是。因特网检验和显然是一个劣质的。</p>
+<p>它还要求对于$x\not=y$，$H(x)\not=H(y)$。</p>
+<p>广泛使用的MD5得到128比特的散列，SHA-1生成一个160比特的报文摘要。</p>
+<p>为了报文完整性，alice和bob还要共享秘密$s$，鉴别密钥。</p>
+<p>alice计算散列$H(m+s)$，它被称为报文鉴别码MAC，生成扩展报文$(m, H(m+s))$发给bob。bob得到扩展报文$(m, h)$，因为知道$s$，所以计算出$H(m+s)$，如果等于$h$，那么一切正常。</p>
+<h4 id="数字签名"><a href="#数字签名" class="headerlink" title="数字签名"></a>数字签名</h4><p>这个签名应该是可以鉴别的，不可伪造的。bob为了签署一个文档，显然需要将一些独特的信息附加上来。</p>
+<p>所以bob直接用私钥加密（回想rsa的工作原理这一部分，先解密后加密结果一样），这样如果用全世界都知道的bob的公钥解开了这个密文，那么就能知道这个是bob签署的了。</p>
+<p>不过因为加密解密代价昂贵，没有必要完全签名数据。对报文的散列签名就可以了。</p>
+<p>显然数字签名比MAC更高级。</p>
+<h4 id="公钥认证"><a href="#公钥认证" class="headerlink" title="公钥认证"></a>公钥认证</h4><p>将公钥和特定实体绑定由认证中心CA完成。</p>
+<h2 id="端点鉴别"><a href="#端点鉴别" class="headerlink" title="端点鉴别"></a>端点鉴别</h2><p>这一部分解决端点鉴别的问题。</p>
+<p>研究一个自己的鉴别协议：AP</p>
+<p><strong>ap1.0</strong>：我宣布我是alice，我就是alice。</p>
+<p><strong>ap2.0</strong>：alice有一个总是用于通信的周知网络地址（比如ip地址），bob可以检查报文的ip数据报源地址和alice的周知ip地址是否匹配。</p>
+<p><strong>ap3.0</strong>：使用秘密口令。嗅探数据分组存下来就破了。</p>
+<p><strong>ap3.1</strong>：用加密口令。回放攻击就破了。</p>
+<p><strong>ap4.0</strong>：使用不重数nonce。一个协议的生存周期中只使用一次的数。</p>
+<ul>
+<li>alice发送“我是alice”</li>
+<li>bob发送不重数$R$给alice</li>
+<li>alice使用和bob共享的对称秘密密钥加密不重数，发给bob</li>
+<li>bob解密收到的。如果等于，就鉴别了alice的身份。</li>
+</ul>
+<h2 id="安全电子邮件"><a href="#安全电子邮件" class="headerlink" title="安全电子邮件"></a>安全电子邮件</h2><p>我们需要什么？第一机密性，第二发送方鉴别，第三报文完整性，第四接收方鉴别。</p>
+<p>机密性最直接的方式是对称密钥，然后是公开密钥密码。为了克服效率问题我们使用会话密钥。这个前面说过了。</p>
+<p>要结合机密性、发送方鉴别和报文完整性的话，就把上面这套和数字签名和报文摘要加上。安全地分发公钥可以使用CA。</p>
+<h2 id="使TCP连接安全：SSL"><a href="#使TCP连接安全：SSL" class="headerlink" title="使TCP连接安全：SSL"></a>使TCP连接安全：SSL</h2><p>安全套接字层ssl，ssl版本3的稍加修改版本是运输层安全性tls。</p>
+<h4 id="宏观描述"><a href="#宏观描述" class="headerlink" title="宏观描述"></a>宏观描述</h4><p><strong>握手</strong>：</p>
+<p>bob要和alice创建一条tcp连接，验证alice是真的alice，发给alice主密钥，用这个主密钥生成ssl会话所需的所有对称密钥。</p>
+<p><img src="/images/topdown/cpt8-2.png" class="lazy" data-srcset="/images/topdown/cpt8-2.png" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABAQMAAAAl21bKAAAABlBMVEXMzMyWlpYU2uzLAAAACXBIWXMAAA7EAAAOxAGVKw4bAAAACklEQVQImWNgAAAAAgAB9HFkpgAAAABJRU5ErkJggg==" alt="qwq"></p>
+<p><strong>密钥导出</strong>：</p>
+<p>两边都根据主密钥生成四个密钥：</p>
+<ul>
+<li>$E_B$，从bob到alice的会话加密密钥</li>
+<li>$M_B$，从bob到alice的会话MAC密钥</li>
+<li>$E_A$，从alice到bob的会话加密密钥</li>
+<li>$M_A$，从alice到bob的会话MAC密钥</li>
+</ul>
+<p><strong>数据传输</strong>：</p>
+<p>ssl将数据流分割成记录，每个记录附加一个mac用于完整性检查，然后加密记录+mac。为了产生这个mac，bob将数据连同密钥$M_B$放入一个散列函数中。为了加密记录+mac这个包，bob使用会话加密密钥$E_B$。</p>
+<p>序号可以防止重放攻击。</p>
+<p><img src="/images/topdown/cpt8-3.png" class="lazy" data-srcset="/images/topdown/cpt8-3.png" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABAQMAAAAl21bKAAAABlBMVEXMzMyWlpYU2uzLAAAACXBIWXMAAA7EAAAOxAGVKw4bAAAACklEQVQImWNgAAAAAgAB9HFkpgAAAABJRU5ErkJggg==" alt="qwq"></p>
+<h4 id="更完整的描述"><a href="#更完整的描述" class="headerlink" title="更完整的描述"></a>更完整的描述</h4><p>其实，真正的<strong>握手</strong>是：</p>
+<ul>
+<li>客户发送支持的算法密码的列表和一个不重数。</li>
+<li>服务器选择对称算法、公钥算法和mac算法，连同证书和服务器不重数返回</li>
+<li>客户加密地发送前主密钥给服务端</li>
+<li>客户和服务器独立从前主密钥和不重数中计算出主密钥，划分出四个密钥。</li>
+<li>客户发送所有握手报文的mac</li>
+<li>服务器发送所有握手报文的mac</li>
+</ul>
+<p>在ssl中，不重数用来防御连接重放，序号用于防御在会话中重放个别分组。</p>
+<h2 id="网络层安全性：IPsec和虚拟专用网"><a href="#网络层安全性：IPsec和虚拟专用网" class="headerlink" title="网络层安全性：IPsec和虚拟专用网"></a>网络层安全性：IPsec和虚拟专用网</h2><p>这个看不懂</p>
+<h2 id="使无线lan安全"><a href="#使无线lan安全" class="headerlink" title="使无线lan安全"></a>使无线lan安全</h2><p>WEP协议</p>
+<ul>
+<li>无线主机请求鉴别</li>
+<li>接入点以不重数响应请求</li>
+<li>无线主机用和接入点共享的密钥加密不重数</li>
+<li>接入点解密加密的不重数</li>
+</ul>
+<p>802.11i协议更加安全，主要是靠鉴别服务器。</p>
+<h2 id="运行安全性：防火墙和入侵检测系统"><a href="#运行安全性：防火墙和入侵检测系统" class="headerlink" title="运行安全性：防火墙和入侵检测系统"></a>运行安全性：防火墙和入侵检测系统</h2><p>防火墙的目标：</p>
+<ul>
+<li>从外部到内部or内部到外部所有流量都经过防火墙</li>
+<li>仅被授权的流量允许通过</li>
+<li>防火墙自身免于渗透</li>
+</ul>
+<p>防火墙也分为三类：</p>
+<p><strong>传统的分组过滤器</strong>：</p>
+<p>例如，防止网络被跟踪路由，可以丢弃所有出ICMP TTL过期流量。</p>
+<p><strong>状态分组过滤器</strong>：</p>
+<p>这个在访问控制列表中包括了一个新栏“核对连接”。</p>
+<p><strong>应用程序网关</strong></p>
+<h4 id="入侵检测系统"><a href="#入侵检测系统" class="headerlink" title="入侵检测系统"></a>入侵检测系统</h4><p>为了检测多种攻击类型，我们需要执行深度分组检查。常用入侵检测系统ids。</p>
+<p>一个机构可能有多个ids传感器，划分为高度安全区域和低度安全区域，前者有分组过滤器、应用程序网关和ids系统，后者没有应用程序网关。</p>
+<p>ids系统大致分为基于特征的系统和基于异常的系统。</p>
+
+    </div>
+     
+    <div class="post-footer__meta"><p>更新于 2022-10-17</p></div> 
+    <div class="post-entry__tags"><a href="/tags/%E7%AC%94%E8%AE%B0/" class="post-tags__link button"># 笔记</a><a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/" class="post-tags__link button"># 计算机网络</a></div> 
+</article>
+
+
+    <div class="nav">
+        <div class="nav__prev">
+            
+                <a href="/2020/05/07/old_study_notes/javaknows/" class="nav__link">
+                    <div>
+                        <svg viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg" width="24" height="24"><path d="M589.088 790.624L310.464 512l278.624-278.624 45.248 45.248L400.96 512l233.376 233.376z" fill="#808080"></path></svg>
+                    </div>
+                    <div>
+                        <div class="nav__label">
+                            Previous Post
+                        </div>
+                        <div class="nav__title">
+                            Java的一些知识
+                        </div>
+                    </div>
+                </a>
+            
+        </div>
+        <div class="nav__next">
+            
+                <a href="/2020/05/01/cs_notes/topdown_chapter7/" class="nav__link">
+                    <div>
+                        <div class="nav__label">
+                            Next Post
+                        </div>
+                        <div class="nav__title">
+                            《计算机网络：自顶向下方法》笔记7 无线网络和移动网络
+                        </div>
+                    </div>
+                    <div>
+                        <svg viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg" width="24" height="24"><path d="M434.944 790.624l-45.248-45.248L623.04 512l-233.376-233.376 45.248-45.248L713.568 512z" fill="#808080"></path></svg>
+                    </div>
+                </a>
+            
+        </div>
+    </div>
+
+
+
+
+
+</main>
+
+            <footer class="footer">
+     
+    <a href="#" class="button" id="b2t" aria-label="回到顶部" title="回到顶部">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024" width="32" height="32">
+            <path d="M233.376 722.752L278.624 768 512 534.624 745.376 768l45.248-45.248L512 444.128zM192 352h640V288H192z" fill="currentColor"></path>
+        </svg>
+    </a>
+
+    
+
+
+    
+     
+ 
+
+ 
+    
+        
+        <p class="footer-copyright">
+            Copyright © 2017&nbsp;-&nbsp;2022 <a href="/">怀中落霞</a>
+        </p>
+    
+    
+    <p>Powered by <a href="https://hexo.io" target="_blank">Hexo</a> | Theme - <a href="https://github.com/ChrAlpha/hexo-theme-cards" target="_blank">Cards</a></p>
+</footer>
+
+        </div>
+        
+    <script defer src="https://cdn.jsdelivr.net/npm/vanilla-lazyload@17.1.0/dist/lazyload.min.js"></script>
+    <script>
+        window.lazyLoadOptions = {
+            elements_selector: ".lazy",
+            threshold: 0
+        };
+    </script>
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+
+
+ 
+
+
+
+ 
+
+
+    
+ 
+
+
+    
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.4.1/dist/jquery.min.js"></script>
+
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.4.1/dist/jquery.fancybox.min.css">
+
+    
+<script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.4.1/dist/jquery.fancybox.min.js"></script>
+
+    <script>
+        let lazyloadT = Boolean('true'),
+            auto_fancybox = Boolean('true')
+        if (auto_fancybox) {
+            $(".post__content").find('img').each(function () {
+                var element = document.createElement("a");
+                $(element).attr("data-fancybox", "gallery");
+                $(element).attr("href", $(this).attr("src"));
+                if (lazyloadT) {
+                    $(element).attr("href", $(this).attr("data-srcset"));
+                }
+                $(this).wrap(element);
+            });
+        } else {
+            $(".post__content").find("fancybox").find('img').each(function () {
+                var element = document.createElement("a");
+                $(element).attr("data-fancybox", "gallery");
+                $(element).attr("href", $(this).attr("src"));
+                if (lazyloadT) {
+                    $(element).attr("href", $(this).attr("data-srcset"));
+                }
+                $(this).wrap(element);
+            });
+        }
+    </script>
+ 
+
+
+    <script>
+        if (typeof MathJax === 'undefined') {
+            window.MathJax = {
+                loader: {
+                    source: {
+                        '[tex]/amsCd': '[tex]/amscd',
+                        '[tex]/AMScd': '[tex]/amscd'
+                    }
+                },
+                tex: {
+                    inlineMath: {'[+]': [['$', '$']]},
+                    tags: 'ams'
+                },
+                options: {
+                    renderActions: {
+                        findScript: [10, doc => {
+                            document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+                                const display = !!node.type.match(/; *mode=display/);
+                                const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+                                const text = document.createTextNode('');
+                                node.parentNode.replaceChild(text, node);
+                                math.start = {node: text, delim: '', n: 0};
+                                math.end = {node: text, delim: '', n: 0};
+                                doc.math.push(math);
+                            });
+                        }, '', false],
+                        insertedScript: [200, () => {
+                            document.querySelectorAll('mjx-container').forEach(node => {
+                                let target = node.parentNode;
+                                if (target.nodeName.toLowerCase() === 'li') {
+                                    target.parentNode.classList.add('has-jax');
+                                }
+                            });
+                        }, '', false]
+                    }
+                }
+            };
+            (function () {
+                var script = document.createElement('script');
+                script.src = "https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js";
+                script.defer = true;
+                document.head.appendChild(script);
+            })();
+        } else {
+            MathJax.startup.document.state(0);
+            MathJax.texReset();
+            MathJax.typeset();
+        }
+    </script>
+
+ 
+
+ 
+
+ 
+
+ 
+
+
+
+
+    </body>
+</html>
