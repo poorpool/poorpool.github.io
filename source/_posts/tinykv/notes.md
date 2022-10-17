@@ -7,11 +7,14 @@ tags:
 - 分布式
 categories:
 - 笔记
+typora-root-url: ../..
 ---
 
-代码在 https://github.com/poorpool/tinykv ，还没评分。
+代码在 https://github.com/poorpool/tinykv ，96.1分。
 
 <!--more-->
+
+![img](/images/tinykv/2-scores.png)
 
 因为我电脑的 tmpfs 不够大，我在 kv/test_raftstore/cluster.go:61 中把测试目录设置在 /home/poorpool/tinykvtmp 了，提交的时候我把它给删了。如果要想在个人笔记本上跑，可能要这么设置一下，PingCAP 评测的时候应该不需要。
 
