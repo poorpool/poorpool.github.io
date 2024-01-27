@@ -32,7 +32,7 @@
 <title>华科 Java 笔记 1 | 怀中落霞</title>
 
 
-    <meta name="keywords" content="Java, 笔记">
+    <meta name="keywords" content="笔记, Java">
 
 
 
@@ -47,10 +47,10 @@
 <meta property="og:description" content="随便记一下">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2021-03-01T14:12:20.000Z">
-<meta property="article:modified_time" content="2022-10-17T07:18:55.908Z">
+<meta property="article:modified_time" content="2024-01-27T13:42:37.110Z">
 <meta property="article:author" content="poorpool">
-<meta property="article:tag" content="Java">
 <meta property="article:tag" content="笔记">
+<meta property="article:tag" content="Java">
 <meta name="twitter:card" content="summary_large_image">
 
 
@@ -73,7 +73,7 @@
 
     <!-- custom head -->
 
-<meta name="generator" content="Hexo 4.2.1"><link rel="alternate" href="/atom.xml" title="怀中落霞" type="application/atom+xml">
+<meta name="generator" content="Hexo 7.1.1"><link rel="alternate" href="/atom.xml" title="怀中落霞" type="application/atom+xml">
 </head>
 
     <body>
@@ -179,7 +179,7 @@
     <div class="post__header"></div>
     <div class="post__content">
         <p>随便记一下</p>
-<a id="more"></a>
+<span id="more"></span>
 
 <h1 id="基础"><a href="#基础" class="headerlink" title="基础"></a>基础</h1><p>源代码 .java，编译成 .class。</p>
 <p>applet 只能在网页里面运行。</p>
@@ -197,7 +197,7 @@
 <p>可以注释类，类的方法，类的数据成员之类的。</p>
 <h1 id="输入输出和成员"><a href="#输入输出和成员" class="headerlink" title="输入输出和成员"></a>输入输出和成员</h1><p>System.in InputStream 的对象。</p>
 <p>java.util.Scanner 读入。</p>
-<p>Scanner scanner = new Scanner(System.in)</p>
+<p>Scanner scanner &#x3D; new Scanner(System.in)</p>
 <p>scanner.nextDouble() 之类的。</p>
 <p>java 标识符可以有美元号。</p>
 <p>常量用 final。</p>
@@ -220,22 +220,22 @@
 <p>StringBuffer修改缓冲区的方法是同步（synchronized）的，更适合多线程环境。StringBuilder 快。</p>
 <p>形参不允许有默认值，最后一个可为变长参数（可用…或数组定义，参见第7章数组）。方法里不允许定义static局部变量。</p>
 <p>子类实例函数里用” super.方法名“调用父类实例方法。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">String s5 = <span class="string">"Wel"</span>;</span><br><span class="line">String s6 = <span class="string">"come"</span>;</span><br><span class="line">String s7 = s5 + s6;</span><br><span class="line"><span class="comment">// s7 != "Welcome" !!!!!!</span></span><br><span class="line"><span class="comment">//"Wel" + "come" == "Welcome"</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">String</span> <span class="variable">s5</span> <span class="operator">=</span> <span class="string">&quot;Wel&quot;</span>;</span><br><span class="line"><span class="type">String</span> <span class="variable">s6</span> <span class="operator">=</span> <span class="string">&quot;come&quot;</span>;</span><br><span class="line"><span class="type">String</span> <span class="variable">s7</span> <span class="operator">=</span> s5 + s6;</span><br><span class="line"><span class="comment">// s7 != &quot;Welcome&quot; !!!!!!</span></span><br><span class="line"><span class="comment">//&quot;Wel&quot; + &quot;come&quot; == &quot;Welcome&quot;</span></span><br></pre></td></tr></table></figure>
 
 <blockquote>
 <p>引用类型的实参传递给形参后，实参、形参指向同一个对象。<br>但是，对于String类、基本数据类型的包装类型的实参传递给形参，形参变了不会导致实参变化。这是为什么？<br>这是因为String、Integer的内容是不可更改的（里头是 final）<br>赋值实际上是创建一个新对象，也就是指向变了<br>包装类要和基本数据类型行为一致</p>
 </blockquote>
 <p>java.util.Arrays类包括各种静态方法，其中实现了数组的排序和查找</p>
 <p>二维数组每一行的的列数可以不同。也就是只指定第一维大小。不指定的为 null。</p>
-<h1 id="对象"><a href="#对象" class="headerlink" title="对象"></a>对象</h1><p>数组可以在声明后的花括号中提供初始值，<code>int[] arr = {1,2};</code>，<code>int[] arr = new int[]{1,2};</code> 之类的。不能<code>int[] arr = new int{1,2};</code></p>
+<h1 id="对象"><a href="#对象" class="headerlink" title="对象"></a>对象</h1><p>数组可以在声明后的花括号中提供初始值，<code>int[] arr = &#123;1,2&#125;;</code>，<code>int[] arr = new int[]&#123;1,2&#125;;</code> 之类的。不能<code>int[] arr = new int&#123;1,2&#125;;</code></p>
 <p>当创建对象数组时，数组元素的缺省初值为null。</p>
 <p>二义性只有当名字被使用时才被检测到。</p>
 <p>数组的长度用 length，字符串长度 length()。</p>
 
     </div>
      
-    <div class="post-footer__meta"><p>更新于 2022-10-17</p></div> 
-    <div class="post-entry__tags"><a href="/tags/Java/" class="post-tags__link button"># Java</a><a href="/tags/%E7%AC%94%E8%AE%B0/" class="post-tags__link button"># 笔记</a></div> 
+    <div class="post-footer__meta"><p>更新于 2024-01-27</p></div> 
+    <div class="post-entry__tags"><a href="/tags/%E7%AC%94%E8%AE%B0/" class="post-tags__link button"># 笔记</a><a href="/tags/Java/" class="post-tags__link button"># Java</a></div> 
 </article>
 
 
@@ -301,7 +301,7 @@
     
         
         <p class="footer-copyright">
-            Copyright © 2017&nbsp;-&nbsp;2022 <a href="/">怀中落霞</a>
+            Copyright © 2017&nbsp;-&nbsp;2024 <a href="/">怀中落霞</a>
         </p>
     
     

@@ -47,7 +47,7 @@
 <meta property="og:description" content="课程来源">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2020-07-02T23:13:14.000Z">
-<meta property="article:modified_time" content="2022-10-17T07:18:55.912Z">
+<meta property="article:modified_time" content="2024-01-27T13:42:37.114Z">
 <meta property="article:author" content="poorpool">
 <meta property="article:tag" content="Java">
 <meta property="article:tag" content="Spring">
@@ -73,7 +73,7 @@
 
     <!-- custom head -->
 
-<meta name="generator" content="Hexo 4.2.1"><link rel="alternate" href="/atom.xml" title="怀中落霞" type="application/atom+xml">
+<meta name="generator" content="Hexo 7.1.1"><link rel="alternate" href="/atom.xml" title="怀中落霞" type="application/atom+xml">
 </head>
 
     <body>
@@ -161,7 +161,7 @@
 
     <aside class="post-side">
         <div class="post-side__toc">
-            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#动态-sql"><span class="toc-number">1.</span> <span class="toc-text">动态 sql</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#缓存"><span class="toc-number">2.</span> <span class="toc-text">缓存</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#MBG"><span class="toc-number">3.</span> <span class="toc-text">MBG</span></a></li></ol>
+            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8A%A8%E6%80%81-sql"><span class="toc-number">1.</span> <span class="toc-text">动态 sql</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BC%93%E5%AD%98"><span class="toc-number">2.</span> <span class="toc-text">缓存</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#MBG"><span class="toc-number">3.</span> <span class="toc-text">MBG</span></a></li></ol>
         </div>
     </aside>
     <a class="btn-toc button" id="btn-toc" tabindex="0">
@@ -171,27 +171,27 @@
     </a>
     <div class="toc-menus" id="toc-menus">
         <div class="toc-title">文章目录</div>
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#动态-sql"><span class="toc-number">1.</span> <span class="toc-text">动态 sql</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#缓存"><span class="toc-number">2.</span> <span class="toc-text">缓存</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#MBG"><span class="toc-number">3.</span> <span class="toc-text">MBG</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8A%A8%E6%80%81-sql"><span class="toc-number">1.</span> <span class="toc-text">动态 sql</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BC%93%E5%AD%98"><span class="toc-number">2.</span> <span class="toc-text">缓存</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#MBG"><span class="toc-number">3.</span> <span class="toc-text">MBG</span></a></li></ol>
     </div>
 
 
 <article class="post post__with-toc content-card">
     <div class="post__header"></div>
     <div class="post__content">
-        <p><a href="https://www.bilibili.com/video/BV1d4411g7tv" target="_blank" rel="noopener">课程来源</a></p>
-<a id="more"></a>
+        <p><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1d4411g7tv">课程来源</a></p>
+<span id="more"></span>
 
 <h1 id="MyBatis"><a href="#MyBatis" class="headerlink" title="MyBatis"></a>MyBatis</h1><h2 id="动态-sql"><a href="#动态-sql" class="headerlink" title="动态 sql"></a>动态 sql</h2><p><del>超级拼串王。</del></p>
 <p>if 标签：比如说根据 bean 查询，不是 null 的就要作为条件去查：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Teacher</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> Integer id;</span><br><span class="line">    <span class="keyword">private</span> String teacherName;</span><br><span class="line">    <span class="keyword">private</span> String course;</span><br><span class="line">    <span class="keyword">private</span> String address;</span><br><span class="line">    <span class="keyword">private</span> Date birth;</span><br><span class="line">    <span class="comment">//...</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Teacher</span> &#123;</span><br><span class="line">    <span class="keyword">private</span> Integer id;</span><br><span class="line">    <span class="keyword">private</span> String teacherName;</span><br><span class="line">    <span class="keyword">private</span> String course;</span><br><span class="line">    <span class="keyword">private</span> String address;</span><br><span class="line">    <span class="keyword">private</span> Date birth;</span><br><span class="line">    <span class="comment">//...</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">TeacherDao</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> Teacher <span class="title">getTeacherById</span><span class="params">(Integer id)</span></span>;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 按照 teacher 中不是 null 的东西查询</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> teacher</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@return</span></span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> List&lt;Teacher&gt; <span class="title">getTeacherByCondition</span><span class="params">(Teacher teacher)</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">interface</span> <span class="title class_">TeacherDao</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> Teacher <span class="title function_">getTeacherById</span><span class="params">(Integer id)</span>;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 按照 teacher 中不是 null 的东西查询</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> teacher</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@return</span></span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">public</span> List&lt;Teacher&gt; <span class="title function_">getTeacherByCondition</span><span class="params">(Teacher teacher)</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">select</span> <span class="attr">id</span>=<span class="string">"getTeacherByCondition"</span> <span class="attr">resultType</span>=<span class="string">"net.yxchen.bean.Teacher"</span>&gt;</span></span><br><span class="line">    select * from t_teacher</span><br><span class="line">        <span class="tag">&lt;<span class="name">trim</span> <span class="attr">prefix</span>=<span class="string">"where"</span> <span class="attr">prefixOverrides</span>=<span class="string">""</span> <span class="attr">suffix</span>=<span class="string">""</span> <span class="attr">suffixOverrides</span>=<span class="string">"and"</span>&gt;</span></span><br><span class="line">            <span class="comment">&lt;!-- 添加 where 前缀，取消 and 后缀（如果有的话） --&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">if</span> <span class="attr">test</span>=<span class="string">"id!=null"</span>&gt;</span><span class="comment">&lt;!-- OGNL 表达式 --&gt;</span></span><br><span class="line">                id &gt; #&#123;id&#125; and</span><br><span class="line">            <span class="tag">&lt;/<span class="name">if</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">if</span> <span class="attr">test</span>=<span class="string">"birth!=null"</span>&gt;</span></span><br><span class="line">                #&#123;birth&#125; &gt; birth_date</span><br><span class="line">            <span class="tag">&lt;/<span class="name">if</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">trim</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">select</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">select</span> <span class="attr">id</span>=<span class="string">&quot;getTeacherByCondition&quot;</span> <span class="attr">resultType</span>=<span class="string">&quot;net.yxchen.bean.Teacher&quot;</span>&gt;</span></span><br><span class="line">    select * from t_teacher</span><br><span class="line">        <span class="tag">&lt;<span class="name">trim</span> <span class="attr">prefix</span>=<span class="string">&quot;where&quot;</span> <span class="attr">prefixOverrides</span>=<span class="string">&quot;&quot;</span> <span class="attr">suffix</span>=<span class="string">&quot;&quot;</span> <span class="attr">suffixOverrides</span>=<span class="string">&quot;and&quot;</span>&gt;</span></span><br><span class="line">            <span class="comment">&lt;!-- 添加 where 前缀，取消 and 后缀（如果有的话） --&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">if</span> <span class="attr">test</span>=<span class="string">&quot;id!=null&quot;</span>&gt;</span><span class="comment">&lt;!-- OGNL 表达式 --&gt;</span></span><br><span class="line">                id &gt; #&#123;id&#125; and</span><br><span class="line">            <span class="tag">&lt;/<span class="name">if</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">if</span> <span class="attr">test</span>=<span class="string">&quot;birth!=null&quot;</span>&gt;</span></span><br><span class="line">                #&#123;birth&#125; &gt; birth_date</span><br><span class="line">            <span class="tag">&lt;/<span class="name">if</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">trim</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">select</span>&gt;</span></span><br></pre></td></tr></table></figure>
 
 <p>嫌上面的麻烦，可以把 trim 换成 where 标签然后把 and 写在前头而不是后头，也可以。</p>
 <p>foreach：</p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">foreach</span> <span class="attr">collection</span>=<span class="string">"ids"</span> <span class="attr">item</span>=<span class="string">"idItem"</span> <span class="attr">separator</span>=<span class="string">","</span> <span class="attr">open</span>=<span class="string">"("</span> <span class="attr">close</span>=<span class="string">")"</span>&gt;</span></span><br><span class="line">    #&#123;idItem&#125;</span><br><span class="line"><span class="tag">&lt;/<span class="name">foreach</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">foreach</span> <span class="attr">collection</span>=<span class="string">&quot;ids&quot;</span> <span class="attr">item</span>=<span class="string">&quot;idItem&quot;</span> <span class="attr">separator</span>=<span class="string">&quot;,&quot;</span> <span class="attr">open</span>=<span class="string">&quot;(&quot;</span> <span class="attr">close</span>=<span class="string">&quot;)&quot;</span>&gt;</span></span><br><span class="line">    #&#123;idItem&#125;</span><br><span class="line"><span class="tag">&lt;/<span class="name">foreach</span>&gt;</span></span><br></pre></td></tr></table></figure>
 
 <p>ids 是一个 <code>@Param(&quot;ids&quot;) List&lt;Integer&gt; ids</code>。</p>
 <p>还有 choose 标签，就相当于 switch。</p>
@@ -201,7 +201,7 @@
 
     </div>
      
-    <div class="post-footer__meta"><p>更新于 2022-10-17</p></div> 
+    <div class="post-footer__meta"><p>更新于 2024-01-27</p></div> 
     <div class="post-entry__tags"><a href="/tags/Java/" class="post-tags__link button"># Java</a><a href="/tags/Spring/" class="post-tags__link button"># Spring</a></div> 
 </article>
 
@@ -268,7 +268,7 @@
     
         
         <p class="footer-copyright">
-            Copyright © 2017&nbsp;-&nbsp;2022 <a href="/">怀中落霞</a>
+            Copyright © 2017&nbsp;-&nbsp;2024 <a href="/">怀中落霞</a>
         </p>
     
     

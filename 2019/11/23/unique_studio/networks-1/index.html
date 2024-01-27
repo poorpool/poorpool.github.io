@@ -48,7 +48,7 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://files.jb51.net/file_images/article/201410/201410100911302.jpg">
 <meta property="article:published_time" content="2019-11-23T14:34:04.000Z">
-<meta property="article:modified_time" content="2022-10-17T07:18:55.916Z">
+<meta property="article:modified_time" content="2024-01-27T13:42:37.118Z">
 <meta property="article:author" content="poorpool">
 <meta property="article:tag" content="网络">
 <meta property="article:tag" content="联创">
@@ -75,7 +75,7 @@
 
     <!-- custom head -->
 
-<meta name="generator" content="Hexo 4.2.1"><link rel="alternate" href="/atom.xml" title="怀中落霞" type="application/atom+xml">
+<meta name="generator" content="Hexo 7.1.1"><link rel="alternate" href="/atom.xml" title="怀中落霞" type="application/atom+xml">
 </head>
 
     <body>
@@ -163,7 +163,7 @@
 
     <aside class="post-side">
         <div class="post-side__toc">
-            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#第一个阶段：配置Zebra"><span class="toc-number">1.</span> <span class="toc-text">第一个阶段：配置Zebra</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#第2个阶段：配置OSPF"><span class="toc-number">2.</span> <span class="toc-text">第2个阶段：配置OSPF</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#验证"><span class="toc-number">3.</span> <span class="toc-text">验证</span></a></li></ol>
+            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%AC%E4%B8%80%E4%B8%AA%E9%98%B6%E6%AE%B5%EF%BC%9A%E9%85%8D%E7%BD%AEZebra"><span class="toc-number">1.</span> <span class="toc-text">第一个阶段：配置Zebra</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%AC2%E4%B8%AA%E9%98%B6%E6%AE%B5%EF%BC%9A%E9%85%8D%E7%BD%AEOSPF"><span class="toc-number">2.</span> <span class="toc-text">第2个阶段：配置OSPF</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%AA%8C%E8%AF%81"><span class="toc-number">3.</span> <span class="toc-text">验证</span></a></li></ol>
         </div>
     </aside>
     <a class="btn-toc button" id="btn-toc" tabindex="0">
@@ -173,7 +173,7 @@
     </a>
     <div class="toc-menus" id="toc-menus">
         <div class="toc-title">文章目录</div>
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#第一个阶段：配置Zebra"><span class="toc-number">1.</span> <span class="toc-text">第一个阶段：配置Zebra</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#第2个阶段：配置OSPF"><span class="toc-number">2.</span> <span class="toc-text">第2个阶段：配置OSPF</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#验证"><span class="toc-number">3.</span> <span class="toc-text">验证</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%AC%E4%B8%80%E4%B8%AA%E9%98%B6%E6%AE%B5%EF%BC%9A%E9%85%8D%E7%BD%AEZebra"><span class="toc-number">1.</span> <span class="toc-text">第一个阶段：配置Zebra</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%AC2%E4%B8%AA%E9%98%B6%E6%AE%B5%EF%BC%9A%E9%85%8D%E7%BD%AEOSPF"><span class="toc-number">2.</span> <span class="toc-text">第2个阶段：配置OSPF</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%AA%8C%E8%AF%81"><span class="toc-number">3.</span> <span class="toc-text">验证</span></a></li></ol>
     </div>
 
 
@@ -181,22 +181,22 @@
     <div class="post__header"></div>
     <div class="post__content">
         <p>docker实现OSPF测试通信（以下内容复制自网络并根据实际情况修改）</p>
-<a id="more"></a>
+<span id="more"></span>
 
 <p>docker-compose.yml</p>
-<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">version:</span> <span class="string">'2.0'</span></span><br><span class="line"></span><br><span class="line"><span class="attr">services:</span>              </span><br><span class="line">    <span class="attr">SITE-A:</span></span><br><span class="line">        <span class="attr">image:</span> <span class="string">iwaseyusuke/quagga</span></span><br><span class="line">        <span class="attr">container_name:</span> <span class="string">SITE-A</span></span><br><span class="line">        <span class="attr">networks:</span></span><br><span class="line">            <span class="bullet">-</span> <span class="string">TEST-NET</span></span><br><span class="line">            <span class="bullet">-</span> <span class="string">SUBNET-A</span></span><br><span class="line">        <span class="attr">entrypoint:</span> <span class="string">sh</span> <span class="string">-c</span> <span class="string">"service quagga start &amp;&amp; tail -f /dev/null"</span></span><br><span class="line">        <span class="attr">privileged:</span> <span class="literal">true</span></span><br><span class="line"></span><br><span class="line">    <span class="attr">SITE-B:</span></span><br><span class="line">        <span class="attr">image:</span> <span class="string">iwaseyusuke/quagga</span></span><br><span class="line">        <span class="attr">container_name:</span> <span class="string">SITE-B</span></span><br><span class="line">        <span class="attr">networks:</span></span><br><span class="line">            <span class="bullet">-</span> <span class="string">TEST-NET</span></span><br><span class="line">            <span class="bullet">-</span> <span class="string">SUBNET-B</span></span><br><span class="line">        <span class="attr">entrypoint:</span> <span class="string">sh</span> <span class="string">-c</span> <span class="string">"service quagga start &amp;&amp; tail -f /dev/null"</span></span><br><span class="line">        <span class="attr">privileged:</span> <span class="literal">true</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="attr">networks:</span></span><br><span class="line">    <span class="attr">TEST-NET:</span></span><br><span class="line">      <span class="attr">driver:</span> <span class="string">bridge</span></span><br><span class="line">    <span class="attr">SUBNET-A:</span></span><br><span class="line">      <span class="attr">driver:</span> <span class="string">bridge</span></span><br><span class="line">    <span class="attr">SUBNET-B:</span></span><br><span class="line">      <span class="attr">driver:</span> <span class="string">bridge</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">version:</span> <span class="string">&#x27;2.0&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="attr">services:</span>              </span><br><span class="line">    <span class="attr">SITE-A:</span></span><br><span class="line">        <span class="attr">image:</span> <span class="string">iwaseyusuke/quagga</span></span><br><span class="line">        <span class="attr">container_name:</span> <span class="string">SITE-A</span></span><br><span class="line">        <span class="attr">networks:</span></span><br><span class="line">            <span class="bullet">-</span> <span class="string">TEST-NET</span></span><br><span class="line">            <span class="bullet">-</span> <span class="string">SUBNET-A</span></span><br><span class="line">        <span class="attr">entrypoint:</span> <span class="string">sh</span> <span class="string">-c</span> <span class="string">&quot;service quagga start &amp;&amp; tail -f /dev/null&quot;</span></span><br><span class="line">        <span class="attr">privileged:</span> <span class="literal">true</span></span><br><span class="line"></span><br><span class="line">    <span class="attr">SITE-B:</span></span><br><span class="line">        <span class="attr">image:</span> <span class="string">iwaseyusuke/quagga</span></span><br><span class="line">        <span class="attr">container_name:</span> <span class="string">SITE-B</span></span><br><span class="line">        <span class="attr">networks:</span></span><br><span class="line">            <span class="bullet">-</span> <span class="string">TEST-NET</span></span><br><span class="line">            <span class="bullet">-</span> <span class="string">SUBNET-B</span></span><br><span class="line">        <span class="attr">entrypoint:</span> <span class="string">sh</span> <span class="string">-c</span> <span class="string">&quot;service quagga start &amp;&amp; tail -f /dev/null&quot;</span></span><br><span class="line">        <span class="attr">privileged:</span> <span class="literal">true</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="attr">networks:</span></span><br><span class="line">    <span class="attr">TEST-NET:</span></span><br><span class="line">      <span class="attr">driver:</span> <span class="string">bridge</span></span><br><span class="line">    <span class="attr">SUBNET-A:</span></span><br><span class="line">      <span class="attr">driver:</span> <span class="string">bridge</span></span><br><span class="line">    <span class="attr">SUBNET-B:</span></span><br><span class="line">      <span class="attr">driver:</span> <span class="string">bridge</span></span><br></pre></td></tr></table></figure>
 <p>执行docker-compose up -d于存放该yaml的文件夹。</p>
 <p><img src="https://files.jb51.net/file_images/article/201410/201410100911302.jpg" class="lazy" data-srcset="https://files.jb51.net/file_images/article/201410/201410100911302.jpg" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABAQMAAAAl21bKAAAABlBMVEXMzMyWlpYU2uzLAAAACXBIWXMAAA7EAAAOxAGVKw4bAAAACklEQVQImWNgAAAAAgAB9HFkpgAAAABJRU5ErkJggg==" alt="net"></p>
 <p>我们的设备位于这条专用链路的两端。下面提供了IP地址的信息信息。</p>
-<p>Site-A：192.168.1.0/24</p>
-<p>Site-B：172.16.1.0/24</p>
-<p>两个Linux设备之间的对等：10.10.10.0/30</p>
+<p>Site-A：192.168.1.0&#x2F;24</p>
+<p>Site-B：172.16.1.0&#x2F;24</p>
+<p>两个Linux设备之间的对等：10.10.10.0&#x2F;30</p>
 <p>Quagga软件包含有几个协同运行的后台程序。我们在本教程中将着重介绍设置下列后台程序。</p>
 <p>Zebra：核心后台程序，负责内核接口和静态路由。</p>
 <p>Ospfd：IPv4 OSPF后台程序。</p>
 <h2 id="第一个阶段：配置Zebra"><a href="#第一个阶段：配置Zebra" class="headerlink" title="第一个阶段：配置Zebra"></a>第一个阶段：配置Zebra</h2><p>我们首先创建一个Zebra配置文件，然后启动Zebra后台程序。要是已经启动了就不用了。</p>
 <p>这里的路径可能不一样，要自己找。</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cp /usr/share/doc/quagga/examples/zebra.conf.sample /etc/quagga/zebra.conf</span><br><span class="line">/usr/lib/quagga/zebra -d</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cp</span> /usr/share/doc/quagga/examples/zebra.conf.sample /etc/quagga/zebra.conf</span><br><span class="line">/usr/lib/quagga/zebra -d</span><br></pre></td></tr></table></figure>
 
 <p>在配置路由前，如果你是用docker启动的，先ip route show看一下，要是有什么default via 什么什么之类的，<strong>第一步先删了它！</strong>不然你的流量就会通过这个跑到物理机上头然后nat跑出去，简直白给。</p>
 <p>启动vtysh命令外壳：</p>
@@ -225,7 +225,7 @@
 <p>要是一切顺利，你应该能够从site-A服务器来ping检测site-B的对等IP 10.10.10.2。</p>
 <p>请注意：一旦Zebra后台程序已启动，用vtysh的命令行接口进行的任何更改会立即生效。不需要在配置变更后重启Zebra后台程序。</p>
 <h2 id="第2个阶段：配置OSPF"><a href="#第2个阶段：配置OSPF" class="headerlink" title="第2个阶段：配置OSPF"></a>第2个阶段：配置OSPF</h2><p>我们先创建一个OSPF配置文件，然后启动OSPF后台程序：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">cp /usr/share/doc/quagga/examples/ospfd.conf.sample /etc/quagga/ospfd.conf</span><br><span class="line"></span><br><span class="line">/usr/lib/quagga/ospfd -d</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cp</span> /usr/share/doc/quagga/examples/ospfd.conf.sample /etc/quagga/ospfd.conf</span><br><span class="line"></span><br><span class="line">/usr/lib/quagga/ospfd -d</span><br></pre></td></tr></table></figure>
 <p>现在启动vtysh外壳，继续进行OSPF配置：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vtysh</span><br></pre></td></tr></table></figure>
 <p>进入路由器配置模式：</p>
@@ -233,7 +233,7 @@
 <p>手动设置router-id：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">site-A-RTR(config-router)<span class="comment"># router-id 10.10.10.1</span></span><br></pre></td></tr></table></figure>
 <p>添加将参与OSPF的网络：</p>
-<p>注意这里的网段，如果不是8/16/24,就要手动考虑一下是不是要更改倒数第二位/第三位之类的了</p>
+<p>注意这里的网段，如果不是8&#x2F;16&#x2F;24,就要手动考虑一下是不是要更改倒数第二位&#x2F;第三位之类的了</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">site-A-RTR(config-router)<span class="comment"># network 10.10.10.0/30 area 0</span></span><br><span class="line">site-A-RTR(config-router)<span class="comment"># network 192.168.1.0/24 area 0</span></span><br></pre></td></tr></table></figure>
 <p>永久性保存配置：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">site-A-RTR(config-router)<span class="comment"># do write</span></span><br></pre></td></tr></table></figure>
@@ -250,7 +250,7 @@
 <li>检查路由表</li>
 </ol>
 <p>内核和Quagga路由表里面应该都有必要的路由。</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">[root@site-A-RTR ~]<span class="comment"># ip route</span></span><br><span class="line">10.10.10.0/30 dev eth0 proto kernel scope link src 10.10.10.1</span><br><span class="line">172.16.1.0/30 via 10.10.10.2 dev eth0 proto zebra metric 20</span><br><span class="line">192.168.1.0/24 dev eth1 proto kernel scope link src 192.168.1.1</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">[root@site-A-RTR ~]<span class="comment"># ip route</span></span><br><span class="line">10.10.10.0/30 dev eth0 proto kernel scope <span class="built_in">link</span> src 10.10.10.1</span><br><span class="line">172.16.1.0/30 via 10.10.10.2 dev eth0 proto zebra metric 20</span><br><span class="line">192.168.1.0/24 dev eth1 proto kernel scope <span class="built_in">link</span> src 192.168.1.1</span><br></pre></td></tr></table></figure>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">[root@site-A-RTR ~]<span class="comment"># vtysh</span></span><br><span class="line">site-A-RTR<span class="comment"># show ip route</span></span><br><span class="line">Codes: K - kernel route, C - connected, S - static, R - RIP, O - OSPF,</span><br><span class="line">I - ISIS, B - BGP, &gt; - selected route, * - FIB route</span><br><span class="line">O 10.10.10.0/30 [110/10] is directly connected, eth0, 00:14:29</span><br><span class="line">C&gt;* 10.10.10.0/30 is directly connected, eth0</span><br><span class="line">C&gt;* 127.0.0.0/8 is directly connected, lo</span><br><span class="line">O&gt;* 172.16.1.0/30 [110/20] via 10.10.10.2, eth0, 00:14:14</span><br><span class="line">C&gt;* 192.168.1.0/24 is directly connected, eth1</span><br></pre></td></tr></table></figure>
 <p>3．验证OSPF邻居和路由器</p>
 <p>在vtysh外壳里面，你可以检查必要的邻居有没有出现，是否记住合适的路由。</p>
@@ -258,7 +258,7 @@
 
     </div>
      
-    <div class="post-footer__meta"><p>更新于 2022-10-17</p></div> 
+    <div class="post-footer__meta"><p>更新于 2024-01-27</p></div> 
     <div class="post-entry__tags"><a href="/tags/%E7%BD%91%E7%BB%9C/" class="post-tags__link button"># 网络</a><a href="/tags/%E8%81%94%E5%88%9B/" class="post-tags__link button"># 联创</a></div> 
 </article>
 
@@ -325,7 +325,7 @@
     
         
         <p class="footer-copyright">
-            Copyright © 2017&nbsp;-&nbsp;2022 <a href="/">怀中落霞</a>
+            Copyright © 2017&nbsp;-&nbsp;2024 <a href="/">怀中落霞</a>
         </p>
     
     

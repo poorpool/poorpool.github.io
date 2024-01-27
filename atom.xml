@@ -3,10 +3,10 @@
   <title>怀中落霞</title>
   
   <subtitle>poorpool&#39;s blog</subtitle>
-  <link href="/atom.xml" rel="self"/>
+  <link href="https://poorpool.github.io/atom.xml" rel="self"/>
   
   <link href="https://poorpool.github.io/"/>
-  <updated>2022-10-17T07:18:55.916Z</updated>
+  <updated>2024-01-27T13:42:37.110Z</updated>
   <id>https://poorpool.github.io/</id>
   
   <author>
@@ -17,30 +17,47 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>如何赶天河机场早班机</title>
+    <link href="https://poorpool.github.io/2024/01/27/miscellanies/tianhe-airport/"/>
+    <id>https://poorpool.github.io/2024/01/27/miscellanies/tianhe-airport/</id>
+    <published>2024-01-27T21:00:00.000Z</published>
+    <updated>2024-01-27T13:42:37.110Z</updated>
+    
+    
+    <summary type="html">&lt;p&gt;从华科到天河机场&lt;/p&gt;</summary>
+    
+    
+    
+    <category term="杂记" scheme="https://poorpool.github.io/categories/%E6%9D%82%E8%AE%B0/"/>
+    
+    
+    <category term="杂记" scheme="https://poorpool.github.io/tags/%E6%9D%82%E8%AE%B0/"/>
+    
+  </entry>
+  
+  <entry>
     <title>RDMA 学习笔记</title>
     <link href="https://poorpool.github.io/2022/10/10/rdma/rdma-notes/"/>
     <id>https://poorpool.github.io/2022/10/10/rdma/rdma-notes/</id>
     <published>2022-10-10T15:50:06.000Z</published>
-    <updated>2022-10-17T07:18:55.916Z</updated>
-    
-    <summary type="html">
-    
-      &lt;p&gt;&lt;a href=&quot;https://www.zhihu.com/column/rdmatechnology&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;知乎专题文章&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;&lt;a href=&quot;https://www.zhihu.com/column/c_1231181516811390976&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;rdma杂谈&lt;/a&gt;，这个写得太好了，可以先看知乎看一两节，再看tutorial，再看回来&lt;/p&gt;
-&lt;p&gt;&lt;a href=&quot;https://github.com/jcxue/RDMA-Tutorial&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;tutorial&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;很多都是我复制的&lt;/p&gt;
-    
-    </summary>
+    <updated>2024-01-27T13:42:37.114Z</updated>
     
     
-      <category term="笔记" scheme="https://poorpool.github.io/categories/%E7%AC%94%E8%AE%B0/"/>
+    <summary type="html">&lt;p&gt;&lt;a href=&quot;https://www.zhihu.com/column/rdmatechnology&quot;&gt;知乎专题文章&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://www.zhihu.com/column/c_1231181516811390976&quot;&gt;rdma杂谈&lt;/a&gt;，这个写得太好了，可以先看知乎看一两节，再看tutorial，再看回来&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://github.com/jcxue/RDMA-Tutorial&quot;&gt;tutorial&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;很多都是我复制的&lt;/p&gt;</summary>
     
     
-      <category term="笔记" scheme="https://poorpool.github.io/tags/%E7%AC%94%E8%AE%B0/"/>
     
-      <category term="PDSL" scheme="https://poorpool.github.io/tags/PDSL/"/>
+    <category term="笔记" scheme="https://poorpool.github.io/categories/%E7%AC%94%E8%AE%B0/"/>
     
-      <category term="RDMA" scheme="https://poorpool.github.io/tags/RDMA/"/>
+    
+    <category term="笔记" scheme="https://poorpool.github.io/tags/%E7%AC%94%E8%AE%B0/"/>
+    
+    <category term="PDSL" scheme="https://poorpool.github.io/tags/PDSL/"/>
+    
+    <category term="RDMA" scheme="https://poorpool.github.io/tags/RDMA/"/>
     
   </entry>
   
@@ -49,21 +66,19 @@
     <link href="https://poorpool.github.io/2022/09/02/programming/redis-notes/"/>
     <id>https://poorpool.github.io/2022/09/02/programming/redis-notes/</id>
     <published>2022-09-02T22:31:17.000Z</published>
-    <updated>2022-10-17T07:18:55.916Z</updated>
-    
-    <summary type="html">
-    
-      &lt;p&gt;基于内存的nosql数据库&lt;/p&gt;
-    
-    </summary>
+    <updated>2024-01-27T13:42:37.114Z</updated>
     
     
-      <category term="笔记" scheme="https://poorpool.github.io/categories/%E7%AC%94%E8%AE%B0/"/>
+    <summary type="html">&lt;p&gt;基于内存的nosql数据库&lt;/p&gt;</summary>
     
     
-      <category term="笔记" scheme="https://poorpool.github.io/tags/%E7%AC%94%E8%AE%B0/"/>
     
-      <category term="redis" scheme="https://poorpool.github.io/tags/redis/"/>
+    <category term="笔记" scheme="https://poorpool.github.io/categories/%E7%AC%94%E8%AE%B0/"/>
+    
+    
+    <category term="笔记" scheme="https://poorpool.github.io/tags/%E7%AC%94%E8%AE%B0/"/>
+    
+    <category term="redis" scheme="https://poorpool.github.io/tags/redis/"/>
     
   </entry>
   
@@ -72,25 +87,24 @@
     <link href="https://poorpool.github.io/2022/08/19/english/xuanyuanyou-english/"/>
     <id>https://poorpool.github.io/2022/08/19/english/xuanyuanyou-english/</id>
     <published>2022-08-19T11:30:47.000Z</published>
-    <updated>2022-10-17T07:18:55.908Z</updated>
+    <updated>2024-01-27T13:42:37.110Z</updated>
     
-    <summary type="html">
     
       
       
         
         
-          &lt;p&gt;书的链接 &lt;a href=&quot;https://grammar.codeyu.com/#docs/SimpleSentences&quot; target=&quot;_blank&quot;
+    <summary type="html">&lt;p&gt;书的链接 &lt;a href=&quot;https://grammar.codeyu.com/#docs/SimpleSentences&quot;&gt;https://grammar.codeyu.com/#docs/SimpleSentences&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;配套习题 &lt;a</summary>
         
       
     
-    </summary>
     
     
-      <category term="英语" scheme="https://poorpool.github.io/categories/%E8%8B%B1%E8%AF%AD/"/>
+    <category term="英语" scheme="https://poorpool.github.io/categories/%E8%8B%B1%E8%AF%AD/"/>
     
     
-      <category term="英语" scheme="https://poorpool.github.io/tags/%E8%8B%B1%E8%AF%AD/"/>
+    <category term="英语" scheme="https://poorpool.github.io/tags/%E8%8B%B1%E8%AF%AD/"/>
     
   </entry>
   
@@ -99,23 +113,21 @@
     <link href="https://poorpool.github.io/2022/07/03/tinykv/raft/"/>
     <id>https://poorpool.github.io/2022/07/03/tinykv/raft/</id>
     <published>2022-07-03T14:31:00.000Z</published>
-    <updated>2022-10-17T07:18:55.916Z</updated>
-    
-    <summary type="html">
-    
-      &lt;p&gt;重新做一遍 TinyKV，立志好好学 Raft&lt;/p&gt;
-    
-    </summary>
+    <updated>2024-01-27T13:42:37.114Z</updated>
     
     
-      <category term="笔记" scheme="https://poorpool.github.io/categories/%E7%AC%94%E8%AE%B0/"/>
+    <summary type="html">&lt;p&gt;重新做一遍 TinyKV，立志好好学 Raft&lt;/p&gt;</summary>
     
     
-      <category term="Raft" scheme="https://poorpool.github.io/tags/Raft/"/>
     
-      <category term="TinyKV" scheme="https://poorpool.github.io/tags/TinyKV/"/>
+    <category term="笔记" scheme="https://poorpool.github.io/categories/%E7%AC%94%E8%AE%B0/"/>
     
-      <category term="分布式" scheme="https://poorpool.github.io/tags/%E5%88%86%E5%B8%83%E5%BC%8F/"/>
+    
+    <category term="Raft" scheme="https://poorpool.github.io/tags/Raft/"/>
+    
+    <category term="TinyKV" scheme="https://poorpool.github.io/tags/TinyKV/"/>
+    
+    <category term="分布式" scheme="https://poorpool.github.io/tags/%E5%88%86%E5%B8%83%E5%BC%8F/"/>
     
   </entry>
   
@@ -124,23 +136,21 @@
     <link href="https://poorpool.github.io/2022/07/03/tinykv/notes/"/>
     <id>https://poorpool.github.io/2022/07/03/tinykv/notes/</id>
     <published>2022-07-03T14:31:00.000Z</published>
-    <updated>2022-10-17T07:18:55.916Z</updated>
-    
-    <summary type="html">
-    
-      &lt;p&gt;代码在 &lt;a href=&quot;https://github.com/poorpool/tinykv&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;https://github.com/poorpool/tinykv&lt;/a&gt; ，96.1分。&lt;/p&gt;
-    
-    </summary>
+    <updated>2024-01-27T13:42:37.114Z</updated>
     
     
-      <category term="笔记" scheme="https://poorpool.github.io/categories/%E7%AC%94%E8%AE%B0/"/>
+    <summary type="html">&lt;p&gt;代码在 &lt;a href=&quot;https://github.com/poorpool/tinykv&quot;&gt;https://github.com/poorpool/tinykv&lt;/a&gt; ，96.1分。&lt;/p&gt;</summary>
     
     
-      <category term="Raft" scheme="https://poorpool.github.io/tags/Raft/"/>
     
-      <category term="TinyKV" scheme="https://poorpool.github.io/tags/TinyKV/"/>
+    <category term="笔记" scheme="https://poorpool.github.io/categories/%E7%AC%94%E8%AE%B0/"/>
     
-      <category term="分布式" scheme="https://poorpool.github.io/tags/%E5%88%86%E5%B8%83%E5%BC%8F/"/>
+    
+    <category term="Raft" scheme="https://poorpool.github.io/tags/Raft/"/>
+    
+    <category term="TinyKV" scheme="https://poorpool.github.io/tags/TinyKV/"/>
+    
+    <category term="分布式" scheme="https://poorpool.github.io/tags/%E5%88%86%E5%B8%83%E5%BC%8F/"/>
     
   </entry>
   
@@ -149,21 +159,19 @@
     <link href="https://poorpool.github.io/2022/05/29/course/database/"/>
     <id>https://poorpool.github.io/2022/05/29/course/database/</id>
     <published>2022-05-29T22:41:22.000Z</published>
-    <updated>2022-10-17T07:18:55.908Z</updated>
-    
-    <summary type="html">
-    
-      &lt;p&gt;过！过！过！&lt;/p&gt;
-    
-    </summary>
+    <updated>2024-01-27T13:42:37.110Z</updated>
     
     
-      <category term="笔记" scheme="https://poorpool.github.io/categories/%E7%AC%94%E8%AE%B0/"/>
+    <summary type="html">&lt;p&gt;过！过！过！&lt;/p&gt;</summary>
     
     
-      <category term="笔记" scheme="https://poorpool.github.io/tags/%E7%AC%94%E8%AE%B0/"/>
     
-      <category term="数据库" scheme="https://poorpool.github.io/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/"/>
+    <category term="笔记" scheme="https://poorpool.github.io/categories/%E7%AC%94%E8%AE%B0/"/>
+    
+    
+    <category term="笔记" scheme="https://poorpool.github.io/tags/%E7%AC%94%E8%AE%B0/"/>
+    
+    <category term="数据库" scheme="https://poorpool.github.io/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/"/>
     
   </entry>
   
@@ -172,21 +180,19 @@
     <link href="https://poorpool.github.io/2022/05/29/course/compile/"/>
     <id>https://poorpool.github.io/2022/05/29/course/compile/</id>
     <published>2022-05-29T22:37:22.000Z</published>
-    <updated>2022-10-17T07:18:55.908Z</updated>
-    
-    <summary type="html">
-    
-      &lt;p&gt;过！过！过！&lt;/p&gt;
-    
-    </summary>
+    <updated>2024-01-27T13:42:37.106Z</updated>
     
     
-      <category term="笔记" scheme="https://poorpool.github.io/categories/%E7%AC%94%E8%AE%B0/"/>
+    <summary type="html">&lt;p&gt;过！过！过！&lt;/p&gt;</summary>
     
     
-      <category term="笔记" scheme="https://poorpool.github.io/tags/%E7%AC%94%E8%AE%B0/"/>
     
-      <category term="编译原理" scheme="https://poorpool.github.io/tags/%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%86/"/>
+    <category term="笔记" scheme="https://poorpool.github.io/categories/%E7%AC%94%E8%AE%B0/"/>
+    
+    
+    <category term="笔记" scheme="https://poorpool.github.io/tags/%E7%AC%94%E8%AE%B0/"/>
+    
+    <category term="编译原理" scheme="https://poorpool.github.io/tags/%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%86/"/>
     
   </entry>
   
@@ -195,19 +201,17 @@
     <link href="https://poorpool.github.io/2022/02/01/language_notes/cpptopiclearning/"/>
     <id>https://poorpool.github.io/2022/02/01/language_notes/cpptopiclearning/</id>
     <published>2022-02-01T11:21:21.000Z</published>
-    <updated>2022-10-17T07:18:55.908Z</updated>
-    
-    <summary type="html">
-    
-      &lt;p&gt;a tour of c++ 之类的书&lt;/p&gt;
-    
-    </summary>
+    <updated>2024-01-27T13:42:37.110Z</updated>
     
     
-      <category term="编程语言" scheme="https://poorpool.github.io/categories/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/"/>
+    <summary type="html">&lt;p&gt;a tour of c++ 之类的书&lt;/p&gt;</summary>
     
     
-      <category term="C++" scheme="https://poorpool.github.io/tags/C/"/>
+    
+    <category term="编程语言" scheme="https://poorpool.github.io/categories/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/"/>
+    
+    
+    <category term="C++" scheme="https://poorpool.github.io/tags/C/"/>
     
   </entry>
   
@@ -216,19 +220,17 @@
     <link href="https://poorpool.github.io/2022/02/01/language_notes/rustbook/"/>
     <id>https://poorpool.github.io/2022/02/01/language_notes/rustbook/</id>
     <published>2022-02-01T11:21:21.000Z</published>
-    <updated>2022-10-17T07:18:55.908Z</updated>
-    
-    <summary type="html">
-    
-      &lt;p&gt;Rust book，rustlings&lt;/p&gt;
-    
-    </summary>
+    <updated>2024-01-27T13:42:37.110Z</updated>
     
     
-      <category term="编程语言" scheme="https://poorpool.github.io/categories/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/"/>
+    <summary type="html">&lt;p&gt;Rust book，rustlings&lt;/p&gt;</summary>
     
     
-      <category term="Rust" scheme="https://poorpool.github.io/tags/Rust/"/>
+    
+    <category term="编程语言" scheme="https://poorpool.github.io/categories/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/"/>
+    
+    
+    <category term="Rust" scheme="https://poorpool.github.io/tags/Rust/"/>
     
   </entry>
   
@@ -237,30 +239,28 @@
     <link href="https://poorpool.github.io/2022/01/12/pdsl/dpukv/"/>
     <id>https://poorpool.github.io/2022/01/12/pdsl/dpukv/</id>
     <published>2022-01-12T13:52:42.000Z</published>
-    <updated>2022-10-17T07:18:55.912Z</updated>
+    <updated>2024-01-27T13:42:37.114Z</updated>
     
-    <summary type="html">
     
       
       
         
         
-          &lt;p&gt;&lt;a href=&quot;https://github.com/CheneyDing/dpukv&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;DPUKV私仓地址&lt;/a&gt;&lt;/p&gt;
-&lt;h2 id=&quot;阅读材料&quot;&gt;&lt;a href=&quot;#阅读材料&quot;
+    <summary type="html">&lt;p&gt;&lt;a href=&quot;https://github.com/CheneyDing/dpukv&quot;&gt;DPUKV私仓地址&lt;/a&gt;&lt;/p&gt;
+&lt;h2 id=&quot;阅读材料&quot;&gt;&lt;a href=&quot;#阅读材料&quot; class=&quot;headerlink&quot;</summary>
         
       
     
-    </summary>
     
     
-      <category term="笔记" scheme="https://poorpool.github.io/categories/%E7%AC%94%E8%AE%B0/"/>
+    <category term="笔记" scheme="https://poorpool.github.io/categories/%E7%AC%94%E8%AE%B0/"/>
     
     
-      <category term="笔记" scheme="https://poorpool.github.io/tags/%E7%AC%94%E8%AE%B0/"/>
+    <category term="笔记" scheme="https://poorpool.github.io/tags/%E7%AC%94%E8%AE%B0/"/>
     
-      <category term="PDSL" scheme="https://poorpool.github.io/tags/PDSL/"/>
+    <category term="PDSL" scheme="https://poorpool.github.io/tags/PDSL/"/>
     
-      <category term="Raft" scheme="https://poorpool.github.io/tags/Raft/"/>
+    <category term="Raft" scheme="https://poorpool.github.io/tags/Raft/"/>
     
   </entry>
   
@@ -269,21 +269,19 @@
     <link href="https://poorpool.github.io/2022/01/12/projects/6s081/"/>
     <id>https://poorpool.github.io/2022/01/12/projects/6s081/</id>
     <published>2022-01-12T13:52:42.000Z</published>
-    <updated>2022-10-17T07:18:55.916Z</updated>
-    
-    <summary type="html">
-    
-      &lt;p&gt;2021年链接 &lt;a href=&quot;https://pdos.csail.mit.edu/6.S081/2021/schedule.html&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;https://pdos.csail.mit.edu/6.S081/2021/schedule.html&lt;/a&gt;&lt;/p&gt;
-    
-    </summary>
+    <updated>2024-01-27T13:42:37.114Z</updated>
     
     
-      <category term="笔记" scheme="https://poorpool.github.io/categories/%E7%AC%94%E8%AE%B0/"/>
+    <summary type="html">&lt;p&gt;2021年链接 &lt;a href=&quot;https://pdos.csail.mit.edu/6.S081/2021/schedule.html&quot;&gt;https://pdos.csail.mit.edu/6.S081/2021/schedule.html&lt;/a&gt;&lt;/p&gt;</summary>
     
     
-      <category term="笔记" scheme="https://poorpool.github.io/tags/%E7%AC%94%E8%AE%B0/"/>
     
-      <category term="操作系统" scheme="https://poorpool.github.io/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/"/>
+    <category term="笔记" scheme="https://poorpool.github.io/categories/%E7%AC%94%E8%AE%B0/"/>
+    
+    
+    <category term="笔记" scheme="https://poorpool.github.io/tags/%E7%AC%94%E8%AE%B0/"/>
+    
+    <category term="操作系统" scheme="https://poorpool.github.io/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/"/>
     
   </entry>
   
@@ -292,19 +290,17 @@
     <link href="https://poorpool.github.io/2021/11/03/algorithm_contest/cspsharingexample/"/>
     <id>https://poorpool.github.io/2021/11/03/algorithm_contest/cspsharingexample/</id>
     <published>2021-11-03T09:38:00.000Z</published>
-    <updated>2022-10-17T07:18:55.904Z</updated>
-    
-    <summary type="html">
-    
-      &lt;p&gt;代码风格非常重要！&lt;/p&gt;
-    
-    </summary>
+    <updated>2024-01-27T13:42:37.106Z</updated>
     
     
-      <category term="杂记" scheme="https://poorpool.github.io/categories/%E6%9D%82%E8%AE%B0/"/>
+    <summary type="html">&lt;p&gt;代码风格非常重要！&lt;/p&gt;</summary>
     
     
-      <category term="杂记" scheme="https://poorpool.github.io/tags/%E6%9D%82%E8%AE%B0/"/>
+    
+    <category term="杂记" scheme="https://poorpool.github.io/categories/%E6%9D%82%E8%AE%B0/"/>
+    
+    
+    <category term="杂记" scheme="https://poorpool.github.io/tags/%E6%9D%82%E8%AE%B0/"/>
     
   </entry>
   
@@ -313,21 +309,19 @@
     <link href="https://poorpool.github.io/2021/08/27/miscellanies/latextemplates/"/>
     <id>https://poorpool.github.io/2021/08/27/miscellanies/latextemplates/</id>
     <published>2021-08-27T11:00:00.000Z</published>
-    <updated>2022-10-17T07:18:55.908Z</updated>
-    
-    <summary type="html">
-    
-      &lt;p&gt;记录一下经常用到的模板&lt;/p&gt;
-    
-    </summary>
+    <updated>2024-01-27T13:42:37.110Z</updated>
     
     
-      <category term="笔记" scheme="https://poorpool.github.io/categories/%E7%AC%94%E8%AE%B0/"/>
+    <summary type="html">&lt;p&gt;记录一下经常用到的模板&lt;/p&gt;</summary>
     
     
-      <category term="笔记" scheme="https://poorpool.github.io/tags/%E7%AC%94%E8%AE%B0/"/>
     
-      <category term="latex" scheme="https://poorpool.github.io/tags/latex/"/>
+    <category term="笔记" scheme="https://poorpool.github.io/categories/%E7%AC%94%E8%AE%B0/"/>
+    
+    
+    <category term="笔记" scheme="https://poorpool.github.io/tags/%E7%AC%94%E8%AE%B0/"/>
+    
+    <category term="latex" scheme="https://poorpool.github.io/tags/latex/"/>
     
   </entry>
   
@@ -336,26 +330,24 @@
     <link href="https://poorpool.github.io/2021/08/20/miscellanies/ghactions/"/>
     <id>https://poorpool.github.io/2021/08/20/miscellanies/ghactions/</id>
     <published>2021-08-20T16:20:00.000Z</published>
-    <updated>2022-10-17T07:18:55.908Z</updated>
+    <updated>2024-01-27T13:42:37.110Z</updated>
     
-    <summary type="html">
     
       
       
         
         
-          &lt;p&gt;以后不用装hexo了，舒服&lt;/p&gt;
-
+    <summary type="html">&lt;p&gt;以后不用装hexo了，舒服&lt;/p&gt;
+</summary>
         
       
     
-    </summary>
     
     
-      <category term="杂记" scheme="https://poorpool.github.io/categories/%E6%9D%82%E8%AE%B0/"/>
+    <category term="杂记" scheme="https://poorpool.github.io/categories/%E6%9D%82%E8%AE%B0/"/>
     
     
-      <category term="杂记" scheme="https://poorpool.github.io/tags/%E6%9D%82%E8%AE%B0/"/>
+    <category term="杂记" scheme="https://poorpool.github.io/tags/%E6%9D%82%E8%AE%B0/"/>
     
   </entry>
   
@@ -364,19 +356,17 @@
     <link href="https://poorpool.github.io/2021/03/12/algorithm_contest/nowcoderleetcodes/"/>
     <id>https://poorpool.github.io/2021/03/12/algorithm_contest/nowcoderleetcodes/</id>
     <published>2021-03-12T19:21:15.000Z</published>
-    <updated>2022-10-17T07:18:55.904Z</updated>
-    
-    <summary type="html">
-    
-      &lt;p&gt;oi 题比这刺激多了。&lt;/p&gt;
-    
-    </summary>
+    <updated>2024-01-27T13:42:37.106Z</updated>
     
     
-      <category term="笔记" scheme="https://poorpool.github.io/categories/%E7%AC%94%E8%AE%B0/"/>
+    <summary type="html">&lt;p&gt;oi 题比这刺激多了。&lt;/p&gt;</summary>
     
     
-      <category term="笔记" scheme="https://poorpool.github.io/tags/%E7%AC%94%E8%AE%B0/"/>
+    
+    <category term="笔记" scheme="https://poorpool.github.io/categories/%E7%AC%94%E8%AE%B0/"/>
+    
+    
+    <category term="笔记" scheme="https://poorpool.github.io/tags/%E7%AC%94%E8%AE%B0/"/>
     
   </entry>
   
@@ -385,21 +375,19 @@
     <link href="https://poorpool.github.io/2021/03/01/course/hustjava1/"/>
     <id>https://poorpool.github.io/2021/03/01/course/hustjava1/</id>
     <published>2021-03-01T14:12:20.000Z</published>
-    <updated>2022-10-17T07:18:55.908Z</updated>
-    
-    <summary type="html">
-    
-      &lt;p&gt;随便记一下&lt;/p&gt;
-    
-    </summary>
+    <updated>2024-01-27T13:42:37.110Z</updated>
     
     
-      <category term="笔记" scheme="https://poorpool.github.io/categories/%E7%AC%94%E8%AE%B0/"/>
+    <summary type="html">&lt;p&gt;随便记一下&lt;/p&gt;</summary>
     
     
-      <category term="Java" scheme="https://poorpool.github.io/tags/Java/"/>
     
-      <category term="笔记" scheme="https://poorpool.github.io/tags/%E7%AC%94%E8%AE%B0/"/>
+    <category term="笔记" scheme="https://poorpool.github.io/categories/%E7%AC%94%E8%AE%B0/"/>
+    
+    
+    <category term="笔记" scheme="https://poorpool.github.io/tags/%E7%AC%94%E8%AE%B0/"/>
+    
+    <category term="Java" scheme="https://poorpool.github.io/tags/Java/"/>
     
   </entry>
   
@@ -408,21 +396,19 @@
     <link href="https://poorpool.github.io/2021/02/12/cs_notes/cs144lab/"/>
     <id>https://poorpool.github.io/2021/02/12/cs_notes/cs144lab/</id>
     <published>2021-02-12T15:26:44.000Z</published>
-    <updated>2022-10-17T07:18:55.908Z</updated>
-    
-    <summary type="html">
-    
-      &lt;p&gt;计算机网络课&lt;/p&gt;
-    
-    </summary>
+    <updated>2024-01-27T13:42:37.110Z</updated>
     
     
-      <category term="笔记" scheme="https://poorpool.github.io/categories/%E7%AC%94%E8%AE%B0/"/>
+    <summary type="html">&lt;p&gt;计算机网络课&lt;/p&gt;</summary>
     
     
-      <category term="笔记" scheme="https://poorpool.github.io/tags/%E7%AC%94%E8%AE%B0/"/>
     
-      <category term="计算机网络" scheme="https://poorpool.github.io/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/"/>
+    <category term="笔记" scheme="https://poorpool.github.io/categories/%E7%AC%94%E8%AE%B0/"/>
+    
+    
+    <category term="笔记" scheme="https://poorpool.github.io/tags/%E7%AC%94%E8%AE%B0/"/>
+    
+    <category term="计算机网络" scheme="https://poorpool.github.io/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/"/>
     
   </entry>
   
@@ -431,19 +417,17 @@
     <link href="https://poorpool.github.io/2021/02/12/miscellanies/prepare-interview-1/"/>
     <id>https://poorpool.github.io/2021/02/12/miscellanies/prepare-interview-1/</id>
     <published>2021-02-12T10:22:15.000Z</published>
-    <updated>2022-10-17T07:18:55.908Z</updated>
-    
-    <summary type="html">
-    
-      Here&#39;s something encrypted, password is required to continue reading.
-    
-    </summary>
+    <updated>2024-01-27T13:42:37.110Z</updated>
     
     
-      <category term="笔记" scheme="https://poorpool.github.io/categories/%E7%AC%94%E8%AE%B0/"/>
+    <summary type="html">Here&#39;s something encrypted, password is required to continue reading.</summary>
     
     
-      <category term="杂" scheme="https://poorpool.github.io/tags/%E6%9D%82/"/>
+    
+    <category term="笔记" scheme="https://poorpool.github.io/categories/%E7%AC%94%E8%AE%B0/"/>
+    
+    
+    <category term="杂" scheme="https://poorpool.github.io/tags/%E6%9D%82/"/>
     
   </entry>
   
@@ -452,44 +436,19 @@
     <link href="https://poorpool.github.io/2021/02/10/algorithm_contest/monituihuo/"/>
     <id>https://poorpool.github.io/2021/02/10/algorithm_contest/monituihuo/</id>
     <published>2021-02-10T13:59:27.000Z</published>
-    <updated>2022-10-17T07:18:55.904Z</updated>
-    
-    <summary type="html">
-    
-      &lt;p&gt;其实这玩意很好理解，首先看：&lt;a href=&quot;https://www.cnblogs.com/flashhu/p/8884132.html&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;讲解&lt;/a&gt;&lt;/p&gt;
-    
-    </summary>
+    <updated>2024-01-27T13:42:37.106Z</updated>
     
     
-      <category term="OI" scheme="https://poorpool.github.io/categories/OI/"/>
-    
-      <category term="乱搞" scheme="https://poorpool.github.io/categories/OI/%E4%B9%B1%E6%90%9E/"/>
+    <summary type="html">&lt;p&gt;其实这玩意很好理解，首先看：&lt;a href=&quot;https://www.cnblogs.com/flashhu/p/8884132.html&quot;&gt;讲解&lt;/a&gt;&lt;/p&gt;</summary>
     
     
-      <category term="模拟退火" scheme="https://poorpool.github.io/tags/%E6%A8%A1%E6%8B%9F%E9%80%80%E7%81%AB/"/>
     
-  </entry>
-  
-  <entry>
-    <title>《编译原理》第二版（龙书）学习笔记</title>
-    <link href="https://poorpool.github.io/2021/01/27/old_study_notes/compileprinciple1/"/>
-    <id>https://poorpool.github.io/2021/01/27/old_study_notes/compileprinciple1/</id>
-    <published>2021-01-27T15:53:36.000Z</published>
-    <updated>2022-10-17T07:18:55.912Z</updated>
+    <category term="OI" scheme="https://poorpool.github.io/categories/OI/"/>
     
-    <summary type="html">
-    
-      &lt;p&gt;因为做课设要用，先随便学一学&lt;/p&gt;
-    
-    </summary>
+    <category term="乱搞" scheme="https://poorpool.github.io/categories/OI/%E4%B9%B1%E6%90%9E/"/>
     
     
-      <category term="笔记" scheme="https://poorpool.github.io/categories/%E7%AC%94%E8%AE%B0/"/>
-    
-    
-      <category term="笔记" scheme="https://poorpool.github.io/tags/%E7%AC%94%E8%AE%B0/"/>
-    
-      <category term="编译原理" scheme="https://poorpool.github.io/tags/%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%86/"/>
+    <category term="模拟退火" scheme="https://poorpool.github.io/tags/%E6%A8%A1%E6%8B%9F%E9%80%80%E7%81%AB/"/>
     
   </entry>
   

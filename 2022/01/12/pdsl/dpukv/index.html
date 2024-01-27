@@ -48,7 +48,7 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://poorpool.github.io/images/dpukv/1.png">
 <meta property="article:published_time" content="2022-01-12T13:52:42.000Z">
-<meta property="article:modified_time" content="2022-10-17T07:18:55.912Z">
+<meta property="article:modified_time" content="2024-01-27T13:42:37.114Z">
 <meta property="article:author" content="poorpool">
 <meta property="article:tag" content="笔记">
 <meta property="article:tag" content="PDSL">
@@ -76,7 +76,7 @@
 
     <!-- custom head -->
 
-<meta name="generator" content="Hexo 4.2.1"><link rel="alternate" href="/atom.xml" title="怀中落霞" type="application/atom+xml">
+<meta name="generator" content="Hexo 7.1.1"><link rel="alternate" href="/atom.xml" title="怀中落霞" type="application/atom+xml">
 </head>
 
     <body>
@@ -164,7 +164,7 @@
 
     <aside class="post-side">
         <div class="post-side__toc">
-            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#阅读材料"><span class="toc-number">1.</span> <span class="toc-text">阅读材料</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Raft-论文精读"><span class="toc-number">2.</span> <span class="toc-text">Raft 论文精读</span></a></li></ol>
+            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%98%85%E8%AF%BB%E6%9D%90%E6%96%99"><span class="toc-number">1.</span> <span class="toc-text">阅读材料</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Raft-%E8%AE%BA%E6%96%87%E7%B2%BE%E8%AF%BB"><span class="toc-number">2.</span> <span class="toc-text">Raft 论文精读</span></a></li></ol>
         </div>
     </aside>
     <a class="btn-toc button" id="btn-toc" tabindex="0">
@@ -174,32 +174,32 @@
     </a>
     <div class="toc-menus" id="toc-menus">
         <div class="toc-title">文章目录</div>
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#阅读材料"><span class="toc-number">1.</span> <span class="toc-text">阅读材料</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Raft-论文精读"><span class="toc-number">2.</span> <span class="toc-text">Raft 论文精读</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%98%85%E8%AF%BB%E6%9D%90%E6%96%99"><span class="toc-number">1.</span> <span class="toc-text">阅读材料</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Raft-%E8%AE%BA%E6%96%87%E7%B2%BE%E8%AF%BB"><span class="toc-number">2.</span> <span class="toc-text">Raft 论文精读</span></a></li></ol>
     </div>
 
 
 <article class="post post__with-toc content-card">
     <div class="post__header"></div>
     <div class="post__content">
-        <p><a href="https://github.com/CheneyDing/dpukv" target="_blank" rel="noopener">DPUKV私仓地址</a></p>
-<h2 id="阅读材料"><a href="#阅读材料" class="headerlink" title="阅读材料"></a>阅读材料</h2><p><a href="https://pingcap.com/zh/blog/tidb-internal-1" target="_blank" rel="noopener">三篇文章了解 TiDB 技术内幕 - 说存储</a></p>
+        <p><a target="_blank" rel="noopener" href="https://github.com/CheneyDing/dpukv">DPUKV私仓地址</a></p>
+<h2 id="阅读材料"><a href="#阅读材料" class="headerlink" title="阅读材料"></a>阅读材料</h2><p><a target="_blank" rel="noopener" href="https://pingcap.com/zh/blog/tidb-internal-1">三篇文章了解 TiDB 技术内幕 - 说存储</a></p>
 <p>不能用一个 raft group 来存所有数据，要按照 key 分 range，用 StartKey 到 EndKey 这样一个左闭右开区间来描述,也就是一个 Region。一个 Region 里头的多个节点叫 Replica。</p>
 <p>多版本控制 MVCC 的情况下，key 长这样，版本号较大的放在前面，版本号小的放在后面。</p>
 <p><img src="/images/dpukv/1.png" class="lazy" data-srcset="/images/dpukv/1.png" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABAQMAAAAl21bKAAAABlBMVEXMzMyWlpYU2uzLAAAACXBIWXMAAA7EAAAOxAGVKw4bAAAACklEQVQImWNgAAAAAgAB9HFkpgAAAABJRU5ErkJggg==" alt="qwq"></p>
-<p><a href="https://pingcap.com/zh/blog/tidb-internal-2" target="_blank" rel="noopener">三篇文章了解 TiDB 技术内幕 - 说计算</a></p>
+<p><a target="_blank" rel="noopener" href="https://pingcap.com/zh/blog/tidb-internal-2">三篇文章了解 TiDB 技术内幕 - 说计算</a></p>
 <p>这个文章主要讲了 TiDB 变 TiKV 上的操作，可以看着玩。</p>
-<p><a href="https://pingcap.com/zh/blog/tidb-internal-3" target="_blank" rel="noopener">三篇文章了解 TiDB 技术内幕 - 谈调度</a></p>
+<p><a target="_blank" rel="noopener" href="https://pingcap.com/zh/blog/tidb-internal-3">三篇文章了解 TiDB 技术内幕 - 谈调度</a></p>
 <p>调度落地下来主要是三件事情：</p>
 <ul>
 <li>增加一个 Replica</li>
 <li>删除一个 Replica</li>
 <li>将 Leader 角色在一个 Raft Group 的不同 Replica 之间 transfer</li>
 </ul>
-<h2 id="Raft-论文精读"><a href="#Raft-论文精读" class="headerlink" title="Raft 论文精读"></a>Raft 论文精读</h2><p><a href="https://github.com/maemual/raft-zh_cn/blob/master/raft-zh_cn.md" target="_blank" rel="noopener">Raft 中文论文</a></p>
+<h2 id="Raft-论文精读"><a href="#Raft-论文精读" class="headerlink" title="Raft 论文精读"></a>Raft 论文精读</h2><p><a target="_blank" rel="noopener" href="https://github.com/maemual/raft-zh_cn/blob/master/raft-zh_cn.md">Raft 中文论文</a></p>
 
     </div>
      
-    <div class="post-footer__meta"><p>更新于 2022-10-17</p></div> 
+    <div class="post-footer__meta"><p>更新于 2024-01-27</p></div> 
     <div class="post-entry__tags"><a href="/tags/%E7%AC%94%E8%AE%B0/" class="post-tags__link button"># 笔记</a><a href="/tags/PDSL/" class="post-tags__link button"># PDSL</a><a href="/tags/Raft/" class="post-tags__link button"># Raft</a></div> 
 </article>
 
@@ -266,7 +266,7 @@
     
         
         <p class="footer-copyright">
-            Copyright © 2017&nbsp;-&nbsp;2022 <a href="/">怀中落霞</a>
+            Copyright © 2017&nbsp;-&nbsp;2024 <a href="/">怀中落霞</a>
         </p>
     
     

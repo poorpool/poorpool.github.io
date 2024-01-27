@@ -48,7 +48,7 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://poorpool.github.io/images/compileprinciple/1.png">
 <meta property="article:published_time" content="2021-01-27T15:53:36.000Z">
-<meta property="article:modified_time" content="2022-10-17T07:18:55.912Z">
+<meta property="article:modified_time" content="2024-01-27T13:42:37.114Z">
 <meta property="article:author" content="poorpool">
 <meta property="article:tag" content="笔记">
 <meta property="article:tag" content="编译原理">
@@ -75,7 +75,7 @@
 
     <!-- custom head -->
 
-<meta name="generator" content="Hexo 4.2.1"><link rel="alternate" href="/atom.xml" title="怀中落霞" type="application/atom+xml">
+<meta name="generator" content="Hexo 7.1.1"><link rel="alternate" href="/atom.xml" title="怀中落霞" type="application/atom+xml">
 </head>
 
     <body>
@@ -163,7 +163,7 @@
 
     <aside class="post-side">
         <div class="post-side__toc">
-            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#词法分析"><span class="toc-number">1.</span> <span class="toc-text">词法分析</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#语法定义"><span class="toc-number">2.</span> <span class="toc-text">语法定义</span></a></li></ol>
+            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%AF%8D%E6%B3%95%E5%88%86%E6%9E%90"><span class="toc-number">1.</span> <span class="toc-text">词法分析</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%AF%AD%E6%B3%95%E5%AE%9A%E4%B9%89"><span class="toc-number">2.</span> <span class="toc-text">语法定义</span></a></li></ol>
         </div>
     </aside>
     <a class="btn-toc button" id="btn-toc" tabindex="0">
@@ -173,7 +173,7 @@
     </a>
     <div class="toc-menus" id="toc-menus">
         <div class="toc-title">文章目录</div>
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#词法分析"><span class="toc-number">1.</span> <span class="toc-text">词法分析</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#语法定义"><span class="toc-number">2.</span> <span class="toc-text">语法定义</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%AF%8D%E6%B3%95%E5%88%86%E6%9E%90"><span class="toc-number">1.</span> <span class="toc-text">词法分析</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%AF%AD%E6%B3%95%E5%AE%9A%E4%B9%89"><span class="toc-number">2.</span> <span class="toc-text">语法定义</span></a></li></ol>
     </div>
 
 
@@ -181,22 +181,22 @@
     <div class="post__header"></div>
     <div class="post__content">
         <p>因为做课设要用，先随便学一学</p>
-<a id="more"></a>
+<span id="more"></span>
 
 <h1 id="引论"><a href="#引论" class="headerlink" title="引论"></a>引论</h1><p>语言处理系统：预处理器，编译器，汇编器，链接器。</p>
 <p>编译期把源程序映射为在语义上等价的目标程序，由分析部分和综合部分组成，也就是前端和后端。</p>
 <h2 id="词法分析"><a href="#词法分析" class="headerlink" title="词法分析"></a>词法分析</h2><p>编译器的第一个步骤是词法分析。每个词素产生词法单元（token），形如<code>&lt;token-name, attribute-value&gt;</code>。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">position &#x3D; initial + rate * 60</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">position = initial + rate * 60</span><br></pre></td></tr></table></figure>
 
 <p>position 映射成 <code>&lt;**id**, 1&gt;</code>，<strong>id</strong> 为标识符，1 指向符号表中 position 对应的条目。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;id, 1&gt; &lt;&#x3D;&gt; &lt;id, 2&gt; &lt;+&gt; &lt;id,3&gt; &lt;*&gt; &lt;60&gt;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;id, 1&gt; &lt;=&gt; &lt;id, 2&gt; &lt;+&gt; &lt;id,3&gt; &lt;*&gt; &lt;60&gt;</span><br></pre></td></tr></table></figure>
 
 <p>后面是语法分析，语义分析……先不看了（）</p>
 <h1 id="一个简单的语法制导翻译器"><a href="#一个简单的语法制导翻译器" class="headerlink" title="一个简单的语法制导翻译器"></a>一个简单的语法制导翻译器</h1><h2 id="语法定义"><a href="#语法定义" class="headerlink" title="语法定义"></a>语法定义</h2><p>上下文无关文法。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">if (expression) then statement else statement</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">if (expression) then statement else statement</span><br></pre></td></tr></table></figure>
 
 <p>用 expr 表示表达式，stmt 表示语句，则可以表示为</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">stmt -&gt; if (expr) stmt else stmt</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">stmt -&gt; if (expr) stmt else stmt</span><br></pre></td></tr></table></figure>
 
 <p><code>-&gt;</code> 为具有以下形式，这样的规则是产生式。if、括号这样的词法元素为终结符号，expr、stmt 这样的变量表示终结符号的序列，为非终结符号。</p>
 <p><img src="/images/compileprinciple/1.png" class="lazy" data-srcset="/images/compileprinciple/1.png" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABAQMAAAAl21bKAAAABlBMVEXMzMyWlpYU2uzLAAAACXBIWXMAAA7EAAAOxAGVKw4bAAAACklEQVQImWNgAAAAAgAB9HFkpgAAAABJRU5ErkJggg==" alt="qwq"></p>
@@ -204,7 +204,7 @@
 
     </div>
      
-    <div class="post-footer__meta"><p>更新于 2022-10-17</p></div> 
+    <div class="post-footer__meta"><p>更新于 2024-01-27</p></div> 
     <div class="post-entry__tags"><a href="/tags/%E7%AC%94%E8%AE%B0/" class="post-tags__link button"># 笔记</a><a href="/tags/%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%86/" class="post-tags__link button"># 编译原理</a></div> 
 </article>
 
@@ -271,7 +271,7 @@
     
         
         <p class="footer-copyright">
-            Copyright © 2017&nbsp;-&nbsp;2022 <a href="/">怀中落霞</a>
+            Copyright © 2017&nbsp;-&nbsp;2024 <a href="/">怀中落霞</a>
         </p>
     
     
