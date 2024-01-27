@@ -10,7 +10,7 @@
   --title-color: #50596c;
   --border-color: rgba(0,0,0,0.1);
   --space: 3.5rem;
-  --content-width: 776px;
+  --content-width: 1080px;
 }
 ::-webkit-scrollbar {
   width: 0.55rem !important;
@@ -1254,7 +1254,7 @@ overflows table td {
 }
 .post-side .post-side__toc .toc {
   display: none;
-  width: calc((100vw - 776px) / 2 - 12.6px);
+  width: calc((100vw - 1080px) / 2 - 12.6px);
   height: calc(100vh - 60px * 2 - 20px);
   padding-left: 0.6rem;
 }
