@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+    <meta charset="utf-8">
+
+    
+
+    <!-- 渲染优化 -->
+    <meta name="renderer" content="webkit">
+    <meta name="force-rendering" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta name="HandheldFriendly" content="True" >
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+    <!--icon-->
+
+    
+        <link rel="shortcut icon" href="/images/icons/favicon.ico">
+    
+    
+    
+    
+        <link rel="apple-touch-icon" sizes="180x180" href="/images/icons/logo.png">
+    
+    
+
+
+    <!-- meta -->
+
+
+<title>不使用默认路径的 cmake 项目管理 | 怀中落霞</title>
+
+
+    <meta name="keywords" content="cmake">
+
+
+
+
+    <!-- OpenGraph -->
+ 
+    <meta name="description" content="没有 sudo，自己放一个路径，咋整？">
+<meta property="og:type" content="article">
+<meta property="og:title" content="不使用默认路径的 cmake 项目管理">
+<meta property="og:url" content="https://poorpool.github.io/2024/01/28/language_notes/cmake-vars/index.html">
+<meta property="og:site_name" content="怀中落霞">
+<meta property="og:description" content="没有 sudo，自己放一个路径，咋整？">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://poorpool.github.io/images/cmake/package.png">
+<meta property="article:published_time" content="2024-01-28T21:30:00.000Z">
+<meta property="article:modified_time" content="2024-01-28T13:36:06.362Z">
+<meta property="article:author" content="poorpool">
+<meta property="article:tag" content="cmake">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://poorpool.github.io/images/cmake/package.png">
+
+
+    
+<link rel="stylesheet" href="/css/style/main.css">
+ 
+
+    
+    
+        <link rel="stylesheet" id="hl-default-theme" href="/css/highlight/a11y-light.css" media="none" onload="this.media='all'">
+        
+    
+
+    
+    
+
+    
+
+     
+
+    <!-- custom head -->
+
+<meta name="generator" content="Hexo 7.1.1"><link rel="alternate" href="/atom.xml" title="怀中落霞" type="application/atom+xml">
+</head>
+
+    <body>
+        <div id="app">
+            <header class="header">
+    <div class="header__left">
+        <a href="/" class="button">
+            <span class="logo__text">怀中落霞</span>
+        </a>
+    </div>
+    <div class="header__right">
+        
+            <div class="navbar__menus">
+                
+                    <a href="/" class="navbar-menu button">首页</a>
+                
+                    <a href="/tags/" class="navbar-menu button">标签</a>
+                
+                    <a href="/categories/" class="navbar-menu button">分类</a>
+                
+                    <a href="/archives/" class="navbar-menu button">归档</a>
+                
+                    <a href="/links/" class="navbar-menu button">友链</a>
+                
+                    <a href="/about/" class="navbar-menu button">关于</a>
+                
+            </div>
+        
+        
+        
+    <a href="/search/" id="btn-search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024" width="24" height="24" fill="currentColor" stroke="currentColor" stroke-width="32"><path d="M192 448c0-141.152 114.848-256 256-256s256 114.848 256 256-114.848 256-256 256-256-114.848-256-256z m710.624 409.376l-206.88-206.88A318.784 318.784 0 0 0 768 448c0-176.736-143.264-320-320-320S128 271.264 128 448s143.264 320 320 320a318.784 318.784 0 0 0 202.496-72.256l206.88 206.88 45.248-45.248z"></path></svg>
+    </a>
+
+
+        
+        
+
+        
+            <a class="dropdown-icon button" id="btn-dropdown" tabindex="0"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" width='24' height='24' fill="none" stroke="currentColor" stroke-width="0.7" stroke-linecap="round" stroke-linejoin="round"><path fill="currentColor" d="M3.314,4.8h13.372c0.41,0,0.743-0.333,0.743-0.743c0-0.41-0.333-0.743-0.743-0.743H3.314c-0.41,0-0.743,0.333-0.743,0.743C2.571,4.467,2.904,4.8,3.314,4.8z M16.686,15.2H3.314c-0.41,0-0.743,0.333-0.743,0.743s0.333,0.743,0.743,0.743h13.372c0.41,0,0.743-0.333,0.743-0.743S17.096,15.2,16.686,15.2z M16.686,9.257H3.314c-0.41,0-0.743,0.333-0.743,0.743s0.333,0.743,0.743,0.743h13.372c0.41,0,0.743-0.333,0.743-0.743S17.096,9.257,16.686,9.257z"></path></svg></a>
+            <div class="dropdown-menus" id="dropdown-menus">
+                
+                    <a href="/" class="dropdown-menu button">首页</a>
+                
+                    <a href="/tags/" class="dropdown-menu button">标签</a>
+                
+                    <a href="/categories/" class="dropdown-menu button">分类</a>
+                
+                    <a href="/archives/" class="dropdown-menu button">归档</a>
+                
+                    <a href="/links/" class="dropdown-menu button">友链</a>
+                
+                    <a href="/about/" class="dropdown-menu button">关于</a>
+                
+            </div>
+        
+    </div>
+</header>
+
+
+            <main class="main">
+    
+
+<div class="post-title">
+    <h1 class="post-title__text">
+        不使用默认路径的 cmake 项目管理
+    </h1>
+    <div class="post-title__meta">
+        <a href="/archives/2024/01/" class="post-meta__date button">2024-01-28</a>
+        
+    <span class="separate-dot"></span><a href="/categories/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/" class="button">编程语言</a>
+
+ 
+        
+    
+    
+
+
+ 
+
+ 
+    </div>
+</div>
+
+
+    <aside class="post-side">
+        <div class="post-side__toc">
+            <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#PATH"><span class="toc-number">1.</span> <span class="toc-text">PATH</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#CMAKE-INSTALL-PREFIX"><span class="toc-number">2.</span> <span class="toc-text">CMAKE_INSTALL_PREFIX</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#find-package-%E5%8F%8A%E5%85%B6%E4%B8%A4%E7%A7%8D%E6%A8%A1%E5%BC%8F"><span class="toc-number">3.</span> <span class="toc-text">find_package()及其两种模式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#CMAKE-PREFIX-PATH"><span class="toc-number">4.</span> <span class="toc-text">CMAKE_PREFIX_PATH</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#CMAKE-MODULE-PATH"><span class="toc-number">5.</span> <span class="toc-text">CMAKE_MODULE_PATH</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%A4%B4%E6%96%87%E4%BB%B6%E7%9B%AE%E5%BD%95%EF%BC%9Ainclude-directories-%E3%80%81CPATH%E3%80%81-I%E3%80%81CMAKE-INCLUDE-PATH"><span class="toc-number">6.</span> <span class="toc-text">头文件目录：include_directories()、CPATH、-I、CMAKE_INCLUDE_PATH</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%93%BE%E6%8E%A5%E5%BA%93%E7%9B%AE%E5%BD%95%EF%BC%9Alink-directories-%E3%80%81LIBRARY-PATH%E3%80%81LD-LIBRARY-PATH%E3%80%81-L%E3%80%81CMAKE-LIBRARY-PATH"><span class="toc-number">7.</span> <span class="toc-text">链接库目录：link_directories()、LIBRARY_PATH、LD_LIBRARY_PATH、-L、CMAKE_LIBRARY_PATH</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#PKG-CONFIG-PATH"><span class="toc-number">8.</span> <span class="toc-text">PKG_CONFIG_PATH</span></a></li></ol>
+        </div>
+    </aside>
+    <a class="btn-toc button" id="btn-toc" tabindex="0">
+        <svg viewBox="0 0 1024 1024" width="32" height="32" xmlns="http://www.w3.org/2000/svg">
+            <path d="M128 256h64V192H128zM320 256h576V192H320zM128 544h64v-64H128zM320 544h576v-64H320zM128 832h64v-64H128zM320 832h576v-64H320z" fill="currentColor"></path>
+        </svg>
+    </a>
+    <div class="toc-menus" id="toc-menus">
+        <div class="toc-title">文章目录</div>
+        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#PATH"><span class="toc-number">1.</span> <span class="toc-text">PATH</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#CMAKE-INSTALL-PREFIX"><span class="toc-number">2.</span> <span class="toc-text">CMAKE_INSTALL_PREFIX</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#find-package-%E5%8F%8A%E5%85%B6%E4%B8%A4%E7%A7%8D%E6%A8%A1%E5%BC%8F"><span class="toc-number">3.</span> <span class="toc-text">find_package()及其两种模式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#CMAKE-PREFIX-PATH"><span class="toc-number">4.</span> <span class="toc-text">CMAKE_PREFIX_PATH</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#CMAKE-MODULE-PATH"><span class="toc-number">5.</span> <span class="toc-text">CMAKE_MODULE_PATH</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%A4%B4%E6%96%87%E4%BB%B6%E7%9B%AE%E5%BD%95%EF%BC%9Ainclude-directories-%E3%80%81CPATH%E3%80%81-I%E3%80%81CMAKE-INCLUDE-PATH"><span class="toc-number">6.</span> <span class="toc-text">头文件目录：include_directories()、CPATH、-I、CMAKE_INCLUDE_PATH</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%93%BE%E6%8E%A5%E5%BA%93%E7%9B%AE%E5%BD%95%EF%BC%9Alink-directories-%E3%80%81LIBRARY-PATH%E3%80%81LD-LIBRARY-PATH%E3%80%81-L%E3%80%81CMAKE-LIBRARY-PATH"><span class="toc-number">7.</span> <span class="toc-text">链接库目录：link_directories()、LIBRARY_PATH、LD_LIBRARY_PATH、-L、CMAKE_LIBRARY_PATH</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#PKG-CONFIG-PATH"><span class="toc-number">8.</span> <span class="toc-text">PKG_CONFIG_PATH</span></a></li></ol>
+    </div>
+
+
+<article class="post post__with-toc content-card">
+    <div class="post__header"></div>
+    <div class="post__content">
+        <p>没有 sudo，自己放一个路径，咋整？</p>
+<span id="more"></span>
+
+<h3 id="PATH"><a href="#PATH" class="headerlink" title="PATH"></a>PATH</h3><p>linux环境变量，指定从哪里找可执行文件，地球人都知道</p>
+<h3 id="CMAKE-INSTALL-PREFIX"><a href="#CMAKE-INSTALL-PREFIX" class="headerlink" title="CMAKE_INSTALL_PREFIX"></a>CMAKE_INSTALL_PREFIX</h3><p>指定编译出来产物后make install到哪里。默认似乎是 <code>/usr/local</code>，如果要自己指定的话，就 <code>/home/cyx/xxx/yyy/install</code>即可。一般在命令行里使用 <code>cmake -DCMAKE_INSTALL_PREFIX=XXX ..</code>来将依赖库的编译产物放到一个文件夹里面</p>
+<h3 id="find-package-及其两种模式"><a href="#find-package-及其两种模式" class="headerlink" title="find_package()及其两种模式"></a>find_package()及其两种模式</h3><p><a target="_blank" rel="noopener" href="https://www.jianshu.com/p/a0915895dbbc">https://www.jianshu.com/p/a0915895dbbc</a></p>
+<p><img src="/images/cmake/package.png" class="lazy" data-srcset="/images/cmake/package.png" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABAQMAAAAl21bKAAAABlBMVEXMzMyWlpYU2uzLAAAACXBIWXMAAA7EAAAOxAGVKw4bAAAACklEQVQImWNgAAAAAgAB9HFkpgAAAABJRU5ErkJggg==" alt="find_package()模式"></p>
+<p>上面图从某个博客复制的。find_package()有两种模式，一种是默认的较低级的module模式，一种是较高级的config模式。</p>
+<ul>
+<li>对于module模式，要指定CMAKE_MODULE_PATH，我们自己要提供FindXXX.cmake</li>
+<li>对于config模式，要指定CMAKE_PREFIX_PATH，由依赖库提供XXXConfig.cmake</li>
+</ul>
+<h3 id="CMAKE-PREFIX-PATH"><a href="#CMAKE-PREFIX-PATH" class="headerlink" title="CMAKE_PREFIX_PATH"></a>CMAKE_PREFIX_PATH</h3><p>config模式用于提示各种依赖项的位置的最常用变量，帮助CMake定位安装在<strong>非标准目录</strong>中的其他软件包、库和二进制文件。在所需的依赖项<strong>不在默认系统路径</strong>中时常常使用。适用于 <code>find_package()</code>, <code>find_program()</code>, <code>find_library()</code>, <code>find_file()</code>, <code>find_path()</code></p>
+<p>CMAKE_PREFIX_PATH用于定义额外的 bin&#x2F;lib(64)&#x2F;include 搜索路径。如果它指定的路径中没有 &#x2F;bin, &#x2F;lib(64), &#x2F;include 后缀， <code>find_xxx</code> 命令会为每个路径自动加上 &#x2F;bin, &#x2F;lib(64), &#x2F;include 目录。因此，这个值可以直接设置为我们在CMAKE_INSTALL_PREFIX那一节提到的 <code>/home/cyx/xxx/yyy/install</code>（也就是把依赖库的编译产物添加进来了）</p>
+<p>指定好该变量以后，find_package()会按照下列的顺序查找xxxConfig.cmake</p>
+<ul>
+<li><code>&lt;prefix&gt;/(lib/&lt;arch&gt;|lib*|share)/cmake/&lt;name&gt;*/</code></li>
+<li><code>&lt;prefix&gt;/(lib/&lt;arch&gt;|lib*|share)/&lt;name&gt;*/</code></li>
+<li><code>&lt;prefix&gt;/(lib/&lt;arch&gt;|lib*|share)/&lt;name&gt;*/cmake/</code></li>
+<li><code>&lt;prefix&gt;/&lt;name&gt;*/(lib/&lt;arch&gt;|lib*|share)/cmake/&lt;name&gt;*/</code></li>
+<li><code>&lt;prefix&gt;/&lt;name&gt;*/(lib/&lt;arch&gt;|lib*|share)/&lt;name&gt;*/</code></li>
+<li><code>&lt;prefix&gt;/&lt;name&gt;*/(lib/&lt;arch&gt;|lib*|share)/&lt;name&gt;*/cmake/</code></li>
+</ul>
+<p>CMAKE_PREFIX_PATH既可以通过环境变量导出（ <code>export CMAKE_PREFIX_PATH=xxx</code>），也是一个CMake内置变量，可以在命令行上通过 <code>-D</code> 选项或者在 CMakeList.txt 中通过 <code>set</code> 或者 <code>list</code> 命令显式定义。</p>
+<p>除了CMAKE_PREFIX_PATH，find_package()还会按照 <a target="_blank" rel="noopener" href="https://www.cnblogs.com/lidabo/p/16635310.html">https://www.cnblogs.com/lidabo/p/16635310.html</a> 里面提到的顺序检查其他变量</p>
+<h3 id="CMAKE-MODULE-PATH"><a href="#CMAKE-MODULE-PATH" class="headerlink" title="CMAKE_MODULE_PATH"></a>CMAKE_MODULE_PATH</h3><p>自然就是去哪里找寻FindXXX.cmake了。这个用的少。</p>
+<h3 id="头文件目录：include-directories-、CPATH、-I、CMAKE-INCLUDE-PATH"><a href="#头文件目录：include-directories-、CPATH、-I、CMAKE-INCLUDE-PATH" class="headerlink" title="头文件目录：include_directories()、CPATH、-I、CMAKE_INCLUDE_PATH"></a>头文件目录：include_directories()、CPATH、-I、CMAKE_INCLUDE_PATH</h3><p>它们都是用于添加include目录的东西</p>
+<p><strong>include_directories()<strong>是在</strong>CMakeLists.txt</strong>里面编写的，指定到include那一层，例如 <code>/home/cyx/xxx/install/include</code></p>
+<p>C_INCLUDE_PATH、CPLUS_INCLUDE_PATH、<strong>CPATH</strong> 是 <strong>环境变量</strong>，其中 C_INCLUDE_PATH 只对C语言有效，CPLUS_INCLUDE_PATH 只对C++ 有效，CPATH 对两者都有效。</p>
+<p><strong>-I</strong>是敲g++命令行时候使用的参数，作用类似于CPATH </p>
+<p><strong>CMAKE_INCLUDE_PATH</strong>是为了find_file()和find_path()使用的。find_path()则是为了解决直接编写include_directories设置绝对路径太死板的问题而使用的。find_path()在CMAKE_PREFIX_PATH和CMAKE_INCLUDE_PATH（<strong>因此如果设置了</strong>CMAKE_PREFIX_PATH<strong>就不用设置</strong>CMAKE_INCLUDE_PATH<strong>了</strong>）下找寻头文件。如果找到了，再设置include_directories()，例如：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">FIND_PATH(myHeader  hello.h)  #名字myHeader随便取,不影响</span><br><span class="line">IF(myHeader)</span><br><span class="line">INCLUDE_DIRECTORIES($&#123;myHeader&#125;)</span><br><span class="line">ENDIF(myHeader)</span><br></pre></td></tr></table></figure>
+
+<h3 id="链接库目录：link-directories-、LIBRARY-PATH、LD-LIBRARY-PATH、-L、CMAKE-LIBRARY-PATH"><a href="#链接库目录：link-directories-、LIBRARY-PATH、LD-LIBRARY-PATH、-L、CMAKE-LIBRARY-PATH" class="headerlink" title="链接库目录：link_directories()、LIBRARY_PATH、LD_LIBRARY_PATH、-L、CMAKE_LIBRARY_PATH"></a>链接库目录：link_directories()、LIBRARY_PATH、LD_LIBRARY_PATH、-L、CMAKE_LIBRARY_PATH</h3><p>它们都是用于指定链接库目录的东西。在编译的链接阶段，编译器需要查找得到所有用到的库，包括静态库和动态库。在运行时，需要能够找到动态库</p>
+<p><strong>link_directories()<strong>是在</strong>CMakeLists.txt</strong>中编写的，在<strong>编译时</strong>指定<strong>静态库和动态库</strong>的位置</p>
+<p><strong>LIBRARY_PATH</strong>是<strong>环境变量</strong>，在<strong>编译时</strong>指定<strong>静态库和动态库</strong>的位置</p>
+<p><strong>LD_LIBRARY_PATH</strong>也是<strong>环境变量</strong>，在<strong>运行时</strong>指定<strong>动态库</strong>的位置</p>
+<p><strong>-L</strong>是敲g++命令行时使用的参数，作用类似于LIBRARY_PATH</p>
+<p><strong>CMAKE_LIBRARY_PATH</strong>是为了find_library()使用的。find_library()则是为了解决直接编写include_directories设置绝对路径太死板的问题而使用的。find_library在CMAKE_PREFIX_PATH和CMAKE_LIBRARY_PATH（<strong>因此如果设置了</strong>CMAKE_PREFIX_PATH<strong>就不用设置</strong>CMAKE_LIBRARY_PATH<strong>了</strong>）下找寻库。如果找到了，再设置link_directorie()，例如：</p>
+<h3 id="PKG-CONFIG-PATH"><a href="#PKG-CONFIG-PATH" class="headerlink" title="PKG_CONFIG_PATH"></a>PKG_CONFIG_PATH</h3><p>指定package config（.pc）文件，我也不知道有啥用</p>
+
+    </div>
+     
+    <div class="post-footer__meta"><p>更新于 2024-01-28</p></div> 
+    <div class="post-entry__tags"><a href="/tags/cmake/" class="post-tags__link button"># cmake</a></div> 
+</article>
+
+
+    <div class="nav">
+        <div class="nav__prev">
+            
+        </div>
+        <div class="nav__next">
+            
+                <a href="/2024/01/27/miscellanies/tianhe-airport/" class="nav__link">
+                    <div>
+                        <div class="nav__label">
+                            Next Post
+                        </div>
+                        <div class="nav__title">
+                            如何赶天河机场早班机
+                        </div>
+                    </div>
+                    <div>
+                        <svg viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg" width="24" height="24"><path d="M434.944 790.624l-45.248-45.248L623.04 512l-233.376-233.376 45.248-45.248L713.568 512z" fill="#808080"></path></svg>
+                    </div>
+                </a>
+            
+        </div>
+    </div>
+
+
+
+
+
+</main>
+
+            <footer class="footer">
+     
+    <a href="#" class="button" id="b2t" aria-label="回到顶部" title="回到顶部">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024" width="32" height="32">
+            <path d="M233.376 722.752L278.624 768 512 534.624 745.376 768l45.248-45.248L512 444.128zM192 352h640V288H192z" fill="currentColor"></path>
+        </svg>
+    </a>
+
+    
+
+
+    
+     
+ 
+
+ 
+    
+        
+        <p class="footer-copyright">
+            Copyright © 2017&nbsp;-&nbsp;2024 <a href="/">怀中落霞</a>
+        </p>
+    
+    
+    <p>Powered by <a href="https://hexo.io" target="_blank">Hexo</a> | Theme - <a href="https://github.com/ChrAlpha/hexo-theme-cards" target="_blank">Cards</a></p>
+</footer>
+
+        </div>
+        
+    <script defer src="https://cdn.jsdelivr.net/npm/vanilla-lazyload@17.1.0/dist/lazyload.min.js"></script>
+    <script>
+        window.lazyLoadOptions = {
+            elements_selector: ".lazy",
+            threshold: 0
+        };
+    </script>
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+
+
+ 
+
+
+
+ 
+
+
+    
+ 
+
+
+    
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.4.1/dist/jquery.min.js"></script>
+
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.4.1/dist/jquery.fancybox.min.css">
+
+    
+<script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.4.1/dist/jquery.fancybox.min.js"></script>
+
+    <script>
+        let lazyloadT = Boolean('true'),
+            auto_fancybox = Boolean('true')
+        if (auto_fancybox) {
+            $(".post__content").find('img').each(function () {
+                var element = document.createElement("a");
+                $(element).attr("data-fancybox", "gallery");
+                $(element).attr("href", $(this).attr("src"));
+                if (lazyloadT) {
+                    $(element).attr("href", $(this).attr("data-srcset"));
+                }
+                $(this).wrap(element);
+            });
+        } else {
+            $(".post__content").find("fancybox").find('img').each(function () {
+                var element = document.createElement("a");
+                $(element).attr("data-fancybox", "gallery");
+                $(element).attr("href", $(this).attr("src"));
+                if (lazyloadT) {
+                    $(element).attr("href", $(this).attr("data-srcset"));
+                }
+                $(this).wrap(element);
+            });
+        }
+    </script>
+ 
+
+
+    <script>
+        if (typeof MathJax === 'undefined') {
+            window.MathJax = {
+                loader: {
+                    source: {
+                        '[tex]/amsCd': '[tex]/amscd',
+                        '[tex]/AMScd': '[tex]/amscd'
+                    }
+                },
+                tex: {
+                    inlineMath: {'[+]': [['$', '$']]},
+                    tags: 'ams'
+                },
+                options: {
+                    renderActions: {
+                        findScript: [10, doc => {
+                            document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+                                const display = !!node.type.match(/; *mode=display/);
+                                const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+                                const text = document.createTextNode('');
+                                node.parentNode.replaceChild(text, node);
+                                math.start = {node: text, delim: '', n: 0};
+                                math.end = {node: text, delim: '', n: 0};
+                                doc.math.push(math);
+                            });
+                        }, '', false],
+                        insertedScript: [200, () => {
+                            document.querySelectorAll('mjx-container').forEach(node => {
+                                let target = node.parentNode;
+                                if (target.nodeName.toLowerCase() === 'li') {
+                                    target.parentNode.classList.add('has-jax');
+                                }
+                            });
+                        }, '', false]
+                    }
+                }
+            };
+            (function () {
+                var script = document.createElement('script');
+                script.src = "https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js";
+                script.defer = true;
+                document.head.appendChild(script);
+            })();
+        } else {
+            MathJax.startup.document.state(0);
+            MathJax.texReset();
+            MathJax.typeset();
+        }
+    </script>
+
+ 
+
+ 
+
+ 
+
+ 
+
+
+
+
+    </body>
+</html>

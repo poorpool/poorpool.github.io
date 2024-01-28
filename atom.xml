@@ -6,7 +6,7 @@
   <link href="https://poorpool.github.io/atom.xml" rel="self"/>
   
   <link href="https://poorpool.github.io/"/>
-  <updated>2024-01-27T13:50:50.943Z</updated>
+  <updated>2024-01-28T13:36:06.362Z</updated>
   <id>https://poorpool.github.io/</id>
   
   <author>
@@ -17,11 +17,30 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>不使用默认路径的 cmake 项目管理</title>
+    <link href="https://poorpool.github.io/2024/01/28/language_notes/cmake-vars/"/>
+    <id>https://poorpool.github.io/2024/01/28/language_notes/cmake-vars/</id>
+    <published>2024-01-28T21:30:00.000Z</published>
+    <updated>2024-01-28T13:36:06.362Z</updated>
+    
+    
+    <summary type="html">&lt;p&gt;没有 sudo，自己放一个路径，咋整？&lt;/p&gt;</summary>
+    
+    
+    
+    <category term="编程语言" scheme="https://poorpool.github.io/categories/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/"/>
+    
+    
+    <category term="cmake" scheme="https://poorpool.github.io/tags/cmake/"/>
+    
+  </entry>
+  
+  <entry>
     <title>如何赶天河机场早班机</title>
     <link href="https://poorpool.github.io/2024/01/27/miscellanies/tianhe-airport/"/>
     <id>https://poorpool.github.io/2024/01/27/miscellanies/tianhe-airport/</id>
     <published>2024-01-27T21:00:00.000Z</published>
-    <updated>2024-01-27T13:50:50.943Z</updated>
+    <updated>2024-01-28T13:36:06.362Z</updated>
     
     
     <summary type="html">&lt;p&gt;从华科到天河机场&lt;/p&gt;</summary>
@@ -40,7 +59,7 @@
     <link href="https://poorpool.github.io/2022/10/10/rdma/rdma-notes/"/>
     <id>https://poorpool.github.io/2022/10/10/rdma/rdma-notes/</id>
     <published>2022-10-10T15:50:06.000Z</published>
-    <updated>2024-01-27T13:50:50.951Z</updated>
+    <updated>2024-01-28T13:36:06.370Z</updated>
     
     
     <summary type="html">&lt;p&gt;&lt;a href=&quot;https://www.zhihu.com/column/rdmatechnology&quot;&gt;知乎专题文章&lt;/a&gt;&lt;/p&gt;
@@ -66,7 +85,7 @@
     <link href="https://poorpool.github.io/2022/09/02/programming/redis-notes/"/>
     <id>https://poorpool.github.io/2022/09/02/programming/redis-notes/</id>
     <published>2022-09-02T22:31:17.000Z</published>
-    <updated>2024-01-27T13:50:50.951Z</updated>
+    <updated>2024-01-28T13:36:06.370Z</updated>
     
     
     <summary type="html">&lt;p&gt;基于内存的nosql数据库&lt;/p&gt;</summary>
@@ -87,7 +106,7 @@
     <link href="https://poorpool.github.io/2022/08/19/english/xuanyuanyou-english/"/>
     <id>https://poorpool.github.io/2022/08/19/english/xuanyuanyou-english/</id>
     <published>2022-08-19T11:30:47.000Z</published>
-    <updated>2024-01-27T13:50:50.943Z</updated>
+    <updated>2024-01-28T13:36:06.362Z</updated>
     
     
       
@@ -113,7 +132,7 @@
     <link href="https://poorpool.github.io/2022/07/03/tinykv/raft/"/>
     <id>https://poorpool.github.io/2022/07/03/tinykv/raft/</id>
     <published>2022-07-03T14:31:00.000Z</published>
-    <updated>2024-01-27T13:50:50.951Z</updated>
+    <updated>2024-01-28T13:36:06.370Z</updated>
     
     
     <summary type="html">&lt;p&gt;重新做一遍 TinyKV，立志好好学 Raft&lt;/p&gt;</summary>
@@ -136,7 +155,7 @@
     <link href="https://poorpool.github.io/2022/07/03/tinykv/notes/"/>
     <id>https://poorpool.github.io/2022/07/03/tinykv/notes/</id>
     <published>2022-07-03T14:31:00.000Z</published>
-    <updated>2024-01-27T13:50:50.951Z</updated>
+    <updated>2024-01-28T13:36:06.370Z</updated>
     
     
     <summary type="html">&lt;p&gt;代码在 &lt;a href=&quot;https://github.com/poorpool/tinykv&quot;&gt;https://github.com/poorpool/tinykv&lt;/a&gt; ，96.1分。&lt;/p&gt;</summary>
@@ -159,7 +178,7 @@
     <link href="https://poorpool.github.io/2022/05/29/course/database/"/>
     <id>https://poorpool.github.io/2022/05/29/course/database/</id>
     <published>2022-05-29T22:41:22.000Z</published>
-    <updated>2024-01-27T13:50:50.943Z</updated>
+    <updated>2024-01-28T13:36:06.362Z</updated>
     
     
     <summary type="html">&lt;p&gt;过！过！过！&lt;/p&gt;</summary>
@@ -180,7 +199,7 @@
     <link href="https://poorpool.github.io/2022/05/29/course/compile/"/>
     <id>https://poorpool.github.io/2022/05/29/course/compile/</id>
     <published>2022-05-29T22:37:22.000Z</published>
-    <updated>2024-01-27T13:50:50.943Z</updated>
+    <updated>2024-01-28T13:36:06.362Z</updated>
     
     
     <summary type="html">&lt;p&gt;过！过！过！&lt;/p&gt;</summary>
@@ -201,7 +220,7 @@
     <link href="https://poorpool.github.io/2022/02/01/language_notes/cpptopiclearning/"/>
     <id>https://poorpool.github.io/2022/02/01/language_notes/cpptopiclearning/</id>
     <published>2022-02-01T11:21:21.000Z</published>
-    <updated>2024-01-27T13:50:50.943Z</updated>
+    <updated>2024-01-28T13:36:06.362Z</updated>
     
     
     <summary type="html">&lt;p&gt;a tour of c++ 之类的书&lt;/p&gt;</summary>
@@ -220,7 +239,7 @@
     <link href="https://poorpool.github.io/2022/02/01/language_notes/rustbook/"/>
     <id>https://poorpool.github.io/2022/02/01/language_notes/rustbook/</id>
     <published>2022-02-01T11:21:21.000Z</published>
-    <updated>2024-01-27T13:50:50.943Z</updated>
+    <updated>2024-01-28T13:36:06.362Z</updated>
     
     
     <summary type="html">&lt;p&gt;Rust book，rustlings&lt;/p&gt;</summary>
@@ -239,7 +258,7 @@
     <link href="https://poorpool.github.io/2022/01/12/pdsl/dpukv/"/>
     <id>https://poorpool.github.io/2022/01/12/pdsl/dpukv/</id>
     <published>2022-01-12T13:52:42.000Z</published>
-    <updated>2024-01-27T13:50:50.951Z</updated>
+    <updated>2024-01-28T13:36:06.366Z</updated>
     
     
       
@@ -269,7 +288,7 @@
     <link href="https://poorpool.github.io/2022/01/12/projects/6s081/"/>
     <id>https://poorpool.github.io/2022/01/12/projects/6s081/</id>
     <published>2022-01-12T13:52:42.000Z</published>
-    <updated>2024-01-27T13:50:50.951Z</updated>
+    <updated>2024-01-28T13:36:06.370Z</updated>
     
     
     <summary type="html">&lt;p&gt;2021年链接 &lt;a href=&quot;https://pdos.csail.mit.edu/6.S081/2021/schedule.html&quot;&gt;https://pdos.csail.mit.edu/6.S081/2021/schedule.html&lt;/a&gt;&lt;/p&gt;</summary>
@@ -290,7 +309,7 @@
     <link href="https://poorpool.github.io/2021/11/03/algorithm_contest/cspsharingexample/"/>
     <id>https://poorpool.github.io/2021/11/03/algorithm_contest/cspsharingexample/</id>
     <published>2021-11-03T09:38:00.000Z</published>
-    <updated>2024-01-27T13:50:50.943Z</updated>
+    <updated>2024-01-28T13:36:06.362Z</updated>
     
     
     <summary type="html">&lt;p&gt;代码风格非常重要！&lt;/p&gt;</summary>
@@ -309,7 +328,7 @@
     <link href="https://poorpool.github.io/2021/08/27/miscellanies/latextemplates/"/>
     <id>https://poorpool.github.io/2021/08/27/miscellanies/latextemplates/</id>
     <published>2021-08-27T11:00:00.000Z</published>
-    <updated>2024-01-27T13:50:50.943Z</updated>
+    <updated>2024-01-28T13:36:06.362Z</updated>
     
     
     <summary type="html">&lt;p&gt;记录一下经常用到的模板&lt;/p&gt;</summary>
@@ -330,7 +349,7 @@
     <link href="https://poorpool.github.io/2021/08/20/miscellanies/ghactions/"/>
     <id>https://poorpool.github.io/2021/08/20/miscellanies/ghactions/</id>
     <published>2021-08-20T16:20:00.000Z</published>
-    <updated>2024-01-27T13:50:50.943Z</updated>
+    <updated>2024-01-28T13:36:06.362Z</updated>
     
     
       
@@ -356,7 +375,7 @@
     <link href="https://poorpool.github.io/2021/03/12/algorithm_contest/nowcoderleetcodes/"/>
     <id>https://poorpool.github.io/2021/03/12/algorithm_contest/nowcoderleetcodes/</id>
     <published>2021-03-12T19:21:15.000Z</published>
-    <updated>2024-01-27T13:50:50.943Z</updated>
+    <updated>2024-01-28T13:36:06.362Z</updated>
     
     
     <summary type="html">&lt;p&gt;oi 题比这刺激多了。&lt;/p&gt;</summary>
@@ -375,7 +394,7 @@
     <link href="https://poorpool.github.io/2021/03/01/course/hustjava1/"/>
     <id>https://poorpool.github.io/2021/03/01/course/hustjava1/</id>
     <published>2021-03-01T14:12:20.000Z</published>
-    <updated>2024-01-27T13:50:50.943Z</updated>
+    <updated>2024-01-28T13:36:06.362Z</updated>
     
     
     <summary type="html">&lt;p&gt;随便记一下&lt;/p&gt;</summary>
@@ -396,7 +415,7 @@
     <link href="https://poorpool.github.io/2021/02/12/cs_notes/cs144lab/"/>
     <id>https://poorpool.github.io/2021/02/12/cs_notes/cs144lab/</id>
     <published>2021-02-12T15:26:44.000Z</published>
-    <updated>2024-01-27T13:50:50.943Z</updated>
+    <updated>2024-01-28T13:36:06.362Z</updated>
     
     
     <summary type="html">&lt;p&gt;计算机网络课&lt;/p&gt;</summary>
@@ -417,7 +436,7 @@
     <link href="https://poorpool.github.io/2021/02/12/miscellanies/prepare-interview-1/"/>
     <id>https://poorpool.github.io/2021/02/12/miscellanies/prepare-interview-1/</id>
     <published>2021-02-12T10:22:15.000Z</published>
-    <updated>2024-01-27T13:50:50.943Z</updated>
+    <updated>2024-01-28T13:36:06.362Z</updated>
     
     
     <summary type="html">Here&#39;s something encrypted, password is required to continue reading.</summary>
@@ -428,27 +447,6 @@
     
     
     <category term="杂" scheme="https://poorpool.github.io/tags/%E6%9D%82/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>模拟退火</title>
-    <link href="https://poorpool.github.io/2021/02/10/algorithm_contest/monituihuo/"/>
-    <id>https://poorpool.github.io/2021/02/10/algorithm_contest/monituihuo/</id>
-    <published>2021-02-10T13:59:27.000Z</published>
-    <updated>2024-01-27T13:50:50.943Z</updated>
-    
-    
-    <summary type="html">&lt;p&gt;其实这玩意很好理解，首先看：&lt;a href=&quot;https://www.cnblogs.com/flashhu/p/8884132.html&quot;&gt;讲解&lt;/a&gt;&lt;/p&gt;</summary>
-    
-    
-    
-    <category term="OI" scheme="https://poorpool.github.io/categories/OI/"/>
-    
-    <category term="乱搞" scheme="https://poorpool.github.io/categories/OI/%E4%B9%B1%E6%90%9E/"/>
-    
-    
-    <category term="模拟退火" scheme="https://poorpool.github.io/tags/%E6%A8%A1%E6%8B%9F%E9%80%80%E7%81%AB/"/>
     
   </entry>
   
