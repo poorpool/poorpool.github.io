@@ -4,6 +4,31 @@
   
     
     <entry>
+      <title>如何优雅地将 draw.io 导入 Word</title>
+      <link href="/2024/05/28/miscellanies/inkscape/"/>
+      <url>/2024/05/28/miscellanies/inkscape/</url>
+      
+        <content type="html"><![CDATA[<p>draw.io -&gt; PDF -&gt; emf -&gt; word</p><span id="more"></span><p>draw.io 直接导出为 svg 的话，它使用的 svg 版本太高，很多功能导出为 inkscape 以后就混乱了，要取消所有文本的自动换行 + 格式化文本，然后再自己调整一下文本格式，才能转换得比较好。</p><p>不过，可以使用 PDF 作为中间格式。在 draw.io 导出 PDF 以后，使用下列命令进行转换：</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">inkscape.exe --pdf-font-strategy=substitute --export-type=emf xxx.pdf</span><br></pre></td></tr></table></figure><p>substitute 这个参数可以让转换出来的 emf 可以复制。<a href="https://gitlab.com/inkscape/inkscape/-/issues/4508">https://gitlab.com/inkscape/inkscape/-/issues/4508</a></p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 杂记 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 杂记 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>不使用默认路径的 cmake 项目管理</title>
       <link href="/2024/01/28/language_notes/cmake-vars/"/>
       <url>/2024/01/28/language_notes/cmake-vars/</url>
